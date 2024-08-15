@@ -2,37 +2,19 @@
 //  HappyOrganizedMeApp.swift
 //  HappyOrganizedMe
 //
-//  Created by Deseret Baker on 7/25/24.
+//  Created by Deseret Baker on 8/14/24.
 //
-//
-//  HappyOrganizedMeApp.swift
-//  HappyOrganizedMe
-//
-//  Created by Deseret Baker on 7/25/24.
-//
+
 import SwiftUI
-import SwiftData
 
 @main
-
-
 struct HappyOrganizedMeApp: App {
+    @StateObject var projectViewModel = ProjectViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            StartHereView()
-                .modelContainer(for: [Project.self, Room.self, Task.self, Subtask.self, Minitask.self])
+            StartHereView() // Starting view of your app
+                .environmentObject(projectViewModel) // Pass the environment object here
         }
     }
 }
-// The struct provides a preview for the StartHereView as the initial content view.
-
-struct HappyOrganizedMeApp_Previews: PreviewProvider {
-    static var previews: some View {
-        StartHereView()
-        // .environmentObject(ProjectViewModel() is injected to the preview to mimic the environment the views will have during the app's runtime. the .modelContainer(for: ...) ensures that the preview accurately represents the app's functionality.
-        
-            .environmentObject(ProjectViewModel())
-            .modelContainer(for: [Project.self, Room.self, Task.self, Subtask.self, Minitask.self])
-    }
-}
-

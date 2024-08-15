@@ -3,27 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C564B5C22C594BF900AA2A69 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5C12C594BF900AA2A69 /* ProjectViewModel.swift */; };
-		C564B5C42C594C4B00AA2A69 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5C32C594C4B00AA2A69 /* StartHereView.swift */; };
-		C564B5C62C594E3800AA2A69 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5C52C594E3800AA2A69 /* ProjectDetailView.swift */; };
-		C564B5C82C594E8A00AA2A69 /* RoomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5C72C594E8A00AA2A69 /* RoomDetailView.swift */; };
-		C564B5CC2C594F5100AA2A69 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5CB2C594F5100AA2A69 /* TaskDetailView.swift */; };
-		C564B5CE2C5A8DFF00AA2A69 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5CD2C5A8DFF00AA2A69 /* TaskListView.swift */; };
-		C564B5D02C5B218500AA2A69 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5CF2C5B218500AA2A69 /* ProjectManager.swift */; };
-		C564B5D22C5B231600AA2A69 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5D12C5B231600AA2A69 /* Project.swift */; };
-		C564B5D52C5B2DAA00AA2A69 /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5D42C5B2DAA00AA2A69 /* RoomListView.swift */; };
-		C5A95DAD2C5295C800BD08A7 /* HappyOrganizedMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DAC2C5295C800BD08A7 /* HappyOrganizedMeApp.swift */; };
+		C52FED3A2C69736D00114D1E /* EditRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52FED392C69736D00114D1E /* EditRoomView.swift */; };
+		C52FED3C2C69B19100114D1E /* EditSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52FED3B2C69B19100114D1E /* EditSpaceView.swift */; };
+		C564B5D92C5BEFB500AA2A69 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */; };
+		C564B5DB2C5C5AF300AA2A69 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5DA2C5C5AF300AA2A69 /* DataModel.swift */; };
+		C564B5E72C5ECBFC00AA2A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */; };
+		C564B5E92C5EDFC900AA2A69 /* ProjectViewModel 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5E82C5EDFC900AA2A69 /* ProjectViewModel 2.swift */; };
+		C564B5EF2C6024CC00AA2A69 /* SampleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5EE2C6024CC00AA2A69 /* SampleModels.swift */; };
+		C564B5F92C61C57700AA2A69 /* appDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5F82C61C57700AA2A69 /* appDelegate.swift */; };
+		C564B60D2C6317CE00AA2A69 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B60C2C6317CE00AA2A69 /* Room.swift */; };
+		C564B60F2C6317FF00AA2A69 /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B60E2C6317FF00AA2A69 /* Space.swift */; };
+		C564B6112C63182400AA2A69 /* Subtask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6102C63182400AA2A69 /* Subtask.swift */; };
+		C564B6132C63184500AA2A69 /* Minitask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6122C63184500AA2A69 /* Minitask.swift */; };
+		C564B6152C631C8100AA2A69 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6142C631C8100AA2A69 /* SyncManager.swift */; };
+		C564B61C2C6510EA00AA2A69 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B61B2C6510EA00AA2A69 /* Extension.swift */; };
+		C564B61E2C66739C00AA2A69 /* TaskCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B61D2C66739C00AA2A69 /* TaskCard.swift */; };
+		C564B6202C6858F300AA2A69 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B61F2C6858F300AA2A69 /* ProjectView.swift */; };
+		C564B6222C686A1000AA2A69 /* BaseProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6212C686A1000AA2A69 /* BaseProjects.swift */; };
+		C564B6242C686E2900AA2A69 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6232C686E2900AA2A69 /* AddProjectView.swift */; };
+		C564B6292C6919C400AA2A69 /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6282C6919C400AA2A69 /* EditProjectView.swift */; };
 		C5A95DB32C5295CA00BD08A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A95DB22C5295CA00BD08A7 /* Assets.xcassets */; };
 		C5A95DB62C5295CA00BD08A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A95DB52C5295CA00BD08A7 /* Preview Assets.xcassets */; };
 		C5A95DC02C5295CA00BD08A7 /* HappyOrganizedMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DBF2C5295CA00BD08A7 /* HappyOrganizedMeTests.swift */; };
 		C5A95DCA2C5295CA00BD08A7 /* HappyOrganizedMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DC92C5295CA00BD08A7 /* HappyOrganizedMeUITests.swift */; };
 		C5A95DCC2C5295CA00BD08A7 /* HappyOrganizedMeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DCB2C5295CA00BD08A7 /* HappyOrganizedMeUITestsLaunchTests.swift */; };
-		C5A95DDA2C52968500BD08A7 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DD92C52968500BD08A7 /* DataModel.swift */; };
-		C5A95DDD2C52974F00BD08A7 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A95DDC2C52974F00BD08A7 /* ProjectListView.swift */; };
+		C5DAD8462C6AFFB100477EB9 /* EditMiniTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8452C6AFFB100477EB9 /* EditMiniTaskView.swift */; };
+		C5DAD8482C6B032B00477EB9 /* AddRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8472C6B032B00477EB9 /* AddRoomView.swift */; };
+		C5DAD84A2C6B065F00477EB9 /* AddSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8492C6B065F00477EB9 /* AddSpaceView.swift */; };
+		C5DAD84C2C6B08BB00477EB9 /* EditSubtaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD84B2C6B08BB00477EB9 /* EditSubtaskView.swift */; };
+		C5DAD84E2C6B0B4100477EB9 /* AddMinitaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD84D2C6B0B4100477EB9 /* AddMinitaskView.swift */; };
+		C5DAD8AB2C6D865600477EB9 /* HappyOrganizedMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8AA2C6D865600477EB9 /* HappyOrganizedMeApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,17 +57,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C564B5C12C594BF900AA2A69 /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
-		C564B5C32C594C4B00AA2A69 /* StartHereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartHereView.swift; sourceTree = "<group>"; };
-		C564B5C52C594E3800AA2A69 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
-		C564B5C72C594E8A00AA2A69 /* RoomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailView.swift; sourceTree = "<group>"; };
-		C564B5CB2C594F5100AA2A69 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
-		C564B5CD2C5A8DFF00AA2A69 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
-		C564B5CF2C5B218500AA2A69 /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
-		C564B5D12C5B231600AA2A69 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		C564B5D42C5B2DAA00AA2A69 /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
+		C52FED392C69736D00114D1E /* EditRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomView.swift; sourceTree = "<group>"; };
+		C52FED3B2C69B19100114D1E /* EditSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSpaceView.swift; sourceTree = "<group>"; };
+		C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartHereView.swift; path = HappyOrganizedMe/Views/StartHereView.swift; sourceTree = SOURCE_ROOT; };
+		C564B5DA2C5C5AF300AA2A69 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataModel.swift; path = HappyOrganizedMe/Models/DataModel.swift; sourceTree = SOURCE_ROOT; };
+		C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C564B5E82C5EDFC900AA2A69 /* ProjectViewModel 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectViewModel 2.swift"; sourceTree = "<group>"; };
+		C564B5EE2C6024CC00AA2A69 /* SampleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModels.swift; sourceTree = "<group>"; };
+		C564B5F82C61C57700AA2A69 /* appDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appDelegate.swift; sourceTree = "<group>"; };
+		C564B60C2C6317CE00AA2A69 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		C564B60E2C6317FF00AA2A69 /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
+		C564B6102C63182400AA2A69 /* Subtask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtask.swift; sourceTree = "<group>"; };
+		C564B6122C63184500AA2A69 /* Minitask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Minitask.swift; sourceTree = "<group>"; };
+		C564B6142C631C8100AA2A69 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		C564B61B2C6510EA00AA2A69 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C564B61D2C66739C00AA2A69 /* TaskCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCard.swift; sourceTree = "<group>"; };
+		C564B61F2C6858F300AA2A69 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		C564B6212C686A1000AA2A69 /* BaseProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProjects.swift; sourceTree = "<group>"; };
+		C564B6232C686E2900AA2A69 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
+		C564B6282C6919C400AA2A69 /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
 		C5A95DA92C5295C800BD08A7 /* HappyOrganizedMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyOrganizedMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5A95DAC2C5295C800BD08A7 /* HappyOrganizedMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyOrganizedMeApp.swift; sourceTree = "<group>"; };
 		C5A95DB22C5295CA00BD08A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A95DB52C5295CA00BD08A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5A95DBB2C5295CA00BD08A7 /* HappyOrganizedMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyOrganizedMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,9 +84,56 @@
 		C5A95DC52C5295CA00BD08A7 /* HappyOrganizedMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyOrganizedMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A95DC92C5295CA00BD08A7 /* HappyOrganizedMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyOrganizedMeUITests.swift; sourceTree = "<group>"; };
 		C5A95DCB2C5295CA00BD08A7 /* HappyOrganizedMeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyOrganizedMeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C5A95DD92C52968500BD08A7 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		C5A95DDC2C52974F00BD08A7 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		C5DAD8422C6AF7FE00477EB9 /* EditSubtaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubtaskView.swift; sourceTree = "<group>"; };
+		C5DAD8452C6AFFB100477EB9 /* EditMiniTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMiniTaskView.swift; sourceTree = "<group>"; };
+		C5DAD8472C6B032B00477EB9 /* AddRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomView.swift; sourceTree = "<group>"; };
+		C5DAD8492C6B065F00477EB9 /* AddSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpaceView.swift; sourceTree = "<group>"; };
+		C5DAD84B2C6B08BB00477EB9 /* EditSubtaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubtaskView.swift; sourceTree = "<group>"; };
+		C5DAD84D2C6B0B4100477EB9 /* AddMinitaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMinitaskView.swift; sourceTree = "<group>"; };
+		C5DAD8AA2C6D865600477EB9 /* HappyOrganizedMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyOrganizedMeApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C564B6072C63170100AA2A69 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MinitaskDetailView.swift,
+				ProjectDetailView.swift,
+				RoomDetailView.swift,
+				SpaceDetailView.swift,
+				SubtaskDetailView.swift,
+			);
+			target = C5A95DA82C5295C800BD08A7 /* HappyOrganizedMe */;
+		};
+		C564B60B2C63173E00AA2A69 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MinitaskListView.swift,
+				ProjectListView.swift,
+				RoomListView.swift,
+				SpaceListView.swift,
+				SubtaskListView.swift,
+			);
+			target = C5A95DA82C5295C800BD08A7 /* HappyOrganizedMe */;
+		};
+		C5DAD84F2C6BC16E00477EB9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MinitaskSelectionView.swift,
+				ProjectSelectionView.swift,
+				RoomSelectionView.swift,
+				SpaceSelectionView.swift,
+				SubtaskSelectionView.swift,
+			);
+			target = C5A95DA82C5295C800BD08A7 /* HappyOrganizedMe */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C564B6062C63170000AA2A69 /* DetailView */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C564B6072C63170100AA2A69 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DetailView; sourceTree = "<group>"; };
+		C564B6082C63172100AA2A69 /* SelectionView */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C5DAD84F2C6BC16E00477EB9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SelectionView; sourceTree = "<group>"; };
+		C564B60A2C63173E00AA2A69 /* ListView */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C564B60B2C63173E00AA2A69 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ListView; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C5A95DA62C5295C800BD08A7 /* Frameworks */ = {
@@ -94,9 +163,21 @@
 		C564B5D32C5B232200AA2A69 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C564B5D12C5B231600AA2A69 /* Project.swift */,
+				C564B61B2C6510EA00AA2A69 /* Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C564B6252C686E3400AA2A69 /* EditView */ = {
+			isa = PBXGroup;
+			children = (
+				C564B6282C6919C400AA2A69 /* EditProjectView.swift */,
+				C52FED392C69736D00114D1E /* EditRoomView.swift */,
+				C52FED3B2C69B19100114D1E /* EditSpaceView.swift */,
+				C5DAD8422C6AF7FE00477EB9 /* EditSubtaskView.swift */,
+				C5DAD8452C6AFFB100477EB9 /* EditMiniTaskView.swift */,
+			);
+			path = EditView;
 			sourceTree = "<group>";
 		};
 		C5A95DA02C5295C800BD08A7 = {
@@ -122,7 +203,10 @@
 		C5A95DAB2C5295C800BD08A7 /* HappyOrganizedMe */ = {
 			isa = PBXGroup;
 			children = (
-				C5A95DAC2C5295C800BD08A7 /* HappyOrganizedMeApp.swift */,
+				C5DAD8AA2C6D865600477EB9 /* HappyOrganizedMeApp.swift */,
+				C564B6212C686A1000AA2A69 /* BaseProjects.swift */,
+				C564B5F82C61C57700AA2A69 /* appDelegate.swift */,
+				C564B6142C631C8100AA2A69 /* SyncManager.swift */,
 				C5A95DDB2C5296D300BD08A7 /* Views */,
 				C5A95DD82C5295FF00BD08A7 /* Models */,
 				C564B5D32C5B232200AA2A69 /* Extension */,
@@ -160,9 +244,14 @@
 		C5A95DD82C5295FF00BD08A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C564B5CF2C5B218500AA2A69 /* ProjectManager.swift */,
-				C5A95DD92C52968500BD08A7 /* DataModel.swift */,
-				C564B5C12C594BF900AA2A69 /* ProjectViewModel.swift */,
+				C564B61D2C66739C00AA2A69 /* TaskCard.swift */,
+				C564B5E82C5EDFC900AA2A69 /* ProjectViewModel 2.swift */,
+				C564B5DA2C5C5AF300AA2A69 /* DataModel.swift */,
+				C564B60C2C6317CE00AA2A69 /* Room.swift */,
+				C564B60E2C6317FF00AA2A69 /* Space.swift */,
+				C564B6102C63182400AA2A69 /* Subtask.swift */,
+				C564B6122C63184500AA2A69 /* Minitask.swift */,
+				C564B5EE2C6024CC00AA2A69 /* SampleModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,15 +259,28 @@
 		C5A95DDB2C5296D300BD08A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C564B5C32C594C4B00AA2A69 /* StartHereView.swift */,
-				C564B5C52C594E3800AA2A69 /* ProjectDetailView.swift */,
-				C5A95DDC2C52974F00BD08A7 /* ProjectListView.swift */,
-				C564B5C72C594E8A00AA2A69 /* RoomDetailView.swift */,
-				C564B5D42C5B2DAA00AA2A69 /* RoomListView.swift */,
-				C564B5CB2C594F5100AA2A69 /* TaskDetailView.swift */,
-				C564B5CD2C5A8DFF00AA2A69 /* TaskListView.swift */,
+				C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */,
+				C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */,
+				C564B61F2C6858F300AA2A69 /* ProjectView.swift */,
+				C5DAD8442C6AF9B700477EB9 /* AddProject */,
+				C564B6252C686E3400AA2A69 /* EditView */,
+				C564B60A2C63173E00AA2A69 /* ListView */,
+				C564B6082C63172100AA2A69 /* SelectionView */,
+				C564B6062C63170000AA2A69 /* DetailView */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C5DAD8442C6AF9B700477EB9 /* AddProject */ = {
+			isa = PBXGroup;
+			children = (
+				C564B6232C686E2900AA2A69 /* AddProjectView.swift */,
+				C5DAD8472C6B032B00477EB9 /* AddRoomView.swift */,
+				C5DAD8492C6B065F00477EB9 /* AddSpaceView.swift */,
+				C5DAD84B2C6B08BB00477EB9 /* EditSubtaskView.swift */,
+				C5DAD84D2C6B0B4100477EB9 /* AddMinitaskView.swift */,
+			);
+			path = AddProject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,18 +413,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C564B5CC2C594F5100AA2A69 /* TaskDetailView.swift in Sources */,
-				C5A95DDA2C52968500BD08A7 /* DataModel.swift in Sources */,
-				C564B5C82C594E8A00AA2A69 /* RoomDetailView.swift in Sources */,
-				C564B5C42C594C4B00AA2A69 /* StartHereView.swift in Sources */,
-				C5A95DDD2C52974F00BD08A7 /* ProjectListView.swift in Sources */,
-				C564B5C22C594BF900AA2A69 /* ProjectViewModel.swift in Sources */,
-				C564B5CE2C5A8DFF00AA2A69 /* TaskListView.swift in Sources */,
-				C5A95DAD2C5295C800BD08A7 /* HappyOrganizedMeApp.swift in Sources */,
-				C564B5C62C594E3800AA2A69 /* ProjectDetailView.swift in Sources */,
-				C564B5D02C5B218500AA2A69 /* ProjectManager.swift in Sources */,
-				C564B5D52C5B2DAA00AA2A69 /* RoomListView.swift in Sources */,
-				C564B5D22C5B231600AA2A69 /* Project.swift in Sources */,
+				C564B6152C631C8100AA2A69 /* SyncManager.swift in Sources */,
+				C564B5D92C5BEFB500AA2A69 /* StartHereView.swift in Sources */,
+				C564B60F2C6317FF00AA2A69 /* Space.swift in Sources */,
+				C564B5EF2C6024CC00AA2A69 /* SampleModels.swift in Sources */,
+				C564B6132C63184500AA2A69 /* Minitask.swift in Sources */,
+				C564B5E72C5ECBFC00AA2A69 /* ContentView.swift in Sources */,
+				C5DAD84E2C6B0B4100477EB9 /* AddMinitaskView.swift in Sources */,
+				C564B6242C686E2900AA2A69 /* AddProjectView.swift in Sources */,
+				C564B6202C6858F300AA2A69 /* ProjectView.swift in Sources */,
+				C564B61C2C6510EA00AA2A69 /* Extension.swift in Sources */,
+				C564B5F92C61C57700AA2A69 /* appDelegate.swift in Sources */,
+				C5DAD84C2C6B08BB00477EB9 /* EditSubtaskView.swift in Sources */,
+				C52FED3C2C69B19100114D1E /* EditSpaceView.swift in Sources */,
+				C564B60D2C6317CE00AA2A69 /* Room.swift in Sources */,
+				C5DAD8462C6AFFB100477EB9 /* EditMiniTaskView.swift in Sources */,
+				C5DAD84A2C6B065F00477EB9 /* AddSpaceView.swift in Sources */,
+				C5DAD8482C6B032B00477EB9 /* AddRoomView.swift in Sources */,
+				C564B5E92C5EDFC900AA2A69 /* ProjectViewModel 2.swift in Sources */,
+				C564B6112C63182400AA2A69 /* Subtask.swift in Sources */,
+				C564B5DB2C5C5AF300AA2A69 /* DataModel.swift in Sources */,
+				C52FED3A2C69736D00114D1E /* EditRoomView.swift in Sources */,
+				C5DAD8AB2C6D865600477EB9 /* HappyOrganizedMeApp.swift in Sources */,
+				C564B61E2C66739C00AA2A69 /* TaskCard.swift in Sources */,
+				C564B6222C686A1000AA2A69 /* BaseProjects.swift in Sources */,
+				C564B6292C6919C400AA2A69 /* EditProjectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +531,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -472,6 +588,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -501,6 +618,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeseretBaker.HappyOrganizedMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -512,6 +630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyOrganizedMe/Preview Content\"";
@@ -530,6 +649,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeseretBaker.HappyOrganizedMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

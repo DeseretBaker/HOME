@@ -17,7 +17,7 @@ struct StartHereView_Previews: PreviewProvider {
     static var previews: some View {
         StartHereView()
             .environmentObject(ProjectViewModel()) // Using the view model for previews
-    }
+    
 }
 
 @Model
