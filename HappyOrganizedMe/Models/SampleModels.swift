@@ -10,6 +10,10 @@ import SwiftUI
 import SwiftData
 
 
+struct Item: Identifiable {
+    let id: UUID = UUID()
+    let name: String?
+}
 // Sample data for testing
 let sampleMinitasks = [
     Minitask(name: "Paint Wall"),

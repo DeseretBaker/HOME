@@ -6,15 +6,33 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct HappyOrganizedMeApp: App {
-    @StateObject var projectViewModel = ProjectViewModel()
+    
+    @StateObject var projectController = ProjectController.shared
+    
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
     
     var body: some Scene {
         WindowGroup {
-            StartHereView() // Starting view of your app
-                .environmentObject(projectViewModel) // Pass the environment object here
+            NavigationView {
+                StartHereView() // Starting view of your app
+                    .modelContainer(sharedModelContainer)
+                    .environmentObject(projectController) // Pass the environment object here
+            }
         }
     }
 }

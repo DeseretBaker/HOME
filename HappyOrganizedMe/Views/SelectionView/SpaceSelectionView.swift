@@ -14,7 +14,7 @@ struct SpaceSelectionView: View {
     
     
     
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     @State private var spaces: [Space]
@@ -46,7 +46,7 @@ struct SpaceSelectionView: View {
                             get: { space.isCompleted },
                             set: { newValue in
                                 space.isCompleted = newValue
-                                projectViewModel.updateSpaceStatus(space: space, isCompleted: newValue, context: modelContext)
+                                projectController.updateSpaceStatus(space: space, isCompleted: newValue, context: modelContext)
                             }
                         )) {
                             Text(space.isCompleted ? "Completed" : "Incomplete")
@@ -71,7 +71,7 @@ struct SpaceSelectionView: View {
         if offsets.first != nil {
             room.spaces.remove(atOffsets: offsets)
             spaces = room.spaces // Update the local state
-            projectViewModel.updateProject(project, context: modelContext)  // Persist changes to the project
+            projectController.updateProject(project, context: modelContext)  // Persist changes to the project
         }
     }
 }

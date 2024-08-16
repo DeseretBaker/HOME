@@ -11,9 +11,8 @@ import SwiftData
 
 struct RoomSelectionView: View {
     var project: Project
-    @State private var rooms: [Room]
-    
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @State private var rooms: [Room] // use @State for rooms to track changes
+    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     // Initialize with a project and extract rooms from it
@@ -24,7 +23,7 @@ struct RoomSelectionView: View {
     
     var body: some View {
         List {
-            ForEach($rooms) { $room in
+            ForEach(rooms) { room in
                 VStack(alignment: .leading) {
                     HStack {
                         Text(room.name)
@@ -32,10 +31,7 @@ struct RoomSelectionView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: EditRoomView(room: $room)) {
-                            Image(systemName: "pencil")
-                                .foregroundColor(.blue)
-                        }
+                     
                     }
                     
                     HStack {
@@ -44,7 +40,7 @@ struct RoomSelectionView: View {
                             get: { room.isCompleted },
                             set: { newValue in
                                 room.isCompleted = newValue
-                                projectViewModel.updateRoomStatus(room: room, isCompleted: newValue, context: modelContext)
+                                projectController.updateRoomStatus(room: room, isCompleted: newValue, context: modelContext)
                             }
                         )) {
                             Text(room.isCompleted ? "Completed" : "Incomplete")
@@ -69,14 +65,14 @@ struct RoomSelectionView: View {
         if let index = offsets.first {
             rooms.remove(atOffsets: offsets)
             project.rooms = rooms
-            projectViewModel.updateProject(project, context: modelContext)  // Persist changes to the project
+            
+            projectController.updateProject(project, context: modelContext)  // Persist changes to the project
         }
     }
 }
-struct RoomSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        let selectedProject = ProjectViewModel().baseProjects[]
-        RoomSelectionView(project: selectedProject)
-            .environmentObject(ProjectViewModel())
-    }
+
+#Preview {
+    let selectedProject = ProjectController.shared.baseProjects.first!
+    RoomSelectionView(project: selectedProject)
+            .environmentObject(ProjectController.shared)
 }

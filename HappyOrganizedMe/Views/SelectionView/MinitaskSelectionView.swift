@@ -12,7 +12,7 @@ struct MinitaskSelectionView: View {
     var subtask: Subtask
     var project: Project
     
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     @State private var minitasks: [Minitask]
@@ -44,7 +44,7 @@ struct MinitaskSelectionView: View {
                             get: { minitask.isCompleted },
                             set: { newValue in
                                 minitask.isCompleted = newValue
-                                projectViewModel.updateMinitaskStatus(minitask: minitask, isCompleted: newValue, context: modelContext)
+                                projectController.updateMinitaskStatus(minitask: minitask, isCompleted: newValue, context: modelContext)
                             }
                         )) {
                             Text(minitask.isCompleted ? "Completed" : "Incomplete")
@@ -68,6 +68,6 @@ struct MinitaskSelectionView: View {
     private func deleteMinitask(at offsets: IndexSet) {
         minitasks.remove(atOffsets: offsets)
         subtask.minitasks = minitasks
-        projectViewModel.updateSubtask(subtask, context: modelContext)  // Persist changes
+        projectController.updateSubtask(subtask, context: modelContext)  // Persist changes
     }
 }

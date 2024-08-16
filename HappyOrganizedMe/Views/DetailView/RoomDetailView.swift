@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RoomDetailView: View {
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext
     
     var room: Room
@@ -71,7 +71,7 @@ struct RoomDetailView: View {
     }
     
     private func deleteSpaces(at offsets: IndexSet) {
-        projectViewModel.removeSpace(from: room, at: offsets, context: modelContext)
+        projectController.removeSpace(from: room, at: offsets, context: modelContext)
         // pass the modelContext here
     }
     
@@ -95,6 +95,6 @@ struct RoomDetailView: View {
 struct RoomDetailView_Previews: PreviewProvider {
     static var previews: some View {
         RoomDetailView(room: Room(name: "Example Room", imageName: "exampleImage"), projectID: UUID())
-            .environmentObject(ProjectViewModel())
+            .environmentObject(ProjectController.shared)
     }
 }

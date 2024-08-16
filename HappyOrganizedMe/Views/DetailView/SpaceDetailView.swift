@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpaceDetailView: View {
-    @EnvironmentObject var viewModel: ProjectViewModel
+    @EnvironmentObject var controller: ProjectController
     var space: Space
     var projectID: UUID
     var roomID: UUID
@@ -46,20 +46,20 @@ struct SpaceDetailView: View {
     }
 
     private func addNewTaskDetail() {
-        if let projectIndex = viewModel.projects.firstIndex(where: { $0.id == projectID }),
-           let roomIndex = viewModel.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
-           let spaceIndex = viewModel.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
+        if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
+           let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
+           let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
             let newTaskDetail = Subtask(name: newTaskDetailName)
-            viewModel.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.append(newTaskDetail)
+            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.append(newTaskDetail)
             newTaskDetailName = ""
         }
     }
 
     private func deleteTaskDetails(at offsets: IndexSet) {
-        if let projectIndex = viewModel.projects.firstIndex(where: { $0.id == projectID }),
-           let roomIndex = viewModel.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
-           let spaceIndex = viewModel.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            viewModel.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.remove(atOffsets: offsets)
+        if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
+           let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
+           let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
+            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.remove(atOffsets: offsets)
         }
     }
 }

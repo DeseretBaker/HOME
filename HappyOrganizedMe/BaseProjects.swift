@@ -16,9 +16,9 @@ let baseProjects: [Project] = [
     Project(name: "Bathroom", imageName: "Bathroom"),
     Project(name: "Office", imageName: "Office"),
     Project(name: "Pantry", imageName: "Pantry"),
-    Project(name: "PlayRoom", imageName: "PlayRoom"),
+    Project(name: "Play Room", imageName: "PlayRoom"),
     Project(name: "Storage", imageName: "Storage"),
-    Project(name: "DiningRoom", imageName: "DiningRoom"),
+    Project(name: "Dining Room", imageName: "DiningRoom"),
     Project(name: "Basement", imageName: "Basement")
 ]
 

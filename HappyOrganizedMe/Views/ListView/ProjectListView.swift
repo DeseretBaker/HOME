@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ProjectListView: View {
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @EnvironmentObject var projectController: ProjectController
     @State private var newProjectName: String = ""
     
     let columns = [
@@ -21,7 +21,7 @@ struct ProjectListView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
-                        //ForEach(projectViewModel.projects) { project in
+                        //ForEach(projectController.projects) { project in
                            // projectGridItem(project: project)
                         }
                     }
@@ -78,14 +78,14 @@ struct ProjectListView: View {
     private func addCustomProject() {
        // let newProject = Project(name: newProjectName, imageName: "placeholder")
         // use a placeholder image or handle as needed
-        //projectViewModel.addProject(newProject)
+        //projectController.addProject(newProject)
         //newProjectName = "" // clear the text field after adding the project
     }
 //}
 struct ProjectListView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectListView()
-            .environmentObject(ProjectViewModel())
+            .environmentObject(ProjectController.shared)
     }
 }
               

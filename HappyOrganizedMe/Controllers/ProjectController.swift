@@ -1,5 +1,5 @@
 //
-//  ProjectViewModel.swift
+//  ProjectController.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/3/24.
@@ -10,31 +10,34 @@ import Foundation
 import SwiftUI
 import UserNotifications
 
-class ProjectViewModel: ObservableObject {
+class ProjectController: ObservableObject {
+    static let shared = ProjectController()
+    
     @Published var projects: [Project] = []
-    @Published var baseProject: Project?
-        
-       
-            // Define the Base projects with different types of rooms in a house
-            let baseProjects: [Project] = [
-                Project(name: "Kitchen", imageName: "Kitchen"),
-                Project(name: "Living Room", imageName: "Livingroom"),
-                Project(name: "Garage", imageName: "Garage"),
-                Project(name: "Bathroom", imageName: "Bathroom"),
-                Project(name: "Office", imageName: "Office"),
-                Project(name: "Pantry", imageName: "Pantry"),
-                Project(name: "PlayRoom", imageName: "PlayRoom"),
-                Project(name: "Storage", imageName: "Storage"),
-                Project(name: "DiningRoom", imageName: "DiningRoom"),
-                Project(name: "Basement", imageName: "Basement")
+    @Published var selectedProject: Project?
+    @Published var baseProjects: [Project] = [] // Stores base projects
+    
+    init() {
+        loadBaseProjects()
+    }
+    
+    func loadBaseProjects() {
+        if projects.isEmpty {
+            print("Loading base projects...")
+            let baseProjects = [
+                Project(id: UUID(), imageName: "_", name: "Home Renovation", rooms: [
+                    Room(id: UUID(), name: "Living Room", spaces: [
+                        Space(id: UUID(), name: "Wall Painting", subtasks: [])
+                    ])
+                ])
             ]
+            projects.append(contentsOf: baseProjects)
+            print("Base projects loaded: \(projects)")
+        } else {
+            print("Projects already loaded: \(projects)")
+        }
+    }
     
-        
-        // Other methods like update, delete, etc.
-    
-    
-    
-    // Updates a project in the list
     func updateProject(_ updatedProject: Project, context: ModelContext) {
         if let projectIndex = projects.firstIndex(where: { $0.id == updatedProject.id }) {
             projects[projectIndex] = updatedProject
@@ -92,58 +95,48 @@ class ProjectViewModel: ObservableObject {
         saveContext(context)
     }
     
-    // Updates the completion status of a minitask
     func updateMinitaskStatus(minitask: Minitask, isCompleted: Bool, context: ModelContext) {
         minitask.isCompleted = isCompleted
         updateMinitask(minitask, context: context)
     }
 
-    // Updates the completion status of a subtask
     func updateSubtaskStatus(subtask: Subtask, isCompleted: Bool, context: ModelContext) {
         subtask.isCompleted = isCompleted
         updateSubtask(subtask, context: context)
     }
 
-    // Updates the completion status of a space
     func updateSpaceStatus(space: Space, isCompleted: Bool, context: ModelContext) {
         space.isCompleted = isCompleted
         updateSpace(space, context: context)
     }
 
-    // Updates the completion status of a room
     func updateRoomStatus(room: Room, isCompleted: Bool, context: ModelContext) {
         room.isCompleted = isCompleted
         updateRoom(room, context: context)
     }
 
-    // Updates the completion status of a project
     func updateProjectStatus(project: Project, isCompleted: Bool, context: ModelContext) {
         project.isCompleted = isCompleted
         updateProject(project, context: context)
     }
     
-    // Saves the current state of the ModelContext
     func saveContext(_ context: ModelContext) {
         do {
             try context.save()
         } catch {
             print("Error saving context: \(error.localizedDescription)")
-            // Add more robust error handling here if needed
         }
     }
     
-    // Synchronizes data manually
     func syncData(with context: ModelContext) {
         saveContext(context)
     }
     
-    // Removes a space from a room
     func removeSpace(from room: Room, at offsets: IndexSet, context: ModelContext) {
         room.spaces.remove(atOffsets: offsets)
         saveContext(context)
     }
     
-    // Schedules a notification for a subtask
     func scheduleNotification(for subtask: Subtask, at date: Date) {
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
@@ -163,4 +156,3 @@ class ProjectViewModel: ObservableObject {
         }
     }
 }
-

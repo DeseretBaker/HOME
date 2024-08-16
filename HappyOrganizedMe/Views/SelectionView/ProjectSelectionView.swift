@@ -8,12 +8,12 @@ import SwiftData
 import SwiftUI
 
 struct ProjectSelectionView: View {
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     var body: some View {
         List {
-            ForEach(projectViewModel.baseprojects) { project in
+            ForEach(projectController.baseProjects) { project in
                 NavigationLink(destination: RoomSelectionView(project: project)) {
                     VStack(alignment: .leading) {
                         HStack {
@@ -30,7 +30,7 @@ struct ProjectSelectionView: View {
                                 get: { project.isCompleted },
                                 set: { newValue in
                                     project.isCompleted = newValue
-                                    projectViewModel.updateProjectStatus(project: project, isCompleted: newValue, context: modelContext)
+                                    projectController.updateProjectStatus(project: project, isCompleted: newValue, context: modelContext)
                                 }
                             )) {
                                 Text(project.isCompleted ? "Completed" : "Incomplete")
@@ -54,17 +54,17 @@ struct ProjectSelectionView: View {
     
     private func deleteProject(at offsets: IndexSet) {
         if let index = offsets.first {
-            let projectToDelete = projectViewModel.projects[index]
-            projectViewModel.projects.remove(atOffsets: offsets)
-            projectViewModel.updateProject(projectToDelete, context: modelContext)
+            let projectToDelete = projectController.projects[index]
+            projectController.projects.remove(atOffsets: offsets)
+            projectController.updateProject(projectToDelete, context: modelContext)
         }
     }
 }
 
 struct ProjectSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        let projectViewModel = ProjectViewModel()
+        let projectController = ProjectController.shared
         ProjectSelectionView()
-            .environmentObject(projectViewModel)  // Use the same instance
+            .environmentObject(projectController)  // Use the same instance
     }
 }

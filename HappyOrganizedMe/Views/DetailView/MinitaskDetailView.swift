@@ -10,7 +10,7 @@ import SwiftUI
 struct MinitaskDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var reminderDate = Date() // default to current date and time
-    @EnvironmentObject var projectViewModel: ProjectViewModel // Use @EnvironmentObject if it's shared
+    @EnvironmentObject var projectController: ProjectController // Use @EnvironmentObject if it's shared
     @Environment(\.modelContext) var context: ModelContext // access the ModelContext
     var minitask: Minitask // This should be a Minitask instead of Subtask
     var subtask: Subtask
@@ -35,7 +35,7 @@ struct MinitaskDetailView: View {
             // Button to set reminder and complete task
             Button(action: {
                 // Schedule a notification for the minitask
-                projectViewModel.scheduleNotification(for: subtask, at: reminderDate)
+                projectController.scheduleNotification(for: subtask, at: reminderDate)
 
                 // Mark task as completed
                 toggleMinitaskCompletion(minitask)
@@ -57,7 +57,7 @@ struct MinitaskDetailView: View {
 
     // Toggles the completion status of a minitask
     private func toggleMinitaskCompletion(_ minitask: Minitask) {
-        if let index = projectViewModel.projects.firstIndex(where: { project in
+        if let index = projectController.projects.firstIndex(where: { project in
             project.rooms.contains(where: { room in
                 room.spaces.contains(where: { space in
                     space.subtasks.contains(where: { subtask in
@@ -66,10 +66,10 @@ struct MinitaskDetailView: View {
                 })
             })
         }) {
-            if let subtaskIndex = projectViewModel.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks }).firstIndex(where: { $0.minitasks.contains(where: { $0.id == minitask.id }) }),
-               let minitaskIndex = projectViewModel.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks })[subtaskIndex].minitasks.firstIndex(where: { $0.id == minitask.id }) {
-                projectViewModel.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks })[subtaskIndex].minitasks[minitaskIndex].isCompleted.toggle()
-                projectViewModel.objectWillChange.send() // Notify that the data has changed
+            if let subtaskIndex = projectController.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks }).firstIndex(where: { $0.minitasks.contains(where: { $0.id == minitask.id }) }),
+               let minitaskIndex = projectController.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks })[subtaskIndex].minitasks.firstIndex(where: { $0.id == minitask.id }) {
+                projectController.projects[index].rooms.flatMap({ $0.spaces }).flatMap({ $0.subtasks })[subtaskIndex].minitasks[minitaskIndex].isCompleted.toggle()
+                projectController.objectWillChange.send() // Notify that the data has changed
             }
         }
     }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct StartHereView: View {
-    @EnvironmentObject var projectViewModel: ProjectViewModel
+    @Environment(\.modelContext) private var modelContext
+
+    @EnvironmentObject var controller: ProjectController
     
     var body: some View {
         ZStack {
@@ -32,10 +34,11 @@ struct StartHereView: View {
                     .bold()
                     .padding()
                 
-                if let firstProject = projectViewModel.projects.first,
+                if !controller.projects.isEmpty,
+                   let firstProject = controller.projects.first,
+                   !firstProject.rooms.isEmpty,
                    let firstRoom = firstProject.rooms.first,
-                   let _ = firstRoom.spaces.first
-                {
+                   !firstRoom.spaces.isEmpty {
                     
                     NavigationLink(destination: ProjectSelectionView()) {
                         Text("Start Here")
@@ -49,7 +52,18 @@ struct StartHereView: View {
                     }
                     .padding(.horizontal)
                     .buttonStyle(.borderedProminent)
+                    
                 } else {
+                    // Show "Reload Projects" button if no projects are available
+                    Button("Reload Projects") {
+                        controller.loadBaseProjects()
+                    }
+                    .font(.headline)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    
                     Text("No projects available")
                         .padding()
                         .frame(idealHeight: 50)
@@ -66,6 +80,6 @@ struct StartHereView: View {
 struct StartHereView_Previews: PreviewProvider {
     static var previews: some View {
         StartHereView()
-            .environmentObject(ProjectViewModel()) // inject a preview-specific instance of ProjectViewModel
+            .environmentObject(ProjectController.shared) // inject a preview-specific instance of projectController
     }
 }
