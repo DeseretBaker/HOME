@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
-    var project: Project
+    var project: RoomProject
     
     var body: some View {
         VStack(alignment: .leading) {

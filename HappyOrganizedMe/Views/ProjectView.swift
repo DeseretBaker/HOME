@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ProjectView: View {
-    let project: Project
+    let project: RoomProject
     
     var body: some View {
         ZStack {

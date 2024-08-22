@@ -8,15 +8,15 @@
 import Foundation
 
 
-extension Project {
-    static var example: Project {
-        let exampleRooms = [Room(name: "Living Room", imageName: "Living Room"), Room(name: "Kitchen", imageName: "Kitchen")]
-        return Project(name: "Home Project", imageName: "Home Project", rooms: exampleRooms)
+extension RoomProject {
+    static var example: RoomProject {
+        let exampleRooms = [Room(name: "Living Room", imageName: "Living Room", weight: 3), Room(name: "Kitchen", imageName: "Kitchen", weight: 5)]
+        return RoomProject(name: "Home Project", imageName: "Home Project", rooms: exampleRooms)
     }
 }
 extension Room {
     static var example: Room {
-        Room(name: "Kitchen", imageName: "Main kitchen area", spaces: [Space.example])
+        Room(name: "Kitchen", imageName: "Main kitchen area", weight: 5, spaces: [Space.example])
     }
 }
 

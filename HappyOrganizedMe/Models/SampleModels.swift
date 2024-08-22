@@ -32,11 +32,11 @@ let sampleSpaces = [
 ]
 
 let sampleRooms = [
-    Room(name: "Main Floor", spaces: sampleSpaces),
-    Room(name: "Second Floor", spaces: sampleSpaces)
+    Room(name: "Main Floor", weight: 2, spaces: sampleSpaces),
+    Room(name: "Second Floor", weight: 2, spaces: sampleSpaces)
 ]
 
 let sampleProjects = [
-    Project(name: "Home Renovation", imageName: "home_renovation", rooms: sampleRooms),
-    Project(name: "Office Setup", imageName: "office_setup", rooms: sampleRooms)
+    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: sampleRooms),
+    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: sampleRooms)
 ]

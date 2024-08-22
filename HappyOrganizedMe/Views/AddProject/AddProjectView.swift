@@ -8,11 +8,34 @@
 import Foundation
 import SwiftUI
 
+@Observable
+class AddProjectViewModel {
+    // Variables added by AddProjectView
+    var projectName: String?
+    var imageName: String?
+    
+    // Variables added by AddRoomView
+    var roomName: String?
+    var roomWeight: Double?
+    
+    func createProject() -> RoomProject? {
+        guard let projectName, let imageName else { return nil }
+        let project = RoomProject(name: projectName, imageName: imageName)
+        guard let roomName, let roomWeight else { return nil }
+        let room = Room(name: roomName, weight: roomWeight)
+        project.rooms.append(room)
+        return project
+    }
+}
+
 struct AddProjectView: View {
-    @Binding var projects: [Project]
+//    var addProjectViewModel: AddProjectViewModel
+    @Binding var projects: [RoomProject]
+    
+    // Comment out these variables and instead use variables from AddProjectViewModel
     @State private var projectName: String = ""
     @State private var imageName: String = ""
-    @State private var newProject: Project?
+    @State private var newProject: RoomProject?
     
     var body: some View {
         Form {
@@ -20,15 +43,16 @@ struct AddProjectView: View {
                 TextField("Project Name", text: $projectName)
                 TextField("Image Name", text: $imageName)
             }
-            
-            NavigationLink(destination: AddRoomView(project: $newProject)) {
-                Button("Add Project") {
-                    let createdProject = Project(name: projectName, imageName: imageName)
-                    projects.append(createdProject)
-                    newProject = createdProject
-                }
+
+            Button("Add Project") {
+                let createdProject = RoomProject(name: projectName, imageName: imageName)
+                projects.append(createdProject)
+                self.newProject = createdProject
             }
             .disabled(projectName.isEmpty)
+            .navigationDestination(item: $newProject) { newProject in
+                AddRoomView(project: newProject)
+            }
         }
         .navigationTitle("Add New Project")
     }

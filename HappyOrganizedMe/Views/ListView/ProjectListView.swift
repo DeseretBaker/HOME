@@ -51,7 +51,7 @@ struct ProjectListView: View {
     }
     //Function to create a grid item view for a project
     @ViewBuilder
-    private func projectGridItem(project: Project) -> some View {
+    private func projectGridItem(project: RoomProject) -> some View {
         NavigationLink(destination: RoomListView(project: project)) {
             ZStack {
                 Image(project.imageName ?? "")

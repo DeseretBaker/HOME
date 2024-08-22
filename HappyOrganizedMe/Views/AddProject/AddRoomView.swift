@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct AddRoomView: View {
-    @Binding var project: Project?
+//    var addProjectViewModel: AddProjectViewModel
+    var project: RoomProject
+    
+    // Comment out these variables and instead use variables from AddProjectViewModel
     @State private var roomName: String = ""
     @State private var weight: Double = 1.0
+    @State var newRoom: Room?
     
     var body: some View {
         Form {
@@ -20,16 +24,24 @@ struct AddRoomView: View {
                     Text("Weight: \(weight, specifier: "%.1f")")
                 }
             }
-            
-            NavigationLink(destination: AddSpaceView(spaces: $project.rooms.last ?? "")) {
-                Button("Add Room") {
-                    if let project = project {
-                        let newRoom = Room(name: roomName, weight: weight)
-                        project.rooms.append(newRoom)
-                    }
-                }
+            Button("Next") {
+                // Do something like this:
+//                let newProject = addProjectViewModel.createProject()
+                
+                // save project to SwiftData
+                // pass new Project off to next View
             }
-            .disabled(roomName.isEmpty)
+//            if let spaces = project.rooms.last?.spaces {
+//                NavigationLink(destination: AddSpaceView(spaces: spaces)) {
+//                }
+//            }
+//            Button("Add Room") {
+//                //                        if let project = project {
+//                let newRoom = Room(name: roomName, weight: weight)
+//                project.rooms.append(newRoom)
+//                //                        }
+//            }
+//            .disabled(roomName.isEmpty)
         }
         .navigationTitle("Add Room")
     }

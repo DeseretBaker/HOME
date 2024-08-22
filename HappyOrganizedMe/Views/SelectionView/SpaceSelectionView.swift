@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SpaceSelectionView: View {
-    var project: Project
+    var project: RoomProject
     var room: Room
     
     @EnvironmentObject var projectController: ProjectController
@@ -17,7 +17,7 @@ struct SpaceSelectionView: View {
     
     @State private var spaces: [Space]
 
-    init(room: Room, project: Project) {
+    init(room: Room, project: RoomProject) {
         self.room = room
         self.project = project
         _spaces = State(initialValue: room.spaces)

@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct RoomListView: View {
-    var project: Project
+    var project: RoomProject
     
     var body: some View {
         List(project.rooms) { room in
@@ -21,7 +21,7 @@ struct RoomListView: View {
 
 struct RoomListView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomListView(project: Project(name: "Example", imageName: "exampleImage"))
+        RoomListView(project: RoomProject(name: "Example", imageName: "exampleImage"))
     }
 }
      

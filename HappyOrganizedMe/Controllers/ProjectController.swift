@@ -13,8 +13,8 @@ import UserNotifications
 class ProjectController: ObservableObject {
     static let shared = ProjectController()
     
-    @Published var projects: [Project] = []
-    @Published var selectedProject: Project?
+    @Published var projects: [RoomProject] = []
+    @Published var selectedProject: RoomProject?
     
     init() {
         loadProjects()
@@ -36,10 +36,10 @@ class ProjectController: ObservableObject {
         if projects.isEmpty {
             print("Loading base projects...")
             // Accessing baseProjects defined in BaseProjects.swift
-            projects.append(contentsOf: baseProjects)
+//            projects.append(contentsOf: baseProjects) // TODO: FIXME! Base Projects is missing?
             projects.forEach { project in
                 if project.name == "Kitchen" {
-                    project.rooms.append(contentsOf: kitchenRoom)
+//                    project.rooms.append(contentsOf: kitchenRoom) // TODO: FIXME!
                     
                 }
             }
@@ -51,16 +51,16 @@ class ProjectController: ObservableObject {
     }
     
     // Placeholder function to load projects from persistent storage
-    func loadFromPersistentStore() -> [Project]? {
+    func loadFromPersistentStore() -> [RoomProject]? {
         // Here you would implement the code to load projects from your storage solution
         return nil
     }
     
     // Placeholder function to save projects to persistent storage
-    func saveToPersistentStore(_ projects: [Project]) {
+    func saveToPersistentStore(_ projects: [RoomProject]) {
         // Here you would implement the code to save the projects array to your storage solution
 }
-func updateProject(_ updatedProject: Project, context: ModelContext) {
+func updateProject(_ updatedProject: RoomProject, context: ModelContext) {
     if let projectIndex = projects.firstIndex(where: { $0.id == updatedProject.id }) {
         projects[projectIndex] = updatedProject
         saveContext(context)
@@ -105,14 +105,14 @@ func updateMinitask(_ minitask: Minitask, context: ModelContext) {
     }
 }
 
-func deleteProject(_ project: Project, context: ModelContext) {
+func deleteProject(_ project: RoomProject, context: ModelContext) {
     if let index = projects.firstIndex(where: { $0.id == project.id }) {
         projects.remove(at: index)
         saveContext(context)
     }
 }
 
-func addProject(_ project: Project, context: ModelContext) {
+func addProject(_ project: RoomProject, context: ModelContext) {
     projects.append(project)
     saveContext(context)
 }
@@ -137,7 +137,7 @@ func updateRoomStatus(room: Room, isCompleted: Bool, context: ModelContext) {
     updateRoom(room, context: context)
 }
 
-func updateProjectStatus(project: Project, isCompleted: Bool, context: ModelContext) {
+func updateProjectStatus(project: RoomProject, isCompleted: Bool, context: ModelContext) {
     project.isCompleted = isCompleted
     updateProject(project, context: context)
 }

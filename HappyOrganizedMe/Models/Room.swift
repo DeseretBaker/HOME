@@ -16,12 +16,14 @@ class Room: Identifiable, ObservableObject {
     var weight: Double = 1.0
     var progress: Double
     var isCompleted: Bool = false
-    @Relationship(inverse: \Project.rooms) var project: Project?
+    @Relationship(inverse: \RoomProject.rooms) var project: RoomProject?
 
     init(name: String, imageName: String? = nil, weight: Double, progress: Double = 0.0, spaces: [Space] = []) {
         self.name = name
         self.imageName = imageName
         self.progress = progress
         self.isCompleted = isCompleted
+        
+        
     }
 }

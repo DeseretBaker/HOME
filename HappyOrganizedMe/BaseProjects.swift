@@ -15,12 +15,27 @@ enum ProjectType: String {
     case garage
     case bathroom
     case storage
-    case livingRoom
     case bedroom
     case office
     case playroom
+    case livingRoom
     case laundryRoom
     case diningRoom
+    
+    var name: String {
+        switch self {
+        case .kitchen: return "Kitchen"
+        case .diningRoom: return "Dining Room"
+        case .livingRoom: return "Living Room"
+        case .bathroom: return "Bathroom"
+        case .bedroom: return "Bedroom"
+        case .storage: return "Storage"
+        case .office: return "Office"
+        case .garage: return "Garage"
+        case .playroom: return "Playroom"
+        case .laundryRoom: return "LaundryRoom"
+        }
+    }
     
     var imageName: String {
         switch self {
@@ -36,16 +51,28 @@ enum ProjectType: String {
         case .garage: return "garage"
         }
     }
-    var weight: Int {
+    var weight: Double {
         switch self {
-        case .kitchen: return 1
-        case .diningRoom: return 2
-        case .livingRoom: return 3
-        case .bathroom: return 4
-        case .bedroom: return 5
-        case .storage: return 6
-        case .office: return 7
-        case .playroom: return 8
+        case .kitchen:
+            5
+        case .garage:
+            5
+        case .bathroom:
+            4
+        case .storage:
+            3
+        case .bedroom:
+            3
+        case .office:
+            3
+        case .playroom:
+            3
+        case .livingRoom:
+            2
+        case .laundryRoom:
+            2
+        case .diningRoom:
+            1
         }
     }
 
@@ -277,16 +304,16 @@ enum MinitaskType: String {
 struct DataLoader {
     static func loadRooms(for projectType: ProjectType) -> [Room] {
         switch projectType {
-        case .kitchen: return [Room(name: "Kitchen")]
-        case .diningRoom: return [Room(name: "Dining Room")]
-        case .livingRoom: return [Room(name: "Living Room")]
-        case .bathroom: return [Room(name: "Bathroom")]
-        case .bedroom: return [Room(name: "Bedroom")]
-        case .storage: return [Room(name: "Storage")]
-        case .office: return [Room(name: "Office")]
-        case .playroom: return [Room(name: "Playroom")]
-        case .garage: return [Room(name: "Garage")]
-        case .laundryRoom: return [Room(name: "Laundry Room")]
+        case .kitchen: return [Room(name: "Kitchen", weight: projectType.weight)]
+        case .diningRoom: return [Room(name: "Dining Room", weight: projectType.weight)]
+        case .livingRoom: return [Room(name: "Living Room", weight: projectType.weight)]
+        case .bathroom: return [Room(name: "Bathroom", weight: projectType.weight)]
+        case .bedroom: return [Room(name: "Bedroom", weight: projectType.weight)]
+        case .storage: return [Room(name: "Storage", weight: projectType.weight)]
+        case .office: return [Room(name: "Office", weight: projectType.weight)]
+        case .playroom: return [Room(name: "Playroom", weight: projectType.weight)]
+        case .garage: return [Room(name: "Garage", weight: projectType.weight)]
+        case .laundryRoom: return [Room(name: "Laundry Room", weight: projectType.weight)]
             return []
         }
     }
@@ -304,13 +331,13 @@ struct DataLoader {
         }
         
         // function to create base projects
-        private func createBaseProjects() -> [Project] {
+        private func createBaseProjects() -> [RoomProject] {
             let projectType: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
             
             return projectType.map { projectType in
                 let rooms = DataLoader.loadRooms(for: projectType)
                     .sorted(by: { $0.name < $1.name})
-                return Project(projectType: projectType, rooms: rooms)
+                return RoomProject(name: projectType.name, rooms: rooms)
             }
         }
     }

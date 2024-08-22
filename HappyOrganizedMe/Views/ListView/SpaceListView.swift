@@ -30,6 +30,7 @@ struct SpaceListView_Previews: PreviewProvider {
         ]
         let sampleRoom = Room(name: "Pantry",
                               imageName: "Pantry",
+                              weight: 1,
                               spaces: sampleSpaces)
         
         SpaceListView(room: sampleRoom)

@@ -94,7 +94,7 @@ struct RoomDetailView: View {
 
 struct RoomDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomDetailView(room: Room(name: "Example Room", imageName: "exampleImage"), projectID: UUID())
+        RoomDetailView(room: Room(name: "Example Room", imageName: "exampleImage", weight: 5), projectID: UUID())
             .environmentObject(ProjectController.shared)
     }
 }

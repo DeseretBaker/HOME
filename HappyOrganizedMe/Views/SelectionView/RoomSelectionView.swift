@@ -10,13 +10,13 @@ import SwiftUI
 import SwiftData
 
 struct RoomSelectionView: View {
-    var project: Project
+    var project: RoomProject
     @State private var rooms: [Room] // use @State for rooms to track changes
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     // Initialize with a project and extract rooms from it
-    init(project: Project) {
+    init(project: RoomProject) {
         self.project = project
         _rooms = State(initialValue: project.rooms)
     }
@@ -73,11 +73,12 @@ struct RoomSelectionView: View {
             projectController.updateProject(project, context: modelContext)  // Persist changes to the project
         }
     }
-struct RoomSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        let selectedProject = baseProjects.first!
-        RoomSelectionView(project: selectedProject)
-            .environmentObject(ProjectController.shared)
-    }
-}
 
+//struct RoomSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let selectedProject = baseProjects.first!
+//        RoomSelectionView(project: selectedProject)
+//            .environmentObject(ProjectController.shared)
+//    }
+//}
+//

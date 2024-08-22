@@ -15,7 +15,7 @@ struct HappyOrganizedMeApp: App {
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Project.self,
+            RoomProject.self,
             Room.self,
             Space.self,
             Subtask.self,
