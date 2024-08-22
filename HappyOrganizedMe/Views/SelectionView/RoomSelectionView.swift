@@ -22,38 +22,43 @@ struct RoomSelectionView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(rooms) { room in
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(room.name)
-                            .font(.headline)
-                        
-                        Spacer()
-                        
-                     
-                    }
-                    
-                    HStack {
-                        Text("Status:")
-                        Toggle(isOn: Binding(
-                            get: { room.isCompleted },
-                            set: { newValue in
-                                room.isCompleted = newValue
-                                projectController.updateRoomStatus(room: room, isCompleted: newValue, context: modelContext)
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                if rooms.isEmpty {
+                    Text("No rooms available.")
+                        .font(.headline)
+                        .padding()
+                } else {
+                    ForEach(rooms, id: \.id) { room in
+                        VStack {
+                            TaskCard(
+                                title: room.name,
+                                imageName: room.imageName ?? "defaultImage", progress: room.progress, isComplete: room.isCompleted
+                            )
+                            .buttonStyle(PlainButtonStyle())
+                            HStack {
+                                Text("Staus:")
+                                Toggle(isOn: Binding(
+                                    get: { room.isCompleted },
+                                    set: { newValue in
+                                        room.isCompleted = newValue
+                                        
+                                        projectController.updateRoomStatus(room: room, isCompleted: newValue, context: modelContext)
+                                    }
+                                )) {
+                                    Text(room.isCompleted ? "Completed" : "In Progress")
+                                }
                             }
-                        )) {
-                            Text(room.isCompleted ? "Completed" : "Incomplete")
+                            ProgressView(value: room.progress)
+                                .progressViewStyle(LinearProgressViewStyle())
+                                .padding(.top, 4)
                         }
+                        .padding(.vertical, 8)
                     }
-                    
-                    ProgressView(value: room.progress)
-                        .progressViewStyle(LinearProgressViewStyle())
-                        .padding(.top, 4)
+                    .onDelete(perform: deleteRoom)
                 }
-                .padding(.vertical, 8)
             }
-            .onDelete(perform: deleteRoom)
+            .padding()
         }
         .navigationTitle("Select a Room")
         .toolbar {
@@ -62,17 +67,17 @@ struct RoomSelectionView: View {
     }
     
     private func deleteRoom(at offsets: IndexSet) {
-        if let index = offsets.first {
             rooms.remove(atOffsets: offsets)
             project.rooms = rooms
             
             projectController.updateProject(project, context: modelContext)  // Persist changes to the project
         }
     }
+struct RoomSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        let selectedProject = baseProjects.first!
+        RoomSelectionView(project: selectedProject)
+            .environmentObject(ProjectController.shared)
+    }
 }
 
-#Preview {
-    let selectedProject = ProjectController.shared.baseProjects.first!
-    RoomSelectionView(project: selectedProject)
-            .environmentObject(ProjectController.shared)
-}

@@ -5,30 +5,32 @@
 //  Created by Deseret Baker on 8/12/24.
 //
 
-import Foundation
 import SwiftUI
 
 struct AddRoomView: View {
-    @Binding var rooms: [Room]
+    @Binding var project: Project?
     @State private var roomName: String = ""
-    @State private var imageName: String = ""
-    // Optional image name  for custom projects
+    @State private var weight: Double = 1.0
     
     var body: some View {
         Form {
             Section(header: Text("Room Details")) {
                 TextField("Room Name", text: $roomName)
-                TextField("Image Name",text: $imageName)
-            }
-            Button("Add Room") {
-                let newRoom = Room(name: roomName, imageName: imageName, spaces: [])
-                rooms.append(newRoom)
+                Slider(value: $weight, in: 0.1...10, step: 0.1) {
+                    Text("Weight: \(weight, specifier: "%.1f")")
+                }
             }
             
+            NavigationLink(destination: AddSpaceView(spaces: $project.rooms.last ?? "")) {
+                Button("Add Room") {
+                    if let project = project {
+                        let newRoom = Room(name: roomName, weight: weight)
+                        project.rooms.append(newRoom)
+                    }
+                }
+            }
+            .disabled(roomName.isEmpty)
         }
-        .navigationTitle("Add New Room")
+        .navigationTitle("Add Room")
     }
-    
-    
 }
-

@@ -5,27 +5,59 @@
 //  Created by Deseret Baker on 8/5/24.
 //
 import SwiftUI
+import SwiftData
 
-struct EditSubtaskView: View {
-    @Binding var subtask: Subtask
-    @State private var subtaskName: String
+struct SubtaskSelectionView: View {
+    var project: Project
+    var room: Room
+    var space: Space
+    
+    @EnvironmentObject var projectController: ProjectController
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var subtasks: [Subtask]
 
-    init(subtask: Binding<Subtask>) {
-        self._subtask = subtask
-        self._subtaskName = State(initialValue: subtask.wrappedValue.name)
+    init(space: Space, room: Room, project: Project) {
+        self.space = space
+        self.room = room
+        self.project = project
+        _subtasks = State(initialValue: space.subtasks)
     }
-
+    
     var body: some View {
-        Form {
-            Section(header: Text("Subtask Details")) {
-                TextField("Subtask Name", text: $subtaskName)
+        List {
+            ForEach($subtasks) { $subtask in
+                TaskCard(
+                    title: subtask.name,
+                    imageName: subtask.imageName ?? "defaultImage", // Provide a default image if none is set
+                    progress: subtask.progress,
+                    isComplete: subtask.isCompleted
+                )
+                .contextMenu {
+                    Button(action: {
+                        // Action for editing subtask
+                    }) {
+                        Label("Edit", systemImage: "pencil")
+                    }
+                    
+                    Button(action: {
+                        deleteSubtask(at: IndexSet(integer: subtasks.firstIndex(of: subtask)!))
+                    }) {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
-
-            Button("Save Changes") {
-                subtask.name = subtaskName
-            }
-            .disabled(subtaskName.isEmpty)
+            .onDelete(perform: deleteSubtask)
         }
-        .navigationTitle("Edit Subtask")
+        .navigationTitle("Select a Subtask")
+        .toolbar {
+            EditButton()
+        }
+    }
+    
+    private func deleteSubtask(at offsets: IndexSet) {
+        space.subtasks.remove(atOffsets: offsets)
+        subtasks = space.subtasks // Update the local state
+        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
     }
 }

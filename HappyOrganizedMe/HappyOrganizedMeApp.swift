@@ -15,7 +15,13 @@ struct HappyOrganizedMeApp: App {
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
+            Project.self,
+            Room.self,
+            Space.self,
+            Subtask.self,
+            Minitask.self
         ])
+        
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {
@@ -31,8 +37,8 @@ struct HappyOrganizedMeApp: App {
             NavigationView {
                 StartHereView() // Starting view of your app
                     .modelContainer(sharedModelContainer)
-                    .environmentObject(projectController) // Pass the environment object here
             }
+            .environmentObject(projectController)
         }
     }
 }

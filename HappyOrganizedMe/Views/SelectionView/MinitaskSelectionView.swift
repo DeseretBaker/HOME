@@ -9,16 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct MinitaskSelectionView: View {
-    var subtask: Subtask
     var project: Project
+    var room: Room
+    var space: Space
+    var subtask: Subtask
     
     @EnvironmentObject var projectController: ProjectController
-    @Environment(\.modelContext) private var modelContext  // Access the model context
+    @Environment(\.modelContext) private var modelContext
     
     @State private var minitasks: [Minitask]
-
-    init(subtask: Subtask, project: Project) {
+    
+    init(subtask: Subtask, space: Space, room: Room, project: Project) {
         self.subtask = subtask
+        self.space = space
+        self.room = room
         self.project = project
         _minitasks = State(initialValue: subtask.minitasks)
     }
@@ -26,36 +30,25 @@ struct MinitaskSelectionView: View {
     var body: some View {
         List {
             ForEach($minitasks) { $minitask in
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(minitask.name)
-                        
-                        Spacer()
-                        
-                        NavigationLink(destination: EditMinitaskView(minitask: $minitask)) {
-                            Image(systemName: "pencil")
-                                .foregroundColor(.blue)
-                        }
+                TaskCard(
+                    title: minitask.name,
+                    imageName: minitask.imageName ?? "defaultImage", // Provide a default image if none is set
+                    progress: minitask.progress,
+                    isComplete: minitask.isCompleted
+                )
+                .contextMenu {
+                    Button(action: {
+                        // Action for editing minitask
+                    }) {
+                        Label("Edit", systemImage: "pencil")
                     }
                     
-                    HStack {
-                        Text("Status:")
-                        Toggle(isOn: Binding(
-                            get: { minitask.isCompleted },
-                            set: { newValue in
-                                minitask.isCompleted = newValue
-                                projectController.updateMinitaskStatus(minitask: minitask, isCompleted: newValue, context: modelContext)
-                            }
-                        )) {
-                            Text(minitask.isCompleted ? "Completed" : "Incomplete")
-                        }
+                    Button(action: {
+                        deleteMinitask(at: IndexSet(integer: minitasks.firstIndex(of: minitask)!))
+                    }) {
+                        Label("Delete", systemImage: "trash")
                     }
-                    
-                    ProgressView(value: minitask.progress)
-                        .progressViewStyle(LinearProgressViewStyle())
-                        .padding(.top, 4)
                 }
-                .padding(.vertical, 8)
             }
             .onDelete(perform: deleteMinitask)
         }
@@ -66,8 +59,8 @@ struct MinitaskSelectionView: View {
     }
     
     private func deleteMinitask(at offsets: IndexSet) {
-        minitasks.remove(atOffsets: offsets)
-        subtask.minitasks = minitasks
-        projectController.updateSubtask(subtask, context: modelContext)  // Persist changes
+        subtask.minitasks.remove(atOffsets: offsets)
+        minitasks = subtask.minitasks // Update the local state
+        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
     }
 }

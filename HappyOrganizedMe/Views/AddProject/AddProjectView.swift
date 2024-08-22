@@ -12,22 +12,24 @@ struct AddProjectView: View {
     @Binding var projects: [Project]
     @State private var projectName: String = ""
     @State private var imageName: String = ""
-    // Optional image name  for custom projects
+    @State private var newProject: Project?
     
     var body: some View {
         Form {
             Section(header: Text("Project Details")) {
                 TextField("Project Name", text: $projectName)
-                TextField("Image Name",text: $imageName)
-            }
-            Button("Add Project") {
-                let newProject = Project(name: projectName, imageName: imageName, rooms: [])
-                projects.append(newProject)
+                TextField("Image Name", text: $imageName)
             }
             
+            NavigationLink(destination: AddRoomView(project: $newProject)) {
+                Button("Add Project") {
+                    let createdProject = Project(name: projectName, imageName: imageName)
+                    projects.append(createdProject)
+                    newProject = createdProject
+                }
+            }
+            .disabled(projectName.isEmpty)
         }
         .navigationTitle("Add New Project")
     }
-    
-    
 }

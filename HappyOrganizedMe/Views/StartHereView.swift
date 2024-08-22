@@ -9,8 +9,7 @@ import SwiftUI
 
 struct StartHereView: View {
     @Environment(\.modelContext) private var modelContext
-
-    @EnvironmentObject var controller: ProjectController
+    @EnvironmentObject var projectController: ProjectController
     
     var body: some View {
         ZStack {
@@ -34,12 +33,12 @@ struct StartHereView: View {
                     .bold()
                     .padding()
                 
-                if !controller.projects.isEmpty,
-                   let firstProject = controller.projects.first,
-                   !firstProject.rooms.isEmpty,
-                   let firstRoom = firstProject.rooms.first,
-                   !firstRoom.spaces.isEmpty {
-                    
+//                if !controller.projects.isEmpty,
+//                   let firstProject = controller.projects.first,
+//                   !firstProject.rooms.isEmpty,
+//                   let firstRoom = firstProject.rooms.first,
+//                   !firstRoom.spaces.isEmpty {
+//                    
                     NavigationLink(destination: ProjectSelectionView()) {
                         Text("Start Here")
                             .font(.largeTitle)
@@ -51,26 +50,26 @@ struct StartHereView: View {
                             .cornerRadius(10)
                     }
                     .padding(.horizontal)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.bordered)
                     
-                } else {
-                    // Show "Reload Projects" button if no projects are available
-                    Button("Reload Projects") {
-                        controller.loadBaseProjects()
-                    }
-                    .font(.headline)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Text("No projects available")
-                        .padding()
-                        .frame(idealHeight: 50)
-                        .background(Color.red.opacity(0.8))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+//                } else {
+//                    // Show "Reload Projects" button if no projects are available
+//                    Button("Reload Projects") {
+//                        controller.loadBaseProjects()
+//                    }
+//                    .font(.headline)
+//                    .padding()
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(10)
+//                    
+//                    Text("No projects available")
+//                        .padding()
+//                        .frame(idealHeight: 50)
+//                        .background(Color.red.opacity(0.8))
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+//                }
             }
             .padding()
         }

@@ -12,10 +12,8 @@ struct SpaceSelectionView: View {
     var project: Project
     var room: Room
     
-    
-    
     @EnvironmentObject var projectController: ProjectController
-    @Environment(\.modelContext) private var modelContext  // Access the model context
+    @Environment(\.modelContext) private var modelContext
     
     @State private var spaces: [Space]
 
@@ -28,36 +26,25 @@ struct SpaceSelectionView: View {
     var body: some View {
         List {
             ForEach($spaces) { $space in
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(space.name)
-                        
-                        Spacer()
-                        
-                        NavigationLink(destination: EditSpaceView(space: $space)) {
-                            Image(systemName: "pencil")
-                                .foregroundColor(.blue)
-                        }
+                TaskCard(
+                    title: space.name,
+                    imageName: space.imageName ?? "defaultImage", // Provide a default image if none is set
+                    progress: space.progress,
+                    isComplete: space.isCompleted
+                )
+                .contextMenu {
+                    Button(action: {
+                        // Action for editing space
+                    }) {
+                        Label("Edit", systemImage: "pencil")
                     }
                     
-                    HStack {
-                        Text("Status:")
-                        Toggle(isOn: Binding(
-                            get: { space.isCompleted },
-                            set: { newValue in
-                                space.isCompleted = newValue
-                                projectController.updateSpaceStatus(space: space, isCompleted: newValue, context: modelContext)
-                            }
-                        )) {
-                            Text(space.isCompleted ? "Completed" : "Incomplete")
-                        }
+                    Button(action: {
+                        deleteSpace(at: IndexSet(integer: spaces.firstIndex(of: space)!))
+                    }) {
+                        Label("Delete", systemImage: "trash")
                     }
-                    
-                    ProgressView(value: space.progress)
-                        .progressViewStyle(LinearProgressViewStyle())
-                        .padding(.top, 4)
                 }
-                .padding(.vertical, 8)
             }
             .onDelete(perform: deleteSpace)
         }
@@ -68,10 +55,8 @@ struct SpaceSelectionView: View {
     }
     
     private func deleteSpace(at offsets: IndexSet) {
-        if offsets.first != nil {
-            room.spaces.remove(atOffsets: offsets)
-            spaces = room.spaces // Update the local state
-            projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-        }
+        room.spaces.remove(atOffsets: offsets)
+        spaces = room.spaces // Update the local state
+        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
     }
 }

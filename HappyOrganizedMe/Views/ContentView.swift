@@ -12,6 +12,8 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     var projects: [Project] // array of project objects.
     
+    @StateObject var projectController = ProjectController()
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -28,6 +30,7 @@ struct ContentView: View {
                 syncProjects()
             }
         StartHereView()
+            .environmentObject(projectController)
     }
     
     private func syncProjects() {

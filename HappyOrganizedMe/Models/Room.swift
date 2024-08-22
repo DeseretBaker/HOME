@@ -9,19 +9,18 @@ import SwiftData
 
 @Model
 class Room: Identifiable, ObservableObject {
-    var id: UUID = UUID()
+    @Attribute(.unique) var id: UUID = UUID()
     var name: String
     var imageName: String?
-    var spaces: [Space]
+    var spaces: [Space] = []
+    var weight: Double = 1.0
     var progress: Double
     var isCompleted: Bool = false
     @Relationship(inverse: \Project.rooms) var project: Project?
 
-    init(name: String, imageName: String? = nil, progress: Double = 0.0, spaces: [Space] = []) {
-        self.id = UUID()
+    init(name: String, imageName: String? = nil, weight: Double, progress: Double = 0.0, spaces: [Space] = []) {
         self.name = name
         self.imageName = imageName
-        self.spaces = spaces
         self.progress = progress
         self.isCompleted = isCompleted
     }

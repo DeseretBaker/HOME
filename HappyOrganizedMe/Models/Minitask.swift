@@ -18,7 +18,6 @@ class Minitask: Identifiable, ObservableObject {
     @Relationship(inverse: \Subtask.minitasks) var subtask: Subtask? // Relationship setup
 
     init(name: String, imageName: String? = nil, isCompleted: Bool = false, progress: Double = 0.0) {
-        self.id = UUID()
         self.name = name
         self.imageName = imageName
         self.isCompleted = isCompleted

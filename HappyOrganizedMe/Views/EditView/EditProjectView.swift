@@ -14,21 +14,21 @@ struct EditProjectView: View {
     
     init(project: Binding<Project>) {
         self._project = project
-        _projectName = State(initialValue: project.wrappedValue.name)
-        _imageName = State(initialValue: project.wrappedValue.imageName ?? "")
+        self._projectName = State(initialValue: project.wrappedValue.name)
+        self._imageName = State(initialValue: project.wrappedValue.imageName ?? "")
     }
     
     var body: some View {
         Form {
-            Section(header: Text("Project Details")) {
+            Section(header: Text("Edit Project Details")) {
                 TextField("Project Name", text: $projectName)
-                TextField("Image Name (optional)", text: $imageName)
+                TextField("Image Name", text: $imageName)
             }
+            
             Button("Save Changes") {
                 project.name = projectName
-                project.imageName = imageName.isEmpty ? nil : imageName
+                project.imageName = imageName
             }
-            .disabled(projectName.isEmpty)
         }
         .navigationTitle("Edit Project")
     }
