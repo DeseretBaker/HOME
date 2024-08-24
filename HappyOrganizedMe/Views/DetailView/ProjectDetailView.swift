@@ -18,7 +18,7 @@ struct ProjectDetailView: View {
             Text("Rooms in this project:")
                 .font(.headline)
             
-            List(project.rooms) { room in
+            List(project.rooms, id: \.id) { room in
                 Text(room.name)
             }
             

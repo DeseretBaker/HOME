@@ -9,18 +9,29 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+// Define main view structure
+struct BaseProjectsView: View {
+    @StateObject var controller = AddBaseProjectsController()
+    @State var projects: [RoomProject] = []
+    
+    var body: some View {
+        List {
+            ForEach(projects, id: \.id) { project in
+                Text(project.name)
+            }
+        }
+        .navigationTitle("Projects")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            controller.loadBaseProjectsIfNeeded()
+            projects = controller.baseProjects()
+        }
+    }
+}
+
 // Define enums at the top level
 enum ProjectType: String {
-    case kitchen
-    case garage
-    case bathroom
-    case storage
-    case bedroom
-    case office
-    case playroom
-    case livingRoom
-    case laundryRoom
-    case diningRoom
+    case kitchen, garage, bathroom, storage, bedroom, office, playroom, livingRoom, laundryRoom, diningRoom
     
     var name: String {
         switch self {
@@ -33,53 +44,35 @@ enum ProjectType: String {
         case .office: return "Office"
         case .garage: return "Garage"
         case .playroom: return "Playroom"
-        case .laundryRoom: return "LaundryRoom"
+        case .laundryRoom: return "Laundry Room"
         }
     }
-    
     var imageName: String {
-        switch self {
-        case .kitchen: return "kitchen"
-        case .diningRoom: return "diningroom"
-        case .livingRoom: return "livingroom"
-        case .bathroom: return "bathroom"
-        case .bedroom: return "bedroom"
-        case .storage: return "storage"
-        case .office: return "office"
-        case .playroom: return "playroom"
-        case .laundryRoom: return "laundryroom"
-        case .garage: return "garage"
-        }
+        return rawValue
     }
     var weight: Double {
         switch self {
-        case .kitchen:
-            5
-        case .garage:
-            5
-        case .bathroom:
-            4
-        case .storage:
-            3
-        case .bedroom:
-            3
-        case .office:
-            3
-        case .playroom:
-            3
-        case .livingRoom:
-            2
-        case .laundryRoom:
-            2
-        case .diningRoom:
-            1
+        case .kitchen, .garage: return 5
+        case .bathroom, .storage: return 4
+        case .office, .playroom, .bedroom: return 3
+        case .livingRoom, .laundryRoom: return 2
+        case .diningRoom: return 1
         }
     }
-
 }
 
 enum RoomType: String {
-    var imageName: String {
+    case islandKitchen, uShapedKitchen, lShapedKitchen, galleyKitchen, singleWallKitchen, openPlanKitchen, kitchenetteCompactKitchen, outdoorKitchen,
+         lShapedLivingRoom, uShapedLivingRoom, openPlanLivingRoom, familyRoom, lounge,
+         halfBath, jackJill, quarterBath, fullBath, guestBath, masterBath, powderRoom,
+         masterBedroom, childrensBedroom, youngAdultBedroom, guestBedroom,
+         diningRoom, breakfastNook, formalDining, openDining, casualDining, diningRoomWithBar,
+         oneCarGarage, twoCarGarage, threeCarGarage, fourCarGarage, fiveCarGarage, sixCarGarage, carport,
+         creativeOffice, homeOffice, openPlanOffice, sharedSpaceOffice, studentOffice, virtualOffice,
+         creativePlayroom, fantasyPlayroom, gameRoom, movieRoom, storytellerRoom, adventureRoom, outdoorPlayRoom,
+         pantry, closet, basement, attic, storage
+    
+    var name: String {
         switch self {
         case .islandKitchen: return "islandKitchen"
         case .uShapedKitchen: return "uShapedKitchen"
@@ -109,6 +102,8 @@ enum RoomType: String {
         case .breakfastNook: return "breakfastNook"
         case .formalDining: return "formalDining"
         case .openDining: return "openDining"
+        case .casualDining: return "casualDining"
+        case .diningRoomWithBar: return "diningRoomWithBar"
         case .carport: return "carport"
         case .oneCarGarage: return "oneCarGarage"
         case .twoCarGarage: return "twoCarGarage"
@@ -136,63 +131,35 @@ enum RoomType: String {
         case .storage: return "storage"
         }
     }
-    case islandKitchen
-    case uShapedKitchen
-    case lShapedKitchen
-    case galleyKitchen
-    case singleWallKitchen
-    case openPlanKitchen
-    case kitchenetteCompactKitchen
-    case outdoorKitchen
-    case lShapedLivingRoom
-    case uShapedLivingRoom
-    case openPlanLivingRoom
-    case familyRoom
-    case lounge
-    case halfBath
-    case jackJill
-    case quarterBath
-    case fullBath
-    case guestBath
-    case masterBath
-    case powderRoom
-    case childrensBedroom
-    case masterBedroom
-    case guestBedroom
-    case youngAdultBedroom
-    case diningRoom
-    case breakfastNook
-    case formalDining
-    case openDining
-    case carport
-    case oneCarGarage
-    case twoCarGarage
-    case threeCarGarage
-    case fourCarGarage
-    case fiveCarGarage
-    case sixCarGarage
-    case creativeOffice
-    case homeOffice
-    case openPlanOffice
-    case sharedSpaceOffice
-    case studentOffice
-    case virtualOffice
-    case creativePlayroom
-    case fantasyPlayroom
-    case gameRoom
-    case movieRoom
-    case storytellerRoom
-    case adventureRoom
-    case outdoorPlayRoom
-    case pantry
-    case closet
-    case basement
-    case attic
-    case storage
+    
+    var imageName: String {
+        return rawValue
+    }
+    
+    var weight: Double {
+        switch self {
+        case .islandKitchen, .uShapedKitchen: return 5.0
+        case .lShapedKitchen, .galleyKitchen: return 4.0
+        case .singleWallKitchen: return 3.0
+        case .openPlanKitchen, .kitchenetteCompactKitchen: return 2.0
+        case .outdoorKitchen: return 1.0
+        case .lShapedLivingRoom, .uShapedLivingRoom, .openPlanLivingRoom, .familyRoom, .lounge: return 3.0
+        case .halfBath, .jackJill, .quarterBath, .fullBath, .guestBath, .masterBath, .powderRoom: return 2.0
+        case .masterBedroom, .childrensBedroom, .youngAdultBedroom, .guestBedroom: return 1.0
+        case .diningRoom, .breakfastNook, .formalDining, .openDining, .casualDining, .diningRoomWithBar: return 1.0
+        case .carport, .oneCarGarage, .twoCarGarage, .threeCarGarage, .fourCarGarage, .fiveCarGarage, .sixCarGarage: return 5.0
+        case .creativeOffice, .homeOffice, .openPlanOffice, .sharedSpaceOffice, .studentOffice, .virtualOffice: return 1.0
+        case .basement, .attic: return 5.0
+        case .creativePlayroom, .fantasyPlayroom, .gameRoom, .movieRoom, .storytellerRoom, .adventureRoom, .outdoorPlayRoom: return 4.0
+        case .pantry, .closet, .storage: return 3.0
+        }
+    }
 }
 
 enum SpaceType: String {
-    var imageName: String {
+    case cookingZone, preparationZone, cleaningZone, servingZone, storageZone, pantryZone, drinkZone, utilityZone, diningZone, techZone, shelvingZone, functionalFurnitureZone, roomDecorZone, vanity, medicineCabinet, workstation, deskStorage, techGadgetZone, referenceZone, outdoorStorageZone
+    
+    var name: String {
         switch self {
         case .cookingZone: return "cookingZone"
         case .preparationZone: return "preparationZone"
@@ -213,33 +180,29 @@ enum SpaceType: String {
         case .deskStorage: return "deskStorage"
         case .techGadgetZone: return "techGadgetZone"
         case .referenceZone: return "referenceZone"
-        case .outdoorStorage: return "outdoorStorage"
+        case .outdoorStorageZone: return "outdoorStorageZone"
         }
     }
-    case cookingZone
-    case preparationZone
-    case cleaningZone
-    case servingZone
-    case storageZone
-    case pantryZone
-    case drinkZone
-    case utilityZone
-    case diningZone
-    case techZone
-    case shelvingZone
-    case functionalFurnitureZone
-    case roomDecorZone
-    case vanity
-    case medicineCabinet
-    case workstation
-    case deskStorage
-    case techGadgetZone
-    case referenceZone
-    case outdoorStorage
+    
+    var imageName: String {
+        return rawValue
+    }
+    
+    var weight: Double {
+        switch self {
+        case .workstation, .shelvingZone, .deskStorage, .outdoorStorageZone: return 5.0
+        case .storageZone, .pantryZone, .utilityZone: return 4.0
+        case .cookingZone, .preparationZone, .cleaningZone, .servingZone, .drinkZone, .diningZone, .techZone, .techGadgetZone: return 3.0
+        case .functionalFurnitureZone, .vanity, .referenceZone: return 2.0
+        case .roomDecorZone, .medicineCabinet: return 1.0
+        }
+    }
 }
 
 enum SubtaskType: String {
-    var imageName: String {
+    case cookware, utensils, dishes, spices, gadgets, smallAppliances, bowls, glasses, cups, plates, mugs, towels, sheets, blankets, pillows, cushions, bakeware, serveWare, paperGoods
+    
+    var name: String {
         switch self {
         case .cookware: return "cookware"
         case .utensils: return "utensils"
@@ -258,33 +221,30 @@ enum SubtaskType: String {
         case .pillows: return "pillows"
         case .cushions: return "cushions"
         case .bakeware: return "bakeware"
-        case .serveware: return "serveware"
-        case .papergoods: return "papergoods"
+        case .serveWare: return "serveWare"
+        case .paperGoods: return "paperGoods"
         }
     }
-    case cookware
-    case utensils
-    case dishes
-    case spices
-    case gadgets
-    case smallAppliances
-    case bowls
-    case glasses
-    case cups
-    case plates
-    case mugs
-    case towels
-    case sheets
-    case blankets
-    case pillows
-    case cushions
-    case bakeware
-    case serveware
-    case papergoods
+    
+    var imageName: String {
+        return rawValue
+    }
+    
+    var weight: Double {
+        switch self {
+        case .gadgets: return 5.0
+        case .serveWare: return 4.0
+        case .smallAppliances, .bakeware: return 3.0
+        case .bowls, .paperGoods, .spices: return 2.0
+        case .cookware, .utensils, .dishes, .glasses, .cups, .plates, .mugs, .towels, .sheets, .blankets, .pillows, .cushions: return 1.0
+        }
+    }
 }
 
 enum MinitaskType: String {
-    var imageName: String {
+    case clean, organize, label, contain, group
+    
+    var name: String {
         switch self {
         case .clean: return "clean"
         case .organize: return "organize"
@@ -293,11 +253,20 @@ enum MinitaskType: String {
         case .group: return "group"
         }
     }
-    case clean
-    case organize
-    case label
-    case contain
-    case group
+    
+    var imageName: String {
+        return rawValue
+    }
+    
+    var weight: Double {
+        switch self {
+        case .clean: return 5.0
+        case .organize: return 4.0
+        case .group: return 3.0
+        case .contain: return 2.0
+        case .label: return 1.0
+        }
+    }
 }
 
 // Data loading logic
@@ -314,30 +283,34 @@ struct DataLoader {
         case .playroom: return [Room(name: "Playroom", weight: projectType.weight)]
         case .garage: return [Room(name: "Garage", weight: projectType.weight)]
         case .laundryRoom: return [Room(name: "Laundry Room", weight: projectType.weight)]
-            return []
         }
     }
 }
-    // controller to load base projects
-    class AddBaseProjectsController: ObservableObject {
-        @Published var isBaseProjectsLoaded: Bool = false
-        
-        func loadBaseProjectsIfNeeded() {
-            if !isBaseProjectsLoaded {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.isBaseProjectsLoaded = true
-                }
-            }
-        }
-        
-        // function to create base projects
-        private func createBaseProjects() -> [RoomProject] {
-            let projectType: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
-            
-            return projectType.map { projectType in
-                let rooms = DataLoader.loadRooms(for: projectType)
-                    .sorted(by: { $0.name < $1.name})
-                return RoomProject(name: projectType.name, rooms: rooms)
+
+// Function to create base projects
+func createBaseProjects() -> [RoomProject] {
+    let projectTypes: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
+    
+    return projectTypes.map { projectType in
+        let rooms = DataLoader.loadRooms(for: projectType)
+            .sorted(by: { $0.name < $1.name })
+        return RoomProject(name: projectType.name, rooms: rooms)
+    }
+}
+
+// Controller to load base projects
+class AddBaseProjectsController: ObservableObject {
+    @Published var isBaseProjectsLoaded: Bool = false
+    
+    func loadBaseProjectsIfNeeded() {
+        if !isBaseProjectsLoaded {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.isBaseProjectsLoaded = true
             }
         }
     }
+    
+    func baseProjects() -> [RoomProject] {
+        return createBaseProjects() // Assuming you need this function to return the projects
+    }
+}

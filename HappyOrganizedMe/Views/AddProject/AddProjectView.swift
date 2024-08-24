@@ -29,10 +29,11 @@ class AddProjectViewModel {
 }
 
 struct AddProjectView: View {
+    // TODO: Add ViewModel to house variables needed to create a Project/Room
 //    var addProjectViewModel: AddProjectViewModel
     @Binding var projects: [RoomProject]
     
-    // Comment out these variables and instead use variables from AddProjectViewModel
+    // TODO: Comment out these variables and instead use variables from AddProjectViewModel
     @State private var projectName: String = ""
     @State private var imageName: String = ""
     @State private var newProject: RoomProject?

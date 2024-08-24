@@ -31,12 +31,12 @@ let sampleSpaces = [
     Space(name: "Kitchen", subtasks: sampleSubtasks)
 ]
 
-let sampleRooms = [
+let sampleRoom = [
     Room(name: "Main Floor", weight: 2, spaces: sampleSpaces),
     Room(name: "Second Floor", weight: 2, spaces: sampleSpaces)
 ]
 
 let sampleProjects = [
-    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: sampleRooms),
-    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: sampleRooms)
+    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: sampleRoom),
+    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: sampleRoom)
 ]

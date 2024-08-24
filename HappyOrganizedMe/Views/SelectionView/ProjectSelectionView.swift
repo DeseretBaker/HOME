@@ -51,7 +51,7 @@ struct ProjectSelectionView: View {
 
 struct ProjectSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockRooms = [
+        let mockRoom = [
             Room(name: "Room 1", imageName: "Kitchen", weight: 1),
             Room(name: "Room 2", imageName: "Kitchen2", weight: 1),
             Room(name: "Room 3", imageName: "Kitchen3", weight: 1),
@@ -61,12 +61,12 @@ struct ProjectSelectionView_Previews: PreviewProvider {
         ]
         
         let mockProjects = [
-            RoomProject(name: "Project 1", imageName: "ProjectImage1", rooms: mockRooms),
-            RoomProject(name: "Project2", imageName: "ProjectImage2", rooms: mockRooms),
-            RoomProject(name: "Project3", imageName: "ProjectImage3", rooms: mockRooms),
-            RoomProject(name: "Project4", imageName: "ProjectImage4", rooms: mockRooms),
-            RoomProject(name: "Project5", imageName: "ProjectImage5", rooms: mockRooms),
-            RoomProject(name: "Project6", imageName: "ProjectImage6", rooms: mockRooms)
+            RoomProject(name: "Project 1", imageName: "ProjectImage1", rooms: mockRoom),
+            RoomProject(name: "Project2", imageName: "ProjectImage2", rooms: mockRoom),
+            RoomProject(name: "Project3", imageName: "ProjectImage3", rooms: mockRoom),
+            RoomProject(name: "Project4", imageName: "ProjectImage4", rooms: mockRoom),
+            RoomProject(name: "Project5", imageName: "ProjectImage5", rooms: mockRoom),
+            RoomProject(name: "Project6", imageName: "ProjectImage6", rooms: mockRoom)
         ]
         let projectController = ProjectController()
         projectController.projects = mockProjects // Assign mock projects to the controller

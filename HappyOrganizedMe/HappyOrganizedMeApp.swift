@@ -11,9 +11,9 @@ import SwiftData
 @main
 struct HappyOrganizedMeApp: App {
     
-    @StateObject var projectController = ProjectController.shared
+    var projectController = ProjectController.shared
     
-    var sharedModelContainer: ModelContainer = {
+    static var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             RoomProject.self,
             Room.self,
@@ -36,9 +36,9 @@ struct HappyOrganizedMeApp: App {
         WindowGroup {
             NavigationView {
                 StartHereView() // Starting view of your app
-                    .modelContainer(sharedModelContainer)
+                    .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // use the static property here
             }
-            .environmentObject(projectController)
+            .environmentObject(projectController) // inject the environment object
         }
     }
 }

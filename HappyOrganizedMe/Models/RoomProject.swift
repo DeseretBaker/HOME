@@ -9,14 +9,17 @@ import SwiftData
 
 @Model
 class RoomProject: Identifiable {
-    @Attribute(.unique) var id: UUID = UUID() // ensures each project has a unique id
+    @Attribute(.unique) var id: UUID = UUID() // Ensures each project has a unique id
     var name: String
     var imageName: String?
-    var rooms: [Room] = [] 
-    var progress: Double  = 0.0
+    
+    // Define a one-to-many relationship with Room
+    var rooms: [Room] = []  // Regular property without macro for simplicity
+
+    var progress: Double = 0.0
     var isCompleted: Bool = false
     
-    // initializer
+    // Initializer
     init(name: String, imageName: String? = nil, rooms: [Room] = []) {
         self.name = name
         self.imageName = imageName
@@ -25,26 +28,27 @@ class RoomProject: Identifiable {
         self.isCompleted = checkIfCompleted()
     }
     
-    // method to update project
+    // Method to update project status
     func updateProjectStatus() {
         self.progress = calculateProgress()
         self.isCompleted = checkIfCompleted()
     }
-    // update the status of a specific room
+    
+    // Update the status of a specific room
     func updateRoomStatus(roomId: UUID, isCompleted: Bool) {
         if let roomIndex = rooms.firstIndex(where: { $0.id == roomId }) {
             rooms[roomIndex].isCompleted = isCompleted
-            updateProjectStatus() // recalculates the project status
+            updateProjectStatus() // Recalculates the project status
         }
     }
     
-    // add a new room
+    // Add a new room, this will be a custom room entered by the user
     func addRoom(_ newRoom: Room) {
         rooms.append(newRoom)
         updateProjectStatus()
     }
     
-    // calculate project progress as a percentage of completed room weights
+    // Calculate project progress as a percentage of completed room weights
     private func calculateProgress() -> Double {
         guard !rooms.isEmpty else { return 0.0 }
         
@@ -53,7 +57,7 @@ class RoomProject: Identifiable {
         return (completedWeight / totalWeight) * 100.0
     }
     
-    // check if all rooms are completed
+    // Check if all rooms are completed
     private func checkIfCompleted() -> Bool {
         return rooms.allSatisfy { $0.isCompleted }
     }

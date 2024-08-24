@@ -26,30 +26,31 @@ class ProjectController: ObservableObject {
         if let loadedProjects = loadFromPersistentStore() {
             projects = loadedProjects
         } else {
-            // If no projects were found in persistent storage, load the base projects
             loadBaseProjects()
         }
     }
-    
     // Function to load base projects
     func loadBaseProjects() {
         if projects.isEmpty {
             print("Loading base projects...")
-            // Accessing baseProjects defined in BaseProjects.swift
-//            projects.append(contentsOf: baseProjects) // TODO: FIXME! Base Projects is missing?
-            projects.forEach { project in
-                if project.name == "Kitchen" {
-//                    project.rooms.append(contentsOf: kitchenRoom) // TODO: FIXME!
-                    
-                }
-            }
+
+            // Define baseProjects directly as a variable
+            let baseProjects: [RoomProject] = [
+                RoomProject(name: "Kitchen", rooms: [Room(name: "Island Kitchen", weight: 5.0)]),
+                // Add other predefined RoomProject objects as needed
+                RoomProject(name: "Living Room", rooms: [Room(name: "Open Plan Living Room", weight: 4.0)])
+            ]
+
+            // Append base projects to the main projects array
+            projects.append(contentsOf: baseProjects)
+
+            // Save to persistent store
             saveToPersistentStore(projects)
             print("Base projects loaded: \(projects)")
         } else {
             print("Projects already loaded: \(projects)")
         }
     }
-    
     // Placeholder function to load projects from persistent storage
     func loadFromPersistentStore() -> [RoomProject]? {
         // Here you would implement the code to load projects from your storage solution

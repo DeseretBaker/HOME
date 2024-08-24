@@ -1,4 +1,3 @@
-
 //
 //  RoomSelectionView.swift
 //  HappyOrganizedMe
@@ -11,44 +10,54 @@ import SwiftData
 
 struct RoomSelectionView: View {
     var project: RoomProject
-    @State private var rooms: [Room] // use @State for rooms to track changes
+    @State private var room: Room
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
-    // Initialize with a project and extract rooms from it
+    // Assuming you meant RoomProject or another valid type if BaseProject doesn't exist
+    @State var baseProject: RoomProject = RoomProject(name: "Default Project") // Correct the type and initialization
+    
+    // Initialize with a project and extract room from it
     init(project: RoomProject) {
         self.project = project
-        _rooms = State(initialValue: project.rooms)
+        if let firstRoom = project.rooms.first {
+            _room = State(initialValue: firstRoom) // Safely unwrap the first room
+        } else {
+            _room = State(initialValue: Room(name: "Default Room", imageName: nil, weight: 0, spaces: [])) // Provide a default room
+        }
     }
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                if rooms.isEmpty {
+                if project.rooms.isEmpty { // Check for empty rooms
                     Text("No rooms available.")
                         .font(.headline)
                         .padding()
                 } else {
-                    ForEach(rooms, id: \.id) { room in
+                    ForEach(project.rooms, id: \.id) { room in  // Iterate over project.rooms
                         VStack {
                             TaskCard(
                                 title: room.name,
-                                imageName: room.imageName ?? "defaultImage", progress: room.progress, isComplete: room.isCompleted
+                                imageName: room.imageName ?? "defaultImage",
+                                progress: room.progress,
+                                isComplete: room.isCompleted
                             )
                             .buttonStyle(PlainButtonStyle())
+                            
                             HStack {
-                                Text("Staus:")
+                                Text("Status:")
                                 Toggle(isOn: Binding(
                                     get: { room.isCompleted },
                                     set: { newValue in
                                         room.isCompleted = newValue
-                                        
                                         projectController.updateRoomStatus(room: room, isCompleted: newValue, context: modelContext)
                                     }
                                 )) {
                                     Text(room.isCompleted ? "Completed" : "In Progress")
                                 }
                             }
+                            
                             ProgressView(value: room.progress)
                                 .progressViewStyle(LinearProgressViewStyle())
                                 .padding(.top, 4)
@@ -67,18 +76,18 @@ struct RoomSelectionView: View {
     }
     
     private func deleteRoom(at offsets: IndexSet) {
-            rooms.remove(atOffsets: offsets)
-            project.rooms = rooms
-            
-            projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-        }
+        project.rooms.remove(atOffsets: offsets) // Array mutation
+        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
     }
+}
 
-//struct RoomSelectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let selectedProject = baseProjects.first!
-//        RoomSelectionView(project: selectedProject)
-//            .environmentObject(ProjectController.shared)
-//    }
-//}
-//
+struct RoomSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        // Assuming 'baseProjects' is an array of RoomProject instances; define or replace it
+        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
+        let selectedProject = baseProjects.first! // Safe unwrap in preview context
+        
+        RoomSelectionView(project: selectedProject)
+            .environmentObject(ProjectController.shared)
+    }
+}

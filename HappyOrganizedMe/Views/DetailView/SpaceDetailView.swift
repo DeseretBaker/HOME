@@ -24,9 +24,9 @@ struct SpaceDetailView: View {
                 }) {
                     Text("Add Task")
                         .padding()
-                        .background(Color.green)
+                        .background(Color.teal)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .cornerRadius(10)
                 }
             }.padding()
 
@@ -50,6 +50,7 @@ struct SpaceDetailView: View {
            let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
            let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
             let newTaskDetail = Subtask(name: newTaskDetailName)
+            
             controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.append(newTaskDetail)
             newTaskDetailName = ""
         }

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AddRoomView: View {
+    // TODO: Add ViewModel to house variables needed to create a Project/Room
 //    var addProjectViewModel: AddProjectViewModel
     var project: RoomProject
     
-    // Comment out these variables and instead use variables from AddProjectViewModel
+    // TODO: Comment out these variables and instead use variables from AddProjectViewModel
     @State private var roomName: String = ""
     @State private var weight: Double = 1.0
     @State var newRoom: Room?

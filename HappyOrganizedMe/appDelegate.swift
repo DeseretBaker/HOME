@@ -23,9 +23,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
         
-        // Register the app with APNs
-        application.registerForRemoteNotifications()
-        
         return true
     }
 
