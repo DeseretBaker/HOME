@@ -10,23 +10,27 @@ import SwiftData
 
 @Model
 class Room: Identifiable {
-    @Attribute(.unique) var id: UUID = UUID() // Ensures each room has a unique id
+    @Attribute(.unique) var id: UUID = UUID() // Unique identifier for each Room
     var name: String
     var imageName: String?
+    var roomDescription: String?
+    
+    // Correctly define the project relationship
+    @Relationship var project: RoomProject?
+    
     var weight: Double
     var isCompleted: Bool = false
-    
-    // Define the optional inverse relationship manually if needed, or omit it entirely
-    weak var project: RoomProject?  // Use a weak reference to avoid strong reference cycles
-    
-    var spaces: [Space] = []
-    
-    // Define other properties and initializers
-    init(name: String, imageName: String? = nil, weight: Double, spaces: [Space] = [], project: RoomProject? = nil) {
+    var progress: Double = 0.0
+    var spaces: [Space]
+
+    // Initializer
+    init(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double, spaces: [Space] = [], project: RoomProject? = nil, progress: Double = 0.0) {
         self.name = name
         self.imageName = imageName
+        self.roomDescription = roomDescription
         self.weight = weight
         self.spaces = spaces
         self.project = project
+        self.progress = progress
     }
 }

@@ -4,6 +4,14 @@
 //
 //  Created by Deseret Baker on 8/1/24.
 //
+
+//
+//  RoomProject.swift
+//  HappyOrganizedMe
+//
+//  Created by Deseret Baker on 8/1/24.
+//
+
 import Foundation
 import SwiftData
 
@@ -14,8 +22,8 @@ class RoomProject: Identifiable {
     var imageName: String?
     
     // Define a one-to-many relationship with Room
-    var rooms: [Room] = []  // Regular property without macro for simplicity
-
+    @Relationship(inverse: \Room.project) var rooms: [Room] = []
+    
     var progress: Double = 0.0
     var isCompleted: Bool = false
     
@@ -27,6 +35,7 @@ class RoomProject: Identifiable {
         self.progress = calculateProgress()
         self.isCompleted = checkIfCompleted()
     }
+    
     
     // Method to update project status
     func updateProjectStatus() {
