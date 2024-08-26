@@ -27,8 +27,8 @@ let sampleSubTasks = [
 ]
 
 let sampleSpaces = [
-    Space(name: "Living Room", subTasks: sampleSubTasks),
-    Space(name: "Kitchen", subTasks: sampleSubTasks)
+    Space(name: "Living Room", roomDescription: nil, subTasks: sampleSubTasks),
+    Space(name: "Kitchen", roomDescription: nil, subTasks: sampleSubTasks)
 ]
 
 let sampleRoom = [

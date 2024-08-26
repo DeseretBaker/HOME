@@ -33,7 +33,7 @@ struct SubTaskListView_Previews: PreviewProvider {
         ]
         
         // Create a sample space and assign the sample subTasks
-        let sampleSpace = Space(name: "Pantry", subTasks: sampleSubTasks)
+        let sampleSpace = Space(name: "Pantry", roomDescription: nil, subTasks: sampleSubTasks)
         
         // Use the sample space in the SubTaskListView
         SubTaskListView(space: sampleSpace)

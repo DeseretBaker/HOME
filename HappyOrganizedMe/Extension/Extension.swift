@@ -24,7 +24,7 @@ extension Room {
 
 extension Space {
     static var example: Space {
-        Space(name: "Pantry", subTasks: [])
+        Space(name: "Pantry", roomDescription: nil, subTasks: [])
     }
 }
 

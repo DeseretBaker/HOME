@@ -14,7 +14,7 @@ class Space: Identifiable, ObservableObject {
     var name: String
     var imageName: String?
     var roomDescription: String?
-    var weight: Double = 0.0
+    var weight: Double
     var progress: Double
     var isCompleted: Bool = false
 
@@ -26,12 +26,11 @@ class Space: Identifiable, ObservableObject {
    
 
     // Initializer
-    init(name: String, imageName: String? = nil, progress: Double = 0.0, isCompleted: Bool = false, subTasks: [SubTask]) {
+    init(name: String, imageName: String? = nil, roomDescription: String?, weight: Double = 0.0, progress: Double = 0.0, isCompleted: Bool = false, subTasks: [SubTask]) {
         self.name = name                    // Set the name
         self.imageName = imageName          // Set the optional imageName
-        // TODO: Add these to the initializer and then update all calls to the initializer.
-//        self.roomDescription = roomDescription
-//        self.weight = weight
+        self.roomDescription = roomDescription
+        self.weight = weight
         self.progress = progress            // Set the progress
         self.isCompleted = isCompleted      // Set completion status
         self.subTasks = subTasks

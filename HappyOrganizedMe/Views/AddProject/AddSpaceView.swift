@@ -21,7 +21,7 @@ struct AddSpaceView: View {
                 TextField("Image Name",text: $imageName)
             }
             Button("Add Space") {
-                let newSpace = Space(name: spaceName, imageName: imageName, subTasks: [])
+                let newSpace = Space(name: spaceName, imageName: imageName, roomDescription: nil, subTasks: [])
                 spaces.append(newSpace)
             }
             
