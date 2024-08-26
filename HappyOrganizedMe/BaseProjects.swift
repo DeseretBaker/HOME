@@ -199,7 +199,7 @@ enum SpaceType: String {
     }
 }
 
-enum SubtaskType: String {
+enum SubTaskType: String {
     case cookware, utensils, dishes, spices, gadgets, smallAppliances, bowls, glasses, cups, plates, mugs, towels, sheets, blankets, pillows, cushions, bakeware, serveWare, paperGoods
     
     var name: String {
@@ -241,7 +241,7 @@ enum SubtaskType: String {
     }
 }
 
-enum MinitaskType: String {
+enum MiniTaskType: String {
     case clean, organize, label, contain, group
     
     var name: String {

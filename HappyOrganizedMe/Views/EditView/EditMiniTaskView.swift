@@ -20,7 +20,7 @@ struct EditMiniTaskView: View {
     var body: some View {
         Form {
             Section(header: Text("MiniTask Details")) {
-                TextField("MiniTask Name", text: miniTaskName)
+                TextField("MiniTask Name", text: $miniTaskName)
             }
             
             Button("Save Changes") {

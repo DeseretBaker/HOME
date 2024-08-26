@@ -17,8 +17,8 @@ struct AddSpaceView: View {
     var body: some View {
         Form {
             Section(header: Text("Space Details")) {
-                TextField("Space Name", text: spaceName)
-                TextField("Image Name",text: imageName)
+                TextField("Space Name", text: $spaceName)
+                TextField("Image Name",text: $imageName)
             }
             Button("Add Space") {
                 let newSpace = Space(name: spaceName, imageName: imageName, subTasks: [])

@@ -15,20 +15,20 @@ struct Item: Identifiable {
     let name: String?
 }
 // Sample data for testing
-let sampleMinitasks = [
-    Minitask(name: "Paint Wall"),
-    Minitask(name: "Install Shelves"),
-    Minitask(name: "Hang Pictures")
+let sampleMiniTasks = [
+    MiniTask(name: "Paint Wall"),
+    MiniTask(name: "Install Shelves"),
+    MiniTask(name: "Hang Pictures")
 ]
 
-let sampleSubtasks = [
-    Subtask(name: "Prepare Room", minitasks: sampleMinitasks),
-    Subtask(name: "Clean Space", minitasks: sampleMinitasks)
+let sampleSubTasks = [
+    SubTask(name: "Prepare Room", miniTasks: sampleMiniTasks),
+    SubTask(name: "Clean Space", miniTasks: sampleMiniTasks)
 ]
 
 let sampleSpaces = [
-    Space(name: "Living Room", subtasks: sampleSubtasks),
-    Space(name: "Kitchen", subtasks: sampleSubtasks)
+    Space(name: "Living Room", subTasks: sampleSubTasks),
+    Space(name: "Kitchen", subTasks: sampleSubTasks)
 ]
 
 let sampleRoom = [
@@ -37,6 +37,6 @@ let sampleRoom = [
 ]
 
 let sampleProjects = [
-    RoomProject(name: "Home Renovation", imageName: "home_renovation"),
-    RoomProject(name: "Office Setup", imageName: "office_setup")
+    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: []),
+    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: [])
 ]

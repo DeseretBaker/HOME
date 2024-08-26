@@ -19,8 +19,8 @@ struct HappyOrganizedMeApp: App {
                 RoomProject.self,
                 Room.self,
                 Space.self,
-                Subtask.self,
-                Minitask.self
+                SubTask.self,
+                MiniTask.self
             ])
             
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

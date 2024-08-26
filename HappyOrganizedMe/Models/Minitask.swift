@@ -1,5 +1,5 @@
 //
-//  Minitask.swift
+//  MiniTask.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/6/24.
@@ -19,8 +19,8 @@ class MiniTask: Identifiable, ObservableObject {
     var isCompleted: Bool
     var progress: Double
 
-    // Define relationship to Subtask
-    var subtask: SubTask? // a miniTask belongs to a subTask
+    // Define relationship to SubTask
+    var subTask: SubTask? // a miniTask belongs to a subTask
 
    
     // Initializer

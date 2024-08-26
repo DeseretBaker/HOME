@@ -1,5 +1,5 @@
 //
-//  SubtaskDetailView.swift
+//  SubTaskDetailView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/6/24.

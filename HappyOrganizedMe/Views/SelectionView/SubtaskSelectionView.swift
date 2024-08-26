@@ -1,5 +1,5 @@
 //
-//  SubtaskSelectionView.swift
+//  SubTaskSelectionView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/5/24.
@@ -7,7 +7,7 @@
 import SwiftUI
 import SwiftData
 
-struct SubtaskSelectionView: View {
+struct SubTaskSelectionView: View {
     var project: RoomProject
     var room: Room
     var space: Space
@@ -35,7 +35,7 @@ struct SubtaskSelectionView: View {
                 )
                 .contextMenu {
                     Button(action: {
-                        // Action for editing subtask
+                        // Action for editing subTask
                     }) {
                         Label("Edit", systemImage: "pencil")
                     }

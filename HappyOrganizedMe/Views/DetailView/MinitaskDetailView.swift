@@ -7,7 +7,7 @@
 import SwiftData
 import SwiftUI
 
-struct MinitaskDetailView: View {
+struct MiniTaskDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var reminderDate = Date() // default to current date and time
     @EnvironmentObject var projectController: ProjectController // Use @EnvironmentObject if it's shared

@@ -1,5 +1,5 @@
 //
-//  MinitaskSelectionView.swift
+//  MiniTaskSelectionView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/6/24.
@@ -59,8 +59,8 @@ struct MiniTaskSelectionView: View {
     }
     
 //    private func deleteMiniTask(at offsets: IndexSet) {
-//        subtask.miniTasks.remove(atOffsets: offsets)
-//        miniTasks = subtask.miniTasks // Update the local state
+//        subTask.miniTasks.remove(atOffsets: offsets)
+//        miniTasks = subTask.miniTasks // Update the local state
 //        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
 //    }
 }

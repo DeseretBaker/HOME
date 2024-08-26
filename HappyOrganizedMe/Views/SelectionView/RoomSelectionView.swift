@@ -15,7 +15,7 @@ struct RoomSelectionView: View {
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     // Assuming you meant RoomProject or another valid type if BaseProject doesn't exist
-    @State var baseProject: RoomProject = RoomProject(name: "Base Project") // Correct the type and initialization
+    @State var baseProject: RoomProject = RoomProject(name: "Base Project", rooms: []) // Correct the type and initialization
     
     // Initialize with a project and extract room from it
     init(project: RoomProject) {

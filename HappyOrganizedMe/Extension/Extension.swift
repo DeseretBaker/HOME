@@ -13,7 +13,7 @@ extension RoomProject {
         let exampleRooms = [
             Room(name: "Living Room", imageName: "Living Room", weight: 3), Room(name: "Kitchen", imageName: "Kitchen", weight: 5)
             ]
-        return RoomProject(name: "Home Project", imageName: "Home Project")
+        return RoomProject(name: "Home Project", imageName: "Home Project", rooms: [])
     }
 }
 extension Room {
@@ -29,13 +29,13 @@ extension Space {
 }
 
 extension SubTask {
-    static var example: Subtask {
-        Subtask(name: "Clean up", minitasks: [Minitask.example])
+    static var example: SubTask {
+        SubTask(name: "Clean up", miniTasks: [MiniTask.example])
     }
 }
     
-    extension Minitask {
-        static var example: Minitask {
-            Minitask(name: "Clean up", imageName: "sample image")
+    extension MiniTask {
+        static var example: MiniTask {
+            MiniTask(name: "Clean up", imageName: "sample image")
         }
     }

@@ -1,5 +1,5 @@
 //
-//  SubtaskListView.swift
+//  SubTaskListView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/4/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubTaskListView: View {
-    var space: Space // The space that contains subtasks
+    var space: Space // The space that contains subTasks
     
     var body: some View {
         List {
@@ -26,13 +26,13 @@ struct SubTaskListView: View {
 
 struct SubTaskListView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create sample subtasks
+        // Create sample subTasks
         let sampleSubTasks = [
             SubTask(name: "Upper Shelf", miniTasks: [MiniTask(name: "Dust Shelf", imageName: "sample image"), MiniTask(name: "Organize Items", imageName: "sample image")]),
             SubTask(name: "Lower Shelf", miniTasks: [MiniTask(name: "Clean Items", imageName: "sample image")])
         ]
         
-        // Create a sample space and assign the sample subtasks
+        // Create a sample space and assign the sample subTasks
         let sampleSpace = Space(name: "Pantry", subTasks: sampleSubTasks)
         
         // Use the sample space in the SubTaskListView

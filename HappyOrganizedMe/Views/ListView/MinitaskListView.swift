@@ -1,5 +1,5 @@
 //
-//  MinitaskListView.swift
+//  MiniTaskListView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/6/24.

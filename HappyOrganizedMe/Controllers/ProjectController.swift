@@ -85,23 +85,23 @@ func updateSpace(_ space: Space, context: ModelContext) {
     }
 }
 
-func updateSubtask(_ subtask: Subtask, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == subtask.space?.room?.project?.id }),
-       let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == subtask.space?.room?.id }),
-       let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == subtask.space?.id }),
-       let subtaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.firstIndex(where: { $0.id == subtask.id }) {
-        projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks[subtaskIndex] = subtask
+func updateSubTask(_ subTask: SubTask, context: ModelContext) {
+    if let projectIndex = projects.firstIndex(where: { $0.id == subTask.space?.room?.project?.id }),
+       let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == subTask.space?.room?.id }),
+       let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == subTask.space?.id }),
+       let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == subTask.id }) {
+        projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex] = subTask
         saveContext(context)
     }
 }
 
-func updateMinitask(_ minitask: Minitask, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == minitask.subtask?.space?.room?.project?.id }),
-       let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == minitask.subtask?.space?.room?.id }),
-       let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == minitask.subtask?.space?.id }),
-       let subtaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.firstIndex(where: { $0.id == minitask.subtask?.id }),
-       let minitaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks[subtaskIndex].minitasks.firstIndex(where: { $0.id == minitask.id }) {
-        projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks[subtaskIndex].minitasks[minitaskIndex] = minitask
+func updateMiniTask(_ miniTask: MiniTask, context: ModelContext) {
+    if let projectIndex = projects.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.project?.id }),
+       let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.id }),
+       let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == miniTask.subTask?.space?.id }),
+       let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == miniTask.subTask?.id }),
+       let miniTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex].miniTasks.firstIndex(where: { $0.id == miniTask.id }) {
+        projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex].miniTasks[miniTaskIndex] = miniTask
         saveContext(context)
     }
 }
@@ -118,14 +118,14 @@ func addProject(_ project: RoomProject, context: ModelContext) {
     saveContext(context)
 }
 
-func updateMinitaskStatus(minitask: Minitask, isCompleted: Bool, context: ModelContext) {
-    minitask.isCompleted = isCompleted
-    updateMinitask(minitask, context: context)
+func updateMiniTaskStatus(miniTask: MiniTask, isCompleted: Bool, context: ModelContext) {
+    miniTask.isCompleted = isCompleted
+    updateMiniTask(miniTask, context: context)
 }
 
-func updateSubtaskStatus(subtask: Subtask, isCompleted: Bool, context: ModelContext) {
-    subtask.isCompleted = isCompleted
-    updateSubtask(subtask, context: context)
+func updateSubTaskStatus(subTask: SubTask, isCompleted: Bool, context: ModelContext) {
+    subTask.isCompleted = isCompleted
+    updateSubTask(subTask, context: context)
 }
 
 func updateSpaceStatus(space: Space, isCompleted: Bool, context: ModelContext) {
@@ -160,21 +160,21 @@ func removeSpace(from room: Room, at offsets: IndexSet, context: ModelContext) {
     saveContext(context)
 }
 
-func scheduleNotification(for subtask: Subtask, at date: Date) {
+func scheduleNotification(for subTask: SubTask, at date: Date) {
     let content = UNMutableNotificationContent()
     content.title = "Reminder"
-    content.body = "Time to work on: \(subtask.name)"
+    content.body = "Time to work on: \(subTask.name)"
     content.sound = .default
     
     let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date), repeats: false)
     
-    let request = UNNotificationRequest(identifier: subtask.id.uuidString, content: content, trigger: trigger)
+    let request = UNNotificationRequest(identifier: subTask.id.uuidString, content: content, trigger: trigger)
     
     UNUserNotificationCenter.current().add(request) { error in
         if let error = error {
             print("Error scheduling notification: \(error.localizedDescription)")
         } else {
-            print("Notification scheduled for subtask: \(subtask.name)")
+            print("Notification scheduled for subTask: \(subTask.name)")
         }
     }
 }
