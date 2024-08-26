@@ -16,7 +16,7 @@ class Room: Identifiable {
     var isCompleted: Bool = false
     var progress: Double = 0.0
     
-    @Relationship(inverse: \RoomProject.rooms) var project: RoomProject? // A room belongs to a project
+    var project: RoomProject? // A room belongs to a project
     @Relationship(inverse: \Space.room) var spaces: [Space] = [] // A room has many spaces
     
   

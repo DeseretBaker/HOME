@@ -24,13 +24,14 @@ class RoomProject: Identifiable {
     
    
     // Initializer
-    init(name: String, imageName: String? = nil) {
+    init(name: String, imageName: String? = nil, rooms: [Room]) {
         self.name = name
         self.imageName = imageName
         self.roomDescription = roomDescription
         self.weight = weight
         self.progress = calculateProgress()
         self.isCompleted = checkIfCompleted()
+        self.rooms = rooms
     }
     
     

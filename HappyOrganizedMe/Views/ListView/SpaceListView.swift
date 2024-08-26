@@ -24,9 +24,9 @@ struct SpaceListView: View {
 struct SpaceListView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleSpaces = [
-            Space(name: "Upper Shelf"),
-            Space(name: "Lower Shelf"),
-            Space(name: "Corner Cabinet")
+            Space(name: "Upper Shelf", subTasks: []),
+            Space(name: "Lower Shelf", subTasks: []),
+            Space(name: "Corner Cabinet", subTasks: [])
         ]
         let sampleRoom = Room(name: "Pantry",
                               imageName: "Pantry",

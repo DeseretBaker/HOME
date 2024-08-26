@@ -21,8 +21,8 @@ struct EditProjectView: View {
     var body: some View {
         Form {
             Section(header: Text("Edit Project Details")) {
-                TextField("Project Name", text: projectName)
-                TextField("Image Name", text: imageName)
+                TextField("Project Name", text: $projectName)
+                TextField("Image Name", text: $imageName)
             }
             
             Button("Save Changes") {

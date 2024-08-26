@@ -20,11 +20,11 @@ class MiniTask: Identifiable, ObservableObject {
     var progress: Double
 
     // Define relationship to Subtask
-    @Relationship(inverse: \SubTask.miniTasks) var subtask: SubTask? // a miniTask belongs to a subTask
+    var subtask: SubTask? // a miniTask belongs to a subTask
 
    
     // Initializer
-    init(name: String, imageName: String? = nil, isCompleted: Bool = false, progress: Double = 0.0) {
+    init(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double = 0.0, isCompleted: Bool = false, progress: Double = 0.0) {
         self.name = name
         self.imageName = imageName
         self.roomDescription = roomDescription

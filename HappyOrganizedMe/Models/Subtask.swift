@@ -8,10 +8,10 @@
 import Foundation
 import SwiftData
 
+// TODO: Fix @Observable or ObservableObject to work with @Model objects.
 @Model
 class SubTask: Identifiable, ObservableObject {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Published var miniTasks: [MiniTask]
     var name: String
     var imageName: String?
     var roomDescription: String?
@@ -20,8 +20,8 @@ class SubTask: Identifiable, ObservableObject {
     var isCompleted: Bool = false
 
     // Define relationship to Space
-    @Relationship(inverse: \Space.subTasks) var space: Space? // A subTask belongs to a space
-    @Relationship(inverse: \MiniTask.subTask) var miniTasks: [Minitask] = [] // A subTask has many miniTasks
+    var space: Space? // A subTask belongs to a space
+    @Relationship(inverse: \MiniTask.subtask) var miniTasks: [MiniTask] = [] // A subTask has many miniTasks
 
     
 

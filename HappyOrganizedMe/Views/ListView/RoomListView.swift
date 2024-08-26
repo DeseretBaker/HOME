@@ -21,7 +21,7 @@ struct RoomListView: View {
 
 struct RoomListView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomListView(project: RoomProject(name: "Example", imageName: "exampleImage"))
+        RoomListView(project: RoomProject(name: "Example", imageName: "exampleImage", rooms: []))
     }
 }
      

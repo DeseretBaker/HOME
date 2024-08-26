@@ -19,19 +19,21 @@ class Space: Identifiable, ObservableObject {
     var isCompleted: Bool = false
 
     // Define a relationship to Room
-    @Relationship(inverse: \Room.spaces) var room: Room? // A space belongs to a room
+    var room: Room? // A space belongs to a room
     @Relationship(inverse: \SubTask.space) var subTasks: [SubTask] = [] // A space has many subTasks
 
     
    
 
     // Initializer
-    init(name: String, imageName: String? = nil, progress: Double = 0.0, isCompleted: Bool = false) {
+    init(name: String, imageName: String? = nil, progress: Double = 0.0, isCompleted: Bool = false, subTasks: [SubTask]) {
         self.name = name                    // Set the name
         self.imageName = imageName          // Set the optional imageName
-        self.roomDescription = roomDescription
-        self.weight = weight
+        // TODO: Add these to the initializer and then update all calls to the initializer.
+//        self.roomDescription = roomDescription
+//        self.weight = weight
         self.progress = progress            // Set the progress
         self.isCompleted = isCompleted      // Set completion status
+        self.subTasks = subTasks
     }
 }

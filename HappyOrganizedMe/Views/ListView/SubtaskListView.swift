@@ -13,7 +13,7 @@ struct SubTaskListView: View {
     var body: some View {
         List {
             ForEach(space.subTasks) { subTask in
-                NavigationLink(destination: MinitaskListView(subTask: subTask)) {
+                NavigationLink(destination: MiniTaskListView(subTask: subTask)) {
                     TaskCard(title: subTask.name, imageName: "Kitchen", progress: 0.5, isComplete: false)
                 }
             }

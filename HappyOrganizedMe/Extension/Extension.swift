@@ -24,11 +24,11 @@ extension Room {
 
 extension Space {
     static var example: Space {
-        Space(name: "Pantry")
+        Space(name: "Pantry", subTasks: [])
     }
 }
 
-extension Subtask {
+extension SubTask {
     static var example: Subtask {
         Subtask(name: "Clean up", minitasks: [Minitask.example])
     }
