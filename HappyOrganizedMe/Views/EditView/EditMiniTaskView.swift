@@ -8,27 +8,27 @@
 import Foundation
 import SwiftUI
 
-struct EditMinitaskView: View {
-    @Binding var minitask: Minitask
-    @State private var minitaskName: String
+struct EditMiniTaskView: View {
+    @Binding var miniTask: MiniTask
+    @State private var miniTaskName: String
 
-    init(minitask: Binding<Minitask>) {
-        self._minitask = minitask
-        self._minitaskName = State(initialValue: minitask.wrappedValue.name)
+    init(miniTask: Binding<MiniTask>) {
+        self._miniTask = miniTask
+        self._miniTaskName = State(initialValue: miniTask.wrappedValue.name)
     }
 
     var body: some View {
         Form {
-            Section(header: Text("Minitask Details")) {
-                TextField("Minitask Name", text: $minitaskName)
+            Section(header: Text("MiniTask Details")) {
+                TextField("MiniTask Name", text: miniTaskName)
             }
             
             Button("Save Changes") {
-                minitask.name = minitaskName
+                miniTask.name = miniTaskName
             }
-            .disabled(minitaskName.isEmpty)
+            .disabled(miniTaskName.isEmpty)
         }
-        .navigationTitle("Edit Minitask")
+        .navigationTitle("Edit MiniTask")
     }
 }
 

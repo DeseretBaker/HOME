@@ -8,25 +8,25 @@
 import Foundation
 import SwiftUI
 
-struct AddMinitaskView: View {
-    @Binding var minitasks: [Minitask]
-    @State private var minitaskName: String = ""
+struct AddMiniTaskView: View {
+    @Binding var miniTasks: [MiniTask]
+    @State private var miniTaskName: String = ""
     @State private var imageName: String = ""
     // Optional image name  for custom projects
     
     var body: some View {
         Form {
-            Section(header: Text("Minitask Details")) {
-                TextField("Minitask Name", text: $minitaskName)
+            Section(header: Text("MiniTask Details")) {
+                TextField("MiniTask Name", text: $miniTaskName)
                 TextField("Image Name",text: $imageName)
             }
-            Button("Add Minitask") {
-                let newMinitask = Minitask(name: minitaskName, imageName: imageName)
-                minitasks.append(newMinitask)
+            Button("Add MiniTask") {
+                let newMiniTask = MiniTask(name: miniTaskName, imageName: imageName)
+                miniTasks.append(newMiniTask)
             }
             
         }
-        .navigationTitle("Add New Minitask")
+        .navigationTitle("Add New MiniTask")
     }
     
     

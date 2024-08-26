@@ -13,7 +13,7 @@ struct SpaceListView: View {
     var body: some View {
         List {
             ForEach(room.spaces) { space in
-                NavigationLink(destination: SubtaskListView(space: space)) {
+                NavigationLink(destination: SubTaskListView(space: space)) {
                     Text(space.name)
                 }
             }

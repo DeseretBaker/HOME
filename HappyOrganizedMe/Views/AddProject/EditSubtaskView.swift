@@ -8,25 +8,25 @@
 import Foundation
 import SwiftUI
 
-struct AddSubtaskView: View {
-    @Binding var subtasks: [Subtask]
-    @State private var subtaskName: String = ""
+struct AddSubTaskView: View {
+    @Binding var subTasks: [SubTask]
+    @State private var subTaskName: String = ""
     @State private var imageName: String = ""
     // Optional image name  for custom projects
     
     var body: some View {
         Form {
-            Section(header: Text("Subtask Details")) {
-                TextField("Subtask Name", text: $subtaskName)
+            Section(header: Text("SubTask Details")) {
+                TextField("SubTask Name", text: $subTaskName)
                 TextField("Image Name",text: $imageName)
             }
-            Button("Add Subtask") {
-                let newSubtask = Subtask(name: subtaskName, imageName: imageName, minitasks: [])
-                subtasks.append(newSubtask)
+            Button("Add SubTask") {
+                let newSubTask = SubTask(name: subTaskName, imageName: imageName, miniTasks: [])
+                subTasks.append(newSubTask)
             }
             
         }
-        .navigationTitle("Add New Subtask")
+        .navigationTitle("Add New SubTask")
     }
     
     

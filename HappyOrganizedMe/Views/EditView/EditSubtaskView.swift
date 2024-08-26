@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct EditSubtaskView: View {
-    @Binding var subtask: Subtask
-    @State private var subtaskName: String
+struct EditSubTaskView: View {
+    @Binding var subTask: SubTask
+    @State private var subTaskName: String
     
-    init(subtask: Binding<Subtask>) {
-        self._subtask = subtask
-        self._subtaskName = State(initialValue: subtask.wrappedValue.name)
+    init(subTask: Binding<SubTask>) {
+        self._subTask = subTask
+        self._subTaskName = State(initialValue: subTask.wrappedValue.name)
     }
 
     var body: some View {
         Form {
-            Section(header: Text("Subtask Details")) {
-                TextField("Subtask Name", text: $subtaskName)
+            Section(header: Text("SubTask Details")) {
+                TextField("SubTask Name", text: subTaskName)
             }
             
             Button("Save Changes") {
-                subtask.name = subtaskName
+                subTask.name = subTaskName
             }
-            .disabled(subtaskName.isEmpty)
+            .disabled(subTaskName.isEmpty)
         }
-        .navigationTitle("Edit Subtask")
+        .navigationTitle("Edit SubTask")
     }
 }

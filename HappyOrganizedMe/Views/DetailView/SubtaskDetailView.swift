@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-struct SubtaskDetailView: View {
-    var subtask: Subtask
+struct SubTaskDetailView: View {
+    var subTask: SubTask
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Detail view for \(subtask.name)")
+            Text("Detail view for \(subTask.name)")
                 .font(.largeTitle)
                 .padding(.bottom, 10)
             
-            Text("Mini-tasks for this subtask:")
+            Text("MiniTasks for this subTask:")
                 .font(.headline)
             
             List {
-                ForEach(subtask.minitasks) { minitask in
-                    NavigationLink(destination: MinitaskDetailView(minitask: minitask, subtask: subtask)) {
-                        Text(minitask.name)
+                ForEach(subTask.miniTasks) { miniTask in
+                    NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask, subTask: subTask)) {
+                        Text(miniTask.name)
                     }
                 }
             }
             
-            // Add more detailed subtask information here
+            // Add more detailed subTask information here
             
             Spacer()
         }
         .padding()
-        .navigationTitle("Subtask Details")
+        .navigationTitle("SubTask Details")
     }
 }

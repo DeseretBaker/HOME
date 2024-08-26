@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SubtaskListView: View {
+struct SubTaskListView: View {
     var space: Space // The space that contains subtasks
     
     var body: some View {
         List {
-            ForEach(space.subtasks) { subtask in
-                NavigationLink(destination: MinitaskListView(subtask: subtask)) {
-                    TaskCard(title: subtask.name, imageName: "Kitchen", progress: 0.5, isComplete: false)
+            ForEach(space.subTasks) { subTask in
+                NavigationLink(destination: MinitaskListView(subTask: subTask)) {
+                    TaskCard(title: subTask.name, imageName: "Kitchen", progress: 0.5, isComplete: false)
                 }
             }
         }
@@ -24,18 +24,18 @@ struct SubtaskListView: View {
 }
 
 
-struct SubtaskListView_Previews: PreviewProvider {
+struct SubTaskListView_Previews: PreviewProvider {
     static var previews: some View {
         // Create sample subtasks
-        let sampleSubtasks = [
-            Subtask(name: "Upper Shelf", minitasks: [Minitask(name: "Dust Shelf", imageName: "sample image"), Minitask(name: "Organize Items", imageName: "sample image")]),
-            Subtask(name: "Lower Shelf", minitasks: [Minitask(name: "Clean Items", imageName: "sample image")])
+        let sampleSubTasks = [
+            SubTask(name: "Upper Shelf", miniTasks: [MiniTask(name: "Dust Shelf", imageName: "sample image"), MiniTask(name: "Organize Items", imageName: "sample image")]),
+            SubTask(name: "Lower Shelf", miniTasks: [MiniTask(name: "Clean Items", imageName: "sample image")])
         ]
         
         // Create a sample space and assign the sample subtasks
-        let sampleSpace = Space(name: "Pantry", subtasks: sampleSubtasks)
+        let sampleSpace = Space(name: "Pantry", subTasks: sampleSubTasks)
         
-        // Use the sample space in the SubtaskListView
-        SubtaskListView(space: sampleSpace)
+        // Use the sample space in the SubTaskListView
+        SubTaskListView(space: sampleSpace)
     }
 }

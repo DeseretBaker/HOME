@@ -8,59 +8,59 @@
 import SwiftUI
 import SwiftData
 
-struct MinitaskSelectionView: View {
+struct MiniTaskSelectionView: View {
     var project: RoomProject
     var room: Room
     var space: Space
-    var subtask: Subtask
+    var subTask: SubTask
     
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext
     
-    @State private var minitasks: [Minitask]
+    @State private var miniTasks: [MiniTask]
     
-    init(subtask: Subtask, space: Space, room: Room, project: RoomProject) {
-        self.subtask = subtask
+    init(subTask: SubTask, space: Space, room: Room, project: RoomProject) {
+        self.subTask = subTask
         self.space = space
         self.room = room
         self.project = project
-        _minitasks = State(initialValue: subtask.minitasks)
+        _miniTasks = State(initialValue: subTask.miniTasks)
     }
     
     var body: some View {
         List {
-            ForEach($minitasks) { $minitask in
+            ForEach(miniTasks) { miniTask in
                 TaskCard(
-                    title: minitask.name,
-                    imageName: minitask.imageName ?? "defaultImage", // Provide a default image if none is set
-                    progress: minitask.progress,
-                    isComplete: minitask.isCompleted
+                    title: miniTask.name,
+                    imageName: miniTask.imageName ?? "defaultImage", // Provide a default image if none is set
+                    progress: miniTask.progress,
+                    isComplete: miniTask.isCompleted
                 )
                 .contextMenu {
                     Button(action: {
-                        // Action for editing minitask
+                        // Action for editing miniTask
                     }) {
                         Label("Edit", systemImage: "pencil")
                     }
                     
                     Button(action: {
-                        deleteMinitask(at: IndexSet(integer: minitasks.firstIndex(of: minitask)!))
+                //        deleteMiniTask(at: IndexSet(integer: miniTasks.firstIndex(of: miniTask)!))
                     }) {
                         Label("Delete", systemImage: "trash")
                     }
                 }
             }
-            .onDelete(perform: deleteMinitask)
+           // .onDelete(perform: deleteMiniTask)
         }
-        .navigationTitle("Select a Minitask")
+        .navigationTitle("Select a MiniTask")
         .toolbar {
             EditButton()
         }
     }
     
-    private func deleteMinitask(at offsets: IndexSet) {
-        subtask.minitasks.remove(atOffsets: offsets)
-        minitasks = subtask.minitasks // Update the local state
-        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-    }
+//    private func deleteMiniTask(at offsets: IndexSet) {
+//        subtask.miniTasks.remove(atOffsets: offsets)
+//        miniTasks = subtask.miniTasks // Update the local state
+//        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
+//    }
 }

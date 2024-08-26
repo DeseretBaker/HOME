@@ -40,23 +40,23 @@ struct SpaceSelectionView: View {
                     }
                     
                     Button(action: {
-                        deleteSpace(at: IndexSet(integer: spaces.firstIndex(of: space)!))
+                      //  deleteSpace(at: IndexSet(integer: spaces.firstIndex(of: space)!))
                     }) {
                         Label("Delete", systemImage: "trash")
                     }
                 }
             }
-            .onDelete(perform: deleteSpace)
+           // .onDelete(perform: deleteSpace)
         }
         .navigationTitle("Select a Space")
         .toolbar {
             EditButton()
         }
     }
-    
-    private func deleteSpace(at offsets: IndexSet) {
-        room.spaces.remove(atOffsets: offsets)
-        spaces = room.spaces // Update the local state
-        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-    }
+//    
+//    private func deleteSpace(at offsets: IndexSet) {
+//        room.spaces.remove(atOffsets: offsets)
+//        spaces = room.spaces // Update the local state
+//        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
+//    }
 }

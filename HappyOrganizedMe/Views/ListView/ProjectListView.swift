@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct ProjectListView: View {
     @EnvironmentObject var projectController: ProjectController
@@ -68,7 +68,7 @@ struct ProjectListView: View {
                     .foregroundColor(.white)
                     .shadow(radius: 5)
             }
-            .frame(height: 120) // set the height of the entire zstack
+            .frame(height: 120) // set the height of the entire ZStack
             .cornerRadius(10)
             .shadow(radius: 5)
         }

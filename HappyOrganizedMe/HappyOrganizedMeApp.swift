@@ -14,17 +14,17 @@ struct HappyOrganizedMeApp: App {
     var projectController = ProjectController.shared
     
     static var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            RoomProject.self,
-            Room.self,
-            Space.self,
-            Subtask.self,
-            Minitask.self
-        ])
-        
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-        
         do {
+            let schema = Schema([
+                RoomProject.self,
+                Room.self,
+                Space.self,
+                Subtask.self,
+                Minitask.self
+            ])
+            
+            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
@@ -37,8 +37,9 @@ struct HappyOrganizedMeApp: App {
             NavigationView {
                 StartHereView() // Starting view of your app
                     .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // use the static property here
+                
+                    .environmentObject(projectController) // inject the environment object
             }
-            .environmentObject(projectController) // inject the environment object
         }
     }
 }

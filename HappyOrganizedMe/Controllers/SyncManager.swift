@@ -57,8 +57,8 @@ func fetchRemoteProjects(completion: @escaping ([RoomProject]) -> Void) {
 // Function to resolve conflicts between local and remote projects
 func resolveConflicts(localProjects: [RoomProject], cloudProjects: [RoomProject]) -> ([RoomProject], [RoomProject]) {
     // Example conflict resolution: Last Write Wins (LWW) or custom merge logic
-    var updatedLocalProjects = localProjects
-    var updatedCloudProjects = cloudProjects
+    let updatedLocalProjects = localProjects
+    let updatedCloudProjects = cloudProjects
 
     // Implement your conflict resolution strategy here
 

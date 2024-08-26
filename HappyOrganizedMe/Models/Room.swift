@@ -3,8 +3,6 @@
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/6/24.
-//
-
 import Foundation
 import SwiftData
 
@@ -14,14 +12,14 @@ class Room: Identifiable {
     var name: String
     var imageName: String?
     var roomDescription: String?
-    
-    // Correctly define the project relationship
-    @Relationship var project: RoomProject?
-    
     var weight: Double
     var isCompleted: Bool = false
     var progress: Double = 0.0
-    var spaces: [Space]
+    
+    @Relationship(inverse: \RoomProject.rooms) var project: RoomProject? // A room belongs to a project
+    @Relationship(inverse: \Space.room) var spaces: [Space] = [] // A room has many spaces
+    
+  
 
     // Initializer
     init(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double, spaces: [Space] = [], project: RoomProject? = nil, progress: Double = 0.0) {
@@ -29,8 +27,6 @@ class Room: Identifiable {
         self.imageName = imageName
         self.roomDescription = roomDescription
         self.weight = weight
-        self.spaces = spaces
-        self.project = project
         self.progress = progress
     }
 }

@@ -5,13 +5,6 @@
 //  Created by Deseret Baker on 8/1/24.
 //
 
-//
-//  RoomProject.swift
-//  HappyOrganizedMe
-//
-//  Created by Deseret Baker on 8/1/24.
-//
-
 import Foundation
 import SwiftData
 
@@ -20,18 +13,22 @@ class RoomProject: Identifiable {
     @Attribute(.unique) var id: UUID = UUID() // Ensures each project has a unique id
     var name: String
     var imageName: String?
-    
-    // Define a one-to-many relationship with Room
-    @Relationship(inverse: \Room.project) var rooms: [Room] = []
-    
+    var roomDescription: String?
+    var weight: Double = 0.0
     var progress: Double = 0.0
     var isCompleted: Bool = false
     
+    // Define relationship with Room
+    @Relationship(inverse: \Room.project) var rooms: [Room] = [] // A project has many rooms
+    
+    
+   
     // Initializer
-    init(name: String, imageName: String? = nil, rooms: [Room] = []) {
+    init(name: String, imageName: String? = nil) {
         self.name = name
         self.imageName = imageName
-        self.rooms = rooms
+        self.roomDescription = roomDescription
+        self.weight = weight
         self.progress = calculateProgress()
         self.isCompleted = checkIfCompleted()
     }

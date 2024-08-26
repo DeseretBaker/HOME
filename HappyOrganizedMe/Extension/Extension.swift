@@ -13,7 +13,7 @@ extension RoomProject {
         let exampleRooms = [
             Room(name: "Living Room", imageName: "Living Room", weight: 3), Room(name: "Kitchen", imageName: "Kitchen", weight: 5)
             ]
-        return RoomProject(name: "Home Project", imageName: "Home Project", rooms: exampleRooms)
+        return RoomProject(name: "Home Project", imageName: "Home Project")
     }
 }
 extension Room {

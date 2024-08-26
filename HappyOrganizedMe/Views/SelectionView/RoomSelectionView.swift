@@ -15,7 +15,7 @@ struct RoomSelectionView: View {
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     // Assuming you meant RoomProject or another valid type if BaseProject doesn't exist
-    @State var baseProject: RoomProject = RoomProject(name: "Default Project") // Correct the type and initialization
+    @State var baseProject: RoomProject = RoomProject(name: "Base Project") // Correct the type and initialization
     
     // Initialize with a project and extract room from it
     init(project: RoomProject) {
@@ -64,7 +64,7 @@ struct RoomSelectionView: View {
                         }
                         .padding(.vertical, 8)
                     }
-                    .onDelete(perform: deleteRoom)
+                   // .onDelete(perform: deleteRoom)
                 }
             }
             .padding()
@@ -75,19 +75,19 @@ struct RoomSelectionView: View {
         }
     }
     
-    private func deleteRoom(at offsets: IndexSet) {
-        project.rooms.remove(atOffsets: offsets) // Array mutation
-        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-    }
-}
-
-struct RoomSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Assuming 'baseProjects' is an array of RoomProject instances; define or replace it
-        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
-        let selectedProject = baseProjects.first! // Safe unwrap in preview context
-        
-        RoomSelectionView(project: selectedProject)
-            .environmentObject(ProjectController.shared)
-    }
+//    private func deleteRoom(at offsets: IndexSet) {
+//        project.rooms.remove(atOffsets: offsets) // Array mutation
+//        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
+//    }
+//}
+//
+//struct RoomSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Assuming 'baseProjects' is an array of RoomProject instances; define or replace it
+//        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
+//        let selectedProject = baseProjects.first! // Safe unwrap in preview context
+//        
+//        RoomSelectionView(project: selectedProject)
+//            .environmentObject(ProjectController.shared)
+//    }
 }

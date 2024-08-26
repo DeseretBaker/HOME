@@ -7,70 +7,68 @@
 
 import SwiftUI
 
-struct MinitaskListView: View {
-    @ObservedObject var subtask: Subtask
-    @State private var isEditing = false
-    
+struct MiniTaskListView: View {
+    @ObservedObject var subTask: SubTask
+    @Environment(\.editMode) private var editMode // Use environment edit mode
+
     var body: some View {
         List {
-            if subtask.minitasks.isEmpty {
-                Text("No minitasks available")
+            if subTask.miniTasks.isEmpty {
+                Text("No miniTasks available")
                     .foregroundColor(.gray)
             } else {
-                ForEach($subtask.minitasks) { $minitask in
-                    MinitaskRowView(minitask: $minitask, isEditing: $isEditing)
+                ForEach(subTask.miniTasks) { miniTask in
+                    MiniTaskRowView(miniTask: miniTask, isEditing: editMode?.wrappedValue == .active)
                 }
-                .onDelete(perform: deleteMinitask)
+                .onDelete(perform: deleteMiniTask)
             }
         }
-        .navigationTitle("\(subtask.name) Minitasks")
+        .navigationTitle("\(subTask.name) MiniTasks")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-                    .onTapGesture {
-                        isEditing.toggle()
-                    }
+                EditButton() // Automatically toggles the environment edit mode
             }
         }
     }
     
-    private func deleteMinitask(at offsets: IndexSet) {
+    private func deleteMiniTask(at offsets: IndexSet) {
         withAnimation {
-            subtask.minitasks.remove(atOffsets: offsets)
+            subTask.miniTasks.remove(atOffsets: offsets)
         }
     }
 }
 
-struct MinitaskRowView: View {
-    @Binding var minitask: Minitask
-    @Binding var isEditing: Bool
+struct MiniTaskRowView: View {
+    var miniTask: MiniTask // Directly use miniTask instead of @Binding
+    var isEditing: Bool
     
     var body: some View {
         HStack {
-            Text(minitask.name)
+            Text(miniTask.name)
             Spacer()
             if isEditing {
                 Button(action: {
-                    minitask.isCompleted.toggle() // directly toggle the bool property
+                    // Assume you have logic here to toggle completion
+                    miniTask.isCompleted.toggle() // You may need to update this logic based on your model's design
                 }) {
-                    Image(systemName: minitask.isCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(minitask.isCompleted ? .green : .gray)
+                    Image(systemName: miniTask.isCompleted ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(miniTask.isCompleted ? .green : .gray)
                 }
             }
         }
     }
 }
 
-struct MinitaskListView_Previews: PreviewProvider {
+struct MiniTaskListView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleMinitasks = [
-            Minitask(name: "Clean Shelf", imageName: "sample image"),
-            Minitask(name: "Organize Pantry", imageName: "sample image"),
-            Minitask(name: "Label Containers", imageName: "sample image")
+        let sampleMiniTasks = [
+            MiniTask(name: "Clean Shelf", imageName: "sample image"),
+            MiniTask(name: "Organize Pantry", imageName: "sample image"),
+            MiniTask(name: "Label Containers", imageName: "sample image")
         ]
         
-        let sampleSubtask = Subtask(name: "Pantry", minitasks: sampleMinitasks)
+        let sampleSubTask = SubTask(name: "Pantry", miniTasks: sampleMiniTasks)
         
-        MinitaskListView(subtask: sampleSubtask)
+        MiniTaskListView(subTask: sampleSubTask)
     }
 }

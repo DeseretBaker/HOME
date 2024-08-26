@@ -15,23 +15,23 @@ struct SubtaskSelectionView: View {
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext
     
-    @State private var subtasks: [Subtask]
+    @State private var subTasks: [SubTask]
 
     init(space: Space, room: Room, project: RoomProject) {
         self.space = space
         self.room = room
         self.project = project
-        _subtasks = State(initialValue: space.subtasks)
+        _subTasks = State(initialValue: space.subTasks)
     }
     
     var body: some View {
         List {
-            ForEach($subtasks) { $subtask in
+            ForEach(subTasks) { subTask in
                 TaskCard(
-                    title: subtask.name,
-                    imageName: subtask.imageName ?? "defaultImage", // Provide a default image if none is set
-                    progress: subtask.progress,
-                    isComplete: subtask.isCompleted
+                    title: subTask.name,
+                    imageName: subTask.imageName ?? "defaultImage", // Provide a default image if none is set
+                    progress: subTask.progress,
+                    isComplete: subTask.isCompleted
                 )
                 .contextMenu {
                     Button(action: {
@@ -41,23 +41,23 @@ struct SubtaskSelectionView: View {
                     }
                     
                     Button(action: {
-                        deleteSubtask(at: IndexSet(integer: subtasks.firstIndex(of: subtask)!))
+                   //     deleteSubTask(at: IndexSet(integer: subTasks.firstIndex(of: subTask)!))
                     }) {
                         Label("Delete", systemImage: "trash")
                     }
                 }
             }
-            .onDelete(perform: deleteSubtask)
+         //   .onDelete(perform: deleteSubTask)
         }
-        .navigationTitle("Select a Subtask")
+        .navigationTitle("Select a SubTask")
         .toolbar {
             EditButton()
         }
     }
     
-    private func deleteSubtask(at offsets: IndexSet) {
-        space.subtasks.remove(atOffsets: offsets)
-        subtasks = space.subtasks // Update the local state
-        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
-    }
+//    private func deleteSubTask(at offsets: IndexSet) {
+//        space.subTasks.remove(atOffsets: offsets)
+//        subTasks = space.subTasks // Update the local state
+//        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
+//    }
 }

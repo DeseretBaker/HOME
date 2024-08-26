@@ -60,20 +60,20 @@ struct ProjectSelectionView_Previews: PreviewProvider {
             Room(name: "Room 6", imageName: "Kitchen3", weight: 1)
         ]
         
-        let mockProjects = [
-            RoomProject(name: "Project 1", imageName: "ProjectImage1", rooms: mockRoom),
-            RoomProject(name: "Project2", imageName: "ProjectImage2", rooms: mockRoom),
-            RoomProject(name: "Project3", imageName: "ProjectImage3", rooms: mockRoom),
-            RoomProject(name: "Project4", imageName: "ProjectImage4", rooms: mockRoom),
-            RoomProject(name: "Project5", imageName: "ProjectImage5", rooms: mockRoom),
-            RoomProject(name: "Project6", imageName: "ProjectImage6", rooms: mockRoom)
-        ]
-        let projectController = ProjectController()
-        projectController.projects = mockProjects // Assign mock projects to the controller
-        
-        return NavigationView {
-            ProjectSelectionView()
-                .environmentObject(projectController)
-        }
-    }
+//        let mockProjects = [
+//            RoomProject(name: "Project 1", imageName: "ProjectImage1", rooms: mockRoom),
+//            RoomProject(name: "Project2", imageName: "ProjectImage2", rooms: mockRoom),
+//            RoomProject(name: "Project3", imageName: "ProjectImage3", rooms: mockRoom),
+//            RoomProject(name: "Project4", imageName: "ProjectImage4", rooms: mockRoom),
+//            RoomProject(name: "Project5", imageName: "ProjectImage5", rooms: mockRoom),
+//            RoomProject(name: "Project6", imageName: "ProjectImage6", rooms: mockRoom)
+//        ]
+//        let projectController = ProjectController()
+//        projectController.projects = mockProjects // Assign mock projects to the controller
+//        
+//        return NavigationView {
+//            ProjectSelectionView()
+//                .environmentObject(projectController)
+//        }
+   }
 }

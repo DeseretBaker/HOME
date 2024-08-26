@@ -37,6 +37,6 @@ let sampleRoom = [
 ]
 
 let sampleProjects = [
-    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: sampleRoom),
-    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: sampleRoom)
+    RoomProject(name: "Home Renovation", imageName: "home_renovation"),
+    RoomProject(name: "Office Setup", imageName: "office_setup")
 ]

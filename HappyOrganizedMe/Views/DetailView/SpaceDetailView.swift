@@ -31,9 +31,9 @@ struct SpaceDetailView: View {
             }.padding()
 
             List {
-                ForEach(space.subtasks) { subtask in // Access the correct property
-                    NavigationLink(destination: SubtaskDetailView(subtask: subtask)) {
-                        Text(subtask.name)
+                ForEach(space.subTasks) { subTask in // Access the correct property
+                    NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
+                        Text(subTask.name)
                     }
                 }
                 .onDelete(perform: deleteTaskDetails)
@@ -49,9 +49,9 @@ struct SpaceDetailView: View {
         if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
            let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
            let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            let newTaskDetail = Subtask(name: newTaskDetailName)
+            let newTaskDetail = SubTask(name: newTaskDetailName)
             
-            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.append(newTaskDetail)
+            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.append(newTaskDetail)
             newTaskDetailName = ""
         }
     }
@@ -60,7 +60,7 @@ struct SpaceDetailView: View {
         if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
            let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
            let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subtasks.remove(atOffsets: offsets)
+            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.remove(atOffsets: offsets)
         }
     }
 }

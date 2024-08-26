@@ -20,7 +20,7 @@ struct EditSpaceView: View {
     var body: some View {
         Form {
             Section(header: Text("Space Details")) {
-                TextField("Space Name", text: $spaceName)
+                TextField("Space Name", text: spaceName)
             }
             
             Button("Save Changes") {
