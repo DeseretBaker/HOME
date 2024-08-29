@@ -16,9 +16,9 @@ struct Item: Identifiable {
 }
 // Sample data for testing
 let sampleMiniTasks = [
-    MiniTask(name: "Paint Wall"),
-    MiniTask(name: "Install Shelves"),
-    MiniTask(name: "Hang Pictures")
+//    MiniTask(name: "Paint Wall"),
+//    MiniTask(name: "Install Shelves"),
+    MiniTask(name: "Hang Pictures", imageName: "", miniTaskDescription: "")
 ]
 
 let sampleSubTasks = [
@@ -32,11 +32,11 @@ let sampleSpaces = [
 ]
 
 let sampleRoom = [
-    Room(name: "Main Floor", weight: 2, spaces: sampleSpaces),
-    Room(name: "Second Floor", weight: 2, spaces: sampleSpaces)
+    Room.createTestRoom(name: "Main Floor", weight: 2, spaces: sampleSpaces),
+    Room.createTestRoom(name: "Second Floor", weight: 2, spaces: sampleSpaces)
 ]
 
 let sampleProjects = [
-    RoomProject(name: "Home Renovation", imageName: "home_renovation", rooms: []),
-    RoomProject(name: "Office Setup", imageName: "office_setup", rooms: [])
+    RoomProject(projectType: .bathroom, rooms: []),
+    RoomProject(projectType: .bedroom, rooms: [])
 ]

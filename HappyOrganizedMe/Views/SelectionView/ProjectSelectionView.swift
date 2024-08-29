@@ -52,12 +52,12 @@ struct ProjectSelectionView: View {
 struct ProjectSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         let mockRoom = [
-            Room(name: "Room 1", imageName: "Kitchen", weight: 1),
-            Room(name: "Room 2", imageName: "Kitchen2", weight: 1),
-            Room(name: "Room 3", imageName: "Kitchen3", weight: 1),
-            Room(name: "Room 4", imageName: "Kitchen", weight: 1),
-            Room(name: "Room 5", imageName: "Kitchen2", weight: 1),
-            Room(name: "Room 6", imageName: "Kitchen3", weight: 1)
+            Room.createTestRoom(name: "Room 1", imageName: "Kitchen", weight: 1),
+            Room.createTestRoom(name: "Room 2", imageName: "Kitchen2", weight: 1),
+            Room.createTestRoom(name: "Room 3", imageName: "Kitchen3", weight: 1),
+            Room.createTestRoom(name: "Room 4", imageName: "Kitchen", weight: 1),
+            Room.createTestRoom(name: "Room 5", imageName: "Kitchen2", weight: 1),
+            Room.createTestRoom(name: "Room 6", imageName: "Kitchen3", weight: 1)
         ]
         
 //        let mockProjects = [

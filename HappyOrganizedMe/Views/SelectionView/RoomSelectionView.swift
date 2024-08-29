@@ -15,7 +15,7 @@ struct RoomSelectionView: View {
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     // Assuming you meant RoomProject or another valid type if BaseProject doesn't exist
-    @State var baseProject: RoomProject = RoomProject(name: "Base Project", rooms: []) // Correct the type and initialization
+    @State var baseProject: RoomProject = RoomProject(projectType: .kitchen, rooms: []) // Correct the type and initialization
     
     // Initialize with a project and extract room from it
     init(project: RoomProject) {
@@ -23,7 +23,7 @@ struct RoomSelectionView: View {
         if let firstRoom = project.rooms.first {
             _room = State(initialValue: firstRoom) // Safely unwrap the first room
         } else {
-            _room = State(initialValue: Room(name: "Default Room", imageName: nil, weight: 0, spaces: [])) // Provide a default room
+            _room = State(initialValue: Room.createTestRoom(name: "Default Room", imageName: nil, weight: 0, spaces: [])) // Provide a default room
         }
     }
     
@@ -84,7 +84,7 @@ struct RoomSelectionView: View {
 //struct RoomSelectionView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        // Assuming 'baseProjects' is an array of RoomProject instances; define or replace it
-//        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
+//        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room.createTestRoom(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
 //        let selectedProject = baseProjects.first! // Safe unwrap in preview context
 //        
 //        RoomSelectionView(project: selectedProject)

@@ -38,7 +38,7 @@ struct AddRoomView: View {
 //            }
 //            Button("Add Room") {
 //                //                        if let project = project {
-//                let newRoom = Room(name: roomName, weight: weight)
+//                let newRoom = Room.createTestRoom(name: roomName, weight: weight)
 //                project.rooms.append(newRoom)
 //                //                        }
 //            }

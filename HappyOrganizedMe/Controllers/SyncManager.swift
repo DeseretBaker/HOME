@@ -47,7 +47,7 @@ func fetchRemoteProjects(completion: @escaping ([RoomProject]) -> Void) {
     // Simulate fetching projects from a cloud or remote server
     DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
         let remoteProjects: [RoomProject] = [
-            RoomProject(name: "Remote Kitchen", rooms: [Room(name: "Remote Island Kitchen", weight: 4.0)]),
+            RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Remote Island Kitchen", weight: 4.0)]),
             // Add more simulated remote projects if needed
         ]
         completion(remoteProjects)

@@ -28,12 +28,12 @@ struct SpaceListView_Previews: PreviewProvider {
             Space(name: "Lower Shelf", roomDescription: nil, subTasks: []),
             Space(name: "Corner Cabinet", roomDescription: nil, subTasks: [])
         ]
-        let sampleRoom = Room(name: "Pantry",
+        let sampleRoom = Room.createTestRoom(name: "Pantry",
                               imageName: "Pantry",
                               weight: 1,
                               spaces: sampleSpaces)
         
-        SpaceListView(room: sampleRoom)
+        return SpaceListView(room: sampleRoom)
     }
 }
 

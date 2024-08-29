@@ -24,10 +24,10 @@ class MiniTask: Identifiable, ObservableObject {
 
    
     // Initializer
-    init(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double = 0.0, isCompleted: Bool = false, progress: Double = 0.0) {
+    init(name: String, imageName: String? = nil, miniTaskDescription: String? = nil, weight: Double = 0.0, isCompleted: Bool = false, progress: Double = 0.0) {
         self.name = name
         self.imageName = imageName
-        self.roomDescription = roomDescription
+        self.roomDescription = miniTaskDescription
         self.weight = weight
         self.isCompleted = isCompleted
         self.progress = progress

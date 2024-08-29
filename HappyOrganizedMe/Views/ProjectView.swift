@@ -13,19 +13,12 @@ struct ProjectView: View {
     
     var body: some View {
         ZStack {
-            // projet image
-            if let imageName = project.imageName {
-                Image(imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 200)
-                    .clipped() // Ensures the image fits within the frame
-            } else {
-                // Placeholder if no image
-                Rectangle()
-                    .fill(Color.gray)
-                    .frame(width: 200, height: 200)
-            }
+            // project image
+            Image(project.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 200, height: 200)
+                .clipped() // Ensures the image fits within the frame
             // Project name overlay
             Text(project.name)
                 .font(.headline)

@@ -20,9 +20,9 @@ class AddProjectViewModel {
     
     func createProject() -> RoomProject? {
         guard let projectName, let imageName else { return nil }
-        let project = RoomProject(name: projectName, imageName: imageName, rooms: [])
+        let project = RoomProject(projectType: .kitchen, rooms: [])
         guard let roomName, let roomWeight else { return nil }
-        let room = Room(name: roomName, weight: roomWeight)
+        let room = Room.createTestRoom(name: roomName, weight: roomWeight)
         project.rooms.append(room)
         return project
     }
@@ -46,7 +46,7 @@ struct AddProjectView: View {
             }
 
             Button("Add Project") {
-                let createdProject = RoomProject(name: projectName, imageName: imageName, rooms: [])
+                let createdProject = RoomProject(projectType: .kitchen, rooms: [])
                 projects.append(createdProject)
                 self.newProject = createdProject
             }

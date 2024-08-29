@@ -11,9 +11,12 @@ import SwiftData
 
 // Define main view structure
 struct BaseProjectsView: View {
-    @StateObject var controller = AddBaseProjectsController()
+    var controller: BaseProjectsController
     @State var projects: [RoomProject] = []
     
+    init(modelContext: ModelContext) {
+        controller = BaseProjectsController(modelContext: modelContext)
+    }
     var body: some View {
         List {
             ForEach(projects, id: \.id) { project in
@@ -23,14 +26,13 @@ struct BaseProjectsView: View {
         .navigationTitle("Projects")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            controller.loadBaseProjectsIfNeeded()
             projects = controller.baseProjects()
         }
     }
 }
 
 // Define enums at the top level
-enum ProjectType: String {
+enum ProjectType: String, Codable {
     case kitchen, garage, bathroom, storage, bedroom, office, playroom, livingRoom, laundryRoom, diningRoom
     
     var name: String {
@@ -61,16 +63,63 @@ enum ProjectType: String {
     }
 }
 
+// TODO: Separate this into several enums: KitchenType, BedroomType, etc. 
 enum RoomType: String {
-    case islandKitchen, uShapedKitchen, lShapedKitchen, galleyKitchen, singleWallKitchen, openPlanKitchen, kitchenetteCompactKitchen, outdoorKitchen,
-         lShapedLivingRoom, uShapedLivingRoom, openPlanLivingRoom, familyRoom, lounge,
-         halfBath, jackJill, quarterBath, fullBath, guestBath, masterBath, powderRoom,
-         masterBedroom, childrensBedroom, youngAdultBedroom, guestBedroom,
-         diningRoom, breakfastNook, formalDining, openDining, casualDining, diningRoomWithBar,
-         oneCarGarage, twoCarGarage, threeCarGarage, fourCarGarage, fiveCarGarage, sixCarGarage, carport,
-         creativeOffice, homeOffice, openPlanOffice, sharedSpaceOffice, studentOffice, virtualOffice,
-         creativePlayroom, fantasyPlayroom, gameRoom, movieRoom, storytellerRoom, adventureRoom, outdoorPlayRoom,
-         pantry, closet, basement, attic, storage
+    case islandKitchen
+    case uShapedKitchen
+    case lShapedKitchen
+    case galleyKitchen
+    case singleWallKitchen
+    case openPlanKitchen
+    case kitchenetteCompactKitchen
+    case outdoorKitchen
+    case lShapedLivingRoom
+    case uShapedLivingRoom
+    case openPlanLivingRoom
+    case familyRoom
+    case lounge
+    case halfBath
+    case jackJill
+    case quarterBath
+    case fullBath
+    case guestBath
+    case masterBath
+    case powderRoom
+    case masterBedroom
+    case childrensBedroom
+    case youngAdultBedroom
+    case guestBedroom
+    case diningRoom
+    case breakfastNook
+    case formalDining
+    case openDining
+    case casualDining
+    case diningRoomWithBar
+    case oneCarGarage
+    case twoCarGarage
+    case threeCarGarage
+    case fourCarGarage
+    case fiveCarGarage
+    case sixCarGarage
+    case carport
+    case creativeOffice
+    case homeOffice
+    case openPlanOffice
+    case sharedSpaceOffice
+    case studentOffice
+    case virtualOffice
+    case creativePlayroom
+    case fantasyPlayroom
+    case gameRoom
+    case movieRoom
+    case storytellerRoom
+    case adventureRoom
+    case outdoorPlayRoom
+    case pantry
+    case closet
+    case basement
+    case attic
+    case storage
     
     var name: String {
         switch self {
@@ -273,44 +322,45 @@ enum MiniTaskType: String {
 struct DataLoader {
     static func loadRooms(for projectType: ProjectType) -> [Room] {
         switch projectType {
-        case .kitchen: return [Room(name: "Kitchen", weight: projectType.weight)]
-        case .diningRoom: return [Room(name: "Dining Room", weight: projectType.weight)]
-        case .livingRoom: return [Room(name: "Living Room", weight: projectType.weight)]
-        case .bathroom: return [Room(name: "Bathroom", weight: projectType.weight)]
-        case .bedroom: return [Room(name: "Bedroom", weight: projectType.weight)]
-        case .storage: return [Room(name: "Storage", weight: projectType.weight)]
-        case .office: return [Room(name: "Office", weight: projectType.weight)]
-        case .playroom: return [Room(name: "Playroom", weight: projectType.weight)]
-        case .garage: return [Room(name: "Garage", weight: projectType.weight)]
-        case .laundryRoom: return [Room(name: "Laundry Room", weight: projectType.weight)]
+        case .kitchen: return [Room.createTestRoom(name: "Kitchen", weight: projectType.weight)]
+        case .diningRoom: return [Room.createTestRoom(name: "Dining Room", weight: projectType.weight)]
+        case .livingRoom: return [Room.createTestRoom(name: "Living Room", weight: projectType.weight)]
+        case .bathroom: return [Room.createTestRoom(name: "Bathroom", weight: projectType.weight)]
+        case .bedroom: return [Room.createTestRoom(name: "Bedroom", weight: projectType.weight)]
+        case .storage: return [Room.createTestRoom(name: "Storage", weight: projectType.weight)]
+        case .office: return [Room.createTestRoom(name: "Office", weight: projectType.weight)]
+        case .playroom: return [Room.createTestRoom(name: "Playroom", weight: projectType.weight)]
+        case .garage: return [Room.createTestRoom(name: "Garage", weight: projectType.weight)]
+        case .laundryRoom: return [Room.createTestRoom(name: "Laundry Room", weight: projectType.weight)]
         }
     }
 }
 
-// Function to create base projects
-func createBaseProjects() -> [RoomProject] {
-    let projectTypes: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
-    
-    return projectTypes.map { projectType in
-        let rooms = DataLoader.loadRooms(for: projectType)
-            .sorted(by: { $0.name < $1.name })
-        return RoomProject(name: projectType.name, rooms: rooms)
-    }
-}
+
+// MARK: - BaseProjectsController
 
 // Controller to load base projects
-class AddBaseProjectsController: ObservableObject {
-    @Published var isBaseProjectsLoaded: Bool = false
-    
-    func loadBaseProjectsIfNeeded() {
-        if !isBaseProjectsLoaded {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.isBaseProjectsLoaded = true
-            }
-        }
-    }
+struct BaseProjectsController {
+    var modelContext: ModelContext
     
     func baseProjects() -> [RoomProject] {
-        return createBaseProjects() // Assuming you need this function to return the projects
+        // TODO: fetch RoomProjects from SwiftData. See https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-mvvm-to-separate-swiftdata-from-your-views
+        // TODO: If no SwiftData projects come back, then `createBaseProjects()` and Save to SwiftData.
+        fatalError() // if you need to not crash, comment this out.
+        return []
     }
+        
+    // Function to create base projects
+    func createBaseProjects() -> [RoomProject] {
+        let projectTypes: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
+        
+        let projects = projectTypes.map { projectType in
+            let project = RoomProject(projectType: projectType, rooms: [])
+            modelContext.insert(project) // TODO: Do we need this for SwiftData?
+            return project
+        }
+        try? modelContext.save()
+        return projects
+    }
+
 }

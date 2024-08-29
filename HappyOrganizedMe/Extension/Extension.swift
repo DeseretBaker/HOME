@@ -11,14 +11,14 @@ import Foundation
 extension RoomProject {
     static var example: RoomProject {
         let exampleRooms = [
-            Room(name: "Living Room", imageName: "Living Room", weight: 3), Room(name: "Kitchen", imageName: "Kitchen", weight: 5)
+            Room.createTestRoom(name: "Kitchen", imageName: "Kitchen", weight: 5)
             ]
-        return RoomProject(name: "Home Project", imageName: "Home Project", rooms: [])
+        return RoomProject(projectType: .kitchen, rooms: exampleRooms)
     }
 }
 extension Room {
     static var example: Room {
-        Room(name: "Kitchen", imageName: "Main kitchen area", weight: 5)
+        Room.createTestRoom(name: "Kitchen", imageName: "Main kitchen area", weight: 5)
     }
 }
 
@@ -36,6 +36,6 @@ extension SubTask {
     
     extension MiniTask {
         static var example: MiniTask {
-            MiniTask(name: "Clean up", imageName: "sample image")
+            MiniTask(name: "Clean up", imageName: "sample image", miniTaskDescription: "") 
         }
     }

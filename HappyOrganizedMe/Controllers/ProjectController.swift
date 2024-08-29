@@ -36,9 +36,9 @@ class ProjectController: ObservableObject {
 
             // Define baseProjects directly as a variable
             let baseProjects: [RoomProject] = [
-                RoomProject(name: "Kitchen", rooms: [Room(name: "Island Kitchen", weight: 5.0)]),
+                RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Island Kitchen", weight: 5.0)]),
                 // Add other predefined RoomProject objects as needed
-                RoomProject(name: "Living Room", rooms: [Room(name: "Open Plan Living Room", weight: 4.0)])
+                RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Open Plan Living Room", weight: 4.0)])
             ]
 
             // Append base projects to the main projects array
@@ -69,7 +69,7 @@ func updateProject(_ updatedProject: RoomProject, context: ModelContext) {
 }
 
 func updateRoom(_ room: Room, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == room.project?.id }),
+    if let projectIndex = projects.firstIndex(where: { $0.id == room.project.id }),
        let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == room.id }) {
         projects[projectIndex].rooms[roomIndex] = room
         saveContext(context)
@@ -77,7 +77,7 @@ func updateRoom(_ room: Room, context: ModelContext) {
 }
 
 func updateSpace(_ space: Space, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == space.room?.project?.id }),
+    if let projectIndex = projects.firstIndex(where: { $0.id == space.room?.project.id }),
        let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == space.room?.id }),
        let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
         projects[projectIndex].rooms[roomIndex].spaces[spaceIndex] = space
@@ -86,7 +86,7 @@ func updateSpace(_ space: Space, context: ModelContext) {
 }
 
 func updateSubTask(_ subTask: SubTask, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == subTask.space?.room?.project?.id }),
+    if let projectIndex = projects.firstIndex(where: { $0.id == subTask.space?.room?.project.id }),
        let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == subTask.space?.room?.id }),
        let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == subTask.space?.id }),
        let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == subTask.id }) {
@@ -96,7 +96,7 @@ func updateSubTask(_ subTask: SubTask, context: ModelContext) {
 }
 
 func updateMiniTask(_ miniTask: MiniTask, context: ModelContext) {
-    if let projectIndex = projects.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.project?.id }),
+    if let projectIndex = projects.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.project.id }),
        let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.id }),
        let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == miniTask.subTask?.space?.id }),
        let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == miniTask.subTask?.id }),
@@ -139,8 +139,10 @@ func updateRoomStatus(room: Room, isCompleted: Bool, context: ModelContext) {
 }
 
 func updateProjectStatus(project: RoomProject, isCompleted: Bool, context: ModelContext) {
-    project.isCompleted = isCompleted
-    updateProject(project, context: context)
+    fatalError("This function should probably be deleted? You can't assign completed anymore")
+    // TODO: Fix this fatalError ^
+//    project.isCompleted = isCompleted
+//    updateProject(project, context: context)
 }
 
 func saveContext(_ context: ModelContext) {
