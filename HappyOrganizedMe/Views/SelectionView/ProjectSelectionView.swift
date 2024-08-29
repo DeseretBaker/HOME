@@ -61,12 +61,12 @@ struct ProjectSelectionView_Previews: PreviewProvider {
         ]
         
 //        let mockProjects = [
-//            RoomProject(name: "Project 1", imageName: "ProjectImage1", rooms: mockRoom),
-//            RoomProject(name: "Project2", imageName: "ProjectImage2", rooms: mockRoom),
-//            RoomProject(name: "Project3", imageName: "ProjectImage3", rooms: mockRoom),
-//            RoomProject(name: "Project4", imageName: "ProjectImage4", rooms: mockRoom),
-//            RoomProject(name: "Project5", imageName: "ProjectImage5", rooms: mockRoom),
-//            RoomProject(name: "Project6", imageName: "ProjectImage6", rooms: mockRoom)
+//            Project(name: "Project 1", imageName: "ProjectImage1", rooms: mockRoom),
+//            Project(name: "Project2", imageName: "ProjectImage2", rooms: mockRoom),
+//            Project(name: "Project3", imageName: "ProjectImage3", rooms: mockRoom),
+//            Project(name: "Project4", imageName: "ProjectImage4", rooms: mockRoom),
+//            Project(name: "Project5", imageName: "ProjectImage5", rooms: mockRoom),
+//            Project(name: "Project6", imageName: "ProjectImage6", rooms: mockRoom)
 //        ]
 //        let projectController = ProjectController()
 //        projectController.projects = mockProjects // Assign mock projects to the controller

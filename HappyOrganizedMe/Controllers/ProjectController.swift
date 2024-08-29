@@ -13,8 +13,8 @@ import UserNotifications
 class ProjectController: ObservableObject {
     static let shared = ProjectController()
     
-    @Published var projects: [RoomProject] = []
-    @Published var selectedProject: RoomProject?
+    @Published var projects: [Project] = []
+    @Published var selectedProject: Project?
     
     init() {
         loadProjects()
@@ -35,10 +35,10 @@ class ProjectController: ObservableObject {
             print("Loading base projects...")
 
             // Define baseProjects directly as a variable
-            let baseProjects: [RoomProject] = [
-                RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Island Kitchen", weight: 5.0)]),
-                // Add other predefined RoomProject objects as needed
-                RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Open Plan Living Room", weight: 4.0)])
+            let baseProjects: [Project] = [
+                Project(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Island Kitchen", weight: 5.0)]),
+                // Add other predefined Project objects as needed
+                Project(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Open Plan Living Room", weight: 4.0)])
             ]
 
             // Append base projects to the main projects array
@@ -52,16 +52,16 @@ class ProjectController: ObservableObject {
         }
     }
     // Placeholder function to load projects from persistent storage
-    func loadFromPersistentStore() -> [RoomProject]? {
+    func loadFromPersistentStore() -> [Project]? {
         // Here you would implement the code to load projects from your storage solution
         return nil
     }
     
     // Placeholder function to save projects to persistent storage
-    func saveToPersistentStore(_ projects: [RoomProject]) {
+    func saveToPersistentStore(_ projects: [Project]) {
         // Here you would implement the code to save the projects array to your storage solution
 }
-func updateProject(_ updatedProject: RoomProject, context: ModelContext) {
+func updateProject(_ updatedProject: Project, context: ModelContext) {
     if let projectIndex = projects.firstIndex(where: { $0.id == updatedProject.id }) {
         projects[projectIndex] = updatedProject
         saveContext(context)
@@ -106,14 +106,14 @@ func updateMiniTask(_ miniTask: MiniTask, context: ModelContext) {
     }
 }
 
-func deleteProject(_ project: RoomProject, context: ModelContext) {
+func deleteProject(_ project: Project, context: ModelContext) {
     if let index = projects.firstIndex(where: { $0.id == project.id }) {
         projects.remove(at: index)
         saveContext(context)
     }
 }
 
-func addProject(_ project: RoomProject, context: ModelContext) {
+func addProject(_ project: Project, context: ModelContext) {
     projects.append(project)
     saveContext(context)
 }
@@ -138,7 +138,7 @@ func updateRoomStatus(room: Room, isCompleted: Bool, context: ModelContext) {
     updateRoom(room, context: context)
 }
 
-func updateProjectStatus(project: RoomProject, isCompleted: Bool, context: ModelContext) {
+func updateProjectStatus(project: Project, isCompleted: Bool, context: ModelContext) {
     fatalError("This function should probably be deleted? You can't assign completed anymore")
     // TODO: Fix this fatalError ^
 //    project.isCompleted = isCompleted

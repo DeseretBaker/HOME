@@ -8,7 +8,7 @@ import SwiftUI
 import SwiftData
 
 struct SubTaskSelectionView: View {
-    var project: RoomProject
+    var project: Project
     var room: Room
     var space: Space
     
@@ -17,7 +17,7 @@ struct SubTaskSelectionView: View {
     
     @State private var subTasks: [SubTask]
 
-    init(space: Space, room: Room, project: RoomProject) {
+    init(space: Space, room: Room, project: Project) {
         self.space = space
         self.room = room
         self.project = project

@@ -10,7 +10,7 @@ import SwiftUI
 struct AddRoomView: View {
     // TODO: Add ViewModel to house variables needed to create a Project/Room
 //    var addProjectViewModel: AddProjectViewModel
-    var project: RoomProject
+    var project: Project
     
     // TODO: Comment out these variables and instead use variables from AddProjectViewModel
     @State private var roomName: String = ""

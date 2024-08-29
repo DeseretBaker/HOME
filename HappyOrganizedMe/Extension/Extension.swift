@@ -8,12 +8,12 @@
 import Foundation
 
 
-extension RoomProject {
-    static var example: RoomProject {
+extension Project {
+    static var example: Project {
         let exampleRooms = [
             Room.createTestRoom(name: "Kitchen", imageName: "Kitchen", weight: 5)
             ]
-        return RoomProject(projectType: .kitchen, rooms: exampleRooms)
+        return Project(projectType: .kitchen, rooms: exampleRooms)
     }
 }
 extension Room {

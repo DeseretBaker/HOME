@@ -10,7 +10,7 @@
 		C52FED3A2C69736D00114D1E /* EditRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52FED392C69736D00114D1E /* EditRoomView.swift */; };
 		C52FED3C2C69B19100114D1E /* EditSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52FED3B2C69B19100114D1E /* EditSpaceView.swift */; };
 		C564B5D92C5BEFB500AA2A69 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */; };
-		C564B5DB2C5C5AF300AA2A69 /* RoomProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5DA2C5C5AF300AA2A69 /* RoomProject.swift */; };
+		C564B5DB2C5C5AF300AA2A69 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5DA2C5C5AF300AA2A69 /* Project.swift */; };
 		C564B5E72C5ECBFC00AA2A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */; };
 		C564B5E92C5EDFC900AA2A69 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5E82C5EDFC900AA2A69 /* ProjectController.swift */; };
 		C564B5EF2C6024CC00AA2A69 /* SampleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5EE2C6024CC00AA2A69 /* SampleModels.swift */; };
@@ -59,7 +59,7 @@
 		C52FED392C69736D00114D1E /* EditRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomView.swift; sourceTree = "<group>"; };
 		C52FED3B2C69B19100114D1E /* EditSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSpaceView.swift; sourceTree = "<group>"; };
 		C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartHereView.swift; path = HappyOrganizedMe/Views/StartHereView.swift; sourceTree = SOURCE_ROOT; };
-		C564B5DA2C5C5AF300AA2A69 /* RoomProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomProject.swift; path = HappyOrganizedMe/Models/RoomProject.swift; sourceTree = SOURCE_ROOT; };
+		C564B5DA2C5C5AF300AA2A69 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Project.swift; path = HappyOrganizedMe/Models/Project.swift; sourceTree = SOURCE_ROOT; };
 		C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C564B5E82C5EDFC900AA2A69 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
 		C564B5EE2C6024CC00AA2A69 /* SampleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModels.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		C5A95DD82C5295FF00BD08A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C564B5DA2C5C5AF300AA2A69 /* RoomProject.swift */,
+				C564B5DA2C5C5AF300AA2A69 /* Project.swift */,
 				C564B60C2C6317CE00AA2A69 /* Room.swift */,
 				C564B60E2C6317FF00AA2A69 /* Space.swift */,
 				C564B6102C63182400AA2A69 /* Subtask.swift */,
@@ -438,7 +438,7 @@
 				C5DAD8482C6B032B00477EB9 /* AddRoomView.swift in Sources */,
 				C564B5E92C5EDFC900AA2A69 /* ProjectController.swift in Sources */,
 				C564B6112C63182400AA2A69 /* Subtask.swift in Sources */,
-				C564B5DB2C5C5AF300AA2A69 /* RoomProject.swift in Sources */,
+				C564B5DB2C5C5AF300AA2A69 /* Project.swift in Sources */,
 				C52FED3A2C69736D00114D1E /* EditRoomView.swift in Sources */,
 				C5DAD8AB2C6D865600477EB9 /* HappyOrganizedMeApp.swift in Sources */,
 				C564B6222C686A1000AA2A69 /* BaseProjects.swift in Sources */,

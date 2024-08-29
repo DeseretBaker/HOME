@@ -9,16 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct RoomSelectionView: View {
-    var project: RoomProject
+    var project: Project
     @State private var room: Room
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
-    // Assuming you meant RoomProject or another valid type if BaseProject doesn't exist
-    @State var baseProject: RoomProject = RoomProject(projectType: .kitchen, rooms: []) // Correct the type and initialization
+    // Assuming you meant Project or another valid type if BaseProject doesn't exist
+    @State var baseProject: Project = Project(projectType: .kitchen, rooms: []) // Correct the type and initialization
     
     // Initialize with a project and extract room from it
-    init(project: RoomProject) {
+    init(project: Project) {
         self.project = project
         if let firstRoom = project.rooms.first {
             _room = State(initialValue: firstRoom) // Safely unwrap the first room
@@ -83,8 +83,8 @@ struct RoomSelectionView: View {
 //
 //struct RoomSelectionView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        // Assuming 'baseProjects' is an array of RoomProject instances; define or replace it
-//        let baseProjects: [RoomProject] = [RoomProject(name: "Sample Project", rooms: [Room.createTestRoom(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
+//        // Assuming 'baseProjects' is an array of Project instances; define or replace it
+//        let baseProjects: [Project] = [Project(name: "Sample Project", rooms: [Room.createTestRoom(name: "Living Room", imageName: "LivingRoom", weight: 3, spaces: [])])]
 //        let selectedProject = baseProjects.first! // Safe unwrap in preview context
 //        
 //        RoomSelectionView(project: selectedProject)

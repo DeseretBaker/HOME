@@ -30,9 +30,9 @@ func syncProjects() {
 }
 
 // Function to fetch local projects using SwiftData
-func fetchLocalProjects(using context: ModelContext) -> [RoomProject] {
+func fetchLocalProjects(using context: ModelContext) -> [Project] {
     // Fetch projects from the model context
-    let fetchDescriptor = FetchDescriptor<RoomProject>()
+    let fetchDescriptor = FetchDescriptor<Project>()
     
     do {
         return try context.fetch(fetchDescriptor)
@@ -43,11 +43,11 @@ func fetchLocalProjects(using context: ModelContext) -> [RoomProject] {
 }
 
 // Placeholder function to fetch remote projects (e.g., from Cloud)
-func fetchRemoteProjects(completion: @escaping ([RoomProject]) -> Void) {
+func fetchRemoteProjects(completion: @escaping ([Project]) -> Void) {
     // Simulate fetching projects from a cloud or remote server
     DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-        let remoteProjects: [RoomProject] = [
-            RoomProject(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Remote Island Kitchen", weight: 4.0)]),
+        let remoteProjects: [Project] = [
+            Project(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Remote Island Kitchen", weight: 4.0)]),
             // Add more simulated remote projects if needed
         ]
         completion(remoteProjects)
@@ -55,7 +55,7 @@ func fetchRemoteProjects(completion: @escaping ([RoomProject]) -> Void) {
 }
 
 // Function to resolve conflicts between local and remote projects
-func resolveConflicts(localProjects: [RoomProject], cloudProjects: [RoomProject]) -> ([RoomProject], [RoomProject]) {
+func resolveConflicts(localProjects: [Project], cloudProjects: [Project]) -> ([Project], [Project]) {
     // Example conflict resolution: Last Write Wins (LWW) or custom merge logic
     let updatedLocalProjects = localProjects
     let updatedCloudProjects = cloudProjects
@@ -66,7 +66,7 @@ func resolveConflicts(localProjects: [RoomProject], cloudProjects: [RoomProject]
 }
 
 // Function to save projects to local storage using SwiftData
-func saveProjectsToLocal(_ projects: [RoomProject], context: ModelContext) {
+func saveProjectsToLocal(_ projects: [Project], context: ModelContext) {
     do {
         for project in projects {
             context.insert(project) // Insert or update the resolved project
@@ -78,7 +78,7 @@ func saveProjectsToLocal(_ projects: [RoomProject], context: ModelContext) {
 }
 
 // Placeholder function to save projects to the cloud
-func saveProjectsToCloud(_ projects: [RoomProject]) {
+func saveProjectsToCloud(_ projects: [Project]) {
     // Implement your cloud saving logic here
     print("Saving projects to cloud...")
 }

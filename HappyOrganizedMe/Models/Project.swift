@@ -1,5 +1,5 @@
 //
-//  RoomProject.swift
+//  Project.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/1/24.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class RoomProject: Identifiable {
+class Project: Identifiable {
     @Attribute(.unique) var id: UUID = UUID() // Ensures each project has a unique id
     var projectType: ProjectType
     

@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    var projects: [RoomProject] // array of project objects.
+    var projects: [Project] // array of project objects.
     
     @StateObject var projectController = ProjectController()
     

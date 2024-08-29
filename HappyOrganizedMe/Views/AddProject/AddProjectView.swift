@@ -18,9 +18,9 @@ class AddProjectViewModel {
     var roomName: String?
     var roomWeight: Double?
     
-    func createProject() -> RoomProject? {
+    func createProject() -> Project? {
         guard let projectName, let imageName else { return nil }
-        let project = RoomProject(projectType: .kitchen, rooms: [])
+        let project = Project(projectType: .kitchen, rooms: [])
         guard let roomName, let roomWeight else { return nil }
         let room = Room.createTestRoom(name: roomName, weight: roomWeight)
         project.rooms.append(room)
@@ -31,12 +31,12 @@ class AddProjectViewModel {
 struct AddProjectView: View {
     // TODO: Add ViewModel to house variables needed to create a Project/Room
 //    var addProjectViewModel: AddProjectViewModel
-    @Binding var projects: [RoomProject]
+    @Binding var projects: [Project]
     
     // TODO: Comment out these variables and instead use variables from AddProjectViewModel
     @State private var projectName: String = ""
     @State private var imageName: String = ""
-    @State private var newProject: RoomProject?
+    @State private var newProject: Project?
     
     var body: some View {
         Form {
@@ -46,7 +46,7 @@ struct AddProjectView: View {
             }
 
             Button("Add Project") {
-                let createdProject = RoomProject(projectType: .kitchen, rooms: [])
+                let createdProject = Project(projectType: .kitchen, rooms: [])
                 projects.append(createdProject)
                 self.newProject = createdProject
             }

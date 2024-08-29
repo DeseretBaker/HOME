@@ -8,11 +8,11 @@
 import SwiftUI
 
 //struct EditProjectView: View {
-//    @Binding var project: RoomProject
+//    @Binding var project: Project
 //    @State private var projectName: String
 //    @State private var imageName: String
 //    
-//    init(project: Binding<RoomProject>) {
+//    init(project: Binding<Project>) {
 //        self._project = project
 //        self._projectName = State(initialValue: project.wrappedValue.name)
 //        self._imageName = State(initialValue: project.wrappedValue.imageName ?? "")

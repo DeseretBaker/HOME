@@ -37,6 +37,6 @@ let sampleRoom = [
 ]
 
 let sampleProjects = [
-    RoomProject(projectType: .bathroom, rooms: []),
-    RoomProject(projectType: .bedroom, rooms: [])
+    Project(projectType: .bathroom, rooms: []),
+    Project(projectType: .bedroom, rooms: [])
 ]

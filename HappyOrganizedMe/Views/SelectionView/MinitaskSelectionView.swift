@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MiniTaskSelectionView: View {
-    var project: RoomProject
+    var project: Project
     var room: Room
     var space: Space
     var subTask: SubTask
@@ -19,7 +19,7 @@ struct MiniTaskSelectionView: View {
     
     @State private var miniTasks: [MiniTask]
     
-    init(subTask: SubTask, space: Space, room: Room, project: RoomProject) {
+    init(subTask: SubTask, space: Space, room: Room, project: Project) {
         self.subTask = subTask
         self.space = space
         self.room = room

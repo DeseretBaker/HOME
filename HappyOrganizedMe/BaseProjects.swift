@@ -12,7 +12,7 @@ import SwiftData
 // Define main view structure
 struct BaseProjectsView: View {
     var controller: BaseProjectsController
-    @State var projects: [RoomProject] = []
+    @State var projects: [Project] = []
     
     init(modelContext: ModelContext) {
         controller = BaseProjectsController(modelContext: modelContext)
@@ -343,19 +343,19 @@ struct DataLoader {
 struct BaseProjectsController {
     var modelContext: ModelContext
     
-    func baseProjects() -> [RoomProject] {
-        // TODO: fetch RoomProjects from SwiftData. See https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-mvvm-to-separate-swiftdata-from-your-views
+    func baseProjects() -> [Project] {
+        // TODO: fetch Projects from SwiftData. See https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-mvvm-to-separate-swiftdata-from-your-views
         // TODO: If no SwiftData projects come back, then `createBaseProjects()` and Save to SwiftData.
         fatalError() // if you need to not crash, comment this out.
         return []
     }
         
     // Function to create base projects
-    func createBaseProjects() -> [RoomProject] {
+    func createBaseProjects() -> [Project] {
         let projectTypes: [ProjectType] = [.kitchen, .diningRoom, .livingRoom, .bathroom, .bedroom, .storage, .office, .playroom, .garage, .laundryRoom]
         
         let projects = projectTypes.map { projectType in
-            let project = RoomProject(projectType: projectType, rooms: [])
+            let project = Project(projectType: projectType, rooms: [])
             modelContext.insert(project) // TODO: Do we need this for SwiftData?
             return project
         }
