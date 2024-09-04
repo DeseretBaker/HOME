@@ -1,96 +1,108 @@
 //
-// RoomDetailView
+// RoomDetailView.swift
+// HappyOrganizedMe
+//
 // Created by Deseret Baker
 //
-
-
-
 
 import SwiftUI
 
 struct RoomDetailView: View {
-    @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext
-    
-    var rooms: Room
-    var projectID: UUID  // Assuming you have this information
+    @Bindable var room: Room  // ObservedObject to track changes in room data
     
     var body: some View {
-        VStack(alignment: .leading) {
-            // room name
-            Text(rooms.name)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
-            
-            // Room Description
-            if let roomDescription = rooms.roomDescription {
-                Text(roomDescription)
-                    .font(.body)
-                    .foregroundColor(.gray)
-                    .padding(.bottom, 20)
-            }
-            
-            // List of Tasks/Spaces
-            Text("Spaces")
-                .font(.headline)
-                .padding(.bottom, 5)
-            
-            List {
-                ForEach(rooms.spaces) { space in
-                    SpaceRowView(space: space, projectID: projectID, roomsID: rooms.id)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                // Room Header
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(room.name)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    ProgressView(value: room.progress, total: 100)
+                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                        .padding(.vertical, 10)
+                    
+                    HStack {
+                        Text("Progress: \(String(format: "%.0f", room.progress))%")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("Status: \(room.isCompleted ? "Completed" : "In Progress")")
+                            .font(.subheadline)
+                            .foregroundColor(room.isCompleted ? .green : .orange)
+                    }
                 }
-                .onDelete(perform: deleteSpaces)
-            }
-            
-            Spacer()
-            
-            // Add Space Button
-            Button(action: {
-                addNewSpace()
-            }) {
-                HStack {
-                    Image(systemName: "plus.circle")
-                    Text("Add Space")
-                }
-                .font(.title2)
                 .padding()
-                .foregroundColor(.white)
-                .background(Color.teal)
+                .background(Color.white)
                 .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding([.leading, .trailing])
+                
+                // Space Grid
+                Text("Spaces")
+                    .font(.headline)
+                    .padding(.leading)
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                    ForEach(room.spaces) { space in
+                        NavigationLink(destination: SpaceDetailView(space: space)) {
+                            SpaceCardView(space: space)
+                        }
+                    }
+                }
+                .padding([.leading, .trailing])
             }
-            .padding(.bottom, 20)
         }
-        .padding()
-        .navigationTitle(rooms.name)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    private func deleteSpaces(at offsets: IndexSet) {
-        projectController.removeSpace(from: rooms, at: offsets, context: modelContext)
-        // pass the modelContext here
-    }
-    
-    private func addNewSpace() {
-        // Implement your logic to add a new space to the room
-    }
-    
-    struct SpaceRowView: View {
-        var space: Space
-        var projectID: UUID
-        var roomsID: UUID
-        
-        var body: some View {
-            NavigationLink(destination: SpaceDetailView(space: space, projectID: projectID, roomID: roomsID)) {
-                Text(space.name)
+        .navigationTitle("Room Details")
+        .toolbar {
+            Button(action: {
+                // Action for editing the room or adding new spaces
+            }) {
+                Image(systemName: "pencil")
             }
         }
     }
 }
 
-struct RoomDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomDetailView(rooms: Room.createTestRoom(name: "Example Room", imageName: "exampleImage", weight: 5), projectID: UUID())
-            .environmentObject(ProjectController.shared)
+struct SpaceCardView: View {
+    var space: Space
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if !space.imageName.isEmpty {
+                Image(space.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 120)
+                    .clipped()
+                    .cornerRadius(10)
+            } else {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(height: 120)
+                    .cornerRadius(10)
+                    .overlay(
+                        Text("No Image")
+                            .foregroundColor(.secondary)
+                    )
+            }
+            
+            Text(space.name)
+                .font(.headline)
+                .padding(.top, 5)
+            
+            ProgressView(value: space.progress, total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+            
+            Text("Progress: \(String(format: "%.0f", space.progress))%")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }

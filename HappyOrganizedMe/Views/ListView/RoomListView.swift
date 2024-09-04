@@ -18,10 +18,4 @@ struct RoomListView: View {
         .navigationTitle("\(project.name) Rooms")
     }
 }
-
-struct RoomListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomListView(project: Project(projectType: .kitchen, rooms: []))
-    }
-}
      

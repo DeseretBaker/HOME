@@ -9,65 +9,50 @@ import Foundation
 import SwiftData
 
 @Model
-class Project: Identifiable {
-    @Attribute(.unique) var id: UUID = UUID() // Ensures each project has a unique id
-    var projectType: ProjectType
-    
-    // Define relationship with Room
-    @Relationship(inverse: \Room.project) var rooms: [Room] = [] // A project has many rooms
-    
+class Project: Identifiable, Displayable {
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    @Attribute var projectTypeString: String // Store the raw value of ProjectType as a String
+
+    // Computed property to get the `ProjectType` enum from the stored raw value
+    var projectType: ProjectType {
+        get {
+            resolveProjectType(from: projectTypeString) ?? .kitchen  // Use helper function to resolve type
+        }
+        set {
+            projectTypeString = newValue.rawValue
+        }
+    }
+
+    // Define relationships to rooms
+    var rooms: [Room] = [] // One-to-many relationship with Room
+
     // MARK: Computed Variables
     var name: String { projectType.name }
     var imageName: String { projectType.imageName }
     var weight: Double { projectType.weight }
+    
     var progress: Double {
-        rooms.reduce(0) { $0 + $1.progress } / Double(rooms.count)
+        guard !rooms.isEmpty else { return 0 }
+        let completedRooms = rooms.filter { $0.isCompleted }.count
+        return Double(completedRooms) / Double(rooms.count) * 100
     }
-    var isCompleted: Bool { progress == 100 }
+
+    private var _isCompleted: Bool = false
     
-    
+    var isCompleted: Bool {
+        get { _isCompleted }
+        set { _isCompleted = newValue }
+    }
+
     // Initializer
-    init(projectType: ProjectType, rooms: [Room]) {
-        self.projectType = projectType
+    init(projectType: ProjectType, rooms: [Room] = [], isCompleted: Bool = false) {
+        self.projectTypeString = projectType.rawValue
         self.rooms = rooms
+        self._isCompleted = isCompleted
+    }
+
+    func toggleCompleted() {
+        _isCompleted.toggle()
     }
 }
-    
-
-
-// can delete if wanting to:
-
-//    // Method to update project status
-//    func updateProjectStatus() {
-//        self.progress = calculateProgress()
-//        self.isCompleted = checkIfCompleted()
-//    }
-//    
-//    // Update the status of a specific room
-//    func updateRoomStatus(roomId: UUID, isCompleted: Bool) {
-//        if let roomIndex = rooms.firstIndex(where: { $0.id == roomId }) {
-//            rooms[roomIndex].isCompleted = isCompleted
-//            updateProjectStatus() // Recalculates the project status
-//        }
-//    }
-//    
-//    // Add a new room, this will be a custom room entered by the user
-//    func addRoom(_ newRoom: Room) {
-//        rooms.append(newRoom)
-//        updateProjectStatus()
-//    }
-//    
-//    // Calculate project progress as a percentage of completed room weights
-//    private func calculateProgress() -> Double {
-//        guard !rooms.isEmpty else { return 0.0 }
-//        
-//        let totalWeight = rooms.reduce(0.0) { $0 + $1.weight }
-//        let completedWeight = rooms.reduce(0.0) { $0 + ($1.isCompleted ? $1.weight : 0.0) }
-//        return (completedWeight / totalWeight) * 100.0
-//    }
-    
-//    // Check if all rooms are completed
-//    private func checkIfCompleted() -> Bool {
-//        return rooms.allSatisfy { $0.isCompleted }
-//    }
 

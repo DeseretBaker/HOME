@@ -7,34 +7,50 @@ import Foundation
 import SwiftData
 
 @Model
-class Room: Identifiable {
-    @Attribute(.unique) var id: UUID = UUID() // Unique identifier for each Room
-    var name: String
-    var imageName: String?
-    var roomDescription: String?
-    var weight: Double
-    var isCompleted: Bool = false
-    var progress: Double = 0.0
+class Room: Identifiable, Displayable {
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    @Attribute var roomTypeString: String // Store the raw value of RoomType as a String
     
-    var project: Project // A room belongs to a project
-    @Relationship(inverse: \Space.room) var spaces: [Space] = [] // A room has many spaces
-    
-  
-
-    // Initializer
-    init(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double, spaces: [Space] = [], project: Project, progress: Double = 0.0) {
-        self.name = name
-        self.imageName = imageName
-        self.roomDescription = roomDescription
-        self.weight = weight
-        self.progress = progress
-        self.project = project
+    var roomType: RoomType {
+        get {
+            resolveRoomType(from: roomTypeString) ?? UnknownRoomType.unknown
+        }
+        set {
+            roomTypeString = newValue.rawValue
+        }
     }
     
-    static func createTestRoom(name: String, imageName: String? = nil, roomDescription: String? = nil, weight: Double, spaces: [Space] = [], progress: Double = 0.0) -> Room {
-        let project = Project.init(projectType: .kitchen, rooms: [])
-        let room = Room.init(name: name, imageName: imageName, roomDescription: roomDescription, weight: weight, spaces: spaces, project: project, progress: progress)
-        project.rooms.append(room)
-        return room
+    // Define relationships to spaces and project
+    var spaces: [Space] = [] // One-to-many relationship with Space
+    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+    
+    // MARK: Computed Variables
+    var name: String { roomType.name }
+    var imageName: String { roomType.imageName }
+    var weight: Double { roomType.weight }
+    
+    var progress: Double {
+        guard !spaces.isEmpty else { return 0 }
+        let completedSpaces = spaces.filter { $0.isCompleted }
+        return Double(completedSpaces.count) / Double(spaces.count) * 100
+    }
+    
+    private var _isCompleted: Bool = false
+    
+    var isCompleted: Bool {
+        get { _isCompleted }
+        set { _isCompleted = newValue }
+    }
+    
+    // Initializer
+    init(roomType: RoomType, spaces: [Space], project: Project? = nil, isCompleted: Bool = false) {
+        self.roomTypeString = roomType.rawValue
+        self.spaces = spaces
+        self.project = project
+        self._isCompleted = isCompleted
+    }
+
+    func toggleCompleted() {
+        _isCompleted.toggle()
     }
 }

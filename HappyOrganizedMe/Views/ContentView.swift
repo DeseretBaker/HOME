@@ -10,40 +10,27 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    var projects: [Project] // array of project objects.
-    
-    @StateObject var projectController = ProjectController()
+    @EnvironmentObject private var projectController: ProjectController  // Corrected EnvironmentObject usage
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(projects) { project in
-                    ProjectView(project: project)
-                        .padding()
-                }
-            }
+        NavigationView {
+            StartHereView()
+                .environmentObject(projectController)  // Ensuring environment object is passed down
         }
-        
-        
-        Text("Happy Organized Me")
-            .onAppear {
-                syncProjects()
-            }
-        StartHereView()
-            .environmentObject(projectController)
     }
     
     private func syncProjects() {
         do {
-            try modelContext.save() // Save changes to the context, which will also sync with Cloudkit
+            try modelContext.save()  // Save changes to the context, which will also sync with CloudKit
         } catch {
-            print("Error syncing projects:' \(error.localizedDescription)")
-            handleCloudSyncConfilict()
+            print("Error syncing projects: \(error.localizedDescription)")
+            handleCloudSyncConflict()
         }
     }
-    private func handleCloudSyncConfilict() {
-        // handle any sync conflicts here
-        print("Handling cloud sync conflict \("error")")
-    }
     
+    private func handleCloudSyncConflict() {
+        // Handle any sync conflicts here
+        print("Handling cloud sync conflict")
+    }
 }
+

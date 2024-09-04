@@ -1,14 +1,7 @@
-//
-//  MiniTaskListView.swift
-//  HappyOrganizedMe
-//
-//  Created by Deseret Baker on 8/6/24.
-//
-
 import SwiftUI
 
 struct MiniTaskListView: View {
-    @ObservedObject var subTask: SubTask
+    let subTask: SubTask
     @Environment(\.editMode) private var editMode // Use environment edit mode
 
     var body: some View {
@@ -48,27 +41,13 @@ struct MiniTaskRowView: View {
             Spacer()
             if isEditing {
                 Button(action: {
-                    // Assume you have logic here to toggle completion
-                    miniTask.isCompleted.toggle() // You may need to update this logic based on your model's design
+                    // Toggle completion status
+                    miniTask.isCompleted.toggle()
                 }) {
                     Image(systemName: miniTask.isCompleted ? "checkmark.circle.fill" : "circle")
                         .foregroundColor(miniTask.isCompleted ? .green : .gray)
                 }
             }
         }
-    }
-}
-
-struct MiniTaskListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let sampleMiniTasks = [
-            MiniTask(name: "Clean Shelf", imageName: "sample image"),
-            MiniTask(name: "Organize Pantry", imageName: "sample image"),
-            MiniTask(name: "Label Containers", imageName: "sample image")
-        ]
-        
-        let sampleSubTask = SubTask(name: "Pantry", miniTasks: sampleMiniTasks)
-        
-        MiniTaskListView(subTask: sampleSubTask)
     }
 }

@@ -10,9 +10,9 @@ import SwiftData
 
 @main
 struct HappyOrganizedMeApp: App {
-    
-    var projectController = ProjectController.shared
-    
+    @StateObject private var projectController = ProjectController.shared
+    @Environment(\.modelContext) private var modelContext
+    // Shared model container for the app
     static var sharedModelContainer: ModelContainer = {
         do {
             let schema = Schema([
@@ -23,23 +23,20 @@ struct HappyOrganizedMeApp: App {
                 MiniTask.self
             ])
             
-            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-            
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema)
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
     
-    
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                StartHereView() // Starting view of your app
-                    .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // use the static property here
-                
-                    .environmentObject(projectController) // inject the environment object
-            }
+            ContentView() // Starting view of your app
+                .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // Attach the model container
+                .environmentObject(projectController) // Provide the environment object
+                .onAppear {
+                    projectController.setModelContext(modelContext)
+                }
         }
     }
 }

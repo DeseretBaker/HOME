@@ -9,54 +9,72 @@ import SwiftUI
 import SwiftData
 
 struct SpaceSelectionView: View {
-    var project: Project
-    var room: Room
-    
     @EnvironmentObject var projectController: ProjectController
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var modelContext  // Access the model context
     
-    @State private var spaces: [Space]
+    @Bindable var room: Room  // Use @Bindable to automatically update the view when the room changes
 
-    init(room: Room, project: Project) {
-        self.room = room
-        self.project = project
-        _spaces = State(initialValue: room.spaces)
-    }
-    
     var body: some View {
-        List {
-            ForEach($spaces) { $space in
-                TaskCard(
-                    title: space.name,
-                    imageName: space.imageName ?? "defaultImage", // Provide a default image if none is set
-                    progress: space.progress,
-                    isComplete: space.isCompleted
-                )
-                .contextMenu {
-                    Button(action: {
-                        // Action for editing space
-                    }) {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                    
-                    Button(action: {
-                      //  deleteSpace(at: IndexSet(integer: spaces.firstIndex(of: space)!))
-                    }) {
-                        Label("Delete", systemImage: "trash")
+        NavigationView {
+            VStack {
+                if room.spaces.isEmpty {
+                    Text("No spaces available in this room.")
+                        .font(.headline)
+                        .padding()
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                            ForEach(room.spaces) { space in
+                                NavigationLink(destination: SpaceDetailView(space: space)) {
+                                    SpaceCardView(space: space)  // Use the existing SpaceCardView
+                                }
+                            }
+                        }
+                        .padding()
                     }
                 }
+                
+                // Add New Space Button
+//                Button(action: addNewSpace) {
+//                    HStack {
+//                        Image(systemName: "plus")
+//                        Text("Add New Space")
+//                    }
+//                    .padding()
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(10)
+//                    .shadow(radius: 5)
+//                }
+//                .padding()
             }
-           // .onDelete(perform: deleteSpace)
-        }
-        .navigationTitle("Select a Space")
-        .toolbar {
-            EditButton()
+            .navigationTitle("Select a Space")
+            .toolbar {
+                EditButton()  // Allows editing for delete action
+            }
         }
     }
-//    
-//    private func deleteSpace(at offsets: IndexSet) {
-//        room.spaces.remove(atOffsets: offsets)
-//        spaces = room.spaces // Update the local state
-//        projectController.updateProject(project, context: modelContext)  // Persist changes to the project
+    
+//    private func addNewSpace() {
+//        let newSpace = Space(spaceType: .cookingZone, room: room, subTasks: []) // Example creation; customize as needed
+//        room.spaces.append(newSpace)
+//        saveContext()
 //    }
+
+    private func deleteSpace(at offsets: IndexSet) {
+        withAnimation {
+            room.spaces.remove(atOffsets: offsets)
+            saveContext()
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save context: \(error.localizedDescription)")
+        }
+    }
 }
+
+// Assume SpaceCardView is defined elsewhere in your project

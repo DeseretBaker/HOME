@@ -1,46 +1,28 @@
-//
 //  ProjectListView.swift
 //  HappyOrganizedMe
 //
 //  Created by Deseret Baker on 8/1/24.
 //
-
 import SwiftUI
 import SwiftData
 
 struct ProjectListView: View {
     @EnvironmentObject var projectController: ProjectController
-    @State private var newProjectName: String = ""
-    
-    let columns = [
+
+    private let columns = [
         GridItem(.adaptive(minimum: 120))
     ]
-    
+
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
-                        //ForEach(projectController.projects) { project in
-                           // projectGridItem(project: project)
+                        ForEach(BaseProjects.shared.projects) { project in
+                            NavigationLink(destination: RoomListView(project: project)) {
+                            projectGridItem(project: project)
+                            }
                         }
-                    }
-                    .padding()
-                    
-                    // Add custom project section
-                    VStack {
-                        TextField("Enter Custom Project Name", text: $newProjectName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                        Button(action: addCustomProject) {
-                            Text("Add Custom Project")
-                                .font(.title2)
-                                .padding()
-                                .background(Color.teal)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .disabled(newProjectName.isEmpty) // Disable the button if the text field is empty
                     }
                     .padding()
                 }
@@ -49,43 +31,28 @@ struct ProjectListView: View {
             }
         }
     }
-    //Function to create a grid item view for a project
+
+    // Function to create a grid item view for a project
     @ViewBuilder
     private func projectGridItem(project: Project) -> some View {
-        NavigationLink(destination: RoomListView(project: project)) {
+        
             ZStack {
-                Image(project.imageName ?? "")
+                Image(project.imageName)
                     .resizable()
-                    .scaledToFill() // Scale the image to fill the entire frame
-                    .frame(maxWidth: .infinity, maxHeight: 120) // set a maximum height
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: 120)
                     .cornerRadius(10)
-                    .clipped() // clip any overflow
-                
-                // Overlay the project name on top of the image
+                    .clipped()
+
                 Text(project.name)
                     .bold()
-                    .font(.largeTitle)
+                    .font(.title)
                     .foregroundColor(.white)
                     .shadow(radius: 5)
             }
-            .frame(height: 120) // set the height of the entire ZStack
+            .frame(height: 120)
             .cornerRadius(10)
             .shadow(radius: 5)
         }
     }
-    
-    // Function to add a custom project
-    private func addCustomProject() {
-       // let newProject = Project(name: newProjectName, imageName: "placeholder")
-        // use a placeholder image or handle as needed
-        //projectController.addProject(newProject)
-        //newProjectName = "" // clear the text field after adding the project
-    }
-//}
-struct ProjectListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProjectListView()
-            .environmentObject(ProjectController.shared)
-    }
-}
-              
+

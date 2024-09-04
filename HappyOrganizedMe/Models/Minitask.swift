@@ -9,27 +9,44 @@ import Foundation
 import SwiftData
 
 @Model
-class MiniTask: Identifiable, ObservableObject {
+class MiniTask: Identifiable, Displayable {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    
-    var name: String
-    var imageName: String?
-    var roomDescription: String?
-    var weight: Double = 0.0
-    var isCompleted: Bool
-    var progress: Double
+    @Attribute var miniTaskTypeString: String // Store the raw value of the task type
+
+    // Computed property to get the `MiniTaskType` enum from the stored raw value
+    var miniTaskType: MiniTaskType {
+        get {
+            resolveMiniTaskType(from: miniTaskTypeString) ?? UnknownMiniTaskType.unknown
+        }
+        set {
+            miniTaskTypeString = newValue.rawValue
+        }
+    }
 
     // Define relationship to SubTask
-    var subTask: SubTask? // a miniTask belongs to a subTask
+    @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
 
-   
+    // MARK: Computed Variables
+    var name: String { miniTaskType.name }
+    var imageName: String { miniTaskType.imageName }
+    var weight: Double { miniTaskType.weight }
+    var progress: Double { Double(subTask?.progress ?? 0) }
+    
+    private var _isCompleted: Bool = false
+    
+    var isCompleted: Bool {
+        get { _isCompleted }
+        set { _isCompleted = newValue }
+    }
+    
     // Initializer
-    init(name: String, imageName: String? = nil, miniTaskDescription: String? = nil, weight: Double = 0.0, isCompleted: Bool = false, progress: Double = 0.0) {
-        self.name = name
-        self.imageName = imageName
-        self.roomDescription = miniTaskDescription
-        self.weight = weight
-        self.isCompleted = isCompleted
-        self.progress = progress
+    init(miniTaskType: MiniTaskType, isCompleted: Bool = false) {
+        self.miniTaskTypeString = miniTaskType.rawValue
+        self._isCompleted = isCompleted
+    }
+    
+    func toggleCompleted() {
+        _isCompleted.toggle()
     }
 }
+

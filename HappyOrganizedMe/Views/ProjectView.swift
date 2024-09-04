@@ -29,8 +29,8 @@ struct ProjectView: View {
                 .padding([.bottom,.trailing], 10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing) // position in bottom right corner
         }
-        .cornerRadius(15)  // round the corners of the entire ZStack
-        .shadow(radius: 5)  // add some shadow
+        .cornerRadius(10)  // round the corners of the entire ZStack
+        .shadow(radius: 10)  // add some shadow
     }
 }
 

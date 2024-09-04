@@ -18,6 +18,7 @@ func syncProjects() {
 
     // Step 2: Fetch remote projects from the cloud
     fetchRemoteProjects { cloudProjects in
+        
         // Step 3: Compare local and remote projects to find conflicts
         let (updatedLocalProjects, updatedCloudProjects) = resolveConflicts(localProjects: localProjects, cloudProjects: cloudProjects)
         
@@ -47,7 +48,7 @@ func fetchRemoteProjects(completion: @escaping ([Project]) -> Void) {
     // Simulate fetching projects from a cloud or remote server
     DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
         let remoteProjects: [Project] = [
-            Project(projectType: .kitchen, rooms: [Room.createTestRoom(name: "Remote Island Kitchen", weight: 4.0)]),
+            Project(projectType: .kitchen, rooms: []),
             // Add more simulated remote projects if needed
         ]
         completion(remoteProjects)

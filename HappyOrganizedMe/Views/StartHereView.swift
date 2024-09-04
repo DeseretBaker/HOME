@@ -14,7 +14,7 @@ struct StartHereView: View {
     var body: some View {
         ZStack {
             // background image
-            Image("Kitchen3")
+            Image("kitchen3")
                 .resizable()
                 .scaledToFill() // fills the entire background
                 .edgesIgnoringSafeArea(.all) // extend the image to the edges
@@ -31,19 +31,21 @@ struct StartHereView: View {
                     .foregroundColor(.white)
                     .padding()
                 
-                   NavigationLink(destination: ProjectSelectionView()) {
-                        Text("Start Here")
-                            .font(.largeTitle)
-                            .bold()
-                            .padding()
-                            .frame(maxWidth: .infinity, minHeight: 50)
-                            .background(Color.teal)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                    .padding(.horizontal)
-                    .buttonStyle(.bordered)
-                    
+               NavigationLink(destination: ProjectSelectionView()) {
+                    Text("Start Here")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                        .frame(maxWidth: 225, minHeight: 50)
+                        .background(Color.teal)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1))
+                }
+                .padding(.horizontal)
+                .buttonStyle(.bordered)
+                
             }
             .padding()
         }
@@ -53,10 +55,5 @@ struct StartHereView: View {
         .system(size: 125, design: .default)
     }
 }
-
-struct StartHereView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartHereView()
-            .environmentObject(ProjectController.shared) // inject a preview-specific instance of projectController
-    }
-}
+    
+    

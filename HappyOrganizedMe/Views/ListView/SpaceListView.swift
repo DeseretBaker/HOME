@@ -21,19 +21,3 @@ struct SpaceListView: View {
         }
     }
 }
-struct SpaceListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let sampleSpaces = [
-            Space(name: "Upper Shelf", roomDescription: nil, subTasks: []),
-            Space(name: "Lower Shelf", roomDescription: nil, subTasks: []),
-            Space(name: "Corner Cabinet", roomDescription: nil, subTasks: [])
-        ]
-        let sampleRoom = Room.createTestRoom(name: "Pantry",
-                              imageName: "Pantry",
-                              weight: 1,
-                              spaces: sampleSpaces)
-        
-        return SpaceListView(room: sampleRoom)
-    }
-}
-

@@ -8,59 +8,91 @@
 import SwiftUI
 
 struct SpaceDetailView: View {
-    @EnvironmentObject var controller: ProjectController
-    var space: Space
-    var projectID: UUID
-    var roomID: UUID
-    @State private var newTaskDetailName: String = ""
-
+    @Environment(\.modelContext) private var modelContext
+    @Bindable var space: Space  // To track changes in space data
+    
     var body: some View {
-        VStack {
-            HStack {
-                TextField("New Task Name", text: $newTaskDetailName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: {
-                    addNewTaskDetail()
-                }) {
-                    Text("Add Task")
-                        .padding()
-                        .background(Color.teal)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // Space Header
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(space.name)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
                 }
-            }.padding()
-
-            List {
-                ForEach(space.subTasks) { subTask in // Access the correct property
-                    NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
-                        Text(subTask.name)
+                
+                ProgressView(value: space.progress, total: 100)
+                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                    .padding(.vertical, 10)
+                
+                HStack {
+                    Text("Progress: \(String(format: "%.0f", space.progress))%")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("Status: \(space.isCompleted ? "Completed" : "In Progress")")
+                        .font(.subheadline)
+                        .foregroundColor(space.isCompleted ? .green : .orange)
+                }
+                
+                // SubTask List Header
+                Text("SubTasks")
+                    .font(.headline)
+                    .padding(.top)
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                    ForEach(space.subTasks) { subTask in
+                        NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
+                            SubTaskCardView2(subTask: subTask)
+                        }
                     }
                 }
-                .onDelete(perform: deleteTaskDetails)
+                .padding([.leading, .trailing])
             }
-            .navigationTitle(space.name)
-            .toolbar {
-                EditButton()
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .padding([.leading, .trailing])
+        }
+        .navigationTitle("Space Details")
+        .toolbar {
+            Button(action: {
+                // Action for editing the space or adding new subtasks
+            }) {
+                Image(systemName: "pencil")
             }
         }
     }
+}
 
-    private func addNewTaskDetail() {
-        if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
-           let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
-           let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            let newTaskDetail = SubTask(name: newTaskDetailName)
+// SubTaskCardView extracted as a separate struct to display individual subtask cards.
+struct SubTaskCardView2: View {
+    var subTask: SubTask
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(subTask.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 120)
+                .clipped()
+                .cornerRadius(10)
             
-            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.append(newTaskDetail)
-            newTaskDetailName = ""
+            Text(subTask.name)
+                .font(.headline)
+                .padding(.top, 5)
+            
+            ProgressView(value: subTask.progress, total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+            
+            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
         }
-    }
-
-    private func deleteTaskDetails(at offsets: IndexSet) {
-        if let projectIndex = controller.projects.firstIndex(where: { $0.id == projectID }),
-           let roomIndex = controller.projects[projectIndex].rooms.firstIndex(where: { $0.id == roomID }),
-           let spaceIndex = controller.projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            controller.projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.remove(atOffsets: offsets)
-        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }

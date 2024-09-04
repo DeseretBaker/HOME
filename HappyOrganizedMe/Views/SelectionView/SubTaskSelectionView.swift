@@ -1,32 +1,31 @@
 //
-//  MiniTaskSelectionView.swift
+//  SubTaskSelectionView.swift
 //  HappyOrganizedMe
 //
-//  Created by Deseret Baker on 8/6/24.
+//  Created by Deseret Baker on 8/5/24.
 //
-
-import SwiftData
 import SwiftUI
+import SwiftData
 
-struct MiniTaskSelectionView: View {
+struct SubTaskSelectionView: View {
     @EnvironmentObject var projectController: ProjectController
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
-    @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
+    @Bindable var space: Space  // Use @Bindable to automatically update the view when the space changes
 
     var body: some View {
         NavigationView {
             VStack {
-                if subTask.miniTasks.isEmpty {
-                    Text("No mini-tasks available in this subtask.")
+                if space.subTasks.isEmpty {
+                    Text("No subtasks available in this space.")
                         .font(.headline)
                         .padding()
                 } else {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                            ForEach(subTask.miniTasks) { miniTask in
-                                NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
-                                    MiniTaskCardView(miniTask: miniTask)  // Assuming MiniTaskCardView is defined elsewhere in your project
+                            ForEach(space.subTasks) { subTask in
+                                NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
+                                    SubTaskCardView(subTask: subTask)  // Assuming SubTaskCardView is defined elsewhere in your project
                                 }
                             }
                         }
@@ -34,11 +33,11 @@ struct MiniTaskSelectionView: View {
                     }
                 }
                 
-                // Add New MiniTask Button
-//                Button(action: addNewMiniTask) {
+                // Add New SubTask Button
+//                Button(action: addNewSubTask) {
 //                    HStack {
 //                        Image(systemName: "plus")
-//                        Text("Add New MiniTask")
+//                        Text("Add New SubTask")
 //                    }
 //                    .padding()
 //                    .background(Color.blue)
@@ -48,26 +47,17 @@ struct MiniTaskSelectionView: View {
 //                }
 //                .padding()
             }
-            .navigationTitle("Select a MiniTask")
+            .navigationTitle("Select a SubTask")
             .toolbar {
                 EditButton()  // Allows editing for delete action
             }
         }
     }
-    
-//    private func addNewMiniTask() {
-//        let newMiniTask = MiniTaskType(miniTaskType: any MiniTaskType, subTask: SubTask)
-//              // Provide a valid MiniTaskType enum value
-//             // Reference the current subtask
-//        
-//        
-//        subTask.miniTasks.append(newMiniTask)
-//        saveContext()
-//    }
 
-    private func deleteMiniTask(at offsets: IndexSet) {
+
+    private func deleteSubTask(at offsets: IndexSet) {
         withAnimation {
-            subTask.miniTasks.remove(atOffsets: offsets)
+            space.subTasks.remove(atOffsets: offsets)
             saveContext()
         }
     }
@@ -81,27 +71,34 @@ struct MiniTaskSelectionView: View {
     }
 }
 
-// MiniTaskCardView - Displays information about a MiniTask
-struct MiniTaskCardView: View {
-    var miniTask: MiniTask
+struct SubTaskCardView: View {
+    var subTask: SubTask
+    
+    var imageName: String {
+        if !subTask.imageName.isEmpty {
+            return subTask.imageName
+        } else {
+            return "defaultImage"
+        }
+    }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Image(miniTask.imageName)
+        VStack {
+            Image(imageName)  // Provide a default image if nil
                 .resizable()
                 .scaledToFill()
-                .frame(height: 120)
+                .frame(height: 150)
                 .clipped()
                 .cornerRadius(10)
             
-            Text(miniTask.name)
+            Text(subTask.name)
                 .font(.headline)
                 .padding(.top, 5)
             
-            ProgressView(value: miniTask.progress, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+            ProgressView(value: subTask.progress, total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: .green))
             
-            Text("Progress: \(String(format: "%.0f", miniTask.progress))%")
+            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -111,4 +108,3 @@ struct MiniTaskCardView: View {
         .shadow(radius: 5)
     }
 }
-
