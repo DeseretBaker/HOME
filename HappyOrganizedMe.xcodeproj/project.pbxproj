@@ -42,6 +42,7 @@
 		C5B911BC2C8821A200850F2E /* ResolveSubTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B911BB2C8821A200850F2E /* ResolveSubTaskType.swift */; };
 		C5B911BE2C88220400850F2E /* ResolveMiniTaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B911BD2C88220400850F2E /* ResolveMiniTaskType.swift */; };
 		C5B911C02C88231900850F2E /* ResolveProjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B911BF2C88231900850F2E /* ResolveProjectType.swift */; };
+		C5B911C22C89542C00850F2E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B911C12C89542C00850F2E /* ProfileView.swift */; };
 		C5DAD8462C6AFFB100477EB9 /* EditMiniTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8452C6AFFB100477EB9 /* EditMiniTaskView.swift */; };
 		C5DAD8482C6B032B00477EB9 /* AddRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8472C6B032B00477EB9 /* AddRoomView.swift */; };
 		C5DAD84A2C6B065F00477EB9 /* AddSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DAD8492C6B065F00477EB9 /* AddSpaceView.swift */; };
@@ -106,6 +107,7 @@
 		C5B911BB2C8821A200850F2E /* ResolveSubTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveSubTaskType.swift; sourceTree = "<group>"; };
 		C5B911BD2C88220400850F2E /* ResolveMiniTaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveMiniTaskType.swift; sourceTree = "<group>"; };
 		C5B911BF2C88231900850F2E /* ResolveProjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveProjectType.swift; sourceTree = "<group>"; };
+		C5B911C12C89542C00850F2E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C5DAD8422C6AF7FE00477EB9 /* EditSubtaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubtaskView.swift; sourceTree = "<group>"; };
 		C5DAD8452C6AFFB100477EB9 /* EditMiniTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMiniTaskView.swift; sourceTree = "<group>"; };
 		C5DAD8472C6B032B00477EB9 /* AddRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			children = (
 				C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */,
 				C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */,
+				C5B911C12C89542C00850F2E /* ProfileView.swift */,
 				C564B61F2C6858F300AA2A69 /* ProjectView.swift */,
 				C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */,
 				C5DAD8442C6AF9B700477EB9 /* AddProject */,
@@ -479,6 +482,7 @@
 				C5B911BE2C88220400850F2E /* ResolveMiniTaskType.swift in Sources */,
 				C59E608E2C84FD3C00B77B26 /* DataLoader.swift in Sources */,
 				C5B911C02C88231900850F2E /* ResolveProjectType.swift in Sources */,
+				C5B911C22C89542C00850F2E /* ProfileView.swift in Sources */,
 				C564B60F2C6317FF00AA2A69 /* Space.swift in Sources */,
 				C564B5EF2C6024CC00AA2A69 /* SampleModels.swift in Sources */,
 				C564B6132C63184500AA2A69 /* Minitask.swift in Sources */,
