@@ -8,7 +8,7 @@ import SwiftData
 import SwiftUI
 
 struct ProjectSelectionView: View {
-    @EnvironmentObject var projectController: ProjectController
+    var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {

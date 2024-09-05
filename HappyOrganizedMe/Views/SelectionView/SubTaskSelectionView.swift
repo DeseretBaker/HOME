@@ -8,7 +8,7 @@ import SwiftUI
 import SwiftData
 
 struct SubTaskSelectionView: View {
-    @EnvironmentObject var projectController: ProjectController
+    var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     @Bindable var space: Space  // Use @Bindable to automatically update the view when the space changes

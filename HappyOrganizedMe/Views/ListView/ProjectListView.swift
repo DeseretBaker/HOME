@@ -7,7 +7,7 @@ import SwiftUI
 import SwiftData
 
 struct ProjectListView: View {
-    @EnvironmentObject var projectController: ProjectController
+    var projectController = ProjectController.shared
 
     private let columns = [
         GridItem(.adaptive(minimum: 110))

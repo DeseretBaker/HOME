@@ -33,7 +33,6 @@ struct HappyOrganizedMeApp: App {
         WindowGroup {
             ContentView() // Starting view of your app
                 .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // Attach the model container
-                .environmentObject(projectController) // Provide the environment object
                 .onAppear {
                     projectController.setModelContext(modelContext)
                 }

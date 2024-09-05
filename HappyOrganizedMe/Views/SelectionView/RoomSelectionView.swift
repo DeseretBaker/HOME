@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct RoomSelectionView: View {
-    @EnvironmentObject var projectController: ProjectController
+    var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
     @Bindable var project: Project
 

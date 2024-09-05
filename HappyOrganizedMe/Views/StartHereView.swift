@@ -61,6 +61,5 @@ struct StartHereView: View {
 struct StartHereView_Previews: PreviewProvider {
     static var previews: some View {
         StartHereView(hasClickedStartHereButton: .constant(false))
-            .environmentObject(ProjectController.shared)
     }
 }

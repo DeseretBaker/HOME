@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject private var projectController: ProjectController
+    private var projectController: ProjectController = .shared
     @State private var hasTappedStartHere: Bool = false
     var project: Project?
     
@@ -19,10 +19,9 @@ struct ContentView: View {
         // ProjectListView()
         // else {
         if hasTappedStartHere {
-            ProjectListView()
+            ProjectSelectionView()
         } else {
             StartHereView(hasClickedStartHereButton: $hasTappedStartHere)
-                .environmentObject(projectController)
         }
     }
     
