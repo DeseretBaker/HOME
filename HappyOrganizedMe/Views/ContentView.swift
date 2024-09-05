@@ -11,11 +11,17 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var projectController: ProjectController
+    @State private var hasTappedStartHere: Bool = false
     var project: Project?
     
     var body: some View {
-        NavigationView {
-            StartHereView()
+        // if hasTapped StartHere button {
+        // ProjectListView()
+        // else {
+        if hasTappedStartHere {
+            ProjectListView()
+        } else {
+            StartHereView(hasClickedStartHereButton: $hasTappedStartHere)
                 .environmentObject(projectController)
         }
     }

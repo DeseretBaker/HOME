@@ -9,8 +9,7 @@ import SwiftUI
 
 struct StartHereView: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject var projectController: ProjectController
-    
+    @Binding var hasClickedStartHereButton: Bool
     var body: some View {
         ZStack {
             // Background image setup
@@ -32,7 +31,9 @@ struct StartHereView: View {
                     .padding()
                 
                 // Start button
-                NavigationLink(destination: ProjectSelectionView()) {
+                Button(action: {
+                    hasClickedStartHereButton.toggle()
+                }, label: {
                     Text("Start Here")
                         .font(.largeTitle)
                         .bold()
@@ -43,8 +44,7 @@ struct StartHereView: View {
                         .cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.black, lineWidth: 1))
 
-                    
-                }
+                })
                 .padding(.horizontal)
                 .buttonStyle(.bordered)
             }
@@ -60,7 +60,7 @@ struct StartHereView: View {
 
 struct StartHereView_Previews: PreviewProvider {
     static var previews: some View {
-        StartHereView()
+        StartHereView(hasClickedStartHereButton: .constant(false))
             .environmentObject(ProjectController.shared)
     }
 }
