@@ -10,18 +10,19 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject private var projectController: ProjectController  // Corrected EnvironmentObject usage
+    @EnvironmentObject private var projectController: ProjectController
+    var project: Project?
     
     var body: some View {
         NavigationView {
             StartHereView()
-                .environmentObject(projectController)  // Ensuring environment object is passed down
+                .environmentObject(projectController)
         }
     }
     
     private func syncProjects() {
         do {
-            try modelContext.save()  // Save changes to the context, which will also sync with CloudKit
+            try modelContext.save()
         } catch {
             print("Error syncing projects: \(error.localizedDescription)")
             handleCloudSyncConflict()
@@ -29,8 +30,31 @@ struct ContentView: View {
     }
     
     private func handleCloudSyncConflict() {
-        // Handle any sync conflicts here
-        print("Handling cloud sync conflict")
+        do {
+            // Example of fetching the latest state of objects to manually resolve conflicts
+            let fetchDescriptor = FetchDescriptor<Project>()
+            let latestProjects = try modelContext.fetch(fetchDescriptor)
+            
+            // Example conflict resolution logic (manual)
+            resolveConflicts(with: latestProjects)
+            
+            // Attempt to save again after resolving conflicts
+            try modelContext.save()
+            
+            if modelContext.hasChanges {
+                print("Conflicts resolved, re-syncing projects...")
+                syncProjects() // Re-sync after resolving conflicts
+            }
+        } catch {
+            print("Failed to handle cloud sync conflict: \(error.localizedDescription)")
+            // Additional logic to notify the user or further debug
+        }
+    }
+    
+    private func resolveConflicts(with latestProjects: [Project]) {
+        // Implement custom conflict resolution logic here
+        // For example, you might compare `latestProjects` with the current state in `modelContext`
+        // and decide which properties should be updated, merged, or overridden.
+        
     }
 }
-
