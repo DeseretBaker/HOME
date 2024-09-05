@@ -206,7 +206,6 @@
 		C59E60822C84E4F100B77B26 /* BaseProjects */ = {
 			isa = PBXGroup;
 			children = (
-				C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */,
 				C59E608F2C84FDFB00B77B26 /* BaseProjectsController.swift */,
 				C59E60832C84E53B00B77B26 /* ProjectType.swift */,
 				C59E60852C84E68E00B77B26 /* RoomType.swift */,
@@ -299,6 +298,7 @@
 				C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */,
 				C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */,
 				C564B61F2C6858F300AA2A69 /* ProjectView.swift */,
+				C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */,
 				C5DAD8442C6AF9B700477EB9 /* AddProject */,
 				C564B6252C686E3400AA2A69 /* EditView */,
 				C564B60A2C63173E00AA2A69 /* ListView */,
