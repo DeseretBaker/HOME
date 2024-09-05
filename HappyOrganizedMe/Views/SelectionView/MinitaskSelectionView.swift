@@ -13,36 +13,36 @@ struct MiniTaskSelectionView: View {
     @Environment(\.modelContext) private var modelContext  // Access the model context
     
     @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
-
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                if subTask.miniTasks.isEmpty {
-                    Text("No mini-tasks available in this subtask.")
-                        .font(.headline)
-                        .padding()
-                } else {
-                    ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                            ForEach(subTask.miniTasks) { miniTask in
-                                NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
-                                    MiniTaskCardView(miniTask: miniTask)  // Assuming MiniTaskCardView is defined elsewhere in your project
-                                }
+        
+        VStack {
+            if subTask.miniTasks.isEmpty {
+                Text("No mini-tasks available in this subtask.")
+                    .font(.headline)
+                    .padding()
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                        ForEach(subTask.miniTasks) { miniTask in
+                            NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
+                                MiniTaskCardView(miniTask: miniTask)  // Assuming MiniTaskCardView is defined elsewhere in your project
                             }
                         }
-                        .padding()
                     }
+                    .padding()
                 }
-               
             }
-            .navigationTitle("Select a MiniTask")
-            .toolbar {
-                EditButton()  // Allows editing for delete action
-            }
+            
         }
+        .navigationTitle("Select a MiniTask")
+        .toolbar {
+            EditButton()  // Allows editing for delete action
+        }
+        
     }
     
-
+    
     private func deleteMiniTask(at offsets: IndexSet) {
         withAnimation {
             subTask.miniTasks.remove(atOffsets: offsets)

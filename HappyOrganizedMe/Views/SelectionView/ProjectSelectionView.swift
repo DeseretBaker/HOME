@@ -10,34 +10,34 @@ import SwiftUI
 struct ProjectSelectionView: View {
     var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
-
+    
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    if projectController.projects.isEmpty {
-                        Text("No projects available.")
-                            .font(.title)
-                            .padding()
-                    } else {
-                        ForEach(projectController.projects) { project in
-                            NavigationLink(destination: RoomSelectionView(project: project)) {
-                                CardView(item: project)
-                            }
-                            .buttonStyle(PlainButtonStyle())
+        
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                if projectController.projects.isEmpty {
+                    Text("No projects available.")
+                        .font(.title)
+                        .padding()
+                } else {
+                    ForEach(projectController.projects) { project in
+                        NavigationLink(destination: RoomSelectionView(project: project)) {
+                            CardView(item: project)
                         }
-                        .onDelete(perform: deleteProject)
+                        .buttonStyle(PlainButtonStyle())
                     }
+                    .onDelete(perform: deleteProject)
                 }
-                .padding()
             }
-            .navigationTitle("Projects")
-            .toolbar {
-                EditButton()
-            }
+            .padding()
         }
+        .navigationTitle("Projects")
+        .toolbar {
+            EditButton()
+        }
+        
     }
-
+    
     private func deleteProject(at offsets: IndexSet) {
         withAnimation {
             for index in offsets {

@@ -14,7 +14,7 @@ struct SubTaskSelectionView: View {
     @Bindable var space: Space  // Use @Bindable to automatically update the view when the space changes
 
     var body: some View {
-        NavigationView {
+
             VStack {
                 if space.subTasks.isEmpty {
                     Text("No subtasks available in this space.")
@@ -32,26 +32,11 @@ struct SubTaskSelectionView: View {
                         .padding()
                     }
                 }
-                
-                // Add New SubTask Button
-//                Button(action: addNewSubTask) {
-//                    HStack {
-//                        Image(systemName: "plus")
-//                        Text("Add New SubTask")
-//                    }
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//                    .shadow(radius: 5)
-//                }
-//                .padding()
             }
             .navigationTitle("Select a SubTask")
             .toolbar {
                 EditButton()  // Allows editing for delete action
             }
-        }
     }
 
 
