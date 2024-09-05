@@ -40,7 +40,7 @@ struct SpaceDetailView: View {
                     .font(.headline)
                     .padding(.top)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(space.subTasks) { subTask in
                         NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
                             SubTaskCardView2(subTask: subTask)
@@ -75,7 +75,7 @@ struct SubTaskCardView2: View {
             Image(subTask.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 120)
+                .frame(height: 110)
                 .clipped()
                 .cornerRadius(10)
             

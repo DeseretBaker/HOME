@@ -13,7 +13,7 @@ struct MiniTaskDetailView: View {
     @Bindable var miniTask: MiniTask
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(miniTask.name)
                 .font(.title)
                 .fontWeight(.bold)

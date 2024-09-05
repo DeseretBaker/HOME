@@ -45,7 +45,7 @@ struct RoomDetailView: View {
                     .font(.headline)
                     .padding(.leading)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(room.spaces) { space in
                         NavigationLink(destination: SpaceDetailView(space: space)) {
                             SpaceCardView(space: space)

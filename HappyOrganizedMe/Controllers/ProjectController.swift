@@ -115,10 +115,7 @@ class ProjectController: ObservableObject {
         }
     }
     
-//    func addProject(_ project: Project, context: ModelContext) {
-//        projects.append(project)
-//        saveContext(context)
-//    }
+
     
     func updateMiniTaskStatus(miniTask: MiniTask, isCompleted: Bool, context: ModelContext) {
         miniTask.isCompleted = isCompleted

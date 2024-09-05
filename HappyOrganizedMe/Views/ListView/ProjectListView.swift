@@ -10,7 +10,7 @@ struct ProjectListView: View {
     @EnvironmentObject var projectController: ProjectController
 
     private let columns = [
-        GridItem(.adaptive(minimum: 120))
+        GridItem(.adaptive(minimum: 110))
     ]
 
     var body: some View {
@@ -43,7 +43,7 @@ struct ProjectListView: View {
             Image(project.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(maxWidth: .infinity, maxHeight: 120)
+                .frame(maxWidth: .infinity, maxHeight: 110)
                 .cornerRadius(10)
                 .clipped()
 
@@ -53,7 +53,7 @@ struct ProjectListView: View {
                 .foregroundColor(.white)
                 .shadow(radius: 5)
         }
-        .frame(height: 120)
+        .frame(height: 110)
         .cornerRadius(10)
         .shadow(radius: 5)
     }

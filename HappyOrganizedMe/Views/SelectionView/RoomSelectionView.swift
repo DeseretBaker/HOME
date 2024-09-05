@@ -22,7 +22,7 @@ struct RoomSelectionView: View {
                         .padding()
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                             ForEach(project.rooms) { room in
                                 NavigationLink(destination: RoomDetailView(room: room)) {
                                     CardView(item: room)

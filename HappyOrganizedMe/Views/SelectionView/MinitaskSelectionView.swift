@@ -23,7 +23,7 @@ struct MiniTaskSelectionView: View {
                         .padding()
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                             ForEach(subTask.miniTasks) { miniTask in
                                 NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
                                     MiniTaskCardView(miniTask: miniTask)  // Assuming MiniTaskCardView is defined elsewhere in your project
