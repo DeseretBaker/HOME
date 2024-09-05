@@ -33,20 +33,7 @@ struct MiniTaskSelectionView: View {
                         .padding()
                     }
                 }
-                
-                // Add New MiniTask Button
-//                Button(action: addNewMiniTask) {
-//                    HStack {
-//                        Image(systemName: "plus")
-//                        Text("Add New MiniTask")
-//                    }
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//                    .shadow(radius: 5)
-//                }
-//                .padding()
+               
             }
             .navigationTitle("Select a MiniTask")
             .toolbar {
@@ -55,15 +42,6 @@ struct MiniTaskSelectionView: View {
         }
     }
     
-//    private func addNewMiniTask() {
-//        let newMiniTask = MiniTaskType(miniTaskType: any MiniTaskType, subTask: SubTask)
-//              // Provide a valid MiniTaskType enum value
-//             // Reference the current subtask
-//        
-//        
-//        subTask.miniTasks.append(newMiniTask)
-//        saveContext()
-//    }
 
     private func deleteMiniTask(at offsets: IndexSet) {
         withAnimation {

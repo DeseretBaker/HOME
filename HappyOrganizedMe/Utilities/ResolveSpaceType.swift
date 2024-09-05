@@ -8,8 +8,8 @@
 import Foundation
 
 // Helper function to resolve SpaceType from a raw string value
-func resolveSpaceType(from rawValue: String) -> SpaceType? {
-    let spaceTypes: [SpaceType.Type] = [
+func resolveSpaceType(from rawValue: String) -> (any SpaceType)? {
+    let spaceTypes: [any SpaceType.Type] = [
         KitchenSpaceType.self,
         LivingRoomSpaceType.self,
         BathroomSpaceType.self,

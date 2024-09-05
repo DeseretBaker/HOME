@@ -7,8 +7,8 @@
 
 import Foundation
 
-func resolveRoomType(from rawValue: String) -> RoomType? {
-    let roomTypes: [RoomType.Type] = [
+func resolveRoomType(from rawValue: String) -> (any RoomType)? {
+    let roomTypes: [any RoomType.Type] = [
         KitchenRoomType.self,
         LivingRoomType.self,
         BedroomRoomType.self,

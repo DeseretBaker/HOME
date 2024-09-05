@@ -14,7 +14,7 @@ class SubTask: Identifiable, Displayable {
     @Attribute var subTaskTypeString: String // Store the raw value of SubTaskType as a String
     
     // Computed property to get the `SubTaskType` enum from the stored raw value
-    var subTaskType: SubTaskType {
+    var subTaskType: any SubTaskType {
         get {
             resolveSubTaskType(from: subTaskTypeString) ?? UnknownSubTaskType.unknown
         }
@@ -47,7 +47,7 @@ class SubTask: Identifiable, Displayable {
     }
     
     // Initializer
-    init(subTaskType: SubTaskType, space: Space, miniTasks: [MiniTask], isCompleted: Bool = false) {
+    init(subTaskType: any SubTaskType, space: Space, miniTasks: [MiniTask], isCompleted: Bool = false) {
         self.subTaskTypeString = subTaskType.rawValue
         self.space = space
         self.miniTasks = miniTasks

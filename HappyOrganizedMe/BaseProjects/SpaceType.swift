@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SpaceType: Codable {
+protocol SpaceType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
     var weight: Double { get }
@@ -15,7 +15,7 @@ protocol SpaceType: Codable {
     init?(rawValue: String)
 }
 
-enum KitchenSpaceType: String, SpaceType {
+enum KitchenSpaceType: String, SpaceType, CaseIterable {
     case cabinets
     case countertop
     case cupboard
@@ -32,7 +32,7 @@ enum KitchenSpaceType: String, SpaceType {
         }
     }
 }
-enum LivingRoomSpaceType: String, SpaceType {
+enum LivingRoomSpaceType: String, SpaceType, CaseIterable {
     case utilityZone
     case diningZone
     case techZone
@@ -51,7 +51,7 @@ enum LivingRoomSpaceType: String, SpaceType {
         }
     }
 }
-enum BathroomSpaceType: String, SpaceType {
+enum BathroomSpaceType: String, SpaceType, CaseIterable {
     case roomDecorZone
     case vanity
     case medicineCabinet
@@ -66,7 +66,7 @@ enum BathroomSpaceType: String, SpaceType {
         }
     }
 }
-enum OfficeSpaceType: String, SpaceType {
+enum OfficeSpaceType: String, SpaceType, CaseIterable {
     case workstation
     case deskStorage
     case techGadgetZone
@@ -83,7 +83,7 @@ enum OfficeSpaceType: String, SpaceType {
         }
     }
 }
-enum StorageSpaceType: String, SpaceType {
+enum StorageSpaceType: String, SpaceType, CaseIterable {
     case outdoorStorageZone
     
     var name: String { rawValue }
@@ -94,7 +94,7 @@ enum StorageSpaceType: String, SpaceType {
         }
     }
 }
-enum BedroomSpaceType: String, SpaceType {
+enum BedroomSpaceType: String, SpaceType, CaseIterable {
     case bed
     case dresser
     case nightstand
@@ -111,7 +111,7 @@ enum BedroomSpaceType: String, SpaceType {
         }
     }
 }
-enum PlayroomSpaceType: String, SpaceType {
+enum PlayroomSpaceType: String, SpaceType, CaseIterable {
     case underFurniture
     case wallMounted
     case cornerUnits
@@ -132,7 +132,7 @@ enum PlayroomSpaceType: String, SpaceType {
         }
     }
 }
-enum DiningRoomSpaceType: String, SpaceType {
+enum DiningRoomSpaceType: String, SpaceType, CaseIterable {
     case buffet
     case builtIn
     case cornerCabinet
@@ -155,7 +155,7 @@ enum DiningRoomSpaceType: String, SpaceType {
         }
     }
 }
-    enum GarageSpaceType: String, SpaceType {
+    enum GarageSpaceType: String, SpaceType, CaseIterable {
         case ceilingStorage
         case garageShelves
         case garageCabinet
@@ -180,7 +180,7 @@ enum DiningRoomSpaceType: String, SpaceType {
             }
         }
     }
-enum UnknownSpaceType: String, SpaceType {
+enum UnknownSpaceType: String, SpaceType, CaseIterable {
     case unknown
     
     var name: String { rawValue }

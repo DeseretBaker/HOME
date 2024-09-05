@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol MiniTaskType: Codable {
+protocol MiniTaskType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
     var weight: Double { get }
     var rawValue: String { get }
     init?(rawValue: String)
 }
-enum KitchenMiniTaskType: String, MiniTaskType {
+enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
     case remove
     case clean
     case categorize
@@ -37,7 +37,7 @@ enum KitchenMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum LivingRoomMiniTaskType: String, MiniTaskType {
+enum LivingRoomMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -54,7 +54,7 @@ enum LivingRoomMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum DiningRoomMiniTaskType: String, MiniTaskType {
+enum DiningRoomMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -71,7 +71,7 @@ enum DiningRoomMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum OfficeMiniTaskType: String, MiniTaskType {
+enum OfficeMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -88,7 +88,7 @@ enum OfficeMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum BedroomMiniTaskType: String, MiniTaskType {
+enum BedroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -105,7 +105,7 @@ enum BedroomMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum PlayroomMiniTaskType: String,MiniTaskType {
+enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -122,7 +122,7 @@ enum PlayroomMiniTaskType: String,MiniTaskType {
         }
     }
 }
-enum StorageMiniTaskType: String, MiniTaskType {
+enum StorageMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -139,7 +139,7 @@ enum StorageMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum BathroomMiniTaskType: String, MiniTaskType {
+enum BathroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -156,7 +156,7 @@ enum BathroomMiniTaskType: String, MiniTaskType {
         }
     }
 }
-enum GarageMiniTaskType: String,MiniTaskType {
+enum GarageMiniTaskType: String, MiniTaskType, CaseIterable {
     case clean
     case organize
     case label
@@ -174,7 +174,7 @@ enum GarageMiniTaskType: String,MiniTaskType {
     }
 }
 
-enum UnknownMiniTaskType: String, MiniTaskType {
+enum UnknownMiniTaskType: String, MiniTaskType, CaseIterable {
     case unknown
     
     var name: String { rawValue }

@@ -8,8 +8,8 @@
 import Foundation
 
 // Helper function to resolve SubTaskType from a raw string value
-func resolveSubTaskType(from rawValue: String) -> SubTaskType? {
-    let subTaskTypes: [SubTaskType.Type] = [
+func resolveSubTaskType(from rawValue: String) -> (any SubTaskType)? {
+    let subTaskTypes: [any SubTaskType.Type] = [
         KitchenSubTaskType.self,
         LivingRoomSubTaskType.self,
         BathroomSubTaskType.self,

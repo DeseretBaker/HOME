@@ -18,9 +18,9 @@ struct ProjectListView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(BaseProjects.shared.projects) { project in
+                        ForEach(projectController.projects) { project in
                             NavigationLink(destination: RoomListView(project: project)) {
-                            projectGridItem(project: project)
+                                projectGridItem(project: project)
                             }
                         }
                     }
@@ -30,29 +30,31 @@ struct ProjectListView: View {
                 .navigationBarTitleDisplayMode(.large)
             }
         }
+        .onAppear {
+            // Ensure projects are loaded when view appears
+            projectController.loadProjects()
+        }
     }
 
     // Function to create a grid item view for a project
     @ViewBuilder
     private func projectGridItem(project: Project) -> some View {
-        
-            ZStack {
-                Image(project.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: 120)
-                    .cornerRadius(10)
-                    .clipped()
+        ZStack {
+            Image(project.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity, maxHeight: 120)
+                .cornerRadius(10)
+                .clipped()
 
-                Text(project.name)
-                    .bold()
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .shadow(radius: 5)
-            }
-            .frame(height: 120)
-            .cornerRadius(10)
-            .shadow(radius: 5)
+            Text(project.name)
+                .bold()
+                .font(.title)
+                .foregroundColor(.white)
+                .shadow(radius: 5)
         }
+        .frame(height: 120)
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
-
+}

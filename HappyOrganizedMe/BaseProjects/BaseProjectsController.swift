@@ -17,6 +17,13 @@ class BaseProjectsController: ObservableObject {
 
     func baseProjects() -> [Project] {
         if let fetchedProjects = try? modelContext.fetch(FetchDescriptor<Project>()), !fetchedProjects.isEmpty {
+            print("Fetched projects from storage: \(fetchedProjects.count)")
+            for project in fetchedProjects {
+                // Ensure rooms are correctly fetched for each project
+                if project.rooms.isEmpty {
+                    project.rooms = DataLoader.loadRooms(for: project.projectType)
+                }
+            }
             return fetchedProjects
         } else {
             return createBaseProjects()
@@ -24,14 +31,13 @@ class BaseProjectsController: ObservableObject {
     }
 
     private func createBaseProjects() -> [Project] {
-        // Manually define the array of all project types
         let projectTypes: [ProjectType] = [
             .kitchen, .garage, .bathroom, .storage, .bedroom,
             .office, .playroom, .livingRoom, .diningRoom
         ]
 
         let projects = projectTypes.map { projectType in
-            let project = Project(projectType: projectType, rooms: [])
+            let project = Project(projectType: projectType, rooms: DataLoader.loadRooms(for: projectType))
             modelContext.insert(project)
             return project
         }
@@ -43,40 +49,5 @@ class BaseProjectsController: ObservableObject {
         }
 
         return projects
-    }
-}
-class BaseProjects {
-    // Singleton pattern to access BaseProjects globally
-    static let shared = BaseProjects()
-
-    private(set) var projects: [Project] = []
-
-    private init() {
-        loadDefaultProjects()
-    }
-
-    private func loadDefaultProjects() {
-        // Initialize your base projects here
-        let kitchenProject = Project(projectType: .kitchen, rooms: [])
-        kitchenProject.rooms = DataLoader.loadRooms(for: kitchenProject.projectType.rawValue)
-
-        // Add more predefined projects
-        projects = [kitchenProject] // Example array; add other projects similarly
-    }
-
-    func addProject(_ project: Project) {
-        projects.append(project)
-    }
-
-    func deleteProject(_ project: Project) {
-        if let index = projects.firstIndex(where: { $0.id == project.id }) {
-            projects.remove(at: index)
-        }
-    }
-
-    func updateProject(_ project: Project) {
-        if let index = projects.firstIndex(where: { $0.id == project.id }) {
-            projects[index] = project
-        }
     }
 }

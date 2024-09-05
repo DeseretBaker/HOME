@@ -27,7 +27,7 @@ struct BaseProjectsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if projects.isEmpty {
-                controller.baseProjects()
+                fatalError("No projects found")
             }
         }
     }

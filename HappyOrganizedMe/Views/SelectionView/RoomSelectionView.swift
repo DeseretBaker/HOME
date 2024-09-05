@@ -10,8 +10,8 @@ import SwiftData
 
 struct RoomSelectionView: View {
     @EnvironmentObject var projectController: ProjectController
-    @Environment(\.modelContext) private var modelContext  // Access the model context
-    @Bindable var project: Project  // Use @Bindable to automatically update the view when the project changes
+    @Environment(\.modelContext) private var modelContext
+    @Bindable var project: Project
 
     var body: some View {
         NavigationView {
@@ -25,7 +25,7 @@ struct RoomSelectionView: View {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                             ForEach(project.rooms) { room in
                                 NavigationLink(destination: RoomDetailView(room: room)) {
-                                    CardView(item: room) // Pass the `room` object to `CardView` as it conforms to `Displayable`
+                                    CardView(item: room)
                                 }
                             }
                         }
@@ -35,7 +35,10 @@ struct RoomSelectionView: View {
             }
             .navigationTitle("Select a Room")
             .toolbar {
-                EditButton()  // Allows editing for delete action
+                EditButton()
+            }
+            .onAppear {
+                print("Rooms available: \(project.rooms.count)")
             }
         }
     }

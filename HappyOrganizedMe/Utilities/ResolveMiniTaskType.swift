@@ -8,8 +8,8 @@
 import Foundation
 
 // Helper function to resolve MiniTaskType from a raw string value
-func resolveMiniTaskType(from rawValue: String) -> MiniTaskType? {
-    let miniTaskTypes: [MiniTaskType.Type] = [
+func resolveMiniTaskType(from rawValue: String) -> (any MiniTaskType)? {
+    let miniTaskTypes: [any MiniTaskType.Type] = [
         KitchenMiniTaskType.self,
         LivingRoomMiniTaskType.self,
         BathroomMiniTaskType.self,

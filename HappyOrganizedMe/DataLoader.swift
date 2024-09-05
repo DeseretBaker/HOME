@@ -2,76 +2,216 @@ import SwiftUI
 import SwiftData
 
 struct DataLoader {
-    static func loadRooms(for projectType: String) -> [Room] {
+    static func loadRooms(for projectType: ProjectType) -> [Room] {
         // Convert projectType to enum if necessary or use raw string checks
         switch projectType {
-        case ProjectType.kitchen.rawValue:
-            if let roomType = KitchenRoomType(rawValue: KitchenRoomType.islandKitchen.rawValue) {
-                return [
-                    Room(
-                        roomType: roomType, // Use rawValue to store as String
-                        spaces: loadSpaces(for: roomType.rawValue) // Load spaces based on room type
-                    )
-                ]
-            } else {
-                print("Invalid room type for project type: \(projectType)")
-                return []
+        case ProjectType.kitchen:
+            return KitchenRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
             }
-        // Handle other project types if needed
+        case ProjectType.garage:
+            return GarageRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.bathroom:
+            return BathroomRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.storage:
+            return StorageRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.bedroom:
+            return BedroomRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.office:
+            return OfficeType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.playroom:
+            return PlayroomRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.livingRoom:
+            return LivingRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.diningRoom:
+            return DiningRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type)
+                )
+            }
         default:
-            print("Unknown project type: \(projectType)")
+            print("No rooms for \(projectType)")
             return []
         }
     }
     
-    static func loadSpaces(for roomType: String) -> [Space] {
-        // Convert roomType to the correct enum
+    static func loadSpaces(for roomType: any RoomType) -> [Space] {
         switch roomType {
-        case KitchenRoomType.islandKitchen.rawValue:
-            return [
-                Space(
-                    spaceType: KitchenSpaceType.cabinets, // Use rawValue to store as String
-                    subTasks: loadSubTasks(for: KitchenSpaceType.cabinets.rawValue) // Load subtasks based on space type
-                ),
-                Space(
-                    spaceType: KitchenSpaceType.countertop, // Use rawValue to store as String
-                    subTasks: loadSubTasks(for: KitchenSpaceType.countertop.rawValue) // Load subtasks based on space type
+        case is KitchenRoomType:
+            return KitchenSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is LivingRoomType:
+            return LivingRoomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is GarageRoomType:
+            return GarageSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is BathroomRoomType:
+            return BathroomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is StorageRoomType:
+            return StorageSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is OfficeType:
+            return OfficeSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is PlayroomRoomType:
+            return PlayroomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is BedroomRoomType:
+            return BedroomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
+            }
+        case is DiningRoomType:
+            return DiningRoomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType)
                 )
-            ]
-        // Handle other room types if needed
+            }
         default:
             print("Unknown room type: \(roomType)")
             return []
         }
     }
     
-    static func loadSubTasks(for spaceType: String) -> [SubTask] {
-        // Convert spaceType to the correct enum
+    
+    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
         switch spaceType {
-        case KitchenSpaceType.cabinets.rawValue:
-            return [
+        case is KitchenSpaceType:
+            return KitchenSubTaskType.allCases.map { subTaskType in
                 SubTask(
-                    subTaskType: KitchenSubTaskType.cookware,
-                    space: Space(spaceType: KitchenSpaceType.countertop, subTasks: []), // Use rawValue to store as String
-                    miniTasks: loadMiniTasks(for: KitchenSubTaskType.cookware.rawValue) // Load mini tasks based on subtask type
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
                 )
-            ]
-        // Handle other space types if needed
+            }
+        case is GarageSpaceType:
+            return GarageSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is BathroomSpaceType:
+            return BathroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is StorageSpaceType:
+            return StorageSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is OfficeSpaceType:
+            return OfficeSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is PlayroomSpaceType:
+            return PlayroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is BedroomSpaceType:
+            return BedroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is LivingRoomSpaceType:
+            return LivingRoomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is DiningRoomSpaceType:
+            return DiningRoomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
         default:
             print("Unknown space type: \(spaceType)")
             return []
         }
     }
     
-    static func loadMiniTasks(for subTaskType: String) -> [MiniTask] {
-        // Convert subTaskType to the correct enum
+    static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
         switch subTaskType {
-        case KitchenSubTaskType.cookware.rawValue:
-            return [
-                MiniTask(miniTaskType: KitchenMiniTaskType.clean), // Use rawValue to store as String
-                MiniTask(miniTaskType: KitchenMiniTaskType.sort) // Use rawValue to store as String
-            ]
-        // Handle other subTask types if needed
+        case is KitchenSubTaskType:
+            return KitchenMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is GarageSubTaskType:
+            return GarageMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is BathroomSubTaskType:
+            return BathroomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is StorageSubTaskType:
+            return StorageMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is OfficeSubTaskType:
+            return OfficeMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is PlayroomSubTaskType:
+            return PlayroomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is BedroomSubTaskType:
+            return BedroomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is LivingRoomSubTaskType:
+            return LivingRoomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is DiningRoomSubTaskType:
+            return DiningRoomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
         default:
             print("Unknown subTask type: \(subTaskType)")
             return []

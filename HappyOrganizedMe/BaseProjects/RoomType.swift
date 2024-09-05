@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RoomType: Codable {
+protocol RoomType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
     var weight: Double { get }
@@ -36,6 +36,10 @@ enum KitchenRoomType: String, RoomType {
         case .outdoorKitchen: return 1.0
         }
     }
+    // Provide all cases statically
+    static var allRoomTypes: [any RoomType] {
+        return KitchenRoomType.allCases.map { $0 }
+    }
 }
 enum LivingRoomType: String, RoomType {
     case lShapedLivingRoom
@@ -55,6 +59,9 @@ enum LivingRoomType: String, RoomType {
         case .lounge: return 3.0
         }
     }
+    static var allRoomTypes: [any RoomType] {
+        return LivingRoomType.allCases.map { $0 }
+    }
 }
 enum BedroomRoomType: String, RoomType {
     case masterBedroom
@@ -71,6 +78,9 @@ enum BedroomRoomType: String, RoomType {
         case .youngAdultBedroom: return 1.0
         case .guestBedroom: return 1.0
         }
+    }
+    static var allRoomTypes: [any RoomType] {
+        return BedroomRoomType.allCases.map { $0 }
     }
 }
 enum BathroomRoomType: String, RoomType {
@@ -95,6 +105,9 @@ enum BathroomRoomType: String, RoomType {
         case .powderRoom: return 2.0
         }
     }
+    static var allRoomTypes: [any RoomType] {
+        return BathroomRoomType.allCases.map { $0 }
+    }
 }
 enum DiningRoomType: String, RoomType {
     case diningRoom
@@ -115,6 +128,9 @@ enum DiningRoomType: String, RoomType {
         case .casualDining: return 1.0
         case .diningRoomWithBar: return 1.0
         }
+    }
+    static var allRoomTypes: [any RoomType] {
+        return DiningRoomType.allCases.map { $0 }
     }
 }
 enum GarageRoomType: String, RoomType {
@@ -139,75 +155,107 @@ enum GarageRoomType: String, RoomType {
         case .sixCarGarage: return 5.0
         }
     }
+    static var allRoomTypes: [any RoomType] {
+        return GarageRoomType.allCases.map { $0 }
+    }
 }
-    enum OfficeType: String, RoomType {
-        case creativeOffice
-        case homeOffice
-        case openPlanOffice
-        case sharedSpaceOffice
-        case studentOffice
-        
-        var name: String { rawValue }
-        var imageName: String { rawValue }
-        var weight: Double {
-            switch self {
-            case .creativeOffice: return 2.0
-            case .homeOffice: return 2.0
-            case .openPlanOffice: return 2.0
-            case .sharedSpaceOffice: return 2.0
-            case .studentOffice: return 2.0
-            }
+enum OfficeType: String, RoomType {
+    case creativeOffice
+    case homeOffice
+    case openPlanOffice
+    case sharedSpaceOffice
+    case studentOffice
+    
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    var weight: Double {
+        switch self {
+        case .creativeOffice: return 2.0
+        case .homeOffice: return 2.0
+        case .openPlanOffice: return 2.0
+        case .sharedSpaceOffice: return 2.0
+        case .studentOffice: return 2.0
         }
     }
-    enum PlayroomRoomType: String, RoomType {
-        case creativePlayroom
-        case fantasyPlayroom
-        case gameRoom
-        case movieRoom
-        case storytellerRoom
-        case adventureRoom
-        case outdoorPlayRoom
-        
-        var name: String { rawValue }
-        var imageName: String { rawValue }
-        var weight: Double {
-            switch self {
-            case .creativePlayroom: return 4.0
-            case .fantasyPlayroom: return 4.0
-            case .gameRoom: return 4.0
-            case .movieRoom: return 4.0
-            case .storytellerRoom: return 4.0
-            case .adventureRoom: return 4.0
-            case .outdoorPlayRoom: return 4.0
-            }
+    static var allRoomTypes: [any RoomType] {
+        return OfficeType.allCases.map { $0 }
+    }
+}
+enum PlayroomRoomType: String, RoomType {
+    case creativePlayroom
+    case fantasyPlayroom
+    case gameRoom
+    case movieRoom
+    case storytellerRoom
+    case adventureRoom
+    case outdoorPlayRoom
+    
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    var weight: Double {
+        switch self {
+        case .creativePlayroom: return 4.0
+        case .fantasyPlayroom: return 4.0
+        case .gameRoom: return 4.0
+        case .movieRoom: return 4.0
+        case .storytellerRoom: return 4.0
+        case .adventureRoom: return 4.0
+        case .outdoorPlayRoom: return 4.0
         }
     }
-    enum StorageRoomType: String, RoomType {
-        case pantry
-        case closet
-        case basement
-        case attic
-        case storage
-        
-        var name: String { rawValue }
-        var imageName: String { rawValue }
-        var weight: Double {
-            switch self {
-            case .basement: return 5.0
-            case .attic: return 5.0
-            case .pantry: return 3.0
-            case .closet: return 3.0
-            case .storage: return 3.0
-            }
+    static var allRoomTypes: [any RoomType] {
+        return PlayroomRoomType.allCases.map { $0 }
+    }
+}
+enum StorageRoomType: String, RoomType {
+    case pantry
+    case closet
+    case basement
+    case attic
+    case storage
+    
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    var weight: Double {
+        switch self {
+        case .basement: return 5.0
+        case .attic: return 5.0
+        case .pantry: return 3.0
+        case .closet: return 3.0
+        case .storage: return 3.0
         }
     }
+    static var allRoomTypes: [any RoomType] {
+        return StorageRoomType.allCases.map { $0 }
+    }
+}
 enum UnknownRoomType: String, RoomType {
     case unknown
     
     var name: String { rawValue }
     var imageName: String { rawValue }
     var weight: Double { 0.0 }
+    
+    static var allRoomTypes: [any RoomType] {
+        return UnknownRoomType.allCases.map { $0 }
+    }
 }
 
+// Access all roomTypes
+let allRoomTypes: [any RoomType] =
+KitchenRoomType.allRoomTypes +
+LivingRoomType.allRoomTypes +
+GarageRoomType.allRoomTypes +
+BathroomRoomType.allRoomTypes +
+StorageRoomType.allRoomTypes +
+OfficeType.allRoomTypes +
+PlayroomRoomType.allRoomTypes +
+BedroomRoomType.allRoomTypes +
+DiningRoomType.allRoomTypes +
+UnknownRoomType.allRoomTypes
 
-// Add other RoomType enums here (e.g., BedroomType, BathroomType, etc.)
+
+
+
+
+

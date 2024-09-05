@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol SubTaskType: Codable {
+protocol SubTaskType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
     var weight: Double { get }
     var rawValue: String { get }
     init?(rawValue: String)
 }
-enum KitchenSubTaskType: String, SubTaskType {
+enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
     case cookware
     case bakeware
     case serveWare
@@ -63,7 +63,7 @@ enum KitchenSubTaskType: String, SubTaskType {
         }
     }
 }
-enum LivingRoomSubTaskType: String, SubTaskType {
+enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
     case Tables
     case floatingShelves
     case windowBoxSeat
@@ -84,7 +84,7 @@ enum LivingRoomSubTaskType: String, SubTaskType {
         }
     }
 }
-enum DiningRoomSubTaskType: String, SubTaskType {
+enum DiningRoomSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -107,7 +107,7 @@ enum DiningRoomSubTaskType: String, SubTaskType {
         }
     }
 }
-enum OfficeSubTaskType: String, SubTaskType {
+enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -130,7 +130,7 @@ enum OfficeSubTaskType: String, SubTaskType {
         }
     }
 }
-enum BedroomSubTaskType: String, SubTaskType {
+enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -153,7 +153,7 @@ enum BedroomSubTaskType: String, SubTaskType {
         }
     }
 }
-enum PlayroomSubTaskType: String, SubTaskType {
+enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -176,7 +176,7 @@ enum PlayroomSubTaskType: String, SubTaskType {
         }
     }
 }
-enum BathroomSubTaskType: String, SubTaskType {
+enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -199,7 +199,7 @@ enum BathroomSubTaskType: String, SubTaskType {
         }
     }
 }
-enum StorageSubTaskType: String, SubTaskType {
+enum StorageSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -222,7 +222,7 @@ enum StorageSubTaskType: String, SubTaskType {
         }
     }
 }
-enum GarageSubTaskType: String, SubTaskType {
+enum GarageSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
     case organize
     case clean
@@ -245,7 +245,7 @@ enum GarageSubTaskType: String, SubTaskType {
         }
     }
 }
-enum UnknownSubTaskType: String, SubTaskType {
+enum UnknownSubTaskType: String, SubTaskType, CaseIterable {
     case unknown
     
     var name: String { rawValue }

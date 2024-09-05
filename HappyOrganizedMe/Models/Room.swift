@@ -11,7 +11,7 @@ class Room: Identifiable, Displayable {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var roomTypeString: String // Store the raw value of RoomType as a String
     
-    var roomType: RoomType {
+    var roomType: any RoomType {
         get {
             resolveRoomType(from: roomTypeString) ?? UnknownRoomType.unknown
         }
@@ -43,7 +43,7 @@ class Room: Identifiable, Displayable {
     }
     
     // Initializer
-    init(roomType: RoomType, spaces: [Space], project: Project? = nil, isCompleted: Bool = false) {
+    init(roomType: any RoomType, spaces: [Space], project: Project? = nil, isCompleted: Bool = false) {
         self.roomTypeString = roomType.rawValue
         self.spaces = spaces
         self.project = project

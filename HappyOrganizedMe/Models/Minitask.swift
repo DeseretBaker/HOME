@@ -14,7 +14,7 @@ class MiniTask: Identifiable, Displayable {
     @Attribute var miniTaskTypeString: String // Store the raw value of the task type
 
     // Computed property to get the `MiniTaskType` enum from the stored raw value
-    var miniTaskType: MiniTaskType {
+    var miniTaskType: any MiniTaskType {
         get {
             resolveMiniTaskType(from: miniTaskTypeString) ?? UnknownMiniTaskType.unknown
         }
@@ -40,7 +40,7 @@ class MiniTask: Identifiable, Displayable {
     }
     
     // Initializer
-    init(miniTaskType: MiniTaskType, isCompleted: Bool = false) {
+    init(miniTaskType: any MiniTaskType, isCompleted: Bool = false) {
         self.miniTaskTypeString = miniTaskType.rawValue
         self._isCompleted = isCompleted
     }

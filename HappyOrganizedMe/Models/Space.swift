@@ -14,7 +14,7 @@ class Space: Identifiable, Displayable {
     @Attribute var spaceTypeString: String // Store the raw value of SpaceType as a String
     
     // Computed property to get the `SpaceType` enum from the stored raw value
-    var spaceType: SpaceType {
+    var spaceType: any SpaceType {
         get {
             resolveSpaceType(from: spaceTypeString) ?? UnknownSpaceType.unknown
         }
@@ -46,7 +46,7 @@ class Space: Identifiable, Displayable {
     }
     
     // Initializer
-    init(spaceType: SpaceType, subTasks: [SubTask], room: Room? = nil, isCompleted: Bool = false) {
+    init(spaceType: any SpaceType, subTasks: [SubTask], room: Room? = nil, isCompleted: Bool = false) {
         self.spaceTypeString = spaceType.rawValue
         self.room = room
         self.subTasks = subTasks

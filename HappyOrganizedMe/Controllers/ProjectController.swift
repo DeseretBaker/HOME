@@ -28,15 +28,17 @@ class ProjectController: ObservableObject {
     
     // Function to load projects
     func loadProjects() {
-        // Attempt to load projects from persistent storage
         let fetchDescriptor = FetchDescriptor<Project>()
         if let loadedProjects = try? modelContext!.fetch(fetchDescriptor), !loadedProjects.isEmpty {
             projects = loadedProjects
+            print("Projects loaded: \(projects)")
+            for project in projects {
+                print("Project: \(project.name), Rooms: \(project.rooms.count)")
+            }
         } else {
             loadBaseProjects()
         }
     }
-    
     // Function to load base projects
     func loadBaseProjects() {
         if projects.isEmpty {
