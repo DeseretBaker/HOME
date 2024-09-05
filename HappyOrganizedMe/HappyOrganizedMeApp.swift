@@ -4,7 +4,6 @@
 //
 //  Created by Deseret Baker on 8/14/24.
 //
-
 import SwiftUI
 import SwiftData
 
@@ -12,6 +11,7 @@ import SwiftData
 struct HappyOrganizedMeApp: App {
     @StateObject private var projectController = ProjectController.shared
     @Environment(\.modelContext) private var modelContext
+
     // Shared model container for the app
     static var sharedModelContainer: ModelContainer = {
         do {
