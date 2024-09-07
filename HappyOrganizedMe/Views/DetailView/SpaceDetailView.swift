@@ -13,7 +13,7 @@ struct SpaceDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 10) {
                 // Space Header
                 VStack(alignment: .leading, spacing: 10) {
                     Text(space.name)

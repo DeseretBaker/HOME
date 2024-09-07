@@ -32,8 +32,8 @@ class BaseProjectsController: ObservableObject {
 
     private func createBaseProjects() -> [Project] {
         let projectTypes: [ProjectType] = [
-            .kitchen, .garage, .bathroom, .storage, .bedroom,
-            .office, .playroom, .livingRoom, .diningRoom
+            .kitchen, .livingRoom, .diningRoom, .bedroom, .bathroom,
+            .office, .playroom, .storage, .garage
         ]
 
         let projects = projectTypes.map { projectType in

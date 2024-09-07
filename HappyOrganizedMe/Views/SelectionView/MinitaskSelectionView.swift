@@ -68,7 +68,7 @@ struct MiniTaskCardView: View {
             Image(miniTask.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 120)
+                .frame(height: 110)
                 .clipped()
                 .cornerRadius(10)
             

@@ -22,7 +22,7 @@ enum KitchenRoomType: String, RoomType {
     case galleyKitchen
     case singleWallKitchen
     case openPlanKitchen
-    case kitchenetteCompactKitchen
+    case kitchenette
     case outdoorKitchen
     
     var name: String { rawValue }
@@ -32,7 +32,7 @@ enum KitchenRoomType: String, RoomType {
         case .islandKitchen, .uShapedKitchen: return 5.0
         case .lShapedKitchen, .galleyKitchen: return 4.0
         case .singleWallKitchen: return 3.0
-        case .openPlanKitchen, .kitchenetteCompactKitchen: return 2.0
+        case .openPlanKitchen, .kitchenette: return 2.0
         case .outdoorKitchen: return 1.0
         }
     }
@@ -42,9 +42,9 @@ enum KitchenRoomType: String, RoomType {
     }
 }
 enum LivingRoomType: String, RoomType {
-    case lShapedLivingRoom
-    case uShapedLivingRoom
-    case openPlanLivingRoom
+//    case lShapedLivingRoom
+//    case uShapedLivingRoom
+    case livingRoom
     case familyRoom
     case lounge
     
@@ -52,9 +52,9 @@ enum LivingRoomType: String, RoomType {
     var imageName: String { rawValue }
     var weight: Double {
         switch self {
-        case .lShapedLivingRoom: return 3.0
-        case .uShapedLivingRoom: return 3.0
-        case .openPlanLivingRoom: return 3.0
+//        case .lShapedLivingRoom: return 3.0
+//        case .uShapedLivingRoom: return 3.0
+        case .livingRoom: return 3.0
         case .familyRoom: return 3.0
         case .lounge: return 3.0
         }
@@ -67,7 +67,7 @@ enum BedroomRoomType: String, RoomType {
     case masterBedroom
     case childrensBedroom
     case youngAdultBedroom
-    case guestBedroom
+//    case guestBedroom
     
     var name: String { rawValue }
     var imageName: String { rawValue }
@@ -76,7 +76,7 @@ enum BedroomRoomType: String, RoomType {
         case .masterBedroom: return 1.0
         case .childrensBedroom: return 1.0
         case .youngAdultBedroom: return 1.0
-        case .guestBedroom: return 1.0
+//        case .guestBedroom: return 1.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -85,24 +85,24 @@ enum BedroomRoomType: String, RoomType {
 }
 enum BathroomRoomType: String, RoomType {
     case halfBath
-    case jackJill
-    case quarterBath
-    case fullBath
+//    case jackJill
+//    case quarterBath
+//    case fullBath
     case guestBath
     case masterBath
-    case powderRoom
+//    case powderRoom
     
     var name: String { rawValue }
     var imageName: String { rawValue }
     var weight: Double {
         switch self {
         case .halfBath: return 2.0
-        case.jackJill: return 2.0
-        case .quarterBath: return 2.0
-        case.fullBath: return 2.0
+//        case.jackJill: return 2.0
+//        case .quarterBath: return 2.0
+//        case.fullBath: return 2.0
         case .guestBath: return 2.0
         case.masterBath: return 2.0
-        case .powderRoom: return 2.0
+//        case .powderRoom: return 2.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -113,9 +113,9 @@ enum DiningRoomType: String, RoomType {
     case diningRoom
     case breakfastNook
     case formalDining
-    case openDining
-    case casualDining
-    case diningRoomWithBar
+//    case openDining
+//    case casualDining
+//    case diningRoomWithBar
     
     var name: String { rawValue }
     var imageName: String { rawValue }
@@ -124,9 +124,9 @@ enum DiningRoomType: String, RoomType {
         case .diningRoom: return 1.0
         case .breakfastNook: return 1.0
         case .formalDining: return 1.0
-        case .openDining: return 1.0
-        case .casualDining: return 1.0
-        case .diningRoomWithBar: return 1.0
+//        case .openDining: return 1.0
+//        case .casualDining: return 1.0
+//        case .diningRoomWithBar: return 1.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -137,9 +137,9 @@ enum GarageRoomType: String, RoomType {
     case oneCarGarage
     case twoCarGarage
     case threeCarGarage
-    case fourCarGarage
-    case fiveCarGarage
-    case sixCarGarage
+//    case fourCarGarage
+//    case fiveCarGarage
+//    case sixCarGarage
     case carport
     
     var name: String { rawValue }
@@ -150,9 +150,9 @@ enum GarageRoomType: String, RoomType {
         case .oneCarGarage: return 5.0
         case .twoCarGarage: return 5.0
         case .threeCarGarage: return 5.0
-        case .fourCarGarage: return 5.0
-        case .fiveCarGarage: return 5.0
-        case .sixCarGarage: return 5.0
+//        case .fourCarGarage: return 5.0
+//        case .fiveCarGarage: return 5.0
+//        case .sixCarGarage: return 5.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -162,9 +162,9 @@ enum GarageRoomType: String, RoomType {
 enum OfficeType: String, RoomType {
     case creativeOffice
     case homeOffice
-    case openPlanOffice
-    case sharedSpaceOffice
-    case studentOffice
+//    case openPlanOffice
+    case sharedOffice
+//    case studentOffice
     
     var name: String { rawValue }
     var imageName: String { rawValue }
@@ -172,9 +172,9 @@ enum OfficeType: String, RoomType {
         switch self {
         case .creativeOffice: return 2.0
         case .homeOffice: return 2.0
-        case .openPlanOffice: return 2.0
-        case .sharedSpaceOffice: return 2.0
-        case .studentOffice: return 2.0
+//        case .openPlanOffice: return 2.0
+        case .sharedOffice: return 2.0
+//        case .studentOffice: return 2.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -182,25 +182,25 @@ enum OfficeType: String, RoomType {
     }
 }
 enum PlayroomRoomType: String, RoomType {
-    case creativePlayroom
-    case fantasyPlayroom
+//    case creativePlayroom
+//    case fantasyPlayroom
     case gameRoom
     case movieRoom
-    case storytellerRoom
-    case adventureRoom
-    case outdoorPlayRoom
+//    case storytellerRoom
+//    case adventureRoom
+//    case outdoorPlayRoom
     
     var name: String { rawValue }
     var imageName: String { rawValue }
     var weight: Double {
         switch self {
-        case .creativePlayroom: return 4.0
-        case .fantasyPlayroom: return 4.0
+//        case .creativePlayroom: return 4.0
+//        case .fantasyPlayroom: return 4.0
         case .gameRoom: return 4.0
         case .movieRoom: return 4.0
-        case .storytellerRoom: return 4.0
-        case .adventureRoom: return 4.0
-        case .outdoorPlayRoom: return 4.0
+//        case .storytellerRoom: return 4.0
+//        case .adventureRoom: return 4.0
+//        case .outdoorPlayRoom: return 4.0
         }
     }
     static var allRoomTypes: [any RoomType] {
@@ -210,16 +210,16 @@ enum PlayroomRoomType: String, RoomType {
 enum StorageRoomType: String, RoomType {
     case pantry
     case closet
-    case basement
-    case attic
+//    case basement
+//    case attic
     case storage
     
     var name: String { rawValue }
     var imageName: String { rawValue }
     var weight: Double {
         switch self {
-        case .basement: return 5.0
-        case .attic: return 5.0
+//        case .basement: return 5.0
+//        case .attic: return 5.0
         case .pantry: return 3.0
         case .closet: return 3.0
         case .storage: return 3.0

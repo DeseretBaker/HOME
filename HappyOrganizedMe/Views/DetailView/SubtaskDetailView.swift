@@ -44,7 +44,7 @@ struct SubTaskDetailView: View {
                 .font(.headline)
                 .padding(.leading)
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(subTask.miniTasks) { miniTask in
                     NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
                         MiniTaskCardView(miniTask: miniTask)

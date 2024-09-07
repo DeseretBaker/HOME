@@ -10,14 +10,14 @@ import Foundation
 /// Represents different types of projects in the HappyOrganizedMe app.
 enum ProjectType: String, Codable, CaseIterable {
     case kitchen
-    case garage
-    case bathroom
-    case storage
-    case bedroom
-    case office
-    case playroom
-    case livingRoom
     case diningRoom
+    case livingRoom    
+    case bedroom
+    case bathroom
+    case playroom
+    case office
+    case storage
+    case garage
     
     /// The display name for the project type.
     var name: String {

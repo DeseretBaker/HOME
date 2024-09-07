@@ -35,7 +35,7 @@ struct RoomSelectionView: View {
         }
         .navigationTitle("Select a Room")
         .toolbar {
-            EditButton()
+            //EditButton()
         }
         .onAppear {
             print("Rooms available: \(project.rooms.count)")

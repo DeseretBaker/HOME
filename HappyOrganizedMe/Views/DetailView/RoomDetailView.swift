@@ -75,13 +75,13 @@ struct SpaceCardView: View {
                 Image(space.imageName)
                     .resizable()
                     .scaledToFill()
-                    .frame(height: 120)
+                    .frame(height: 110)
                     .clipped()
                     .cornerRadius(10)
             } else {
                 Rectangle()
                     .fill(Color.gray.opacity(0.2))
-                    .frame(height: 120)
+                    .frame(height: 110)
                     .cornerRadius(10)
                     .overlay(
                         Text("No Image")

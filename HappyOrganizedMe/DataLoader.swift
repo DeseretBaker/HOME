@@ -9,20 +9,21 @@ struct DataLoader {
             return KitchenRoomType.allCases.map { type in
                 Room(roomType: type, spaces: loadSpaces(for: type))
             }
-        case ProjectType.garage:
-            return GarageRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
+        case ProjectType.diningRoom:
+            return DiningRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type)
+                )
             }
-        case ProjectType.bathroom:
-            return BathroomRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.storage:
-            return StorageRoomType.allCases.map { type in
+        case ProjectType.livingRoom:
+            return LivingRoomType.allCases.map { type in
                 Room(roomType: type, spaces: loadSpaces(for: type))
             }
         case ProjectType.bedroom:
             return BedroomRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
+            }
+        case ProjectType.bathroom:
+            return BathroomRoomType.allCases.map { type in
                 Room(roomType: type, spaces: loadSpaces(for: type))
             }
         case ProjectType.office:
@@ -33,14 +34,13 @@ struct DataLoader {
             return PlayroomRoomType.allCases.map { type in
                 Room(roomType: type, spaces: loadSpaces(for: type))
             }
-        case ProjectType.livingRoom:
-            return LivingRoomType.allCases.map { type in
+        case ProjectType.storage:
+            return StorageRoomType.allCases.map { type in
                 Room(roomType: type, spaces: loadSpaces(for: type))
             }
-        case ProjectType.diningRoom:
-            return DiningRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type)
-                )
+        case ProjectType.garage:
+            return GarageRoomType.allCases.map { type in
+                Room(roomType: type, spaces: loadSpaces(for: type))
             }
         default:
             print("No rooms for \(projectType)")
@@ -54,20 +54,21 @@ struct DataLoader {
             return KitchenSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
+        case is DiningRoomType:
+            return DiningRoomSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType)
+                )
+            }
         case is LivingRoomType:
             return LivingRoomSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
-        case is GarageRoomType:
-            return GarageSpaceType.allCases.map { spaceType in
+        case is BedroomRoomType:
+            return BedroomSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
         case is BathroomRoomType:
             return BathroomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
-        case is StorageRoomType:
-            return StorageSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
         case is OfficeType:
@@ -78,14 +79,13 @@ struct DataLoader {
             return PlayroomSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
-        case is BedroomRoomType:
-            return BedroomSpaceType.allCases.map { spaceType in
+        case is StorageRoomType:
+            return StorageSpaceType.allCases.map { spaceType in
                 Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
-        case is DiningRoomType:
-            return DiningRoomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType)
-                )
+        case is GarageRoomType:
+            return GarageSpaceType.allCases.map { spaceType in
+                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
             }
         default:
             print("Unknown room type: \(roomType)")
@@ -98,54 +98,6 @@ struct DataLoader {
         switch spaceType {
         case is KitchenSpaceType:
             return KitchenSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is GarageSpaceType:
-            return GarageSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is BathroomSpaceType:
-            return BathroomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is StorageSpaceType:
-            return StorageSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is OfficeSpaceType:
-            return OfficeSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is PlayroomSpaceType:
-            return PlayroomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is BedroomSpaceType:
-            return BedroomSubTaskType.allCases.map { subTaskType in
                 SubTask(
                     subTaskType: subTaskType,
                     space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
@@ -168,6 +120,54 @@ struct DataLoader {
                     miniTasks: loadMiniTasks(for: subTaskType)
                 )
             }
+        case is BedroomSpaceType:
+            return BedroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is BathroomSpaceType:
+            return BathroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is OfficeSpaceType:
+            return OfficeSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is PlayroomSpaceType:
+            return PlayroomSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is StorageSpaceType:
+            return StorageSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
+        case is GarageSpaceType:
+            return GarageSubTaskType.allCases.map { subTaskType in
+                SubTask(
+                    subTaskType: subTaskType,
+                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
+                    miniTasks: loadMiniTasks(for: subTaskType)
+                )
+            }
         default:
             print("Unknown space type: \(spaceType)")
             return []
@@ -180,16 +180,20 @@ struct DataLoader {
             return KitchenMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
-        case is GarageSubTaskType:
-            return GarageMiniTaskType.allCases.map { miniTaskType in
+        case is LivingRoomSubTaskType:
+            return LivingRoomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is DiningRoomSubTaskType:
+            return DiningRoomMiniTaskType.allCases.map { miniTaskType in
+                MiniTask(miniTaskType: miniTaskType)
+            }
+        case is BedroomSubTaskType:
+            return BedroomMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
         case is BathroomSubTaskType:
             return BathroomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is StorageSubTaskType:
-            return StorageMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
         case is OfficeSubTaskType:
@@ -200,16 +204,12 @@ struct DataLoader {
             return PlayroomMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
-        case is BedroomSubTaskType:
-            return BedroomMiniTaskType.allCases.map { miniTaskType in
+        case is StorageSubTaskType:
+            return StorageMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
-        case is LivingRoomSubTaskType:
-            return LivingRoomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is DiningRoomSubTaskType:
-            return DiningRoomMiniTaskType.allCases.map { miniTaskType in
+        case is GarageSubTaskType:
+            return GarageMiniTaskType.allCases.map { miniTaskType in
                 MiniTask(miniTaskType: miniTaskType)
             }
         default:

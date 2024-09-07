@@ -12,30 +12,30 @@ struct ProjectSelectionView: View {
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-        
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                if projectController.projects.isEmpty {
-                    Text("No projects available.")
-                        .font(.title)
-                        .padding()
-                } else {
-                    ForEach(projectController.projects) { project in
-                        NavigationLink(destination: RoomSelectionView(project: project)) {
-                            CardView(item: project)
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    if projectController.projects.isEmpty {
+                        Text("No projects available.")
+                            .font(.title)
+                            .padding()
+                    } else {
+                        ForEach(projectController.projects) { project in
+                            NavigationLink(destination: RoomSelectionView(project: project)) {
+                                CardView(item: project)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .onDelete(perform: deleteProject)
                     }
-                    .onDelete(perform: deleteProject)
                 }
+                .padding()
             }
-            .padding()
+            .navigationTitle("Projects")
+            .toolbar {
+               // EditButton()
+            }
         }
-        .navigationTitle("Projects")
-        .toolbar {
-            EditButton()
-        }
-        
     }
     
     private func deleteProject(at offsets: IndexSet) {
