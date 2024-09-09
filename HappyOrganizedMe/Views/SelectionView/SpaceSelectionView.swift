@@ -26,7 +26,7 @@ struct SpaceSelectionView: View {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(room.spaces) { space in
                             NavigationLink(destination: SpaceDetailView(space: space)) {
-                                SpaceCardView(space: space)  // Use the existing SpaceCardView
+                                CardView(item: space)  // Use the existing CardView
                             }
                         }
                     }

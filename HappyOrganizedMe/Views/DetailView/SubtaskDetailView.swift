@@ -15,6 +15,13 @@ struct SubTaskDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 10) {
+                    Image(subTask.imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 125)
+                        .clipped()
+                        .cornerRadius(10)
+                 
                     Text(subTask.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -47,7 +54,7 @@ struct SubTaskDetailView: View {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(subTask.miniTasks) { miniTask in
                     NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
-                        MiniTaskCardView(miniTask: miniTask)
+                        CardView(item: miniTask)
                     }
                 }
             }
@@ -55,11 +62,11 @@ struct SubTaskDetailView: View {
         }
         .navigationTitle("SubTask Details")
         .toolbar {
-            Button(action: {
-                // Action for editing the subtask or adding new miniTasks
-            }) {
-                Image(systemName: "pencil")
-            }
+//            Button(action: {
+//                // Action for editing the subtask or adding new miniTasks
+//            }) {
+//                Image(systemName: "pencil")
+//            }
         }
     }
 }

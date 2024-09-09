@@ -25,7 +25,7 @@ struct SubTaskSelectionView: View {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                             ForEach(space.subTasks) { subTask in
                                 NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
-                                    SubTaskCardView(subTask: subTask)  // Assuming SubTaskCardView is defined elsewhere in your project
+                                    CardView(item: subTask)
                                 }
                             }
                         }
@@ -56,40 +56,40 @@ struct SubTaskSelectionView: View {
     }
 }
 
-struct SubTaskCardView: View {
-    var subTask: SubTask
-    
-    var imageName: String {
-        if !subTask.imageName.isEmpty {
-            return subTask.imageName
-        } else {
-            return "defaultImage"
-        }
-    }
-    
-    var body: some View {
-        VStack {
-            Image(imageName)  // Provide a default image if nil
-                .resizable()
-                .scaledToFill()
-                .frame(height: 150)
-                .clipped()
-                .cornerRadius(10)
-            
-            Text(subTask.name)
-                .font(.headline)
-                .padding(.top, 5)
-            
-            ProgressView(value: subTask.progress, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .green))
-            
-            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-    }
-}
+//struct SubTaskCardView: View {
+//    var subTask: SubTask
+//    
+//    var imageName: String {
+//        if !subTask.imageName.isEmpty {
+//            return subTask.imageName
+//        } else {
+//            return "defaultImage"
+//        }
+//    }
+//    
+//    var body: some View {
+//        VStack {
+//            Image(imageName)  // Provide a default image if nil
+//                .resizable()
+//                .scaledToFill()
+//                .frame(height: 150)
+//                .clipped()
+//                .cornerRadius(10)
+//            
+//            Text(subTask.name)
+//                .font(.headline)
+//                .padding(.top, 5)
+//            
+//            ProgressView(value: subTask.progress, total: 100)
+//                .progressViewStyle(LinearProgressViewStyle(tint: .green))
+//            
+//            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
+//                .font(.subheadline)
+//                .foregroundColor(.secondary)
+//        }
+//        .padding()
+//        .background(Color.white)
+//        .cornerRadius(10)
+//        .shadow(radius: 5)
+//    }
+//}

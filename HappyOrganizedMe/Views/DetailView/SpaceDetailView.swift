@@ -15,6 +15,12 @@ struct SpaceDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 // Space Header
+                Image(space.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 125)
+                    .clipped()
+                    .cornerRadius(10)
                 VStack(alignment: .leading, spacing: 10) {
                     Text(space.name)
                         .font(.largeTitle)
@@ -43,7 +49,7 @@ struct SpaceDetailView: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(space.subTasks) { subTask in
                         NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
-                            SubTaskCardView2(subTask: subTask)
+                            CardView(item: subTask)
                         }
                     }
                 }
@@ -60,39 +66,39 @@ struct SpaceDetailView: View {
             Button(action: {
                 // Action for editing the space or adding new subtasks
             }) {
-                Image(systemName: "pencil")
+//                Image(systemName: "pencil")
             }
         }
     }
 }
 
 // SubTaskCardView extracted as a separate struct to display individual subtask cards.
-struct SubTaskCardView2: View {
-    var subTask: SubTask
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Image(subTask.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 110)
-                .clipped()
-                .cornerRadius(10)
-            
-            Text(subTask.name)
-                .font(.headline)
-                .padding(.top, 5)
-            
-            ProgressView(value: subTask.progress, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
-            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-    }
-}
+//struct SubTaskCardView2: View {
+//    var subTask: SubTask
+//    
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            Image(subTask.imageName)
+//                .resizable()
+//                .scaledToFill()
+//                .frame(height: 110)
+//                .clipped()
+//                .cornerRadius(10)
+//            
+//            Text(subTask.name)
+//                .font(.headline)
+//                .padding(.top, 5)
+//            
+//            ProgressView(value: subTask.progress, total: 100)
+//                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+//            
+//            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
+//                .font(.subheadline)
+//                .foregroundColor(.secondary)
+//        }
+//        .padding()
+//        .background(Color.white)
+//        .cornerRadius(10)
+//        .shadow(radius: 5)
+//    }
+//}

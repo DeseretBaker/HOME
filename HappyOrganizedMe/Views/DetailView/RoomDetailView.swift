@@ -16,6 +16,13 @@ struct RoomDetailView: View {
             VStack(alignment: .leading, spacing: 10) {
                 // Room Header
                 VStack(alignment: .leading, spacing: 10) {
+                    Image(room.imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 125)
+                        .clipped()
+                        .cornerRadius(10)
+                    
                     Text(room.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -48,61 +55,61 @@ struct RoomDetailView: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(room.spaces) { space in
                         NavigationLink(destination: SpaceDetailView(space: space)) {
-                            SpaceCardView(space: space)
+                            CardView(item: space)
                         }
                     }
                 }
                 .padding([.leading, .trailing])
             }
         }
-        .navigationTitle("Room Details")
-        .toolbar {
-            Button(action: {
+        .navigationTitle("Break It Down")
+//        .toolbar {
+//            Button(action: {
                 // Action for editing the room or adding new spaces
-            }) {
-                Image(systemName: "pencil")
-            }
-        }
+//            }) {
+//                Image(systemName: "pencil")
+//            }
+//        }
     }
 }
 
-struct SpaceCardView: View {
-    var space: Space
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if !space.imageName.isEmpty {
-                Image(space.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 110)
-                    .clipped()
-                    .cornerRadius(10)
-            } else {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2))
-                    .frame(height: 110)
-                    .cornerRadius(10)
-                    .overlay(
-                        Text("No Image")
-                            .foregroundColor(.secondary)
-                    )
-            }
-            
-            Text(space.name)
-                .font(.headline)
-                .padding(.top, 5)
-            
-            ProgressView(value: space.progress, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
-            Text("Progress: \(String(format: "%.0f", space.progress))%")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-    }
-}
+//struct SpaceCardView: View {
+//    var space: Space
+//    
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            if !space.imageName.isEmpty {
+//                Image(space.imageName)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(height: 110)
+//                    .clipped()
+//                    .cornerRadius(10)
+//            } else {
+//                Rectangle()
+//                    .fill(Color.gray.opacity(0.2))
+//                    .frame(height: 110)
+//                    .cornerRadius(10)
+//                    .overlay(
+//                        Text("No Image")
+//                            .foregroundColor(.secondary)
+//                    )
+//            }
+//            
+//            Text(space.name)
+//                .font(.headline)
+//                .padding(.top, 5)
+//            
+//            ProgressView(value: space.progress, total: 100)
+//                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+//            
+//            Text("Progress: \(String(format: "%.0f", space.progress))%")
+//                .font(.subheadline)
+//                .foregroundColor(.secondary)
+//        }
+//        .padding()
+//        .background(Color.white)
+//        .cornerRadius(10)
+//        .shadow(radius: 5)
+//    }
+//}
