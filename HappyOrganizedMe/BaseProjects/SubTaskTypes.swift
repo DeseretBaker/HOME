@@ -68,33 +68,38 @@ enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
     }
 }
 enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
-    case Tables
-    case floatingShelves
-    case windowBoxSeat
-    case bookshelf
-    case cornerShelves
-    case ottoman
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    case livingRoomSideTable
+    case livingRoomCoffeeTable
+    case livingRoomConsoleTable
+    case livingRoomDesk
+    case livingRoomShelving
+    case livingRoomOttoman
+    case livingRoomWindowBoxSeat
+
+    var name: String {
         switch self {
-        case .Tables: return 2.0
-        case .floatingShelves: return 2.0
-        case .windowBoxSeat: return 2.0
-        case .bookshelf: return 2.0
-        case .cornerShelves: return 2.0
-        case .ottoman: return 2.0
+        case .livingRoomSideTable: return "Side tables"
+        case .livingRoomCoffeeTable: return "Coffee tables"
+        case .livingRoomConsoleTable: return "Console tables"
+        case .livingRoomDesk: return "Desks"
+        case .livingRoomShelving: return "Shelving"
+        case .livingRoomOttoman: return "Ottomans"
+        case .livingRoomWindowBoxSeat: return "Window box seats"
         }
     }
+var imageName: String { rawValue }
+    
+    var weight: Double { 2.0 }
+            
     var description: String {
         switch self {
-        case .Tables: return "Tables!"
-        case .floatingShelves: return "Floating Shelves!"
-        case .windowBoxSeat: return "Window Box Seats!"
-        case .bookshelf: return "Bookshelves!"
-        case .cornerShelves: return "Corner Shelves!"
-        case .ottoman: return "Ottomans!"
+        case .livingRoomSideTable: return "These are small tables placed beside sofas or armchairs, typically used to hold lamps, drinks, or small decorative items."
+        case .livingRoomCoffeeTable: return "Coffee tables are central pieces typically placed in front of a sofa or seating area. They are low to the ground and come in various shapes (round, rectangular, square)..."
+        case .livingRoomConsoleTable: return "Console tables are narrow, longer tables usually placed against walls or behind sofas. They are often used for displaying decor, but they can be optimized for storage."
+        case .livingRoomDesk: return "Desks are large, flat surfaces typically placed in front of a sofa or seating area. They are often used for storing books, magazines, or other items."
+        case .livingRoomShelving: return "Bookshelf"
+        case .livingRoomOttoman: return "Ottomans can serve as a table surface when paired with a tray on top, but many also offer hidden storage inside."
+        case .livingRoomWindowBoxSeat: return "Window box seats are small, low-profile benches that are usually placed in a bay window, these are a great place to store soft items ie: throw pillows, blankets, table linens, seat cushions."
         }
     }
 }
