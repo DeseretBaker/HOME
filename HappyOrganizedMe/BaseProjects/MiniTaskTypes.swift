@@ -23,8 +23,20 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -40,6 +52,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -51,8 +64,20 @@ enum LivingRoomMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -68,6 +93,7 @@ enum LivingRoomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -79,8 +105,20 @@ enum DiningRoomMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -96,6 +134,7 @@ enum DiningRoomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -107,8 +146,20 @@ enum OfficeMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -124,6 +175,7 @@ enum OfficeMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -135,8 +187,20 @@ enum BedroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -152,6 +216,7 @@ enum BedroomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -163,8 +228,20 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
     var imageName: String { self.rawValue }
     
@@ -180,6 +257,7 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -191,10 +269,23 @@ enum StorageMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
-    var imageName: String { self.rawValue }
+    var imageName: String { rawValue }
+        
     
     var weight: Double { 1.0 }
 
@@ -208,6 +299,7 @@ enum StorageMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -219,10 +311,23 @@ enum BathroomMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
-    var imageName: String { self.rawValue }
+    var imageName: String { rawValue }
+       
     
     var weight: Double { 1.0 }
 
@@ -236,6 +341,7 @@ enum BathroomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
@@ -247,10 +353,23 @@ enum GarageMiniTaskType: String, MiniTaskType, CaseIterable {
     case group
     case contain
     case label
+    case assign
     
-    var name: String { self.rawValue }
+    var name: String {
+        switch self {
+        case .remove: return "remove"
+        case .clean: return "clean"
+        case .categorize: return "categorize"
+        case .sort: return "sort"
+        case .group: return "group"
+        case .contain: return "contain"
+        case .label: return "label"
+        case .assign: return "assign"
+        }
+    }
     
-    var imageName: String { self.rawValue }
+    var imageName: String { rawValue }
+        
     
     var weight: Double { 1.0 }
 
@@ -259,11 +378,12 @@ enum GarageMiniTaskType: String, MiniTaskType, CaseIterable {
         switch self {
         case .remove: return "Remove all items from the section you are working in, place them on the counter, table, or on a tarp or blanket on the floor."
         case .clean: return "Clean the surface,  If the surface is made of wood, use a wood cleaner or a damp cloth followed by a dry cloth to avoid water damage. For metal or glass shelves, use a gentle cleaner or a mixture of water and vinegar to clean surfaces."
-        case .categorize: return "Categorize items, if you have items that belong to another room, place them in a box or a basket and put them in the appropriate room at the end."
+        case .categorize: return "Categorize items, creating logical groupings to make managing, accessing, and maintaining your space more efficient and effective."
         case .sort: return "Sort items, into four sections: keep, donate, belongs to someone else or somewhere else, trash(throw items away immediately, you don't want to risk them getting put back into your space)."
         case .group: return "Group similar items, place items that belong to the same category together."
         case .contain: return "Contain items place like items that belong to the same category together in baskets or boxes."
         case .label: return "Label containers or shelves, if you know where it goes it will be easier to put back."
+        case .assign: return "Once items are categorized, assign specific storage spaces or zones for each category. For example, books may go on a bookshelf, electronics in a media console, and decor on display surfaces."
         }
     }
 }
