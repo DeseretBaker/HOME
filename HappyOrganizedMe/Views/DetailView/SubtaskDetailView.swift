@@ -25,6 +25,7 @@ struct SubTaskDetailView: View {
                     Text(subTask.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                    Text(subTask.usageDescription) // TODO: Make me pretty!
                 }
                 
                 ProgressView(value: subTask.progress, total: 100)
