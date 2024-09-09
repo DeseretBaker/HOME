@@ -12,7 +12,7 @@ import SwiftData
 class SubTask: Identifiable, Displayable {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var subTaskTypeString: String // Store the raw value of SubTaskType as a String
-    
+    var usageDescription: String
     // Computed property to get the `SubTaskType` enum from the stored raw value
     var subTaskType: any SubTaskType {
         get {
@@ -52,6 +52,7 @@ class SubTask: Identifiable, Displayable {
         self.space = space
         self.miniTasks = miniTasks
         self._isCompleted = isCompleted
+        self.usageDescription = subTaskType.description
     }
     
     // Method to toggle the completion status

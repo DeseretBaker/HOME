@@ -12,6 +12,7 @@ protocol SubTaskType: Codable, CaseIterable {
     var imageName: String { get }
     var weight: Double { get }
     var rawValue: String { get }
+    var description: String { get }
     init?(rawValue: String)
 }
 enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
@@ -62,6 +63,9 @@ enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
         case .trashAndRecycling: return 1.0
         }
     }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
 enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
     case Tables
@@ -81,6 +85,16 @@ enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
         case .bookshelf: return 2.0
         case .cornerShelves: return 2.0
         case .ottoman: return 2.0
+        }
+    }
+    var description: String {
+        switch self {
+        case .Tables: return "Tables!"
+        case .floatingShelves: return "Floating Shelves!"
+        case .windowBoxSeat: return "Window Box Seats!"
+        case .bookshelf: return "Bookshelves!"
+        case .cornerShelves: return "Corner Shelves!"
+        case .ottoman: return "Ottomans!"
         }
     }
 }
@@ -106,6 +120,9 @@ enum DiningRoomSubTaskType: String, SubTaskType, CaseIterable {
         case .repairsAndUpdates: return 3
         }
     }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
 enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
@@ -128,6 +145,9 @@ enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
+    }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
@@ -152,6 +172,9 @@ enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
         case .repairsAndUpdates: return 3
         }
     }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
 enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
@@ -174,6 +197,9 @@ enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
+    }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
@@ -198,6 +224,9 @@ enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
         case .repairsAndUpdates: return 3
         }
     }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
 enum StorageSubTaskType: String, SubTaskType, CaseIterable {
     case declutter
@@ -220,6 +249,9 @@ enum StorageSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
+    }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum GarageSubTaskType: String, SubTaskType, CaseIterable {
@@ -244,6 +276,9 @@ enum GarageSubTaskType: String, SubTaskType, CaseIterable {
         case .repairsAndUpdates: return 3
         }
     }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
 enum UnknownSubTaskType: String, SubTaskType, CaseIterable {
     case unknown
@@ -251,4 +286,7 @@ enum UnknownSubTaskType: String, SubTaskType, CaseIterable {
     var name: String { rawValue }
     var imageName: String { rawValue }
     var weight: Double { 0.0 }
+    var description: String {
+        "Bananas!" // FIXME: Change this to a switch that gives actual data
+    }
 }
