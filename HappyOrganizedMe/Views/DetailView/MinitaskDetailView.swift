@@ -14,6 +14,13 @@ struct MiniTaskDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            Image(miniTask.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 125)
+                .clipped()
+                .cornerRadius(10)
+            
             Text(miniTask.name)
                 .font(.title)
                 .fontWeight(.bold)

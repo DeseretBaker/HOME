@@ -17,14 +17,17 @@ struct ProjectDetailView: View {
             VStack(alignment: .leading, spacing: 10) {
                 // Project Header
                 VStack(alignment: .leading, spacing: 10) {
+                    Image(project.imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 125)
+                        .clipped()
+                        .cornerRadius(10)
+                                    
                     Text(project.name)
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
-                    
-                    Text("Projects")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
                     
                     ProgressView(value: project.progress, total: 100)
                         .progressViewStyle(LinearProgressViewStyle(tint: .green))

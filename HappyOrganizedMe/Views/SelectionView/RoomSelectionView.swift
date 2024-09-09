@@ -18,7 +18,7 @@ struct RoomSelectionView: View {
         VStack {
             if project.rooms.isEmpty {
                 Text("No rooms available in this project.")
-                    .font(.headline)
+                    .font(.caption)
                     .padding()
             } else {
                 ScrollView {
@@ -33,7 +33,7 @@ struct RoomSelectionView: View {
                 }
             }
         }
-        .navigationTitle("Select a Room")
+        .navigationTitle("Areas to work on")
         .toolbar {
             //EditButton()
         }
