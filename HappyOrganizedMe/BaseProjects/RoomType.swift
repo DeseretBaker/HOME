@@ -16,215 +16,210 @@ protocol RoomType: Codable, CaseIterable {
 }
 
 enum KitchenRoomType: String, RoomType {
-    case islandKitchen
-    case uShapedKitchen
-    case lShapedKitchen
-    case galleyKitchen
-    case singleWallKitchen
-    case openPlanKitchen
-    case kitchenette
-    case outdoorKitchen
+    case kitchenCabinets
+    case kitchenIsland
+    case kitchenCupboards
+    case kitchenShelves
+    case kitchenCountertops
+    case kitchenDrawers
     
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    var name: String {
         switch self {
-        case .islandKitchen, .uShapedKitchen: return 5.0
-        case .lShapedKitchen, .galleyKitchen: return 4.0
-        case .singleWallKitchen: return 3.0
-        case .openPlanKitchen, .kitchenette: return 2.0
-        case .outdoorKitchen: return 1.0
+        case .kitchenCabinets: return "Cabinets"
+        case .kitchenIsland: return "Island"
+        case .kitchenCupboards: return "Cupboards"
+        case .kitchenShelves: return "Shelves"
+        case .kitchenCountertops: return "Countertops"
+        case .kitchenDrawers: return "Drawers"
         }
     }
+    var imageName: String { rawValue }
+    var weight: Double { 3.0 }
+       
     // Provide all cases statically
     static var allRoomTypes: [any RoomType] {
         return KitchenRoomType.allCases.map { $0 }
     }
 }
 enum LivingRoomType: String, RoomType {
-//    case lShapedLivingRoom
-//    case uShapedLivingRoom
-    case livingRoom
-    case familyRoom
-    case lounge
+
+    case livingRoomSeating
+    case livingRoomTables
+    case livingRoomShelves
     
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    var name: String {
         switch self {
-//        case .lShapedLivingRoom: return 3.0
-//        case .uShapedLivingRoom: return 3.0
-        case .livingRoom: return 3.0
-        case .familyRoom: return 3.0
-        case .lounge: return 3.0
+        case .livingRoomSeating: return "Seating"
+        case .livingRoomTables: return "Tables"
+        case .livingRoomShelves: return "Shelves"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 1.0 }
+    
     static var allRoomTypes: [any RoomType] {
         return LivingRoomType.allCases.map { $0 }
     }
 }
 enum BedroomRoomType: String, RoomType {
-    case masterBedroom
-    case childrensBedroom
-    case youngAdultBedroom
-//    case guestBedroom
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    case bedroomSeating
+    case bedroomTables
+    case bedroomShelves
+    case bedroomDresser
+    case bedroomDesk
+
+    var name: String {
         switch self {
-        case .masterBedroom: return 1.0
-        case .childrensBedroom: return 1.0
-        case .youngAdultBedroom: return 1.0
-//        case .guestBedroom: return 1.0
+        case .bedroomSeating: return "Seating"
+        case .bedroomTables: return "Tables"
+        case .bedroomShelves: return "Shelves"
+        case .bedroomDresser: return "Dresser"
+        case .bedroomDesk: return "Desk"
         }
     }
+    var imageName: String { rawValue }
+        
+        var weight: Double { 1.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return BedroomRoomType.allCases.map { $0 }
     }
 }
 enum BathroomRoomType: String, RoomType {
-    case halfBath
-//    case jackJill
-//    case quarterBath
-//    case fullBath
-    case guestBath
-    case masterBath
-//    case powderRoom
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    case bathroomshelves
+    case bathroomCabinets
+    case bathroomTubShower
+ 
+    var name: String {
         switch self {
-        case .halfBath: return 2.0
-//        case.jackJill: return 2.0
-//        case .quarterBath: return 2.0
-//        case.fullBath: return 2.0
-        case .guestBath: return 2.0
-        case.masterBath: return 2.0
-//        case .powderRoom: return 2.0
+        case .bathroomshelves: return "Shelves"
+        case .bathroomCabinets: return "Cabinets"
+        case .bathroomTubShower: return "Tub/Shower"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 2.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return BathroomRoomType.allCases.map { $0 }
     }
 }
 enum DiningRoomType: String, RoomType {
-    case diningRoom
-    case breakfastNook
-    case formalDining
-//    case openDining
-//    case casualDining
-//    case diningRoomWithBar
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    case diningRoomBuffet
+    case diningRoomChinaCabinet
+    case diningRoomShelves
+    case diningRoomBench
+   
+    var name: String {
         switch self {
-        case .diningRoom: return 1.0
-        case .breakfastNook: return 1.0
-        case .formalDining: return 1.0
-//        case .openDining: return 1.0
-//        case .casualDining: return 1.0
-//        case .diningRoomWithBar: return 1.0
+        case .diningRoomBuffet: return "Buffet"
+        case .diningRoomChinaCabinet: return "China cabinet"
+        case .diningRoomShelves: return "Shelves"
+        case .diningRoomBench: return "Bench"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 1.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return DiningRoomType.allCases.map { $0 }
     }
 }
 enum GarageRoomType: String, RoomType {
-    case oneCarGarage
-    case twoCarGarage
-    case threeCarGarage
-//    case fourCarGarage
-//    case fiveCarGarage
-//    case sixCarGarage
-    case carport
+    case garageWorkbench
+    case garageShelving
+    case garageSports
+    case garageCamping
+    case garageOverheadStorage
+    case garageSeasonal
     
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    var name: String {
         switch self {
-        case .carport: return 5.0
-        case .oneCarGarage: return 5.0
-        case .twoCarGarage: return 5.0
-        case .threeCarGarage: return 5.0
-//        case .fourCarGarage: return 5.0
-//        case .fiveCarGarage: return 5.0
-//        case .sixCarGarage: return 5.0
+        case .garageWorkbench: return "Workbench"
+        case .garageShelving: return "Shelving"
+        case .garageSports: return "Sports"
+        case .garageCamping: return "Camping"
+        case .garageOverheadStorage: return "Overhead Storage"
+        case .garageSeasonal: return "Seasonal"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 2.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return GarageRoomType.allCases.map { $0 }
     }
 }
 enum OfficeType: String, RoomType {
-    case creativeOffice
-    case homeOffice
-//    case openPlanOffice
-    case sharedOffice
-//    case studentOffice
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    case officeShelving
+    case officeDesk
+    case officeCabinets
+    case officeDrawers
+ 
+    var name: String {
         switch self {
-        case .creativeOffice: return 2.0
-        case .homeOffice: return 2.0
-//        case .openPlanOffice: return 2.0
-        case .sharedOffice: return 2.0
-//        case .studentOffice: return 2.0
+        case .officeShelving: return "Shelving"
+        case .officeDesk: return "Desk"
+        case .officeCabinets: return "Cabinets"
+        case .officeDrawers: return "Drawers"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 1.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return OfficeType.allCases.map { $0 }
     }
 }
 enum PlayroomRoomType: String, RoomType {
-//    case creativePlayroom
-//    case fantasyPlayroom
-    case gameRoom
-    case movieRoom
-//    case storytellerRoom
-//    case adventureRoom
-//    case outdoorPlayRoom
+    case playroomShelving
+    case playroomDesk
+    case playroomCabinets
+    case playroomDrawers
+    case playroomTables
     
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    var name: String {
         switch self {
-//        case .creativePlayroom: return 4.0
-//        case .fantasyPlayroom: return 4.0
-        case .gameRoom: return 4.0
-        case .movieRoom: return 4.0
-//        case .storytellerRoom: return 4.0
-//        case .adventureRoom: return 4.0
-//        case .outdoorPlayRoom: return 4.0
+        case .playroomShelving: return "Shelving"
+        case .playroomDesk: return "Desk"
+        case .playroomCabinets: return "Cabinets"
+        case .playroomDrawers: return "Drawers"
+        case .playroomTables: return "Tables"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 2.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return PlayroomRoomType.allCases.map { $0 }
     }
 }
 enum StorageRoomType: String, RoomType {
-    case pantry
-    case closet
-//    case basement
-//    case attic
-    case storage
+    case storagePantry
+    case storageCloset
+    case storageUnderStairs
+    case storageBasement
+    case storageAttic
     
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var weight: Double {
+    var name: String {
         switch self {
-//        case .basement: return 5.0
-//        case .attic: return 5.0
-        case .pantry: return 3.0
-        case .closet: return 3.0
-        case .storage: return 3.0
+        case .storagePantry: return "Pantry"
+        case .storageCloset: return "Closet"
+        case .storageUnderStairs: return "Understairs"
+        case .storageBasement: return "Basement"
+        case .storageAttic: return "Attic"
         }
     }
+    var imageName: String { rawValue }
+    
+    var weight: Double { 2.0 }
+        
     static var allRoomTypes: [any RoomType] {
         return StorageRoomType.allCases.map { $0 }
     }
