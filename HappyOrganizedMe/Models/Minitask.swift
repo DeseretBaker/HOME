@@ -12,7 +12,8 @@ import SwiftData
 class MiniTask: Identifiable, Displayable {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var miniTaskTypeString: String // Store the raw value of the task type
-
+    var instruction: String
+    
     // Computed property to get the `MiniTaskType` enum from the stored raw value
     var miniTaskType: any MiniTaskType {
         get {
@@ -43,6 +44,7 @@ class MiniTask: Identifiable, Displayable {
     init(miniTaskType: any MiniTaskType, isCompleted: Bool = false) {
         self.miniTaskTypeString = miniTaskType.rawValue
         self._isCompleted = isCompleted
+        self.instruction = miniTaskType.instruction
     }
     
     func toggleCompleted() {

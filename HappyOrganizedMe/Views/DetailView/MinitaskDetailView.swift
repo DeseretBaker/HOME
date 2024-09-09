@@ -25,9 +25,10 @@ struct MiniTaskDetailView: View {
                 .font(.title)
                 .fontWeight(.bold)
 
-            Text("Step-by-step guide on how to complete this task:")
+            Text(miniTask.instruction)
                 .padding(.bottom, 20)
 
+            // TODO: list of checkable items?
             Spacer()
 
             Button(action: toggleCompletionStatus) {
