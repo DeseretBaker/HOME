@@ -54,6 +54,7 @@ struct SubTaskDetailView: View {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(subTask.miniTasks) { miniTask in
                     NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
+                        // TODO: think about moving away from card view to a checkable list.
                         CardView(item: miniTask)
                     }
                 }
