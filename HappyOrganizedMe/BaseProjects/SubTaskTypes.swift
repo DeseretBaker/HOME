@@ -39,32 +39,32 @@ enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var weight: Double {
-        switch self {
-        case .cookware: return 1.0
-        case .bakeware: return 1.0
-        case .serveWare: return 2.0
-        case .utensils: return 2.0
-        case .smallAppliances: return 1.0
-        case .cookingZone: return 1.0
-        case .drinkZone: return 1.0
-        case .bakingZone: return 1.0
-        case .prepZone: return 1.0
-        case .applianceZone: return 1.0
-        case .servingZone: return 1.0
-        case .dinnerware: return 1.0
-        case .tableware: return 1.0
-        case .foodStorageContainers: return  1.0
-        case .cookbooks: return  1.0
-        case .glassware: return  1.0
-        case .tableLinens: return 1.0
-        case .kitchenAids: return 1.0
-        case .occasionalItems: return 1.0
-        case .trashAndRecycling: return 1.0
-        }
-    }
+    var weight: Double { 1.0 }
+       
     var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
+         // FIXME: Change this to a switch that gives actual data
+        switch self {
+        case .cookware: return ""
+        case .bakeware: return ""
+        case .serveWare: return ""
+        case .utensils: return ""
+        case .smallAppliances: return ""
+        case .cookingZone: return ""
+        case .drinkZone: return ""
+        case .bakingZone: return ""
+        case .prepZone: return ""
+        case .applianceZone: return ""
+        case .servingZone: return ""
+        case .dinnerware: return ""
+        case .tableware: return ""
+        case .foodStorageContainers: return  ""
+        case .cookbooks: return  ""
+        case .glassware: return  ""
+        case .tableLinens: return ""
+        case .kitchenAids: return ""
+        case .occasionalItems: return ""
+        case .trashAndRecycling: return ""
+        }
     }
 }
 enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
