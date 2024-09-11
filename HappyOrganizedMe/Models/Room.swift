@@ -8,9 +8,17 @@ import SwiftData
 
 @Model
 class Room: Identifiable, Displayable {
+    
+    var instructions: String
+    var usageDescription: String
+    var type: String
+    var category: String
+ 
+    
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var roomTypeString: String // Store the raw value of RoomType as a String
     
+    // Computed property to get the `RoomType` enum from the stored raw value
     var roomType: any RoomType {
         get {
             resolveRoomType(from: roomTypeString) ?? UnknownRoomType.unknown
@@ -43,11 +51,15 @@ class Room: Identifiable, Displayable {
     }
     
     // Initializer
-    init(roomType: any RoomType, spaces: [Space], project: Project? = nil, isCompleted: Bool = false) {
+    init(roomType: any RoomType, instructions: String, usageDescription: String, type: String, category: String, spaces: [Space], project: Project? = nil,    isCompleted: Bool = false) {
         self.roomTypeString = roomType.rawValue
         self.spaces = spaces
         self.project = project
         self._isCompleted = isCompleted
+        self.instructions = instructions  // Initialize instructions
+        self.usageDescription = usageDescription  // Initialize usageDescription
+        self.type = type  // Initialize type
+        self.category = category  // Initialize category
     }
 
     func toggleCompleted() {

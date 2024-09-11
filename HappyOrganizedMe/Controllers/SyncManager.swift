@@ -48,7 +48,14 @@ func fetchRemoteProjects(completion: @escaping ([Project]) -> Void) {
     // Simulate fetching projects from a cloud or remote server
     DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
         let remoteProjects: [Project] = [
-            Project(projectType: .kitchen, rooms: []),
+            Project(
+                projectType: .kitchen,
+                instructions: "Instructions for kitchen",
+                usageDescription: "Description for kitchen",
+                type: "Kitchen Type",
+                category: "Home",
+                rooms: [] // No rooms for now
+            ),
             // Add more simulated remote projects if needed
         ]
         completion(remoteProjects)

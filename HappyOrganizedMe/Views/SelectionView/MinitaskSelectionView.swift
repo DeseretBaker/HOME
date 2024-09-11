@@ -25,8 +25,8 @@ struct MiniTaskSelectionView: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(subTask.miniTasks) { miniTask in
-                            NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
-                                MiniTaskCardView(miniTask: miniTask)  // Assuming MiniTaskCardView is defined elsewhere in your project
+                            NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask, checkableItems: [])) {
+                                MiniTaskCardView(miniTask: miniTask, modelContext: modelContext)  // Assuming MiniTaskCardView is defined elsewhere in your project
                             }
                         }
                     }
@@ -61,8 +61,9 @@ struct MiniTaskSelectionView: View {
 
 // MiniTaskCardView - Displays information about a MiniTask
 struct MiniTaskCardView: View {
-    var miniTask: MiniTask
-    
+    @Bindable var miniTask: MiniTask
+    var modelContext: ModelContext  // Accept modelContext as a parameter
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Image(miniTask.imageName)
@@ -71,22 +72,45 @@ struct MiniTaskCardView: View {
                 .frame(height: 110)
                 .clipped()
                 .cornerRadius(10)
-            
+
             Text(miniTask.name)
                 .font(.headline)
                 .padding(.top, 5)
-            
-            ProgressView(value: miniTask.progress, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
-            Text("Progress: \(String(format: "%.0f", miniTask.progress))%")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+
+            ForEach($miniTask.checkableItems) { $item in
+                HStack {
+                    Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
+                        .onTapGesture { item.isCompleted.toggle() }
+                    Text(item.name)
+                }
+                .padding(.vertical, 5)
+            }
+
+            Spacer()
+
+            Button(action: toggleCompletionStatus) {
+                Text(miniTask.isCompleted ? "Mark as Incomplete" : "Mark as Complete")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(miniTask.isCompleted ? Color.red : Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+            }
         }
         .padding()
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 5)
     }
-}
 
+    private func toggleCompletionStatus() {
+        miniTask.isCompleted.toggle()
+
+        do {
+            try modelContext.save()  // Use passed-down modelContext to save
+        } catch {
+            print("Error saving context: \(error.localizedDescription)")
+        }
+    }
+}

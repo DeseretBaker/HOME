@@ -25,7 +25,6 @@ struct SubTaskDetailView: View {
                     Text(subTask.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text(subTask.usageDescription) // TODO: Make me pretty!
                 }
                 
                 ProgressView(value: subTask.progress, total: 100)
@@ -54,8 +53,7 @@ struct SubTaskDetailView: View {
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(subTask.miniTasks) { miniTask in
-                    NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
-                        // TODO: think about moving away from card view to a checkable list.
+                    NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask, checkableItems: [])) {
                         CardView(item: miniTask)
                     }
                 }

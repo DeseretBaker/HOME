@@ -11,7 +11,7 @@ import SwiftData
 struct MiniTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var miniTask: MiniTask
-
+    var checkableItems: [CheckableItem] 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Image(miniTask.imageName)
@@ -25,10 +25,20 @@ struct MiniTaskDetailView: View {
                 .font(.title)
                 .fontWeight(.bold)
 
-            Text(miniTask.instruction)
+            Text("Instructions: \(miniTask.instruction)")
                 .padding(.bottom, 20)
-
-            // TODO: list of checkable items?
+            
+            // display the checkable items
+            ForEach($miniTask.checkableItems) { $item in
+                HStack {
+                    Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "checkmark.circle")
+                        .onTapGesture {
+                            item.isCompleted.toggle() }
+                    Text(item.name)
+                        }
+                        .padding(.vertical, 5)
+                    }
+          
             Spacer()
 
             Button(action: toggleCompletionStatus) {
@@ -41,7 +51,7 @@ struct MiniTaskDetailView: View {
                     .shadow(radius: 5)
             }
         }
-        .navigationTitle("Task Details")
+        .navigationTitle("Get Down & Dirty")
         .padding()
     }
 

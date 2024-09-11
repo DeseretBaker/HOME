@@ -10,9 +10,14 @@ import SwiftData
 
 @Model
 class SubTask: Identifiable, Displayable {
+    var instructions: String = "Default Instructions"
+    var usageDescription: String = "Default Usage Description"
+    var type: String = "Default Type"
+    var category: String = "Default Category"
+    
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var subTaskTypeString: String // Store the raw value of SubTaskType as a String
-    var usageDescription: String
+    
     // Computed property to get the `SubTaskType` enum from the stored raw value
     var subTaskType: any SubTaskType {
         get {
@@ -27,11 +32,13 @@ class SubTask: Identifiable, Displayable {
     var miniTasks: [MiniTask] = [] // One-to-many relationship with MiniTask
     @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
     
-    // MARK: Computed Variables
+    // MARK: Computed Variables (from the Displayable protocol)
     var name: String { subTaskType.name }
     var imageName: String { subTaskType.imageName }
+    var instruction: String? { subTaskType.instructions }
     var weight: Double { subTaskType.weight }
     
+    // Progress calculation for the subtask
     var progress: Double {
         guard !miniTasks.isEmpty else { return 0.0 }
         let completedMiniTasks = miniTasks.filter { $0.isCompleted }.count
@@ -52,7 +59,6 @@ class SubTask: Identifiable, Displayable {
         self.space = space
         self.miniTasks = miniTasks
         self._isCompleted = isCompleted
-        self.usageDescription = subTaskType.description
     }
     
     // Method to toggle the completion status
@@ -60,4 +66,3 @@ class SubTask: Identifiable, Displayable {
         _isCompleted.toggle()
     }
 }
-

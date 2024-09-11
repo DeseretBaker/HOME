@@ -72,33 +72,3 @@ struct SpaceDetailView: View {
     }
 }
 
-// SubTaskCardView extracted as a separate struct to display individual subtask cards.
-//struct SubTaskCardView2: View {
-//    var subTask: SubTask
-//    
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 10) {
-//            Image(subTask.imageName)
-//                .resizable()
-//                .scaledToFill()
-//                .frame(height: 110)
-//                .clipped()
-//                .cornerRadius(10)
-//            
-//            Text(subTask.name)
-//                .font(.headline)
-//                .padding(.top, 5)
-//            
-//            ProgressView(value: subTask.progress, total: 100)
-//                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-//            
-//            Text("Progress: \(String(format: "%.0f", subTask.progress))%")
-//                .font(.subheadline)
-//                .foregroundColor(.secondary)
-//        }
-//        .padding()
-//        .background(Color.white)
-//        .cornerRadius(10)
-//        .shadow(radius: 5)
-//    }
-//}

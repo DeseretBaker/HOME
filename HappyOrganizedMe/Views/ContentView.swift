@@ -15,9 +15,6 @@ struct ContentView: View {
     var project: Project?
     
     var body: some View {
-        // if hasTapped StartHere button {
-        // ProjectSelectionView()
-        // else {
         if hasTappedStartHere {
             ProjectSelectionView()
         } else {

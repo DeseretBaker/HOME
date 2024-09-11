@@ -10,6 +10,12 @@ import SwiftData
 
 @Model
 class Space: Identifiable, Displayable {
+    var instructions: String
+    var usageDescription: String
+    var type: String
+    var category: String
+    
+    
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var spaceTypeString: String // Store the raw value of SpaceType as a String
     
@@ -46,11 +52,14 @@ class Space: Identifiable, Displayable {
     }
     
     // Initializer
-    init(spaceType: any SpaceType, subTasks: [SubTask], room: Room? = nil, isCompleted: Bool = false) {
+    init(spaceType: any SpaceType, room: Room? = nil, subTasks: [SubTask], instructions: String, usageDescription: String, type: String, category: String) {
         self.spaceTypeString = spaceType.rawValue
         self.room = room
         self.subTasks = subTasks
-        self._isCompleted = isCompleted
+        self.instructions = instructions // Initialize instructions
+        self.usageDescription = usageDescription // Initialize usageDescription
+        self.type = type // Initialize type
+        self.category = category // Initialize category
     }
     
     // Function to toggle the completion status
@@ -58,4 +67,3 @@ class Space: Identifiable, Displayable {
         _isCompleted.toggle()
     }
 }
-

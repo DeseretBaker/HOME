@@ -12,7 +12,8 @@ protocol SubTaskType: Codable, CaseIterable {
     var imageName: String { get }
     var weight: Double { get }
     var rawValue: String { get }
-    var description: String { get }
+    var instructions: String? { get }
+    var usageDescription: String? { get }
     init?(rawValue: String)
 }
 enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
@@ -39,67 +40,53 @@ enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var weight: Double { 1.0 }
-       
-    var description: String {
-         // FIXME: Change this to a switch that gives actual data
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
+    var weight: Double {
         switch self {
-        case .cookware: return ""
-        case .bakeware: return ""
-        case .serveWare: return ""
-        case .utensils: return ""
-        case .smallAppliances: return ""
-        case .cookingZone: return ""
-        case .drinkZone: return ""
-        case .bakingZone: return ""
-        case .prepZone: return ""
-        case .applianceZone: return ""
-        case .servingZone: return ""
-        case .dinnerware: return ""
-        case .tableware: return ""
-        case .foodStorageContainers: return  ""
-        case .cookbooks: return  ""
-        case .glassware: return  ""
-        case .tableLinens: return ""
-        case .kitchenAids: return ""
-        case .occasionalItems: return ""
-        case .trashAndRecycling: return ""
+        case .cookware: return 1.0
+        case .bakeware: return 1.0
+        case .serveWare: return 2.0
+        case .utensils: return 2.0
+        case .smallAppliances: return 1.0
+        case .cookingZone: return 1.0
+        case .drinkZone: return 1.0
+        case .bakingZone: return 1.0
+        case .prepZone: return 1.0
+        case .applianceZone: return 1.0
+        case .servingZone: return 1.0
+        case .dinnerware: return 1.0
+        case .tableware: return 1.0
+        case .foodStorageContainers: return  1.0
+        case .cookbooks: return  1.0
+        case .glassware: return  1.0
+        case .tableLinens: return 1.0
+        case .kitchenAids: return 1.0
+        case .occasionalItems: return 1.0
+        case .trashAndRecycling: return 1.0
         }
     }
 }
 enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
-    case livingRoomSideTable
-    case livingRoomCoffeeTable
-    case livingRoomConsoleTable
-    case livingRoomDesk
-    case livingRoomShelving
-    case livingRoomOttoman
-    case livingRoomWindowBoxSeat
-
-    var name: String {
-        switch self {
-        case .livingRoomSideTable: return "Side tables"
-        case .livingRoomCoffeeTable: return "Coffee tables"
-        case .livingRoomConsoleTable: return "Console tables"
-        case .livingRoomDesk: return "Desks"
-        case .livingRoomShelving: return "Shelving"
-        case .livingRoomOttoman: return "Ottomans"
-        case .livingRoomWindowBoxSeat: return "Window box seats"
-        }
-    }
-var imageName: String { rawValue }
+    case Tables
+    case floatingShelves
+    case windowBoxSeat
+    case bookshelf
+    case cornerShelves
+    case ottoman
     
-    var weight: Double { 2.0 }
-            
-    var description: String {
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
+    var weight: Double {
         switch self {
-        case .livingRoomSideTable: return "These are small tables placed beside sofas or armchairs, typically used to hold lamps, drinks, or small decorative items."
-        case .livingRoomCoffeeTable: return "Coffee tables are central pieces typically placed in front of a sofa or seating area. They are low to the ground and come in various shapes (round, rectangular, square)..."
-        case .livingRoomConsoleTable: return "Console tables are narrow, longer tables usually placed against walls or behind sofas. They are often used for displaying decor, but they can be optimized for storage."
-        case .livingRoomDesk: return "Desks are large, flat surfaces typically placed in front of a sofa or seating area. They are often used for storing books, magazines, or other items."
-        case .livingRoomShelving: return "Bookshelf"
-        case .livingRoomOttoman: return "Ottomans can serve as a table surface when paired with a tray on top, but many also offer hidden storage inside."
-        case .livingRoomWindowBoxSeat: return "Window box seats are small, low-profile benches that are usually placed in a bay window, these are a great place to store soft items ie: throw pillows, blankets, table linens, seat cushions."
+        case .Tables: return 2.0
+        case .floatingShelves: return 2.0
+        case .windowBoxSeat: return 2.0
+        case .bookshelf: return 2.0
+        case .cornerShelves: return 2.0
+        case .ottoman: return 2.0
         }
     }
 }
@@ -114,6 +101,8 @@ enum DiningRoomSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -124,9 +113,6 @@ enum DiningRoomSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
@@ -140,6 +126,8 @@ enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -150,9 +138,6 @@ enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
@@ -166,6 +151,8 @@ enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -176,9 +163,6 @@ enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
@@ -192,6 +176,8 @@ enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -202,9 +188,6 @@ enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
@@ -218,6 +201,8 @@ enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -228,9 +213,6 @@ enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum StorageSubTaskType: String, SubTaskType, CaseIterable {
@@ -244,6 +226,8 @@ enum StorageSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -254,9 +238,6 @@ enum StorageSubTaskType: String, SubTaskType, CaseIterable {
         case .accessories: return  2
         case .repairsAndUpdates: return 3
         }
-    }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
     }
 }
 enum GarageSubTaskType: String, SubTaskType, CaseIterable {
@@ -270,6 +251,8 @@ enum GarageSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double {
         switch self {
         case .declutter: return 2
@@ -281,17 +264,13 @@ enum GarageSubTaskType: String, SubTaskType, CaseIterable {
         case .repairsAndUpdates: return 3
         }
     }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
-    }
 }
 enum UnknownSubTaskType: String, SubTaskType, CaseIterable {
     case unknown
     
     var name: String { rawValue }
     var imageName: String { rawValue }
+    var instructions: String? { "String" }
+    var usageDescription: String? { "String" }
     var weight: Double { 0.0 }
-    var description: String {
-        "Bananas!" // FIXME: Change this to a switch that gives actual data
-    }
 }

@@ -1,220 +1,190 @@
+
+
+
+
 import SwiftUI
 import SwiftData
 
-struct DataLoader {
-    static func loadRooms(for projectType: ProjectType) -> [Room] {
-        // Convert projectType to enum if necessary or use raw string checks
-        switch projectType {
-        case ProjectType.kitchen:
-            return KitchenRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.diningRoom:
-            return DiningRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type)
-                )
-            }
-        case ProjectType.livingRoom:
-            return LivingRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.bedroom:
-            return BedroomRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.bathroom:
-            return BathroomRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.office:
-            return OfficeType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.playroom:
-            return PlayroomRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.storage:
-            return StorageRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        case ProjectType.garage:
-            return GarageRoomType.allCases.map { type in
-                Room(roomType: type, spaces: loadSpaces(for: type))
-            }
-        default:
-            print("No rooms for \(projectType)")
-            return []
+import Foundation
+
+// MARK: - DataLoader Class
+
+class DataLoader {
+    
+    // MARK: - Project Loader
+    static func loadProjects() -> [Project] {
+        return ProjectType.allCases.map { projectType in
+            let rooms = loadRooms(for: projectType)
+            return Project(
+                projectType: projectType,
+                instructions: projectType.instructions ?? "Instructions for \(projectType.name)",
+                usageDescription: projectType.usageDescription ?? "Usage for \(projectType.name)",
+                type: "\(projectType.name) Type",
+                category: "\(projectType.name) Category",
+                rooms: rooms
+            )
         }
     }
     
+    // MARK: - Room Loader
+    static func loadRooms(for projectType: ProjectType) -> [Room] {
+        let roomTypes: [any RoomType]
+        
+        // Get room types based on project type
+        switch projectType {
+        case .kitchen:
+            roomTypes = KitchenRoomType.allRoomTypes
+        case .livingRoom:
+            roomTypes = LivingRoomType.allRoomTypes
+        case .bedroom:
+            roomTypes = BedroomRoomType.allRoomTypes
+        case .bathroom:
+            roomTypes = BathroomRoomType.allRoomTypes
+        case .diningRoom:
+            roomTypes = DiningRoomType.allRoomTypes
+        case .garage:
+            roomTypes = GarageRoomType.allRoomTypes
+        case .office:
+            roomTypes = OfficeType.allRoomTypes
+        case .playroom:
+            roomTypes = PlayroomRoomType.allRoomTypes
+        case .storage:
+            roomTypes = StorageRoomType.allRoomTypes
+        case .unknown:
+            roomTypes = UnknownRoomType.allRoomTypes
+        }
+        return roomTypes.map { roomType in
+            let spaces = loadSpaces(for: roomType)
+            return Room(
+                roomType: roomType,
+                instructions: roomType.instructions ?? "Instructions for \(roomType.name)",
+                usageDescription: roomType.usageDescription ?? "Usage for \(roomType.name)",
+                type: "\(roomType.name) Type",
+                category: "\(roomType.name) Category",
+                spaces: spaces
+            )
+        }
+    }
+    
+    // MARK: - Space Loader
     static func loadSpaces(for roomType: any RoomType) -> [Space] {
+        let spaceTypes: [any SpaceType]
+        
         switch roomType {
         case is KitchenRoomType:
-            return KitchenSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
-        case is DiningRoomType:
-            return DiningRoomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType)
-                )
-            }
+            spaceTypes = KitchenSpaceType.allCases
         case is LivingRoomType:
-            return LivingRoomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
+            spaceTypes = LivingRoomSpaceType.allCases
         case is BedroomRoomType:
-            return BedroomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
+            spaceTypes = BedroomSpaceType.allCases
         case is BathroomRoomType:
-            return BathroomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
-        case is OfficeType:
-            return OfficeSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
-        case is PlayroomRoomType:
-            return PlayroomSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
-        case is StorageRoomType:
-            return StorageSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
+            spaceTypes = BathroomSpaceType.allCases
+        case is DiningRoomType:
+            spaceTypes = DiningRoomSpaceType.allCases
         case is GarageRoomType:
-            return GarageSpaceType.allCases.map { spaceType in
-                Space(spaceType: spaceType, subTasks: loadSubTasks(for: spaceType))
-            }
+            spaceTypes = GarageSpaceType.allCases
+        case is OfficeType:
+            spaceTypes = OfficeSpaceType.allCases
+        case is PlayroomRoomType:
+            spaceTypes = PlayroomSpaceType.allCases
+        case is StorageRoomType:
+            spaceTypes = StorageSpaceType.allCases
+        case is UnknownRoomType:
+            spaceTypes = UnknownSpaceType.allCases
         default:
-            print("Unknown room type: \(roomType)")
-            return []
+            spaceTypes = []
+        }
+        return spaceTypes.map { spaceType in
+            let subTasks = loadSubTasks(for: spaceType)
+            return Space(
+                spaceType: spaceType,
+                subTasks: subTasks,
+                instructions: spaceType.instructions ?? "Instructions for \(spaceType.name)",
+                usageDescription: spaceType.usageDescription ?? "Usage for \(spaceType.name)",
+                type: "\(spaceType.name) Type",
+                category: "\(spaceType.name) Category"
+            )
         }
     }
     
-    
+    // MARK: - SubTask Loader
     static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
+        let subTaskTypes: [any SubTaskType]
+        
         switch spaceType {
         case is KitchenSpaceType:
-            return KitchenSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
+            subTaskTypes = KitchenSubTaskType.allCases
         case is LivingRoomSpaceType:
-            return LivingRoomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is DiningRoomSpaceType:
-            return DiningRoomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
+            subTaskTypes = LivingRoomSubTaskType.allCases
         case is BedroomSpaceType:
-            return BedroomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
+            subTaskTypes = BedroomSubTaskType.allCases
         case is BathroomSpaceType:
-            return BathroomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is OfficeSpaceType:
-            return OfficeSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is PlayroomSpaceType:
-            return PlayroomSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
-        case is StorageSpaceType:
-            return StorageSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
-                )
-            }
+            subTaskTypes = BathroomSubTaskType.allCases
+        case is DiningRoomSpaceType:
+            subTaskTypes = DiningRoomSubTaskType.allCases
         case is GarageSpaceType:
-            return GarageSubTaskType.allCases.map { subTaskType in
-                SubTask(
-                    subTaskType: subTaskType,
-                    space: Space(spaceType: spaceType, subTasks: []), // Create an empty space or appropriate space if necessary
-                    miniTasks: loadMiniTasks(for: subTaskType)
+            subTaskTypes = GarageSubTaskType.allCases
+        case is OfficeSpaceType:
+            subTaskTypes = OfficeSubTaskType.allCases
+        case is PlayroomSpaceType:
+            subTaskTypes = PlayroomSubTaskType.allCases
+        case is StorageSpaceType:
+            subTaskTypes = StorageSubTaskType.allCases
+        case is UnknownSpaceType:
+            subTaskTypes = UnknownSubTaskType.allCases
+        default:
+            subTaskTypes = []
+        }
+        return subTaskTypes.map { subTaskType in
+            let miniTasks = loadMiniTasks(for: subTaskType)
+            return SubTask(
+                subTaskType: subTaskType,
+                miniTasks: miniTasks,
+                instructions: subTaskType.instructions ?? "Instructions for \(subTaskType.name)",
+                usageDescription: subTaskType.usageDescription ?? "Usage for \(subTaskType.name)",
+                type: "\(subTaskType.name) Type",
+                category: "\(subTaskType.name) Category"
+            )
+        }
+    }
+        // Helper function for loading mini tasks for specific mini task types
+        static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
+            let miniTaskTypes: [any MiniTaskType]
+            
+            switch subTaskType {
+            case is KitchenSubTaskType:
+                miniTaskTypes = KitchenMiniTaskType.allCases
+            case is LivingRoomSubTaskType:
+                miniTaskTypes = LivingRoomMiniTaskType.allCases
+            case is BedroomSubTaskType:
+                miniTaskTypes = BedroomMiniTaskType.allCases
+            case is BathroomSubTaskType:
+                miniTaskTypes = BathroomMiniTaskType.allCases
+            case is DiningRoomSubTaskType:
+                miniTaskTypes = DiningRoomMiniTaskType.allCases
+            case is GarageSubTaskType:
+                miniTaskTypes = GarageMiniTaskType.allCases
+            case is OfficeSubTaskType:
+                miniTaskTypes = OfficeMiniTaskType.allCases
+            case is PlayroomSubTaskType:
+                miniTaskTypes = PlayroomMiniTaskType.allCases
+            case is StorageSubTaskType:
+                miniTaskTypes = StorageMiniTaskType.allCases
+            case is UnknownSubTaskType:
+                miniTaskTypes = UnknownMiniTaskType.allCases
+            default:
+                miniTaskTypes = []
+            }
+            
+            return miniTaskTypes.map { miniTaskType in
+                return MiniTask(
+                    miniTaskType: miniTaskType,
+                    instructions: miniTaskType.instructions ?? "Instructions for \(miniTaskType.name)",
+                    usageDescription: miniTaskType.usageDescription ?? "Usage for \(miniTaskType.name)",
+                    type: "\(miniTaskType.name) Type",
+                    category: "\(miniTaskType.name) Category"
                 )
             }
-        default:
-            print("Unknown space type: \(spaceType)")
-            return []
         }
     }
-    
-    static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
-        switch subTaskType {
-        case is KitchenSubTaskType:
-            return KitchenMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is LivingRoomSubTaskType:
-            return LivingRoomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is DiningRoomSubTaskType:
-            return DiningRoomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is BedroomSubTaskType:
-            return BedroomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is BathroomSubTaskType:
-            return BathroomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is OfficeSubTaskType:
-            return OfficeMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is PlayroomSubTaskType:
-            return PlayroomMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is StorageSubTaskType:
-            return StorageMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        case is GarageSubTaskType:
-            return GarageMiniTaskType.allCases.map { miniTaskType in
-                MiniTask(miniTaskType: miniTaskType)
-            }
-        default:
-            print("Unknown subTask type: \(subTaskType)")
-            return []
-        }
-    }
-}
+
