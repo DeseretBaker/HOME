@@ -10,10 +10,12 @@ import Foundation
 protocol MiniTaskType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
+    var instructions: String { get }
+    var usageDescription: String { get }
     var weight: Double { get }
+    var type: String { get }
+    var category: String { get }
     var rawValue: String { get }
-    var instructions: String? { get }
-    var usageDescription: String? { get }
     init?(rawValue: String)
 }
 enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {

@@ -10,10 +10,12 @@ import Foundation
 protocol SubTaskType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
+    var instructions: String { get }
+    var usageDescription: String { get }
     var weight: Double { get }
+    var type: String { get }
+    var category: String { get }
     var rawValue: String { get }
-    var instructions: String? { get }
-    var usageDescription: String? { get }
     init?(rawValue: String)
 }
 enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
@@ -40,8 +42,8 @@ enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double {
         switch self {
         case .cookware: return 1.0
@@ -77,8 +79,8 @@ enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double {
         switch self {
         case .Tables: return 2.0

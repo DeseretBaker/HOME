@@ -10,11 +10,13 @@ import Foundation
 protocol RoomType: Codable, CaseIterable {
     var name: String { get }
     var imageName: String { get }
+    var instructions: String { get }
+    var usageDescription: String { get }
     var weight: Double { get }
-    var instructions: String? { get }
-    var usageDescription: String? { get }
+    var type: String { get }
+    var category: String { get }
     var rawValue: String { get }
-    init?(rawValue: String) // make the initializer failable
+    init?(rawValue: String)
 }
 
 enum KitchenRoomType: String, RoomType {
