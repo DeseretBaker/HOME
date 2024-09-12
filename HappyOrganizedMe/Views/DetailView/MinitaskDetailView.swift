@@ -11,7 +11,7 @@ import SwiftData
 struct MiniTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var miniTask: MiniTask
-    var checkableItems: [CheckableItem] 
+    var checkableItems: [CheckableItem]
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Image(miniTask.imageName)
@@ -24,9 +24,9 @@ struct MiniTaskDetailView: View {
             Text(miniTask.name)
                 .font(.title)
                 .fontWeight(.bold)
-
-            Text("Instructions: \(miniTask.instruction)")
-                .padding(.bottom, 20)
+            
+            //Text("Instructions: \($miniTask.instruction)")
+            //   .padding(.bottom, 20)
             
             // display the checkable items
             ForEach($miniTask.checkableItems) { $item in
@@ -35,14 +35,17 @@ struct MiniTaskDetailView: View {
                         .onTapGesture {
                             item.isCompleted.toggle() }
                     Text(item.name)
-                        }
-                        .padding(.vertical, 5)
-                    }
-          
+                }
+                .padding(.vertical, 5)
+            }
+            
             Spacer()
-
-            Button(action: toggleCompletionStatus) {
+            
+            Button(action: {
+                miniTask.toggleCompleted()
+            }) {
                 Text(miniTask.isCompleted ? "Mark as Incomplete" : "Mark as Complete")
+                    
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(miniTask.isCompleted ? Color.red : Color.green)
@@ -54,14 +57,5 @@ struct MiniTaskDetailView: View {
         .navigationTitle("Get Down & Dirty")
         .padding()
     }
-
-    private func toggleCompletionStatus() {
-        miniTask.isCompleted.toggle() // Directly toggle the property
-        
-        do {
-            try modelContext.save()  // Save changes to the context
-        } catch {
-            print("Error saving context: \(error.localizedDescription)")
-        }
-    }
 }
+

@@ -95,23 +95,24 @@ class DataLoader {
             spaceTypes = []
         }
         return spaceTypes.map { spaceType in
-            let subTasks = loadSubTasks(for: spaceType)
-            return Space(
+            let space = Space(
                 spaceType: spaceType,
-                subTasks: subTasks,
+                subTasks: [],
                 instructions: spaceType.instructions ?? "Instructions for \(spaceType.name)",
                 usageDescription: spaceType.usageDescription ?? "Usage for \(spaceType.name)",
                 type: "\(spaceType.name) Type",
                 category: "\(spaceType.name) Category"
             )
+            space.subTasks = loadSubTasks(for: space)
+            return space
         }
     }
     
     // MARK: - SubTask Loader
-    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
+    static func loadSubTasks(for space: Space) -> [SubTask] {
         let subTaskTypes: [any SubTaskType]
         
-        switch spaceType {
+        switch space.spaceType {
         case is KitchenSpaceType:
             subTaskTypes = KitchenSubTaskType.allCases
         case is LivingRoomSpaceType:
@@ -136,22 +137,16 @@ class DataLoader {
             subTaskTypes = []
         }
         return subTaskTypes.map { subTaskType in
-            let miniTasks = loadMiniTasks(for: subTaskType)
-            return SubTask(
-                subTaskType: subTaskType,
-                miniTasks: miniTasks,
-                instructions: subTaskType.instructions ?? "Instructions for \(subTaskType.name)",
-                usageDescription: subTaskType.usageDescription ?? "Usage for \(subTaskType.name)",
-                type: "\(subTaskType.name) Type",
-                category: "\(subTaskType.name) Category"
-            )
+            let subTask = SubTask(subTaskType: subTaskType, space: space, miniTasks: [])
+            subTask.miniTasks = loadMiniTasks(for: subTask)
+            return subTask
         }
     }
         // Helper function for loading mini tasks for specific mini task types
-        static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
+    static func loadMiniTasks(for subTask: SubTask) -> [MiniTask] {
             let miniTaskTypes: [any MiniTaskType]
             
-            switch subTaskType {
+        switch subTask.subTaskType {
             case is KitchenSubTaskType:
                 miniTaskTypes = KitchenMiniTaskType.allCases
             case is LivingRoomSubTaskType:
@@ -182,7 +177,8 @@ class DataLoader {
                     instructions: miniTaskType.instructions ?? "Instructions for \(miniTaskType.name)",
                     usageDescription: miniTaskType.usageDescription ?? "Usage for \(miniTaskType.name)",
                     type: "\(miniTaskType.name) Type",
-                    category: "\(miniTaskType.name) Category"
+                    category: "\(miniTaskType.name) Category",
+                    subTask: subTask
                 )
             }
         }

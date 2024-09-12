@@ -60,7 +60,7 @@ struct SubTaskDetailView: View {
             }
             .padding([.leading, .trailing])
         }
-        .navigationTitle("SubTask Details")
+        .navigationTitle("Bite-sized Tasks")
         .toolbar {
 //            Button(action: {
 //                // Action for editing the subtask or adding new miniTasks

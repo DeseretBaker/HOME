@@ -35,7 +35,7 @@ struct MiniTaskSelectionView: View {
             }
             
         }
-        .navigationTitle("Select a MiniTask")
+        .navigationTitle("Nitty-Gritty")
         .toolbar {
             EditButton()  // Allows editing for delete action
         }
