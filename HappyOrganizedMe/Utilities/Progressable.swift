@@ -14,3 +14,8 @@ protocol Progressable {
     
     mutating func toggleCompleted()  // Method to toggle completion status
 }
+extension Progressable {
+    mutating func toggleCompleted() {
+        isCompleted.toggle()
+    }
+}
