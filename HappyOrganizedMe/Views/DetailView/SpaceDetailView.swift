@@ -61,7 +61,7 @@ struct SpaceDetailView: View {
             .shadow(radius: 5)
             .padding([.leading, .trailing])
         }
-        .navigationTitle("Space Details")
+        .navigationTitle("Manageable")
         .toolbar {
             Button(action: {
                 // Action for editing the space or adding new subtasks

@@ -4,13 +4,11 @@
 
 import SwiftUI
 import SwiftData
-
 import Foundation
 
 // MARK: - DataLoader Class
-
 class DataLoader {
-    
+ 
     // MARK: - Project Loader
     static func loadProjects() -> [Project] {
         return ProjectType.allCases.map { projectType in
@@ -57,8 +55,8 @@ class DataLoader {
             let spaces = loadSpaces(for: roomType)
             return Room(
                 roomType: roomType,
-                instructions: roomType.instructions ?? "Instructions for \(roomType.name)",
-                usageDescription: roomType.usageDescription ?? "Usage for \(roomType.name)",
+                instructions: roomType.instructions,
+                usageDescription: roomType.usageDescription,
                 type: "\(roomType.name) Type",
                 category: "\(roomType.name) Category",
                 spaces: spaces
@@ -95,24 +93,23 @@ class DataLoader {
             spaceTypes = []
         }
         return spaceTypes.map { spaceType in
-            let space = Space(
+            let subTasks = loadSubTasks(for: spaceType) // Corrected here
+            return Space(
                 spaceType: spaceType,
-                subTasks: [],
-                instructions: spaceType.instructions ?? "Instructions for \(spaceType.name)",
-                usageDescription: spaceType.usageDescription ?? "Usage for \(spaceType.name)",
+                instructions: spaceType.instructions,
+                usageDescription: spaceType.usageDescription,
                 type: "\(spaceType.name) Type",
-                category: "\(spaceType.name) Category"
+                category: "\(spaceType.name) Category",
+                subTasks: subTasks
             )
-            space.subTasks = loadSubTasks(for: space)
-            return space
         }
     }
     
     // MARK: - SubTask Loader
-    static func loadSubTasks(for space: Space) -> [SubTask] {
+    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
         let subTaskTypes: [any SubTaskType]
         
-        switch space.spaceType {
+        switch spaceType {
         case is KitchenSpaceType:
             subTaskTypes = KitchenSubTaskType.allCases
         case is LivingRoomSpaceType:
@@ -137,50 +134,63 @@ class DataLoader {
             subTaskTypes = []
         }
         return subTaskTypes.map { subTaskType in
-            let subTask = SubTask(subTaskType: subTaskType, space: space, miniTasks: [])
-            subTask.miniTasks = loadMiniTasks(for: subTask)
-            return subTask
+            let miniTasks = loadMiniTasks(for: subTaskType)
+            return SubTask(
+                subTaskType: subTaskType,
+                instructions: subTaskType.instructions,
+                usageDescription: subTaskType.usageDescription,
+                type: "\(subTaskType.name) Type",
+                category: "\(subTaskType.name) Category",
+                miniTasks: miniTasks
+            )
         }
     }
-        // Helper function for loading mini tasks for specific mini task types
-    static func loadMiniTasks(for subTask: SubTask) -> [MiniTask] {
-            let miniTaskTypes: [any MiniTaskType]
-            
-        switch subTask.subTaskType {
-            case is KitchenSubTaskType:
-                miniTaskTypes = KitchenMiniTaskType.allCases
-            case is LivingRoomSubTaskType:
-                miniTaskTypes = LivingRoomMiniTaskType.allCases
-            case is BedroomSubTaskType:
-                miniTaskTypes = BedroomMiniTaskType.allCases
-            case is BathroomSubTaskType:
-                miniTaskTypes = BathroomMiniTaskType.allCases
-            case is DiningRoomSubTaskType:
-                miniTaskTypes = DiningRoomMiniTaskType.allCases
-            case is GarageSubTaskType:
-                miniTaskTypes = GarageMiniTaskType.allCases
-            case is OfficeSubTaskType:
-                miniTaskTypes = OfficeMiniTaskType.allCases
-            case is PlayroomSubTaskType:
-                miniTaskTypes = PlayroomMiniTaskType.allCases
-            case is StorageSubTaskType:
-                miniTaskTypes = StorageMiniTaskType.allCases
-            case is UnknownSubTaskType:
-                miniTaskTypes = UnknownMiniTaskType.allCases
-            default:
-                miniTaskTypes = []
-            }
-            
-            return miniTaskTypes.map { miniTaskType in
-                return MiniTask(
-                    miniTaskType: miniTaskType,
-                    instructions: miniTaskType.instructions ?? "Instructions for \(miniTaskType.name)",
-                    usageDescription: miniTaskType.usageDescription ?? "Usage for \(miniTaskType.name)",
-                    type: "\(miniTaskType.name) Type",
-                    category: "\(miniTaskType.name) Category",
-                    subTask: subTask
-                )
-            }
+    
+    // MARK: - MiniTask Loader
+    static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
+        let miniTaskTypes: [any MiniTaskType]
+        
+        switch subTaskType {
+        case is KitchenSubTaskType:
+            miniTaskTypes = KitchenMiniTaskType.allCases
+        case is LivingRoomSubTaskType:
+            miniTaskTypes = LivingRoomMiniTaskType.allCases
+        case is BedroomSubTaskType:
+            miniTaskTypes = BedroomMiniTaskType.allCases
+        case is BathroomSubTaskType:
+            miniTaskTypes = BathroomMiniTaskType.allCases
+        case is DiningRoomSubTaskType:
+            miniTaskTypes = DiningRoomMiniTaskType.allCases
+        case is GarageSubTaskType:
+            miniTaskTypes = GarageMiniTaskType.allCases
+        case is OfficeSubTaskType:
+            miniTaskTypes = OfficeMiniTaskType.allCases
+        case is PlayroomSubTaskType:
+            miniTaskTypes = PlayroomMiniTaskType.allCases
+        case is StorageSubTaskType:
+            miniTaskTypes = StorageMiniTaskType.allCases
+        case is UnknownSubTaskType:
+            miniTaskTypes = UnknownMiniTaskType.allCases
+        default:
+            miniTaskTypes = []
+        }
+        
+        return miniTaskTypes.map { miniTaskType in
+            return MiniTask(
+                miniTaskType: miniTaskType,
+                
+                usageDescription: miniTaskType.usageDescription,
+                type: "\(miniTaskType.name) Type",
+                category: "\(miniTaskType.name) Category"
+            )
         }
     }
+}
+extension HappyOrganizedMeApp {
+    
+    static func createAllEmptyProjects() -> [Project] {
+        DataLoader.loadProjects()
+    }
+}
+
 

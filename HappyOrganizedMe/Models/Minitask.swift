@@ -10,15 +10,20 @@ import SwiftUI
 
 @Model
 class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
-    var instructions: String
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+   
     var usageDescription: String
     var type: String
     var category: String
     
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    
     @Attribute var miniTaskTypeString: String // Store the raw value of the task type
     private var _isCompleted: Bool = false
+    @Attribute var checkableItems: [CheckableItem] = []
     
+    // Define relationship to SubTask
+    @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
+
     // computed property for miniTaskType
     var miniTaskType: any MiniTaskType {
         get {
@@ -31,6 +36,7 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     var name: String { miniTaskType.name }
     var imageName: String { miniTaskType.imageName }
     var weight: Double { miniTaskType.weight }
+    var instructions: String { miniTaskType.instructions }
  
     // conformance to Progressable protocol
     var progress: Double {
@@ -45,9 +51,9 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     }
     
     // Initializer
-    init(miniTaskType: any MiniTaskType, instructions: String, usageDescription: String, type: String, category: String, isCompleted: Bool = false) {
+    init(miniTaskType: any MiniTaskType, usageDescription: String, type: String, category: String, isCompleted: Bool = false) {
         self.miniTaskTypeString = miniTaskType.rawValue
-        self.instructions = instructions
+        
         self.usageDescription = usageDescription
         self.type = type // e.g., LivingRoom, Kitchen
         self.category = category // e.g., Furniture, Appliances
@@ -57,8 +63,4 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     func toggleCompleted() {
         _isCompleted.toggle()
     }
-    // Define relationship with CheckableItems
-    @Relationship var checkableItems: [CheckableItem] = []
-    // Define relationship to SubTask
-    @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
 }

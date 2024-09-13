@@ -25,7 +25,7 @@ struct MiniTaskSelectionView: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(subTask.miniTasks) { miniTask in
-                            NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask, checkableItems: [])) {
+                            NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
                                 MiniTaskCardView(miniTask: miniTask, modelContext: modelContext)  // Assuming MiniTaskCardView is defined elsewhere in your project
                             }
                         }

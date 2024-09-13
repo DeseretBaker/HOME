@@ -18,30 +18,20 @@ protocol MiniTaskType: Codable, CaseIterable {
     var rawValue: String { get }
     init?(rawValue: String)
 }
-enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
-    case remove
-    case clean
-    case categorize
-    case group
-    case sort
-    case contain
-    case label
+enum KitchenMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+    case remove = "Remove"
+    case clean = "Clean"
+    case categorize = "Categorize"
+    case group = "Group"
+    case sort = "Sort"
+    case contain = "Contain"
+    case label = "Label"
     
-    var name: String {
-        switch self {
-        case .remove: return "Remove"
-        case .categorize: return "Categorize"
-        case .group: return "Group"
-        case .sort: return "Sort"
-        case .contain: return "Contain"
-        case .clean: return "Clean"
-        case .label: return "Label"
-        }
-    }
-        var imageName: String { rawValue }
-        var rawValue: String { "String" }
+    
+    var name: String { rawValue }
+    var imageName: String { rawValue }
         
-    var instructions: String? {
+    var instructions: String {
         switch self {
         case .clean: return "String"
         case .label: return "String"
@@ -52,7 +42,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
         case .contain: return "String"
         }
     }
-    var usageDescription: String? {
+    var usageDescription: String {
         switch self {
         case .clean: return "String"
         case .label: return "String"
@@ -64,31 +54,23 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
         }
     }
         var weight: Double { 5.0 }
+    var type: String { "Kitchen" }
+    var category: String { "Furniture" }
         }
-        enum LivingRoomMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum LivingRoomMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+            
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -99,7 +81,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -111,31 +93,23 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
-        enum DiningRoomMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum DiningRoomMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+          
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -146,7 +120,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -158,32 +132,24 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
 
-        enum OfficeMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum OfficeMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+            
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -194,7 +160,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -206,32 +172,24 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
 
-        enum BedroomMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum BedroomMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+            
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -242,7 +200,7 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -254,33 +212,25 @@ enum KitchenMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
         
 
-enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
-    case remove
-    case clean
-    case categorize
-    case group
-    case sort
-    case contain
-    case label
+enum PlayroomMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+    case remove = "Remove"
+    case clean = "Clean"
+    case categorize = "Categorize"
+    case group = "Group"
+    case sort = "Sort"
+    case contain = "Contain"
+    case label = "Label"
     
-    var name: String {
-        switch self {
-        case .remove: return "Remove"
-        case .categorize: return "Categorize"
-        case .group: return "Group"
-        case .sort: return "Sort"
-        case .contain: return "Contain"
-        case .clean: return "Clean"
-        case .label: return "Label"
-        }
-    }
-        var imageName: String { rawValue }
-        var rawValue: String { "String" }
+   
+    var name: String { rawValue }
+    var imageName: String { rawValue }
         
-    var instructions: String? {
+    var instructions: String {
         switch self {
         case .clean: return "String"
         case .label: return "String"
@@ -291,7 +241,7 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
         case .contain: return "String"
         }
     }
-    var usageDescription: String? {
+    var usageDescription: String {
         switch self {
         case .clean: return "String"
         case .label: return "String"
@@ -303,32 +253,24 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
         }
     }
         var weight: Double { 5.0 }
+    var type: String { "Kitchen" }
+    var category: String { "Furniture" }
         }
 
-        enum StorageMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum StorageMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+            
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -339,7 +281,7 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -351,32 +293,24 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
 
-        enum BathroomMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum BathroomMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+           
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -387,7 +321,7 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -399,32 +333,24 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
 
-        enum GarageMiniTaskType: String, MiniTaskType, CaseIterable {
-            case remove
-            case clean
-            case categorize
-            case group
-            case sort
-            case contain
-            case label
+        enum GarageMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
+            case remove = "Remove"
+            case clean = "Clean"
+            case categorize = "Categorize"
+            case group = "Group"
+            case sort = "Sort"
+            case contain = "Contain"
+            case label = "Label"
             
-            var name: String {
-                switch self {
-                case .remove: return "Remove"
-                case .categorize: return "Categorize"
-                case .group: return "Group"
-                case .sort: return "Sort"
-                case .contain: return "Contain"
-                case .clean: return "Clean"
-                case .label: return "Label"
-                }
-            }
-                var imageName: String { rawValue }
-                var rawValue: String { "String" }
+           
+            var name: String { rawValue }
+            var imageName: String { rawValue }
                 
-            var instructions: String? {
+            var instructions: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -435,7 +361,7 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 case .contain: return "String"
                 }
             }
-            var usageDescription: String? {
+            var usageDescription: String {
                 switch self {
                 case .clean: return "String"
                 case .label: return "String"
@@ -447,14 +373,18 @@ enum PlayroomMiniTaskType: String, MiniTaskType, CaseIterable {
                 }
             }
                 var weight: Double { 5.0 }
+            var type: String { "Kitchen" }
+            var category: String { "Furniture" }
                 }
 
-        enum UnknownMiniTaskType: String, MiniTaskType, CaseIterable {
+        enum UnknownMiniTaskType: String, MiniTaskType, Codable, CaseIterable {
                 case unknown
                 
                 var name: String { rawValue }
                 var imageName: String { rawValue }
-                var instructions: String? { "String" }
-                var usageDescription: String? { "String" }
+                var instructions: String { "String" }
+                var usageDescription: String { "String" }
                 var weight: Double { 0.0 }
-            }
+                var type: String { "unknown" }
+                var category: String { "unknown" }
+                }

@@ -18,261 +18,394 @@ protocol SubTaskType: Codable, CaseIterable {
     var rawValue: String { get }
     init?(rawValue: String)
 }
-enum KitchenSubTaskType: String, SubTaskType, CaseIterable {
-    case cookware
-    case bakeware
-    case serveWare
-    case utensils
-    case smallAppliances
-    case cookingZone
-    case drinkZone
-    case bakingZone
-    case prepZone
-    case applianceZone
-    case servingZone
-    case dinnerware
-    case tableware
-    case foodStorageContainers
-    case cookbooks
-    case glassware
-    case tableLinens
-    case kitchenAids
-    case occasionalItems
-    case trashAndRecycling
+enum KitchenSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case cookware = "Cookware"
+    case bakeware = "Bakeware"
+    case serveWare = "ServeWare"
+    case utensils = "Utensils"
+    case smallAppliances = "SmallAppliances"
+    case largeAppliances = "LargeAppliances"
+    case cookingZone = "CookingZone"
+    case drinkZone = "DrinkZone"
+    case bakingZone = "BakingZone"
+    case prepZone = "PrepZone"
+    case applianceZone = "ApplianceZone"
+    case servingZone = "ServingZone"
+    case trashZone = "TrashZone"
+    case dinnerware = "Dinnerware"
+    case tableware = "Tableware"
+    case foodStorageContainers = "FoodStorageContainers"
+    case cookbooks = "Cookbooks"
+    case glassware = "Glassware"
+    case tableLinens = "TableLinens"
+    case kitchenAids = "KitchenAids"
+    case occasionalItems = "OccasionalItems"
+    case trashAndRecycling = "TrashAndRecycling"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String { "String" }
-    var usageDescription: String { "String" }
-    var weight: Double {
+    
+    var instructions: String {
         switch self {
-        case .cookware: return 1.0
-        case .bakeware: return 1.0
-        case .serveWare: return 2.0
-        case .utensils: return 2.0
-        case .smallAppliances: return 1.0
-        case .cookingZone: return 1.0
-        case .drinkZone: return 1.0
-        case .bakingZone: return 1.0
-        case .prepZone: return 1.0
-        case .applianceZone: return 1.0
-        case .servingZone: return 1.0
-        case .dinnerware: return 1.0
-        case .tableware: return 1.0
-        case .foodStorageContainers: return  1.0
-        case .cookbooks: return  1.0
-        case .glassware: return  1.0
-        case .tableLinens: return 1.0
-        case .kitchenAids: return 1.0
-        case .occasionalItems: return 1.0
-        case .trashAndRecycling: return 1.0
+        case .cookware: return "Cookware"
+        case .bakeware: return "Bakeware"
+        case .serveWare: return "ServeWare"
+        case .utensils: return "Utensils"
+        case .smallAppliances: return "SmallAppliances"
+        case .largeAppliances: return "LargeAppliances"
+        case .cookingZone: return "CookingZone"
+        case .drinkZone: return "DrinkZone"
+        case .bakingZone: return "BakingZone"
+        case .prepZone: return "PrepZone"
+        case .applianceZone: return "ApplianceZone"
+        case .servingZone: return "ServingZone"
+        case .trashZone: return "TrashZone"
+        case .dinnerware: return "Dinnerware"
+        case .tableware: return "Tableware"
+        case .foodStorageContainers: return "FoodStorageContainers"
+        case .cookbooks: return "Cookbooks"
+        case .glassware: return "Glassware"
+        case .tableLinens: return "TableLinens"
+        case .kitchenAids: return "KitchenAids"
+        case .occasionalItems: return "OccasionalItems"
+        case .trashAndRecycling: return "TrashAndRecycling"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .cookware: return "Cookware"
+        case .bakeware: return "Bakeware"
+        case .serveWare: return "ServeWare"
+        case .utensils: return "Utensils"
+        case .smallAppliances: return "SmallAppliances"
+        case .largeAppliances: return "LargeAppliances"
+        case .cookingZone: return "CookingZone"
+        case .drinkZone: return "DrinkZone"
+        case .bakingZone: return "BakingZone"
+        case .prepZone: return "PrepZone"
+        case .applianceZone: return "ApplianceZone"
+        case .servingZone: return "ServingZone"
+        case .trashZone: return "TrashZone"
+        case .dinnerware: return "Dinnerware"
+        case .tableware: return "Tableware"
+        case .foodStorageContainers: return "FoodStorageContainers"
+        case .cookbooks: return "Cookbooks"
+        case .glassware: return "Glassware"
+        case .tableLinens: return "TableLinens"
+        case .kitchenAids: return "KitchenAids"
+        case .occasionalItems: return "OccasionalItems"
+        case .trashAndRecycling: return "TrashAndRecycling"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Kitchen" }
+    var category: String { "Furniture" }
 }
-enum LivingRoomSubTaskType: String, SubTaskType, CaseIterable {
-    case Tables
-    case floatingShelves
-    case windowBoxSeat
-    case bookshelf
-    case cornerShelves
-    case ottoman
+enum LivingRoomSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case Tables = "Tables"
+    case floatingShelves = "Floating Shelves"
+    case windowBoxSeat = "Window Box Seats"
+    case bookshelf = "Bookshelf"
+    case cornerShelves = "Corner Shelves"
+    case ottoman = "Ottoman"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String { "String" }
-    var usageDescription: String { "String" }
-    var weight: Double {
+    
+    var instructions: String {
         switch self {
-        case .Tables: return 2.0
-        case .floatingShelves: return 2.0
-        case .windowBoxSeat: return 2.0
-        case .bookshelf: return 2.0
-        case .cornerShelves: return 2.0
-        case .ottoman: return 2.0
+        case .Tables: return "String"
+        case .floatingShelves: return "String"
+        case .windowBoxSeat: return "String"
+        case .bookshelf: return "String"
+        case .cornerShelves: return "String"
+        case .ottoman: return "String"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .Tables: return "String"
+        case .floatingShelves: return "String"
+        case .windowBoxSeat: return "String"
+        case .bookshelf: return "String"
+        case .cornerShelves: return "String"
+        case .ottoman: return "String"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Living Room" }
+    var category: String { "Furniture" }
 }
-enum DiningRoomSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum DiningRoomSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Dining Room" }
+    var category: String { "Furniture" }
 }
-enum OfficeSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum OfficeSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Office" }
+    var category: String { "Furniture" }
 }
-enum BedroomSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum BedroomSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
-        }
+    case .declutter: return "Declutter your dining room"
+    case .organize: return "Organize your dining room"
+    case .clean: return "Clean your dining room"
+    case .polish: return "Polish your dining room"
+    case .tableLinens: return "Table Linens"
+    case .accessories: return "Accessories"
+    case .repairsAndUpdates: return "Repairs and Updates"
     }
 }
-enum PlayroomSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+    var usageDescription: String {
+        switch self {
+    case .declutter: return "Declutter your dining room"
+    case .organize: return "Organize your dining room"
+    case .clean: return "Clean your dining room"
+    case .polish: return "Polish your dining room"
+    case .tableLinens: return "Table Linens"
+    case .accessories: return "Accessories"
+    case .repairsAndUpdates: return "Repairs and Updates"
+    }
+}
+    var weight: Double { 2.0 }
+    var type: String { "Bedroom" }
+    var category: String { "Furniture" }
+}
+enum PlayroomSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Playroom" }
+    var category: String { "Furniture" }
 }
-enum BathroomSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum BathroomSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Bathroom" }
+    var category: String { "Furniture" }
 }
-enum StorageSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum StorageSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    
+    var weight: Double { 2.0 }
+    var type: String { "Storage" }
+    var category: String { "Furniture" }
+    
 }
-enum GarageSubTaskType: String, SubTaskType, CaseIterable {
-    case declutter
-    case organize
-    case clean
-    case polish
-    case tableLinens
-    case accessories
-    case repairsAndUpdates
+enum GarageSubTaskType: String, SubTaskType, Codable, CaseIterable {
+    case declutter = "Declutter"
+    case organize = "Organize"
+    case clean = "Clean"
+    case polish = "Polish"
+    case tableLinens = "Table Linens"
+    case accessories = "Accessories"
+    case repairsAndUpdates = "Repairs and Updates"
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double {
+    var instructions: String {
         switch self {
-        case .declutter: return 2
-        case .organize: return  2
-        case .clean: return  2
-        case .polish: return  2
-        case .tableLinens: return  2
-        case .accessories: return  2
-        case .repairsAndUpdates: return 3
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
         }
     }
+    var usageDescription: String {
+        switch self {
+        case .declutter: return "Declutter your dining room"
+        case .organize: return "Organize your dining room"
+        case .clean: return "Clean your dining room"
+        case .polish: return "Polish your dining room"
+        case .tableLinens: return "Table Linens"
+        case .accessories: return "Accessories"
+        case .repairsAndUpdates: return "Repairs and Updates"
+        }
+    }
+    var weight: Double { 2.0 }
+    var type: String { "Garage" }
+    var category: String { "Furniture" }
 }
-enum UnknownSubTaskType: String, SubTaskType, CaseIterable {
+enum UnknownSubTaskType: String, SubTaskType, Codable, CaseIterable {
     case unknown
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
-    var weight: Double { 0.0 }
+    var instructions: String { "unknown" }
+    var usageDescription: String { "unknown" }
+    var weight: Double { 2.0 }
+    var type: String { "unknown" }
+    var category: String { "unknown" }
 }

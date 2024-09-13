@@ -18,6 +18,10 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     @Attribute var subTaskTypeString: String // Store the raw value of SubTaskType as a String
+    // Define relationships to miniTasks and space
+    @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
+    
+    
     private var _isCompleted: Bool = false
     
     // Computed property to get the `SubTaskType` enum from the stored raw value
@@ -27,7 +31,7 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
         set {
             subTaskTypeString = newValue.rawValue }
     }
-
+    
     // MARK: Computed Variables (from the Displayable protocol)
     var name: String { subTaskType.name }
     var imageName: String { subTaskType.imageName }
@@ -36,8 +40,8 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     // conformance to Progressable protocol
     var progress: Double {
         guard !miniTasks.isEmpty else { return 0.0 }
-        let completedMiniTasks = miniTasks.filter { $0.isCompleted }.count
-        return Double(completedMiniTasks) / Double(miniTasks.count) * 100
+        let completedTasks = miniTasks.filter { $0.isCompleted }.count
+        return Double(completedTasks) / Double(miniTasks.count) * 100
     }
     
     var isCompleted: Bool {
@@ -58,7 +62,5 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
         self.miniTasks = miniTasks
         self._isCompleted = isCompleted
     }
-
-    // Define relationships to miniTasks and space
-    @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
 }
+    

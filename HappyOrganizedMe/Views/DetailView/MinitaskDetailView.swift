@@ -11,7 +11,7 @@ import SwiftData
 struct MiniTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var miniTask: MiniTask
-    var checkableItems: [CheckableItem]
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Image(miniTask.imageName)
@@ -24,28 +24,26 @@ struct MiniTaskDetailView: View {
             Text(miniTask.name)
                 .font(.title)
                 .fontWeight(.bold)
-            
-            //Text("Instructions: \($miniTask.instruction)")
-            //   .padding(.bottom, 20)
-            
-            // display the checkable items
-            ForEach($miniTask.checkableItems) { $item in
+
+            Text(miniTask.instructions)
+                .padding(.bottom, 20)
+
+            // List of checkable items
+            ForEach($miniTask.checkableItems, id: \.id) { $item in
                 HStack {
-                    Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "checkmark.circle")
+                    Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
                         .onTapGesture {
-                            item.isCompleted.toggle() }
+                            item.isCompleted.toggle()
+                        }
                     Text(item.name)
                 }
                 .padding(.vertical, 5)
             }
-            
+
             Spacer()
-            
-            Button(action: {
-                miniTask.toggleCompleted()
-            }) {
+
+            Button(action: toggleCompletionStatus) {
                 Text(miniTask.isCompleted ? "Mark as Incomplete" : "Mark as Complete")
-                    
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(miniTask.isCompleted ? Color.red : Color.green)
@@ -54,8 +52,17 @@ struct MiniTaskDetailView: View {
                     .shadow(radius: 5)
             }
         }
-        .navigationTitle("Get Down & Dirty")
+        .navigationTitle("The Smallest Details")
         .padding()
     }
-}
 
+    private func toggleCompletionStatus() {
+        miniTask.isCompleted.toggle()
+        
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving context: \(error.localizedDescription)")
+        }
+    }
+}

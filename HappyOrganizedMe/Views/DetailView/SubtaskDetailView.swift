@@ -10,7 +10,7 @@ import SwiftUI
 struct SubTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var subTask: SubTask  // Property to track changes in subtask data
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -21,14 +21,17 @@ struct SubTaskDetailView: View {
                         .frame(height: 125)
                         .clipped()
                         .cornerRadius(10)
-                 
+                    
                     Text(subTask.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                    Text(subTask.usageDescription)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
                 
                 ProgressView(value: subTask.progress, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                    .progressViewStyle(LinearProgressViewStyle(tint: .teal))
                     .padding(.vertical, 10)
                 
                 HStack {
@@ -51,22 +54,41 @@ struct SubTaskDetailView: View {
                 .font(.headline)
                 .padding(.leading)
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(subTask.miniTasks) { miniTask in
-                    NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask, checkableItems: [])) {
-                        CardView(item: miniTask)
-                    }
+            // Checkable list for minitasks
+            ForEach($subTask.miniTasks, id: \.id) { $miniTask in
+                HStack {
+                    Image(systemName: miniTask.isCompleted ? "checkmark.circle.fill" : "circle")
+                        .onTapGesture {
+                            withAnimation {
+                                toggleMiniTaskCompletion(miniTask: miniTask)
+                            }
+                        }
+                    Text(miniTask.name)
+                        .strikethrough(miniTask.isCompleted, color: .gray)
+                        .animation(.default, value: miniTask.isCompleted)
+                    Spacer()
                 }
+                .padding(.vertical, 5)
+                .padding(.horizontal)
             }
-            .padding([.leading, .trailing])
         }
         .navigationTitle("Bite-sized Tasks")
-        .toolbar {
-//            Button(action: {
-//                // Action for editing the subtask or adding new miniTasks
-//            }) {
-//                Image(systemName: "pencil")
-//            }
+    }
+    
+    // Toggle the completion status of a MiniTask and save the context
+    private func toggleMiniTaskCompletion(miniTask: MiniTask) {
+        miniTask.isCompleted.toggle()
+        saveContext()
+    }
+    
+    // Save the context and handle any errors
+    private func saveContext() {
+        do {
+            try modelContext.save() // Save changes to the context
+        } catch {
+            print("Error saving context: \(error.localizedDescription)")
+            // Optionally, show an alert or handle the error in the UI
         }
     }
 }
+

@@ -31,9 +31,11 @@ enum KitchenRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 5.0 }
+    var type: String { "Kitchen" }
+    var category: String { "Furniture" }
        
     // Provide all cases statically
     static var allRoomTypes: [any RoomType] {
@@ -49,9 +51,11 @@ enum LivingRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 2.0 }
+    var type: String { "Living room" }
+    var category: String { "Furniture" }
         
     static var allRoomTypes: [any RoomType] {
         return LivingRoomType.allCases.map { $0 }
@@ -65,9 +69,11 @@ enum BedroomRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 3.0 }
+    var type: String { "Bedroom" }
+    var category: String { "Furniture" }
        
     static var allRoomTypes: [any RoomType] {
         return BedroomRoomType.allCases.map { $0 }
@@ -84,9 +90,11 @@ enum BathroomRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 4.0 }
+    var type: String { "Bathroom" }
+    var category: String { "Furniture" }
         
     static var allRoomTypes: [any RoomType] {
         return BathroomRoomType.allCases.map { $0 }
@@ -102,9 +110,11 @@ enum DiningRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 1.0 }
+    var type: String { "Dining Room" }
+    var category: String { "Furniture" }
     
     static var allRoomTypes: [any RoomType] {
         return DiningRoomType.allCases.map { $0 }
@@ -121,9 +131,11 @@ enum GarageRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 5.0 }
+    var type: String { "Garage" }
+    var category: String { "Furniture" }
        
     static var allRoomTypes: [any RoomType] {
         return GarageRoomType.allCases.map { $0 }
@@ -138,9 +150,11 @@ enum OfficeType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 3.0 }
+    var type: String { "Office" }
+    var category: String { "Furniture" }
         
     static var allRoomTypes: [any RoomType] {
         return OfficeType.allCases.map { $0 }
@@ -157,9 +171,11 @@ enum PlayroomRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 3.0 }
+    var type: String { "Playroom" }
+    var category: String { "Furniture" }
         
     static var allRoomTypes: [any RoomType] {
         return PlayroomRoomType.allCases.map { $0 }
@@ -174,9 +190,11 @@ enum StorageRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "String" }
+    var usageDescription: String { "String" }
     var weight: Double { 4.0 }
+    var type: String { "Storage" }
+    var category: String { "Furniture" }
         
     static var allRoomTypes: [any RoomType] {
         return StorageRoomType.allCases.map { $0 }
@@ -187,9 +205,11 @@ enum UnknownRoomType: String, RoomType {
     
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String? { "String" }
-    var usageDescription: String? { "String" }
+    var instructions: String { "unknown" }
+    var usageDescription: String { "unknown" }
     var weight: Double { 0.0 }
+    var type: String { "unknown" }
+    var category: String { "unknown" }
     
     static var allRoomTypes: [any RoomType] {
         return UnknownRoomType.allCases.map { $0 }
