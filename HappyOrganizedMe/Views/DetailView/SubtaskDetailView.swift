@@ -10,10 +10,13 @@ import SwiftUI
 struct SubTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var subTask: SubTask  // Property to track changes in subtask data
+    @State private var showingInfo = false
+    @State private var selectedMiniTask: MiniTask?
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
+                // subTask header
                 VStack(alignment: .leading, spacing: 10) {
                     Image(subTask.imageName)
                         .resizable()
@@ -25,6 +28,7 @@ struct SubTaskDetailView: View {
                     Text(subTask.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                    
                     Text(subTask.usageDescription)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -67,12 +71,29 @@ struct SubTaskDetailView: View {
                         .strikethrough(miniTask.isCompleted, color: .gray)
                         .animation(.default, value: miniTask.isCompleted)
                     Spacer()
+                    
+                    // Info button
+                    Button(action: {
+                        selectedMiniTask = miniTask
+                        showingInfo.toggle()
+                    }) {
+                        Image(systemName: "info.circle")
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .padding(.vertical, 5)
                 .padding(.horizontal)
             }
         }
         .navigationTitle("Bite-sized Tasks")
+        .toolbar {
+            // toolbar or other actions go here.
+        }
+        .alert(isPresented: $showingInfo) {
+            Alert(
+                title: Text(selectedMiniTask?.name ?? "MiniTask Info"), message: Text(selectedMiniTask?.instructions ?? "No instructions available."), dismissButton: .default(Text("OK"))
+                )
+        }
     }
     
     // Toggle the completion status of a MiniTask and save the context
