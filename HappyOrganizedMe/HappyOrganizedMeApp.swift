@@ -39,8 +39,18 @@ struct HappyOrganizedMeApp: App {
     }()
     
     private static func containerIsEmpty(_ container: ModelContainer) -> Bool {
-        // TODO: check if container is empty (something like query the container for all Rooms and get back nothing.
-        return true
+        let context = container.mainContext
+        
+        // Fetch all Project objects
+        let fetchDescriptor = FetchDescriptor<Project>()
+        
+        do {
+            let projects = try context.fetch(fetchDescriptor)
+            return projects.isEmpty
+        } catch {
+            print("Error fetching projects: \(error)")
+            return true // If an error occurs, assume the container is empty.
+        }
     }
     
     var body: some Scene {
