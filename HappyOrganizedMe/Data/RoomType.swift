@@ -19,7 +19,7 @@ protocol RoomType: Codable, CaseIterable {
     init?(rawValue: String)
 }
 
-enum KitchenRoomType: String, RoomType {
+enum KitchenRoomType: String, RoomType, CaseIterable {
     case prepZone = "Prep Zone"
     case cookingZone = "Cooking Zone"
     case cleaningZone = "Cleaning Zone"
@@ -35,21 +35,21 @@ enum KitchenRoomType: String, RoomType {
     var instructions: String {
         switch self {
         case .prepZone:
-            return "Prep Zone"
+            return "Clean and sanitize"
         case .cookingZone:
-            return "Cook Zone"
+            return "Use a good degreaser and clean all surfaces"
         case .cleaningZone:
-            return "Clean Zone"
+            return "Wipe bottles off after using"
         case .foodStorageZone:
-            return "Pantry"
+            return "Don't go overboard"
         case .cookwareStorageZone:
-            return "Cookware"
+            return "keep cookware clean"
         case .servingZone:
-            return "Serving Zone"
+            return "Keep serving area clean"
         case .bakingZone:
-            return "Baking Zone"
+            return "Keep baking area clean"
         case .drinkZone:
-            return "Drink Zone"
+            return "keep drink area clean, wipe down regularly"
         }
     }
     var usageDescription: String {
@@ -77,11 +77,11 @@ enum KitchenRoomType: String, RoomType {
     var category: String { "Furniture" }
     
     // Provide all cases statically
-    static var allRoomTypes: [any RoomType] {
-        return KitchenRoomType.allCases.map { $0 }
+    static var allRoomTypes: [KitchenRoomType] {
+        return KitchenRoomType.allCases
     }
 }
-enum DiningRoomType: String, RoomType {
+enum DiningRoomType: String, RoomType, CaseIterable {
     case diningZone = "Dining Room"
     case servingZone = "Serving Zone"
     case storageZone = "Storage Zone"
@@ -119,11 +119,11 @@ enum DiningRoomType: String, RoomType {
     var type: String { "Dining Room" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return DiningRoomType.allCases.map { $0 }
+    static var allRoomTypes: [DiningRoomType] {
+        return DiningRoomType.allCases
     }
 }
-enum BathroomRoomType: String, RoomType {
+enum BathroomRoomType: String, RoomType, CaseIterable {
     case bathingZone
     case toiletZone
     case vanitySinkZone
@@ -167,12 +167,12 @@ enum BathroomRoomType: String, RoomType {
     var type: String { "Bathroom" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return BathroomRoomType.allCases.map { $0 }
+    static var allRoomTypes: [BathroomRoomType] {
+        return BathroomRoomType.allCases
     }
 }
 
-enum LivingRoomType: String, RoomType {
+enum LivingRoomType: String, RoomType, CaseIterable {
     case seatingZone
     case entertainmentZone
     case readingRelaxationZone
@@ -227,16 +227,17 @@ enum LivingRoomType: String, RoomType {
             return "Conversation Zone: While the seating area might also function as a conversation zone, in larger living rooms, you can create a separate, more intimate space for conversations. It could feature two armchairs and a small table, placed away from the TV for a quieter, social area."
         case .lightingZone:
             return "Lighting Zone: Lighting zones are key in living rooms to set different moods. Overhead lighting like chandeliers or recessed lighting, combined with table lamps or floor lamps, can define different areas for different activities, such as reading or watching TV."
-        } }
+        }
+    }
     var weight: Double { 2.0 }
     var type: String { "Living room" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return LivingRoomType.allCases.map { $0 }
+    static var allRoomTypes: [LivingRoomType] {
+        return LivingRoomType.allCases
     }
 }
-enum BedroomRoomType: String, RoomType {
+enum BedroomRoomType: String, RoomType, CaseIterable {
     case sleepingZone = "Sleeping Zone"
     case storageZone = "Storage Zone"
     case dressingZone = "Dressing Zone"
@@ -298,11 +299,11 @@ enum BedroomRoomType: String, RoomType {
     var type: String { "Bedroom" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return BedroomRoomType.allCases.map { $0 }
+    static var allRoomTypes: [BedroomRoomType] {
+        return BedroomRoomType.allCases
     }
 }
-enum StorageRoomType: String, RoomType {
+enum StorageRoomType: String, RoomType, CaseIterable {
     case closetsZone = "Closets"
     case utilityRoomZone = "Utility Room"
     case atticBasementZone = "Attic Basement"
@@ -348,11 +349,11 @@ enum StorageRoomType: String, RoomType {
     var type: String { "Storage" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return StorageRoomType.allCases.map { $0 }
+    static var allRoomTypes: [StorageRoomType] {
+        return StorageRoomType.allCases
     }
 }
-enum OfficeType: String, RoomType {
+enum OfficeRoomType: String, RoomType, CaseIterable {
     case workstationZone = "Workstation Zone"
     case storageZone = "Storage Zone"
     case technologyZone = "Technology Zone"
@@ -398,11 +399,11 @@ enum OfficeType: String, RoomType {
     var type: String { "Office" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return OfficeType.allCases.map { $0 }
+    static var allRoomTypes: [OfficeRoomType] {
+        return OfficeRoomType.allCases
     }
 }
-enum GarageRoomType: String, RoomType {
+enum GarageRoomType: String, RoomType, CaseIterable {
     case parkingZone = "Parking Zone"
     case toolZone
     case gardenOutdoorZone = "Garden Outdoor Zone"
@@ -436,12 +437,12 @@ enum GarageRoomType: String, RoomType {
     var type: String { "Garage" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return GarageRoomType.allCases.map { $0 }
+    static var allRoomTypes: [GarageRoomType] {
+        return GarageRoomType.allCases
     }
 }
 
-enum PlayroomRoomType: String, RoomType {
+enum PlayroomRoomType: String, RoomType, CaseIterable {
     case toyStorageZone = "Toy Storage Zone"
     case artsCraftZone = "Arts & Crafts Zone"
     case readingQuietZone = "Reading Quiet Zone"
@@ -493,12 +494,12 @@ enum PlayroomRoomType: String, RoomType {
     var type: String { "Playroom" }
     var category: String { "Furniture" }
     
-    static var allRoomTypes: [any RoomType] {
-        return PlayroomRoomType.allCases.map { $0 }
+    static var allRoomTypes: [PlayroomRoomType] {
+        return PlayroomRoomType.allCases
     }
 }
 
-enum UnknownRoomType: String, RoomType {
+enum UnknownRoomType: String, RoomType, CaseIterable {
     case unknown
     
     var name: String { rawValue }
@@ -509,25 +510,29 @@ enum UnknownRoomType: String, RoomType {
     var type: String { "unknown" }
     var category: String { "unknown" }
     
-    static var allRoomTypes: [any RoomType] {
-        return UnknownRoomType.allCases.map { $0 }
+    static var allRoomTypes: [UnknownRoomType] {
+        return UnknownRoomType.allCases
     }
 }
 
 // Access all roomTypes
-let allRoomTypes: [any RoomType] =
-KitchenRoomType.allRoomTypes +
-LivingRoomType.allRoomTypes +
-GarageRoomType.allRoomTypes +
-BathroomRoomType.allRoomTypes +
-StorageRoomType.allRoomTypes +
-OfficeType.allRoomTypes +
-PlayroomRoomType.allRoomTypes +
-BedroomRoomType.allRoomTypes +
-DiningRoomType.allRoomTypes +
-UnknownRoomType.allRoomTypes
-
-
+extension RoomType {
+    static var allRoomTypes: [any RoomType] {
+        
+        return [
+                KitchenRoomType.allCases.map {$0 as any RoomType },
+            LivingRoomType.allCases.map {$0 as any RoomType },
+            GarageRoomType.allCases.map {$0 as any RoomType },
+            BathroomRoomType.allCases.map {$0 as any RoomType },
+            StorageRoomType.allCases.map {$0 as any RoomType },
+            OfficeType.allCases.map {$0 as any RoomType },
+            PlayroomRoomType.allCases.map {$0 as any RoomType },
+            BedroomRoomType.allCases.map {$0 as any RoomType },
+            DiningRoomType.allCases.map {$0 as any RoomType },
+            UnknownRoomType.allCases.map {$0 as any RoomType },
+        ].flatMap { $0 }
+    }
+}
 
 
 

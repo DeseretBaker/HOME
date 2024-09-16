@@ -17,20 +17,14 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     var miniTasks: [MiniTask]
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Attribute var subTaskTypeString: String // Store the raw value of SubTaskType as a String
+    @Attribute var subTaskType: any SubTaskType
     // Define relationships to miniTasks and space
     @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
     
     
     private var _isCompleted: Bool = false
     
-    // Computed property to get the `SubTaskType` enum from the stored raw value
-    var subTaskType: any SubTaskType {
-        get {
-            resolveSubTaskType(from: subTaskTypeString) ?? UnknownSubTaskType.unknown }
-        set {
-            subTaskTypeString = newValue.rawValue }
-    }
+
     
     // MARK: Computed Variables (from the Displayable protocol)
     var name: String { subTaskType.name }
@@ -54,7 +48,7 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     }
     // Initializer
     init(subTaskType: any SubTaskType, instructions: String, usageDescription: String, type: String, category: String, miniTasks: [MiniTask], isCompleted: Bool = false) {
-        self.subTaskTypeString = subTaskType.rawValue
+        self.subTaskType = subTaskType
         self.instructions = instructions
         self.usageDescription = usageDescription
         self.type = type // e.g., LivingRoom, Kitchen

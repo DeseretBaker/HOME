@@ -28,16 +28,16 @@ enum ProjectType: String, Codable, CaseIterable {
     /// Instructions associated with the project type.
     var instructions: String? {
         switch self {
-        case .kitchen: return "Kitchen"
-        case .diningRoom: return "Dining Room"
-        case .livingRoom: return "Living Room"
-        case .bathroom: return "Bathroom"
-        case .bedroom: return "Bedroom"
-        case .storage: return "Storage"
-        case .office: return "Office"
-        case .garage: return "Garage"
-        case .playroom: return "Playroom"
-        case .unknown: return "Unknown Project"
+        case .kitchen: return NSLocalizedString("Kitchen", comment: "Kitchen instructions")
+        case .diningRoom: return NSLocalizedString("Dining Room", comment: "Dining Room instructions")
+        case .livingRoom: return NSLocalizedString("Living Room", comment: "Living Room instructions")
+        case .bathroom: return NSLocalizedString("Bathroom", comment: "Bathroom instructions")
+        case .bedroom: return NSLocalizedString("Bedroom", comment: "Bedroom instructions")
+        case .storage: return NSLocalizedString("Storage", comment: "Storage instructions")
+        case .office: return NSLocalizedString("Office", comment: "Office instructions")
+        case .garage: return NSLocalizedString("Garage", comment: "Garage instructions")
+        case .playroom: return NSLocalizedString("Playroom", comment: "Playroom instructions")
+        case .unknown: return NSLocalizedString("Unknown Project", comment: "Unknown Project instructions")
         }
     }
     
@@ -70,7 +70,7 @@ enum ProjectType: String, Codable, CaseIterable {
     }
     
     /// Returns an array of display names for all project types.
-    static var allDisplayNames: [String] {
-        return ProjectType.allCases.map { $0.name }
+    static var allDisplayNames: [ProjectType] {
+        return ProjectType.allCases
     }
 }

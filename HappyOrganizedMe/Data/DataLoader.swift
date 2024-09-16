@@ -1,4 +1,11 @@
 
+// HappyOrganizedMe
+// DataLoader.swift
+//
+// Created by Deseret Baker
+// Created on 7/20/24
+
+
 
 
 
@@ -8,9 +15,14 @@ import Foundation
 
 // MARK: - DataLoader Class
 class DataLoader {
- 
+    
+    // MARK: - Create All Empty Projects
+    func createAllEmptyProjects() -> [Project] {
+        return loadProjects()
+    }
+
     // MARK: - Project Loader
-    static func loadProjects() -> [Project] {
+    func loadProjects() -> [Project] {
         return ProjectType.allCases.map { projectType in
             let rooms = loadRooms(for: projectType)
             return Project(
@@ -25,32 +37,19 @@ class DataLoader {
     }
     
     // MARK: - Room Loader
-    static func loadRooms(for projectType: ProjectType) -> [Room] {
+    func loadRooms(for projectType: ProjectType) -> [Room] {
         let roomTypes: [any RoomType]
         
-        // Get room types based on project type
         switch projectType {
         case .kitchen:
-            roomTypes = KitchenRoomType.allRoomTypes
+            roomTypes = KitchenRoomType.allCases
         case .livingRoom:
-            roomTypes = LivingRoomType.allRoomTypes
-        case .bedroom:
-            roomTypes = BedroomRoomType.allRoomTypes
-        case .bathroom:
-            roomTypes = BathroomRoomType.allRoomTypes
-        case .diningRoom:
-            roomTypes = DiningRoomType.allRoomTypes
-        case .garage:
-            roomTypes = GarageRoomType.allRoomTypes
-        case .office:
-            roomTypes = OfficeType.allRoomTypes
-        case .playroom:
-            roomTypes = PlayroomRoomType.allRoomTypes
-        case .storage:
-            roomTypes = StorageRoomType.allRoomTypes
-        case .unknown:
-            roomTypes = UnknownRoomType.allRoomTypes
+            roomTypes = LivingRoomType.allCases
+        // Add other cases for each project type
+        default:
+            roomTypes = []
         }
+        
         return roomTypes.map { roomType in
             let spaces = loadSpaces(for: roomType)
             return Room(
@@ -65,35 +64,36 @@ class DataLoader {
     }
     
     // MARK: - Space Loader
-    static func loadSpaces(for roomType: any RoomType) -> [Space] {
+    func loadSpaces(for roomType: any RoomType) -> [Space] {
         let spaceTypes: [any SpaceType]
-        
+
         switch roomType {
         case is KitchenRoomType:
-            spaceTypes = KitchenSpaceType.allCases
+            spaceTypes = KitchenSpaceType.allCases // No need for casting to `any`
         case is LivingRoomType:
             spaceTypes = LivingRoomSpaceType.allCases
-        case is BedroomRoomType:
-            spaceTypes = BedroomSpaceType.allCases
-        case is BathroomRoomType:
-            spaceTypes = BathroomSpaceType.allCases
         case is DiningRoomType:
             spaceTypes = DiningRoomSpaceType.allCases
+        case is BathroomRoomType:
+            spaceTypes = BathroomSpaceType.allCases
+        case is BedroomRoomType:
+            spaceTypes = BedroomSpaceType.allCases
+        case is OfficeRoomType:
+            spaceTypes = OfficeSpaceType.allCases
         case is GarageRoomType:
             spaceTypes = GarageSpaceType.allCases
-        case is OfficeType:
-            spaceTypes = OfficeSpaceType.allCases
-        case is PlayroomRoomType:
-            spaceTypes = PlayroomSpaceType.allCases
         case is StorageRoomType:
             spaceTypes = StorageSpaceType.allCases
-        case is UnknownRoomType:
-            spaceTypes = UnknownSpaceType.allCases
+        case is PlayroomRoomType:
+            spaceTypes = PlayroomSpaceType.allCases
+
+        // Add other cases for each room type
         default:
             spaceTypes = []
         }
+
         return spaceTypes.map { spaceType in
-            let subTasks = loadSubTasks(for: spaceType) // Corrected here
+            let subTasks = loadSubTasks(for: spaceType)
             return Space(
                 spaceType: spaceType,
                 instructions: spaceType.instructions,
@@ -104,35 +104,20 @@ class DataLoader {
             )
         }
     }
-    
     // MARK: - SubTask Loader
-    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
+   func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
         let subTaskTypes: [any SubTaskType]
         
         switch spaceType {
-        case is KitchenSpaceType:
+        case .kitchen:
             subTaskTypes = KitchenSubTaskType.allCases
-        case is LivingRoomSpaceType:
+        case .livingRoom:
             subTaskTypes = LivingRoomSubTaskType.allCases
-        case is BedroomSpaceType:
-            subTaskTypes = BedroomSubTaskType.allCases
-        case is BathroomSpaceType:
-            subTaskTypes = BathroomSubTaskType.allCases
-        case is DiningRoomSpaceType:
-            subTaskTypes = DiningRoomSubTaskType.allCases
-        case is GarageSpaceType:
-            subTaskTypes = GarageSubTaskType.allCases
-        case is OfficeSpaceType:
-            subTaskTypes = OfficeSubTaskType.allCases
-        case is PlayroomSpaceType:
-            subTaskTypes = PlayroomSubTaskType.allCases
-        case is StorageSpaceType:
-            subTaskTypes = StorageSubTaskType.allCases
-        case is UnknownSpaceType:
-            subTaskTypes = UnknownSubTaskType.allCases
+        // Add other cases for each space type
         default:
             subTaskTypes = []
         }
+        
         return subTaskTypes.map { subTaskType in
             let miniTasks = loadMiniTasks(for: subTaskType)
             return SubTask(
@@ -147,30 +132,16 @@ class DataLoader {
     }
     
     // MARK: - MiniTask Loader
-    static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
+    
+    func loadMiniTask(for subTaskType: any SubTaskType) -> [MiniTask] {
         let miniTaskTypes: [any MiniTaskType]
         
         switch subTaskType {
-        case is KitchenSubTaskType:
+        case .kitchen:
             miniTaskTypes = KitchenMiniTaskType.allCases
-        case is LivingRoomSubTaskType:
+        case .livingRoom:
             miniTaskTypes = LivingRoomMiniTaskType.allCases
-        case is BedroomSubTaskType:
-            miniTaskTypes = BedroomMiniTaskType.allCases
-        case is BathroomSubTaskType:
-            miniTaskTypes = BathroomMiniTaskType.allCases
-        case is DiningRoomSubTaskType:
-            miniTaskTypes = DiningRoomMiniTaskType.allCases
-        case is GarageSubTaskType:
-            miniTaskTypes = GarageMiniTaskType.allCases
-        case is OfficeSubTaskType:
-            miniTaskTypes = OfficeMiniTaskType.allCases
-        case is PlayroomSubTaskType:
-            miniTaskTypes = PlayroomMiniTaskType.allCases
-        case is StorageSubTaskType:
-            miniTaskTypes = StorageMiniTaskType.allCases
-        case is UnknownSubTaskType:
-            miniTaskTypes = UnknownMiniTaskType.allCases
+        // Add other cases for each subtask type
         default:
             miniTaskTypes = []
         }
@@ -178,7 +149,6 @@ class DataLoader {
         return miniTaskTypes.map { miniTaskType in
             return MiniTask(
                 miniTaskType: miniTaskType,
-                
                 usageDescription: miniTaskType.usageDescription,
                 type: "\(miniTaskType.name) Type",
                 category: "\(miniTaskType.name) Category"
@@ -186,11 +156,3 @@ class DataLoader {
         }
     }
 }
-extension HappyOrganizedMeApp {
-    
-    static func createAllEmptyProjects() -> [Project] {
-        DataLoader.loadProjects()
-    }
-}
-
-
