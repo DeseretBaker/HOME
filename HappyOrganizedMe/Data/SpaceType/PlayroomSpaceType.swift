@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol PlayroomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol PlayroomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 
 // MARK: PlayroomSpaceType
 
@@ -443,21 +443,21 @@ enum PlayroomOutdoorPlayZoneSpaceType: String, PlayroomSpaceType, SpaceType, Cod
         }
 }
 
-extension PlayroomSpaceType {
-    static var allPlayroomSpaceTypes: [any PlayroomSpaceType] {
-        return [
-            PlayroomToyStorageZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomArtsCraftsSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomReadingZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomBuildingConstructionZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomPretendPlayZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomPuzzleBoardGameSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomPhysicalActivityZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomMusicPerformanceSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomSensoryPlaySpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomHomeworkStudyZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomTechnologyZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
-            PlayroomOutdoorPlayZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType}
-        ].flatMap { $0 }
-    }
-}
+//extension PlayroomSpaceType {
+//    static var allPlayroomSpaceTypes: [any PlayroomSpaceType] {
+//        return [
+//            PlayroomToyStorageZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomArtsCraftsSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomReadingZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomBuildingConstructionZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomPretendPlayZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomPuzzleBoardGameSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomPhysicalActivityZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomMusicPerformanceSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomSensoryPlaySpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomHomeworkStudyZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomTechnologyZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType},
+//            PlayroomOutdoorPlayZoneSpaceType.allCases.map { $0 as any PlayroomSpaceType}
+//        ].flatMap { $0 }
+//    }
+//}

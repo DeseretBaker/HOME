@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol OfficeSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol OfficeSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 // MARK: OfficeSpaceType
 
 enum OfficeWorkStationSpaceType: String, OfficeSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
@@ -160,14 +160,14 @@ enum OfficeReferenceZoneSpaceType: String, OfficeSpaceType, SpaceType, Codable, 
         return OfficeReferenceZoneSpaceType.allCases
         }
 }
-extension OfficeSpaceType {
-    static var allOfficeSpaceTypes: [any OfficeSpaceType] {
-        return [
-        OfficeWorkStationSpaceType.allCases.map { $0  as any OfficeSpaceType},
-        OfficeDeskStorageSpaceType.allCases.map { $0  as any OfficeSpaceType},
-        OfficeTechGadgetZoneSpaceType.allCases.map { $0  as any OfficeSpaceType},
-        OfficeReferenceZoneSpaceType.allCases.map { $0  as any OfficeSpaceType}
-        ].flatMap { $0 }
-        }
-}
+//extension OfficeSpaceType {
+//    static var allOfficeSpaceTypes: [any OfficeSpaceType] {
+//        return [
+//        OfficeWorkStationSpaceType.allCases.map { $0  as any OfficeSpaceType},
+//        OfficeDeskStorageSpaceType.allCases.map { $0  as any OfficeSpaceType},
+//        OfficeTechGadgetZoneSpaceType.allCases.map { $0  as any OfficeSpaceType},
+//        OfficeReferenceZoneSpaceType.allCases.map { $0  as any OfficeSpaceType}
+//        ].flatMap { $0 }
+//        }
+//}
 

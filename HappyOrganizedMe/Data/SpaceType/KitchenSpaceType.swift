@@ -8,18 +8,18 @@
     import Foundation
 
 // MARK: KitchenSpaceType
-protocol KitchenSpaceType: SpaceType,Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol KitchenSpaceType: SpaceType,Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 enum KitchenPrepZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
     case prepZoneCountertops = "Countertops"
     case prepZoneCuttingBoards = "Cutting Boards"
@@ -381,17 +381,17 @@ enum KitchenDrinkZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, Ca
         }
 }
 
-extension KitchenSpaceType {
-    static var allKitchenSpaceTypes: [any KitchenSpaceType] {
-        return [
-        KitchenCookingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenPrepZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenCleaningZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenFoodStorageZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenCookwareZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenServingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenBakingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-        KitchenDrinkZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-        ].flatMap { $0 }
-    }
-}
+//extension KitchenSpaceType {
+//    static var allKitchenSpaceTypes: [any KitchenSpaceType] {
+//        return [
+//        KitchenCookingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenPrepZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenCleaningZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenFoodStorageZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenCookwareZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenServingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenBakingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
+//        KitchenDrinkZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+//        ].flatMap { $0 }
+//    }
+//}

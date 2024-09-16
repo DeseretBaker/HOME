@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol RoomType: Codable, CaseIterable {
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol RoomType: Codable, CaseIterable {
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 
 enum KitchenRoomType: String, RoomType, CaseIterable {
     case prepZone = "Prep Zone"

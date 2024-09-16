@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol BathroomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol BathroomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 // MARK: BedroomSpaceType
 enum BathroomBathingShoweringSpaceType: String, BathroomSpaceType, SpaceType,Codable, CaseIterable, Identifiable {
     case showerArea = "Shower Area"
@@ -296,18 +296,18 @@ enum BathroomToiletZoneSpaceType: String, BathroomSpaceType, SpaceType, Codable,
             }
         }
         
-        extension BathroomSpaceType {
-            static var allBathroomSpaceTypes: [any BathroomSpaceType] {
-                return [
-                    BathroomBathingShoweringSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomToiletZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomVanitySinkZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomTowelsToiletriesZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomGroomingSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomLaundrySpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomDressingChangingSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomCleaningSuppliesSpaceType.allCases.map { $0 as any BathroomSpaceType },
-                    BathroomRelaxationSpaceType.allCases.map { $0 as any BathroomSpaceType }
-                ].flatMap { $0 }
-            }
-        }
+//        extension BathroomSpaceType {
+//            static var allBathroomSpaceTypes: [any BathroomSpaceType] {
+//                return [
+//                    BathroomBathingShoweringSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomToiletZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomVanitySinkZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomTowelsToiletriesZoneSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomGroomingSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomLaundrySpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomDressingChangingSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomCleaningSuppliesSpaceType.allCases.map { $0 as any BathroomSpaceType },
+//                    BathroomRelaxationSpaceType.allCases.map { $0 as any BathroomSpaceType }
+//                ].flatMap { $0 }
+//            }
+//        }

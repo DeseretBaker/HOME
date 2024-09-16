@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol DiningRoomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol DiningRoomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 
 // MARK: DiningSpaceType
 
@@ -245,16 +245,16 @@ enum DiningRoomDrinkingBarZoneSpaceType: String, DiningRoomSpaceType, SpaceType,
         return DiningRoomDrinkingBarZoneSpaceType.allCases
         }
 }
-extension DiningRoomSpaceType {
-    static var allDiningRoomSpaceTypes: [any DiningRoomSpaceType] {
-        return [
-            DiningRoomDiningZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomServingZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomStorageZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomDecorDisplayZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomLightingZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomMultiUseZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
-            DiningRoomDrinkingBarZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType }
-        ].flatMap { $0 }
-    }
-}
+//extension DiningRoomSpaceType {
+//    static var allDiningRoomSpaceTypes: [any DiningRoomSpaceType] {
+//        return [
+//            DiningRoomDiningZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomServingZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomStorageZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomDecorDisplayZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomLightingZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomMultiUseZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType },
+//            DiningRoomDrinkingBarZoneSpaceType.allCases.map { $0 as any DiningRoomSpaceType }
+//        ].flatMap { $0 }
+//    }
+//}

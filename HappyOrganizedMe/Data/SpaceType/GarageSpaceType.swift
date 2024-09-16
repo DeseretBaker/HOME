@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GarageSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol GarageSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 
 enum GarageParkingSpaceType: String, GarageSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
     case vehicleParking = "Vehicle Parking"
@@ -353,19 +353,19 @@ static var allGarageSpaceTypes: [GarageOverheadStorageZone] {
 }
 
 
-extension GarageSpaceType {
-    static var allGarageSpaceTypes: [any GarageSpaceType] {
-        return [
-            GarageParkingSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageToolZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageGardenOutdoorZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageSportsActivityGearZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageSeasonalStorageZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageHouseHoldStorageZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageWasteRecyclingZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageMaintenanceZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageMudroomLaundrySpaceType.allCases.map { $0 as any GarageSpaceType},
-            GarageOverheadStorageZone.allCases.map { $0 as any GarageSpaceType}
-        ].flatMap { $0 }
-    }
-}
+//extension GarageSpaceType {
+//    static var allGarageSpaceTypes: [any GarageSpaceType] {
+//        return [
+//            GarageParkingSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageToolZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageGardenOutdoorZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageSportsActivityGearZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageSeasonalStorageZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageHouseHoldStorageZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageWasteRecyclingZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageMaintenanceZoneSpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageMudroomLaundrySpaceType.allCases.map { $0 as any GarageSpaceType},
+//            GarageOverheadStorageZone.allCases.map { $0 as any GarageSpaceType}
+//        ].flatMap { $0 }
+//    }
+//}

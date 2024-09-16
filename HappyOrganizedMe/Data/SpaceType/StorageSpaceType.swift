@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol StorageSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
-    var rawValue: String { get }
-    init?(rawValue: String)
-}
+//protocol StorageSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
+//    var id: UUID { get }
+//    var name: String { get }
+//    var imageName: String { get }
+//    var instructions: String { get }
+//    var usageDescription: String { get }
+//    var weight: Double { get }
+//    var type: String { get }
+//    var category: String { get }
+//    var rawValue: String { get }
+//    init?(rawValue: String)
+//}
 
 // MARK: StorageSpaceZone
 
@@ -374,19 +374,19 @@ enum StorageHomeOfficeSpaceType: String, StorageSpaceType, SpaceType, Codable, C
         return StorageHomeOfficeSpaceType.allCases
     }
 }
-extension StorageSpaceType {
-    static var allStorageSpaceTypes: [any StorageSpaceType] {
-        return [
-            StorageClosetZoneSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageUtilityRoomSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageAtticBasementSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StoragePantrySpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageLaundryRoomSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageMudroomEntrySpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageCabinetShelvingSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageUnderBedStorageSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageBuiltInsWallUnitsSpaceType.allCases.map { $0  as any StorageSpaceType},
-            StorageHomeOfficeSpaceType.allCases.map { $0  as any StorageSpaceType}
-        ].flatMap { $0 }
-    }
-}
+//extension StorageSpaceType {
+//    static var allStorageSpaceTypes: [any StorageSpaceType] {
+//        return [
+//            StorageClosetZoneSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageUtilityRoomSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageAtticBasementSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StoragePantrySpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageLaundryRoomSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageMudroomEntrySpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageCabinetShelvingSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageUnderBedStorageSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageBuiltInsWallUnitsSpaceType.allCases.map { $0  as any StorageSpaceType},
+//            StorageHomeOfficeSpaceType.allCases.map { $0  as any StorageSpaceType}
+//        ].flatMap { $0 }
+//    }
+//}

@@ -64,12 +64,46 @@ class DataLoader {
     }
     
     // MARK: - Space Loader
-    func loadSpaces(for roomType: any RoomType) -> [Space] {
-        let spaceTypes: [any SpaceType]
+    func loadSpaces(for roomType: KitchenRoomType) -> [Space] {
+        let spaceTypes: [any KitchenSpaceType]
 
         switch roomType {
-        case is KitchenRoomType:
-            spaceTypes = KitchenSpaceType.allCases // No need for casting to `any`
+            func loadSpaces(for roomType: KitchenRoomType) -> [Space] {
+                let spaceTypes: [any KitchenSpaceType]
+                
+                switch roomType {
+                case .prepZone:
+                    spaceTypes = KitchenPrepZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .cookingZone:
+                    spaceTypes = KitchenCookingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .cleaningZone:
+                    spaceTypes = KitchenCleaningZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .foodStorageZone:
+                    spaceTypes = KitchenFoodStorageZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .cookwareZone:
+                    spaceTypes = KitchenCookwareZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .servingZone:
+                    spaceTypes = KitchenServingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .bakingZone:
+                    spaceTypes = KitchenBakingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                case .drinkZone:
+                    spaceTypes = KitchenDrinkZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
+                default:
+                    spaceTypes = []
+                }
+                
+                return spaceTypes.map { spaceType in
+                    let subTasks = loadSubTasks(for: spaceType)
+                    return Space(
+                        spaceType: spaceType,
+                        instructions: spaceType.instructions,
+                        usageDescription: spaceType.usageDescription,
+                        type: "\(spaceType.name) Type",
+                        category: "\(spaceType.name) Category",
+                        subTasks: subTasks
+                    )
+                }
+            }
         case is LivingRoomType:
             spaceTypes = LivingRoomSpaceType.allCases
         case is DiningRoomType:
