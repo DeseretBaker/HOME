@@ -5,22 +5,11 @@
 //  Created by Deseret Baker on 9/14/24.
 //
 
-    import Foundation
+import Foundation
+
 
 // MARK: KitchenSpaceType
-//protocol KitchenSpaceType: SpaceType,Codable, CaseIterable, Identifiable {
-//    var id: UUID { get }
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
-enum KitchenPrepZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenPrepZoneSpaceType: String, SpaceType {
     case prepZoneCountertops = "Countertops"
     case prepZoneCuttingBoards = "Cutting Boards"
     case prepZoneUtensils = "Utensils"
@@ -59,16 +48,11 @@ enum KitchenPrepZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, Cas
             return "The spice rack in the prep zone is essential for quick and easy access to commonly used spices and seasonings during food preparation. It allows you to keep your spices organized, visible, and within arm’s reach, so you can efficiently add flavor to your dishes without interrupting the prep process. The spice rack can be wall-mounted, placed on the countertop, or stored in a nearby drawer or cabinet. Organizing spices alphabetically or by frequency of use can further enhance efficiency, and using labeled containers ensures a tidy and functional system."
         }
     }
-    var weight: Double { 2.0 }
     var type: String { "Kitchen" }
-    var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenPrepZoneSpaceType] {
-        return KitchenPrepZoneSpaceType.allCases
-        }
+    var category: String { "Appliance" }
 }
 
-enum KitchenCookingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenCookingZoneSpaceType: String, SpaceType {
     case cookingZoneStovetop = "Stovetop"
     case cookingZoneOven = "Oven"
     case cookingZone = "Cookware"
@@ -116,13 +100,9 @@ enum KitchenCookingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, 
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenCookingZoneSpaceType] {
-        return KitchenCookingZoneSpaceType.allCases
-        }
 }
 
-enum KitchenCleaningZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenCleaningZoneSpaceType: String, SpaceType {
     case cleaningZoneSink = "Sink"
     case cleaningZoneDishwasher = "Dishwasher"
     case cleaningZoneTrashRecycling = "Trash Recycling"
@@ -170,13 +150,9 @@ enum KitchenCleaningZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable,
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenCleaningZoneSpaceType] {
-        return KitchenCleaningZoneSpaceType.allCases
-        }
 }
 
-enum KitchenFoodStorageZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenFoodStorageZoneSpaceType: String, SpaceType {
     case foodStorageZonePantry = "Food Storage Pantry"
     case foodStorageZoneRefrigerator = "Refrigerator"
     case foodStorageZoneFreezer = "Freezer"
@@ -224,14 +200,10 @@ enum KitchenFoodStorageZoneSpaceType: String, KitchenSpaceType, SpaceType, Codab
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenFoodStorageZoneSpaceType] {
-        return KitchenFoodStorageZoneSpaceType.allCases
-        }
 }
 
 
-enum KitchenCookwareZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenCookwareZoneSpaceType: String, SpaceType {
     case cookwareZoneDrawers = "Drawers"
     case cookwareZonePotsAndPans = "Pots and Pans"
     case cookwareZoneBakingSheets = "Baking Sheets"
@@ -264,13 +236,9 @@ enum KitchenCookwareZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable,
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenCookwareZoneSpaceType] {
-        return KitchenCookwareZoneSpaceType.allCases
-        }
 }
 
-enum KitchenServingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenServingZoneSpaceType: String, SpaceType {
     case servingZonePlatesBowls = "Plates, Bowls"
     case servingZoneGlassesStemware = "Glasses, Stemware"
     case servingZoneSilverware = "Silverware"
@@ -303,13 +271,9 @@ enum KitchenServingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, 
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenServingZoneSpaceType] {
-        return KitchenServingZoneSpaceType.allCases
-        }
 }
 
-enum KitchenBakingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenBakingZoneSpaceType: String, SpaceType {
     case bakingZoneBakingSupplies = "Baking Supplies"
     case bakingZoneIngredients = "Ingredients"
     case bakingZoneMixerTools = "Mixer Tools"
@@ -336,13 +300,9 @@ enum KitchenBakingZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, C
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenBakingZoneSpaceType] {
-        return KitchenBakingZoneSpaceType.allCases
-        }
 }
 
-enum KitchenDrinkZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum KitchenDrinkZoneSpaceType: String, SpaceType {
     case drinkZoneKettles = "Kettles"
     case drinkZoneMugsTravelMugs = "Mugs"
     case drinkZoneSupplies = "Supplies"
@@ -375,23 +335,4 @@ enum KitchenDrinkZoneSpaceType: String, KitchenSpaceType, SpaceType, Codable, Ca
     var weight: Double { 2.0 }
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
-    
-    static var allSpaceTypes: [KitchenDrinkZoneSpaceType] {
-        return KitchenDrinkZoneSpaceType.allCases
-        }
 }
-
-//extension KitchenSpaceType {
-//    static var allKitchenSpaceTypes: [any KitchenSpaceType] {
-//        return [
-//        KitchenCookingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenPrepZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenCleaningZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenFoodStorageZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenCookwareZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenServingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenBakingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType },
-//        KitchenDrinkZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-//        ].flatMap { $0 }
-//    }
-//}

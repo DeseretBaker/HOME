@@ -7,22 +7,10 @@
 
 import Foundation
 
-//protocol BedroomSpaceType: SpaceType ,Codable, CaseIterable, Identifiable {
-//    var id: UUID { get }
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
 
 // MARK: BedroomSpaceType
 
-enum BedroomBedSpaceType: String, BedroomSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomBedSpaceType: String, SpaceType {
     case headboard = "Headboard"
     case bedding = "Bedding"
     case underBedStorage = "Under-Bed Storage"
@@ -53,12 +41,12 @@ enum BedroomBedSpaceType: String, BedroomSpaceType, SpaceType, Codable, CaseIter
     var type: String { "Bedroom" }
     var category: String { "Furniture" }
     
-    static var allSpaceTypes: [BedroomBedSpaceType] {
+    static var allSpaceTypes: [SpaceType] {
         return BedroomBedSpaceType.allCases
     }
 }
 
-enum BedroomDresserSpaceType: String, BedroomSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomDresserSpaceType: String, SpaceType {
     case topSurface = "Top Surface"
     case drawers = "Drawers"
     case mirror = "Mirror"
@@ -86,12 +74,12 @@ enum BedroomDresserSpaceType: String, BedroomSpaceType, SpaceType, Codable, Case
     var type: String { "Bedroom" }
     var category: String { "Furniture" }
     
-    static var allSpaceTypes: [BedroomDresserSpaceType] {
+    static var allSpaceTypes: [any SpaceType] {
         return BedroomDresserSpaceType.allCases
     }
 }
 
-enum BedroomNightstandSpaceType: String, BedroomSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomNightstandSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     case topSurface = "Top Surface"
     case drawersShelves = "Drawers Shelves"
     case decorativeItems = "Decorative Items"
@@ -124,7 +112,7 @@ enum BedroomNightstandSpaceType: String, BedroomSpaceType, SpaceType, Codable, C
     }
 }
 
-enum BedroomStorageZoneSpaceType: String, BedroomSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomStorageZoneSpaceType: String, BedroomSpaceType, Codable, CaseIterable, Identifiable {
     case closet = "Closet"
     case shelves = "Shelves"
     case underBedStorage = "Under Bed Storage"
@@ -160,13 +148,14 @@ enum BedroomStorageZoneSpaceType: String, BedroomSpaceType, SpaceType, Codable, 
     }
 }
 
-//extension BedroomSpaceType {
-//    static var allBedroomSpaceTypes: [any BedroomSpaceType] {
-//        return [
-//            BedroomBedSpaceType.allCases.map { $0 as any BedroomSpaceType},
-//            BedroomDresserSpaceType.allCases.map { $0 as any BedroomSpaceType },
-//            BedroomNightstandSpaceType.allCases.map { $0 as any BedroomSpaceType },
-//            BedroomStorageZoneSpaceType.allCases.map { $0 as any BedroomSpaceType }
-//        ].flatMap { $0 }
-//    }
-//}
+
+extension SpaceType {
+    static var allBedroomSpaceTypes: [any BedroomSpaceType] {
+        return [
+            BedroomBedSpaceType.allCases.map { $0 as any BedroomSpaceType},
+            BedroomDresserSpaceType.allCases.map { $0 as any BedroomSpaceType },
+            BedroomNightstandSpaceType.allCases.map { $0 as any BedroomSpaceType },
+            BedroomStorageZoneSpaceType.allCases.map { $0 as any BedroomSpaceType }
+        ].flatMap { $0 }
+    }
+}

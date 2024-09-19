@@ -9,19 +9,8 @@ import Foundation
 
 // MARK: - LivingRoomSpaceType
 
-//protocol LivingRoomSpaceType: SpaceType, Codable, CaseIterable, Identifiable {
-//    var id: UUID { get }
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
-enum LivingRoomSeatingZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+
+enum LivingRoomSeatingZoneSpaceType: String, SpaceType {
     case mainSeating = "Main Seating"
     case accentChairsOttomans = "Accent Chairs & Ottomans"
     case throwPillowBlankets = "Throw Pillow & Blankets"
@@ -56,7 +45,7 @@ enum LivingRoomSeatingZoneSpaceType: String, SpaceType, Codable, CaseIterable, I
         }
 }
 
-enum LivingRoomEntertainmentZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomEntertainmentZoneSpaceType: String, SpaceType {
     case tvMediaConsole = "TV & Media Console"
     case gamingMediaStorage = "Gaming & Media Storage"
     case soundSystem = "Sound System"
@@ -92,7 +81,7 @@ enum LivingRoomEntertainmentZoneSpaceType: String, SpaceType, Codable, CaseItera
         }
 }
 
-enum LivingRoomReadingRelaxationZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomReadingRelaxationZoneSpaceType: String, SpaceType {
     case chairSeating = "Chair Seating"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case bookshelves = "Bookshelves"
@@ -130,7 +119,7 @@ enum LivingRoomReadingRelaxationZoneSpaceType: String, SpaceType, Codable, CaseI
         }
 }
 
-enum LivingRoomStorageZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomStorageZoneSpaceType: String, SpaceType {
     case cabinetsShelves = "Cabinets & Shelves"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case drawers = "Drawers"
@@ -162,7 +151,7 @@ enum LivingRoomStorageZoneSpaceType: String, SpaceType, Codable, CaseIterable, I
         }
 }
 
-enum LivingRoomDecorativeZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomDecorativeZoneSpaceType: String, SpaceType {
     case shelvesDisplayTables = "Room Decor Zone"
     case plantsGreenery = "Plants & Greenery"
     case wallArtPhotos =  "Wall Art & Photos"
@@ -197,7 +186,7 @@ enum LivingRoomDecorativeZoneSpaceType: String, SpaceType, Codable, CaseIterable
         }
 }
 
-enum LivingRoomPlayZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomPlayZoneSpaceType: String, SpaceType {
     case toyStorage = "Toy Storage"
     case playMatActivityArea = "Play Mat Activity Area"
     case craftArtSupplies = "Craft Art Supplies"
@@ -232,7 +221,7 @@ enum LivingRoomPlayZoneSpaceType: String, SpaceType, Codable, CaseIterable, Iden
         }
 }
 
-enum LivingRoomConversationZoneSpaceType: String,  SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomConversationZoneSpaceType: String,  SpaceType {
     case seatingArrangement = "Seating Arrangement"
     case coffeeTable = "Coffee Table"
     case accentLighting = "Accent Lighting"
@@ -267,7 +256,7 @@ enum LivingRoomConversationZoneSpaceType: String,  SpaceType, Codable, CaseItera
         }
 }
 
-enum LivingRoomLightingZoneSpaceType: String, LivingRoomSpaceType, SpaceType, Codable, CaseIterable, Identifiable {
+enum LivingRoomLightingZoneSpaceType: String, SpaceType {
     case overheadLighting = "Overhead Lighting"
     case taskLighting = "Task Lighting"
     case accentLighting = "Accent Lighting"
