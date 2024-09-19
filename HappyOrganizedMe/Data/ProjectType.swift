@@ -72,12 +72,12 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Storage" }
     var category: String { "Furniture" }
     
-    var roomTypes: [any RoomType] {
+    var roomTypes: [RoomTypeBox] {
         switch self {
         case .kitchen:
-            return KitchenRoomType.allCases
+            return KitchenRoomType.allCases.map { RoomTypeBox($0) }
         case .livingRoom:
-            return LivingRoomType.allCases
+            return LivingRoomType.allCases.map { RoomTypeBox($0) }
             // TODO: Add other cases for each project type
         default:
             return []

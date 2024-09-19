@@ -15,9 +15,12 @@ class Room: Identifiable, Displayable, Progressable, ObservableObject {
     var spaces: [Space] = []
 
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Attribute var roomType: any RoomType // Use the RoomType enum directly
+    var roomType: RoomTypeBox // Use the RoomTypeBox enum directly, not the protocol
     private var _isCompleted: Bool = false
-
+    // Define relationships to spaces and project
+    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+    
+    
     // MARK: Computed Variables
     var name: String { roomType.name }
     var imageName: String { roomType.imageName }
@@ -35,12 +38,8 @@ class Room: Identifiable, Displayable, Progressable, ObservableObject {
         set { _isCompleted = newValue }
     }
 
-    func toggleCompleted() {
-        _isCompleted.toggle()
-    }
-
     // Initializer
-    init(roomType: any RoomType, instructions: String, usageDescription: String, type: String, category: String, spaces: [Space] = [], isCompleted: Bool = false) {
+    init(roomType: RoomTypeBox, instructions: String, usageDescription: String, type: String, category: String, spaces: [Space] = [], isCompleted: Bool = false) {
         self.roomType = roomType
         self.instructions = instructions  // Initialize instructions
         self.usageDescription = usageDescription  // Initialize usageDescription
@@ -49,7 +48,10 @@ class Room: Identifiable, Displayable, Progressable, ObservableObject {
         self.spaces = spaces
         self._isCompleted = isCompleted
     }
+    
+    func toggleCompleted() {
+        _isCompleted.toggle()
+    }
 
-    // Define relationships to spaces and project
-    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+
 }

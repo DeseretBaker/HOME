@@ -16,9 +16,9 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     var type: String
     var category: String
     
-    @Attribute var miniTaskType: any MiniTaskType // Use the enum directly
+    var miniTaskType: MiniTaskTypeBox // Use the enum directly
     private var _isCompleted: Bool = false
-    @Attribute var checkableItems: [CheckableItem] = []
+    var checkableItems: [CheckableItem] = []
     
     // Define relationship to SubTask
     @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
@@ -43,7 +43,7 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     }
     
     // Initializer
-    init(miniTaskType: any MiniTaskType, usageDescription: String, type: String, category: String, isCompleted: Bool = false) {
+    init(miniTaskType: MiniTaskTypeBox, usageDescription: String, type: String, category: String, isCompleted: Bool = false) {
         self.miniTaskType = miniTaskType
         self.usageDescription = usageDescription
         self.type = type // e.g., LivingRoom, Kitchen

@@ -48,56 +48,58 @@ class DataLoader {
                 usageDescription: roomType.usageDescription,
                 type: "\(roomType.name) Type",
                 category: "\(roomType.name) Category",
-                spaces: spaces
+                spaces: spaces // TODO: fix Tasks enums before enabling this.
             )
         }
     }
     
-    static func loadSpaces(for roomType: any RoomType) -> [Space] {
+    static func loadSpaces(for roomType: RoomTypeBox) -> [Space] {
         // Dynamically load spaces for the given room type
-        let spaceTypes = roomType.spaceTypes
-        
-        return spaceTypes.map { spaceType in
-            let subTasks = loadSubTasks(for: spaceType)
-            return Space(
-                spaceType: spaceType,
-                instructions: spaceType.instructions,
-                usageDescription: spaceType.usageDescription,
-                type: spaceType.name,
-                category: spaceType.category,
-                subTasks: subTasks
-            )
-        }
+        fatalError() // TODO: Remove me when you uncomment and fix the below code
+//    TODO: add `spaceTypes` to RoomType
+//        let spaceTypes = roomType.spaceTypes
+//
+//        return spaceTypes.map { spaceType in
+//            let subTasks = loadSubTasks(for: spaceType)
+//            return Space(
+//                spaceType: spaceType,
+//                instructions: spaceType.instructions,
+//                usageDescription: spaceType.usageDescription,
+//                type: spaceType.name,
+//                category: spaceType.category,
+//                subTasks: subTasks
+//            )
+//        }
     }
-    // MARK: - SubTask Loader
-    func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
-        // Dynamically load sub-tasks for the given space type
-        let subTaskTypes = spaceType.subTaskTypes
-        
-        return subTaskTypes.map { subTaskType in
-            let miniTasks = loadMiniTasks(for: subTaskType)
-            return SubTask(
-                subTaskType: subTaskType,
-                instructions: subTaskType.instructions,
-                usageDescription: subTaskType.usageDescription,
-                type: subTaskType.name,
-                category: subTaskType.category,
-                miniTasks: miniTasks
-            )
-        }
-    }
-    // MARK: - MiniTask Loader
-    func loadMiniTasks(for subTaskType: SubTaskType) -> [MiniTask] {
-        // Dynamically load mini-tasks for the given sub-task type
-        let miniTaskTypes = subTaskType.miniTaskTypes
-        
-        return miniTaskTypes.map { miniTaskType in
-            return MiniTask(
-                miniTaskType: miniTaskType,
-                usageDescription: miniTaskType.usageDescription,
-                type: miniTaskType.name,
-                category: miniTaskType.category
-            )
-        }
-    }
+//    // MARK: - SubTask Loader
+//    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
+//        // Dynamically load sub-tasks for the given space type
+//        let subTaskTypes = spaceType.subTaskTypes // TODO: add this
+//
+//        return subTaskTypes.map { subTaskType in
+//            let miniTasks = loadMiniTasks(for: subTaskType)
+//            return SubTask(
+//                subTaskType: subTaskType,
+//                instructions: subTaskType.instructions,
+//                usageDescription: subTaskType.usageDescription,
+//                type: subTaskType.name,
+//                category: subTaskType.category,
+//                miniTasks: miniTasks
+//            )
+//        }
+//    }
+//    // MARK: - MiniTask Loader
+//    static func loadMiniTasks(for subTaskType: SubTaskType) -> [MiniTask] {
+//        // Dynamically load mini-tasks for the given sub-task type
+//        let miniTaskTypes = subTaskType.miniTaskTypes // TODO: add this
+//
+//        return miniTaskTypes.map { miniTaskType in
+//            return MiniTask(
+//                miniTaskType: miniTaskType,
+//                usageDescription: miniTaskType.usageDescription,
+//                type: miniTaskType.name,
+//                category: miniTaskType.category
+//            )
+//        }
+//    }
 }
