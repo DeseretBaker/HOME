@@ -72,10 +72,21 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Storage" }
     var category: String { "Furniture" }
     
+    var roomTypes: [any RoomType] {
+        switch self {
+        case .kitchen:
+            return KitchenRoomType.allCases
+        case .livingRoom:
+            return LivingRoomType.allCases
+            // TODO: Add other cases for each project type
+        default:
+            return []
+        }
+
+    }
+    
     /// Returns an array of display names for all project types.
     static var allDisplayNames: [ProjectType] {
         return ProjectType.allCases
     }
 }
-
-

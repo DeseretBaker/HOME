@@ -17,12 +17,12 @@ import Foundation
 class DataLoader {
     
     // MARK: - Create All Empty Projects
-func createAllEmptyProjects() -> [Project] {
+    static func createAllEmptyProjects() -> [Project] {
         return loadProjects()
     }
     
     // MARK: - Project Loader
-    func loadProjects() -> [Project] {
+    static func loadProjects() -> [Project] {
         return ProjectType.allCases.map { projectType in
             let rooms = loadRooms(for: projectType)
             return Project(
@@ -37,18 +37,8 @@ func createAllEmptyProjects() -> [Project] {
     }
     
     // MARK: - Room Loader
-    func loadRooms(for projectType: ProjectType) -> [Room] {
-        let roomTypes: [any RoomType]
-        
-        switch projectType {
-        case .kitchen:
-            roomTypes = KitchenRoomType.allCases
-        case .livingRoom:
-            roomTypes = LivingRoomType.allCases
-            // Add other cases for each project type
-        default:
-            roomTypes = []
-        }
+    static func loadRooms(for projectType: ProjectType) -> [Room] {
+        let roomTypes = projectType.roomTypes
         
         return roomTypes.map { roomType in
             let spaces = loadSpaces(for: roomType)
@@ -63,7 +53,7 @@ func createAllEmptyProjects() -> [Project] {
         }
     }
     
-    func loadSpaces(for roomType: any RoomType) -> [Space] {
+    static func loadSpaces(for roomType: any RoomType) -> [Space] {
         // Dynamically load spaces for the given room type
         let spaceTypes = roomType.spaceTypes
         
