@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: KitchenSpaceType
 enum KitchenPrepZoneSpaceType: String, SpaceType {
+    
     case prepZoneCountertops = "Countertops"
     case prepZoneCuttingBoards = "Cutting Boards"
     case prepZoneUtensils = "Utensils"
@@ -48,6 +49,7 @@ enum KitchenPrepZoneSpaceType: String, SpaceType {
             return "The spice rack in the prep zone is essential for quick and easy access to commonly used spices and seasonings during food preparation. It allows you to keep your spices organized, visible, and within arm’s reach, so you can efficiently add flavor to your dishes without interrupting the prep process. The spice rack can be wall-mounted, placed on the countertop, or stored in a nearby drawer or cabinet. Organizing spices alphabetically or by frequency of use can further enhance efficiency, and using labeled containers ensures a tidy and functional system."
         }
     }
+    var weight: Double { 4.0}
     var type: String { "Kitchen" }
     var category: String { "Appliance" }
 }
@@ -303,7 +305,7 @@ enum KitchenBakingZoneSpaceType: String, SpaceType {
 }
 
 enum KitchenDrinkZoneSpaceType: String, SpaceType {
-    case drinkZoneKettles = "Kettles"
+    case drinkZoneKettles = "Hot water"
     case drinkZoneMugsTravelMugs = "Mugs"
     case drinkZoneSupplies = "Supplies"
     

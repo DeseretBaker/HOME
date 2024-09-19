@@ -1,3 +1,11 @@
+//
+//  SpaceTypeBox.swift
+//  HappyOrganizedMe
+//
+//  Created by Deseret Baker on 9/18/24.
+//
+import Foundation
+
 enum SpaceTypeBox: Codable {
     case unknown(UnknownSpaceType)
     case bathroomBathingShoweringSpaceType
@@ -540,9 +548,24 @@ enum SpaceTypeBox: Codable {
             }
         }
     }
+    
+    // UnknownSpaceType enum conforming to SpaceType protocol
+enum UnknownSpaceType: String, SpaceType, CaseIterable {
+    
+    
+        case unknown
+    
+        var id: UUID { UUID() }
+        var name: String { self.rawValue }
+        var imageName: String { "image_\(self.rawValue)" }
+        var instructions: String { "Instructions for \(self.rawValue)" }
+        var usageDescription: String { "Usage of \(self.rawValue)" }
+        var type: String { self.rawValue }
+        var category: String { "Category for \(self.rawValue)" }
+        var weight: Double { 0.0 }
 
-// Define the UnknownSpaceType that conforms to SpaceType
-
+    
+}
 
 // Codable Conformance
 extension SpaceTypeBox {
@@ -555,24 +578,150 @@ extension SpaceTypeBox {
         switch self {
         case .bathroomBathingShoweringSpaceType:
             try container.encode("bathroomBathingShoweringSpaceType", forKey: .type)
+        case .bathroomToiletZoneSpaceType:
+            try container.encode("bathroomToiletZoneSpaceType", forKey: .type)
+        case .bathroomVanitySinkZoneSpaceType:
+            try container.encode("bathroomVanitySinkZoneSpaceType", forKey: .type)
+        case .bathroomTowelsToiletriesZoneSpaceType:
+            try container.encode("bathroomTowelsToiletriesZoneSpaceType", forKey: .type)
+        case .bathroomGroomingSpaceType:
+            try container.encode("bathroomGroomingSpaceType", forKey: .type)
+        case .bathroomLaundrySpaceType:
+            try container.encode("bathroomLaundrySpaceType", forKey: .type)
+        case .bathroomDressingChangingSpaceType:
+            try container.encode("bathroomDressingChangingSpaceType", forKey: .type)
+        case .bathroomCleaningSuppliesSpaceType:
+            try container.encode("bathroomCleaningSuppliesSpaceType", forKey: .type)
+        case .bathroomRelaxationSpaceType:
+            try container.encode("bathroomRelaxationSpaceType", forKey: .type)
         case .bedroomBedSpaceType:
             try container.encode("bedroomBedSpaceType", forKey: .type)
-        case .livingRoomDecorativeZoneSpaceType:
-            try container.encode("livingRoomDecorativeZoneSpaceType", forKey: .type)
+        case .bedroomDresserSpaceType:
+            try container.encode("bedroomDresserSpaceType", forKey: .type)
+        case .bedroomNightstandSpaceType:
+            try container.encode("bedroomNightstandSpaceType", forKey: .type)
+        case .bedroomStorageZoneSpaceType:
+            try container.encode("bedroomStorageZoneSpaceType", forKey: .type)
         case .officeWorkStationSpaceType:
             try container.encode("officeWorkStationSpaceType", forKey: .type)
+        case .officeDeskStorageSpaceType:
+            try container.encode("officeDeskStorageSpaceType", forKey: .type)
+        case .officeTechGadgetZoneSpaceType:
+            try container.encode("officeTechGadgetZoneSpaceType", forKey: .type)
+        case .officeReferenceZoneSpaceType:
+            try container.encode("officeReferenceZoneSpaceType", forKey: .type)
         case .kitchenPrepZoneSpaceType:
             try container.encode("kitchenPrepZoneSpaceType", forKey: .type)
+        case .kitchenCookingZoneSpaceType:
+            try container.encode("kitchenCookingZoneSpaceType", forKey: .type)
+        case .kitchenCleaningZoneSpaceType:
+            try container.encode("kitchenCleaningZoneSpaceType", forKey: .type)
+        case .kitchenFoodStorageZoneSpaceType:
+            try container.encode("kitchenFoodStorageZoneSpaceType", forKey: .type)
+        case .kitchenCookwareZoneSpaceType:
+            try container.encode("kitchenCookwareZoneSpaceType", forKey: .type)
+        case .kitchenServingZoneSpaceType:
+            try container.encode("kitchenServingZoneSpaceType", forKey: .type)
+        case .kitchenBakingZoneSpaceType:
+            try container.encode("kitchenBakingZoneSpaceType", forKey: .type)
+        case .kitchenDrinkZoneSpaceType:
+            try container.encode("kitchenDrinkZoneSpaceType", forKey: .type)
         case .diningRoomDiningZoneSpaceType:
             try container.encode("diningRoomDiningZoneSpaceType", forKey: .type)
+        case .diningRoomServingZoneSpaceType:
+            try container.encode("diningRoomServingZoneSpaceType", forKey: .type)
+        case .diningRoomStorageZoneSpaceType:
+            try container.encode("diningRoomStorageZoneSpaceType", forKey: .type)
+        case .diningRoomDecorDisplayZoneSpaceType:
+            try container.encode("diningRoomDecorDisplayZoneSpaceType", forKey: .type)
+        case .diningRoomLightingZoneSpaceType:
+            try container.encode("diningRoomLightingZoneSpaceType", forKey: .type)
+        case .diningRoomMultiUseZoneSpaceType:
+            try container.encode("diningRoomMultiUseZoneSpaceType", forKey: .type)
+        case .diningRoomDrinkingBarZoneSpaceType:
+            try container.encode("diningRoomDrinkingBarZoneSpaceType", forKey: .type)
+        case .playroomToyStorageZoneSpaceType:
+            try container.encode("playroomToyStorageZoneSpaceType", forKey: .type)
         case .playroomArtsCraftsSpaceType:
             try container.encode("playroomArtsCraftsSpaceType", forKey: .type)
+        case .playroomReadingZoneSpaceType:
+            try container.encode("playroomReadingZoneSpaceType", forKey: .type)
+        case .playroomBuildingConstructionZoneSpaceType:
+            try container.encode("playroomBuildingConstructionZoneSpaceType", forKey: .type)
+        case .playroomPretendPlayZoneSpaceType:
+            try container.encode("playroomPretendPlayZoneSpaceType", forKey: .type)
+        case .playroomPuzzleBoardGameSpaceType:
+            try container.encode("playroomPuzzleBoardGameSpaceType", forKey: .type)
+        case .playroomPhysicalActivityZoneSpaceType:
+            try container.encode("playroomPhysicalActivityZoneSpaceType", forKey: .type)
+        case .playroomMusicPerformanceSpaceType:
+            try container.encode("playroomMusicPerformanceSpaceType", forKey: .type)
+        case .playroomSensoryPlaySpaceType:
+            try container.encode("playroomSensoryPlaySpaceType", forKey: .type)
+        case .playroomHomeworkStudyZoneSpaceType:
+            try container.encode("playroomHomeworkStudyZoneSpaceType", forKey: .type)
+        case .playroomTechnologyZoneSpaceType:
+            try container.encode("playroomTechnologyZoneSpaceType", forKey: .type)
+        case .playroomOutdoorPlayZoneSpaceType:
+            try container.encode("playroomOutdoorPlayZoneSpaceType", forKey: .type)
         case .garageParkingSpaceType:
             try container.encode("garageParkingSpaceType", forKey: .type)
+        case .garageToolZoneSpaceType:
+            try container.encode("garageToolZoneSpaceType", forKey: .type)
+        case .garageGardenOutdoorZoneSpaceType:
+            try container.encode("garageGardenOutdoorZoneSpaceType", forKey: .type)
+        case .garageSportsActivityGearZoneSpaceType:
+            try container.encode("garageSportsActivityGearZoneSpaceType", forKey: .type)
+        case .garageSeasonalStorageZoneSpaceType:
+            try container.encode("garageSeasonalStorageZoneSpaceType", forKey: .type)
+        case .garageHouseHoldStorageZoneSpaceType:
+            try container.encode("garageHouseHoldStorageZoneSpaceType", forKey: .type)
+        case .garageWasteRecyclingZoneSpaceType:
+            try container.encode("garageWasteRecyclingZoneSpaceType", forKey: .type)
+        case .garageMaintenanceZoneSpaceType:
+            try container.encode("garageMaintenanceZoneSpaceType", forKey: .type)
+        case .garageMudroomLaundrySpaceType:
+            try container.encode("garageMudroomLaundrySpaceType", forKey: .type)
+        case .garageOverheadStorageZone:
+            try container.encode("garageOverheadStorageZone", forKey: .type)
+        case .storageClosetZoneSpaceType:
+            try container.encode("storageClosetZoneSpaceType", forKey: .type)
+        case .storageUtilityRoomSpaceType:
+            try container.encode("storageUtilityRoomSpaceType", forKey: .type)
+        case .storageAtticBasementSpaceType:
+            try container.encode("storageAtticBasementSpaceType", forKey: .type)
         case .storagePantrySpaceType:
             try container.encode("storagePantrySpaceType", forKey: .type)
+        case .storageLaundryRoomSpaceType:
+            try container.encode("storageLaundryRoomSpaceType", forKey: .type)
+        case .storageMudroomEntrySpaceType:
+            try container.encode("storageMudroomEntrySpaceType", forKey: .type)
+        case .storageCabinetShelvingSpaceType:
+            try container.encode("storageCabinetShelvingSpaceType", forKey: .type)
+        case .storageUnderBedStorageSpaceType:
+            try container.encode("storageUnderBedStorageSpaceType", forKey: .type)
+        case .storageBuiltInsWallUnitsSpaceType:
+            try container.encode("storageBuiltInsWallUnitsSpaceType", forKey: .type)
+        case .storageHomeOfficeSpaceType:
+            try container.encode("storageHomeOfficeSpaceType", forKey: .type)
         case .unknown(let unknownType):
             try container.encode(unknownType, forKey: .value)
+        case .livingRoomSeatingZoneSpaceType:
+            try container.encode("livingRoomSeatingZoneSpaceType", forKey: .type)
+        case .livingRoomEntertainmentZoneSpaceType:
+            try container.encode("livingRoomEntertainmentZoneSpaceType", forKey: .type)
+        case .livingRoomReadingRelaxationZoneSpaceType:
+            try container.encode("livingRoomReadingRelaxationZoneSpaceType", forKey: .type)
+        case .livingRoomStorageZoneSpaceType:
+            try container.encode("livingRoomStorageZoneSpaceType", forKey: .type)
+        case .livingRoomDecorativeZoneSpaceType:
+            try container.encode("livingRoomDecorativeZoneSpaceType", forKey: .type)
+        case .livingRoomPlayZoneSpaceType:
+            try container.encode("livingRoomPlayZoneSpaceType", forKey: .type)
+        case .livingRoomConversationZoneSpaceType:
+            try container.encode("livingRoomConversationZoneSpaceType", forKey: .type)
+        case .livingRoomLightingZoneSpaceType:
+            try container.encode("livingRoomLightingZoneSpaceType", forKey: .type)
         }
     }
 

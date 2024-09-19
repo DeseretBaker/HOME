@@ -297,18 +297,3 @@ enum LivingRoomLightingZoneSpaceType: String, SpaceType {
         }
 }
 
-//extension LivingRoomSpaceType {
-//    static var allLivingRoomSpaceTypes: [any LivingRoomSpaceType] {
-//        return [
-//            LivingRoomSeatingZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomEntertainmentZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomReadingRelaxationZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomStorageZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomDecorativeZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomPlayZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomConversationZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType },
-//            LivingRoomLightingZoneSpaceType.allCases.map { $0 as any LivingRoomSpaceType }
-//        ].flatMap { $0 }
-//    }
-//    
-//}

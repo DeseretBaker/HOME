@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum KitchenMiniTaskType: String, Codable, CaseIterable {
+enum KitchenMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -17,7 +17,7 @@ enum KitchenMiniTaskType: String, Codable, CaseIterable {
     case contain = "Contain"
     case label = "Label"
     
-    
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -47,7 +47,7 @@ enum KitchenMiniTaskType: String, Codable, CaseIterable {
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
 }
-enum LivingRoomMiniTaskType: String, Codable, CaseIterable {
+enum LivingRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -56,7 +56,7 @@ enum LivingRoomMiniTaskType: String, Codable, CaseIterable {
     case contain = "Contain"
     case label = "Label"
     
-    
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -86,47 +86,7 @@ enum LivingRoomMiniTaskType: String, Codable, CaseIterable {
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
 }
-enum DiningRoomMiniTaskType: String, Codable, CaseIterable {
-    case remove = "Remove"
-    case clean = "Clean"
-    case categorize = "Categorize"
-    case group = "Group"
-    case sort = "Sort"
-    case contain = "Contain"
-    case label = "Label"
-    
-    
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    
-    var instructions: String {
-        switch self {
-        case .clean: return "String"
-        case .label: return "String"
-        case .remove: return "String"
-        case .categorize: return "String"
-        case .group: return "String"
-        case .sort: return "String"
-        case .contain: return "String"
-        }
-    }
-    var usageDescription: String {
-        switch self {
-        case .clean: return "String"
-        case .label: return "String"
-        case .remove: return "String"
-        case .categorize: return "String"
-        case .group: return "String"
-        case .sort: return "String"
-        case .contain: return "String"
-        }
-    }
-    var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
-}
-
-enum OfficeMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum DiningRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -166,7 +126,47 @@ enum OfficeMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
 }
 
-enum BedroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum OfficeMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
+    case remove = "Remove"
+    case clean = "Clean"
+    case categorize = "Categorize"
+    case group = "Group"
+    case sort = "Sort"
+    case contain = "Contain"
+    case label = "Label"
+    
+    var id: UUID { UUID() }
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    
+    var instructions: String {
+        switch self {
+        case .clean: return "String"
+        case .label: return "String"
+        case .remove: return "String"
+        case .categorize: return "String"
+        case .group: return "String"
+        case .sort: return "String"
+        case .contain: return "String"
+        }
+    }
+    var usageDescription: String {
+        switch self {
+        case .clean: return "String"
+        case .label: return "String"
+        case .remove: return "String"
+        case .categorize: return "String"
+        case .group: return "String"
+        case .sort: return "String"
+        case .contain: return "String"
+        }
+    }
+    var weight: Double { 5.0 }
+    var type: String { "Kitchen" }
+    var category: String { "Furniture" }
+}
+
+enum BedroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -207,7 +207,7 @@ enum BedroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
 }
 
 
-enum PlayroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum PlayroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -247,7 +247,7 @@ enum PlayroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
 }
 
-enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -287,7 +287,7 @@ enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
 }
 
-enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -327,7 +327,7 @@ enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
 }
 
-enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
     case clean = "Clean"
     case categorize = "Categorize"
@@ -367,7 +367,7 @@ enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
 }
 
-enum UnknownMiniTaskType: String, Codable, CaseIterable, Identifiable {
+enum UnknownMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case unknown
     
     var id: UUID { UUID() }
@@ -380,32 +380,22 @@ enum UnknownMiniTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "unknown" }
 }
 
-//protocol MiniTaskType: Codable, CaseIterable, customStringConverible {
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
 
-//extension MiniTaskType {
-//    static var allMiniTaskTypes: [any MiniTaskType] {
-//        return [
-//            
-//            KitchenMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            LivingRoomMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            DiningRoomMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            OfficeMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            BedroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            PlayroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            StorageMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            BathroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            GarageMiniTaskType.allCases.map { $0 as any MiniTaskType},
-//            UnknownMiniTaskType.allCases.map { $0 as any MiniTaskType}
-//        ].flatMap { $0 }
-//    }
-//}
+
+extension MiniTaskType {
+    static var allMiniTaskTypes: [any MiniTaskType] {
+        return [
+            
+            KitchenMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            LivingRoomMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            DiningRoomMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            OfficeMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            BedroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            PlayroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            StorageMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            BathroomMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            GarageMiniTaskType.allCases.map { $0 as any MiniTaskType},
+            UnknownMiniTaskType.allCases.map { $0 as any MiniTaskType}
+        ].flatMap { $0 }
+    }
+}

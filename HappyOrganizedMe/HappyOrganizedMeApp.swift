@@ -26,7 +26,8 @@ struct HappyOrganizedMeApp: App {
             let container = try ModelContainer(for: schema)
             
             if containerIsEmpty(container) {
-                DataLoader.createAllEmptyProjects().forEach { project in
+                let dataLoader = DataLoader() // Create an instance of DataLoader
+                dataLoader.createAllEmptyProjects().forEach { project in
                     container.mainContext.insert(project)
                 }
                 try? container.mainContext.save()

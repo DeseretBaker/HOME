@@ -41,7 +41,7 @@ enum BedroomBedSpaceType: String, SpaceType {
     var type: String { "Bedroom" }
     var category: String { "Furniture" }
     
-    static var allSpaceTypes: [SpaceType] {
+    static var allSpaceTypes: [any SpaceType] {
         return BedroomBedSpaceType.allCases
     }
 }
@@ -112,7 +112,7 @@ enum BedroomNightstandSpaceType: String, SpaceType, Codable, CaseIterable, Ident
     }
 }
 
-enum BedroomStorageZoneSpaceType: String, BedroomSpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomStorageZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     case closet = "Closet"
     case shelves = "Shelves"
     case underBedStorage = "Under Bed Storage"
@@ -149,13 +149,3 @@ enum BedroomStorageZoneSpaceType: String, BedroomSpaceType, Codable, CaseIterabl
 }
 
 
-extension SpaceType {
-    static var allBedroomSpaceTypes: [any BedroomSpaceType] {
-        return [
-            BedroomBedSpaceType.allCases.map { $0 as any BedroomSpaceType},
-            BedroomDresserSpaceType.allCases.map { $0 as any BedroomSpaceType },
-            BedroomNightstandSpaceType.allCases.map { $0 as any BedroomSpaceType },
-            BedroomStorageZoneSpaceType.allCases.map { $0 as any BedroomSpaceType }
-        ].flatMap { $0 }
-    }
-}

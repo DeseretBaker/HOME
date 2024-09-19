@@ -8,19 +8,6 @@
 import Foundation
 import SwiftUI
 
-import Foundation
-
-// Protocol definition
-protocol SpaceType: Codable, CaseIterable, Identifiable {
-    var id: UUID { get }
-    var name: String { get }
-    var imageName: String { get }
-    var instructions: String { get }
-    var usageDescription: String { get }
-    var type: String { get }
-    var category: String { get }
-    var weight: Double { get }
-}
 enum SpaceTypeBox: Codable {
     case unknown(UnknownSpaceType)
     case bathroomBathingShoweringSpaceType
@@ -549,44 +536,34 @@ enum SpaceTypeBox: Codable {
     }
     
     init?(spaceType: any SpaceType) {
-        if let type = spaceType as? UnknownSpaceType {
-            self = .unknown(type)
-        } else if spaceType.name == "Bathroom Bathing/Showering" {
-            self = .bathroomBathingShoweringSpaceType
-        } else if spaceType.name == "Bedroom Bed" {
-            self = .bedroomBedSpaceType
-        }
-        // Add additional cases here for other space types.
-        else {
-            return nil
+            switch spaceType.name {
+            case "Bathroom Bathing/Showering":
+                self = .bathroomBathingShoweringSpaceType
+            case "Bedroom Bed":
+                self = .bedroomBedSpaceType
+            default:
+                if let unknown = spaceType as? UnknownSpaceType {
+                    self = .unknown(unknown)
+                } else {
+                    return nil
+                }
+            }
         }
     }
 
-// UnknownSpaceType enum conforming to SpaceType protocol
-enum UnknownSpaceType: String, SpaceType, CaseIterable {
-    case type1
-    case type2
+// Define the UnknownSpaceType that conforms to SpaceType
+struct UnknownSpaceType: SpaceType, Codable, CaseIterable {
+    var name: String
+    var imageName: String
+    var weight: Double
     
-    var id: UUID { UUID() }
-    var name: String { self.rawValue }
-    var imageName: String { "image_\(self.rawValue)" }
-    var instructions: String { "Instructions for \(self.rawValue)" }
-    var usageDescription: String { "Usage of \(self.rawValue)" }
-    var type: String { self.rawValue }
-    var category: String { "Category for \(self.rawValue)" }
+    static var allCases: [UnknownSpaceType] = [
+        UnknownSpaceType(name: "Unknown Type 1", imageName: "image1", weight: 1.0),
+        UnknownSpaceType(name: "Unknown Type 2", imageName: "image2", weight: 1.5)
+    ]
 }
 
-// Extend SpaceType to collect all SpaceTypes
-extension SpaceType {
-    static var allSpaceTypes: [any SpaceType] {
-        var spaceTypes: [any SpaceType] = []
-        
-        // Assuming UnknownSpaceType conforms to SpaceType and is CaseIterable
-        spaceTypes.append(contentsOf: UnknownSpaceType.allCases.map { $0 as (any SpaceType) })
-        
-        return spaceTypes
-    }
-}
+// Codable Conformance
 extension SpaceTypeBox {
     enum CodingKeys: CodingKey {
         case type, value
@@ -600,7 +577,9 @@ extension SpaceTypeBox {
             try container.encode(unknownType, forKey: .value)
         case .bathroomBathingShoweringSpaceType:
             try container.encode("bathroomBathingShoweringSpaceType", forKey: .type)
-        // Add other cases similarly
+        case .bedroomBedSpaceType:
+            try container.encode("bedroomBedSpaceType", forKey: .type)
+        // Continue for other cases
         }
     }
 
@@ -613,7 +592,9 @@ extension SpaceTypeBox {
             self = .unknown(unknownType)
         case "bathroomBathingShoweringSpaceType":
             self = .bathroomBathingShoweringSpaceType
-        // Add other cases similarly
+        case "bedroomBedSpaceType":
+            self = .bedroomBedSpaceType
+        // Continue for other cases
         default:
             throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Invalid type")
         }

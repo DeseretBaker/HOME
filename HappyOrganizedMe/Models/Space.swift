@@ -7,8 +7,9 @@
 import Foundation
 import SwiftData
 
+
 @Model
-class Space: Identifiable, Displayable, Progressable, ObservableObject {
+class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     var instructions: String
     var usageDescription: String
     var type: String
@@ -16,7 +17,7 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject {
     var subTasks: [SubTask] = []
 
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Attribute var spaceType: any SpaceType // Use the SpaceType enum directly
+    @Attribute var spaceType: SpaceTypeBox // Use the SpaceType enum directly
     private var _isCompleted: Bool = false
 
     // MARK: Computed Variables
@@ -45,7 +46,7 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject {
 
     // Initializer
     init(spaceType: any SpaceType, instructions: String, usageDescription: String, type: String, category: String, subTasks: [SubTask] = [], isCompleted: Bool = false) {
-        self.spaceType = spaceType
+        self.spaceType = SpaceTypeBox(spaceType: spaceType)!
         self.instructions = instructions // Initialize instructions
         self.usageDescription = usageDescription // Initialize usageDescription
         self.type = type // e.g., LivingRoom, Kitchen

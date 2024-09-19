@@ -17,7 +17,7 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     var miniTasks: [MiniTask]
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Attribute var subTaskType: any SubTaskType
+    @Attribute var subTaskType: SubTaskTypeBox
     // Define relationships to miniTasks and space
     @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
     
@@ -48,7 +48,7 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     }
     // Initializer
     init(subTaskType: any SubTaskType, instructions: String, usageDescription: String, type: String, category: String, miniTasks: [MiniTask], isCompleted: Bool = false) {
-        self.subTaskType = subTaskType
+        self.subTaskType = SubTaskTypeBox(subTaskType: subTaskType)!
         self.instructions = instructions
         self.usageDescription = usageDescription
         self.type = type // e.g., LivingRoom, Kitchen

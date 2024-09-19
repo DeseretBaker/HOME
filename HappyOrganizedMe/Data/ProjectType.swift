@@ -8,19 +8,20 @@
 import Foundation
 
 /// Represents different types of projects in the HappyOrganizedMe app.
-//enum ProjectType: String, Codable, CaseIterable {
-//    case kitchen = "Kitchen"
-//    case diningRoom = "Dining Room"
-//    case livingRoom = "Living Room"
-//    case bedroom = "Bedroom"
-//    case bathroom = "Bathroom"
-//    case playroom = "Playroom"
-//    case office = "Office"
-//    case storage = "Storage"
-//    case garage = "Garage"
-//    case unknown = "Unknown"
-//    // Added the unknown case
-//    
+enum ProjectType: String, Codable, CaseIterable, Identifiable {
+    case kitchen = "Kitchen"
+    case diningRoom = "Dining Room"
+    case livingRoom = "Living Room"
+    case bedroom = "Bedroom"
+    case bathroom = "Bathroom"
+    case playroom = "Playroom"
+    case office = "Office"
+    case storage = "Storage"
+    case garage = "Garage"
+    case unknown = "Unknown"
+    // Added the unknown case
+
+    var id: UUID { UUID() }
     /// The display name for the project type.
     var name: String { rawValue }
     /// The image name associated with the project type.
@@ -68,9 +69,13 @@ import Foundation
         case .unknown: return 0
         }
     }
+    var type: String { "Storage" }
+    var category: String { "Furniture" }
     
     /// Returns an array of display names for all project types.
     static var allDisplayNames: [ProjectType] {
         return ProjectType.allCases
     }
 }
+
+

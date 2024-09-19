@@ -7,8 +7,38 @@
 
 import Foundation
 
+enum SubTaskTypeBox: Codable {
+    case unknown(UnknownSubTaskType)
+    
+    var name: String {
+        switch self {
+        case .unknown(let type):
+            return type.name
+        }
+    }
+    var imageName: String {
+        switch self {
+        case .unknown(let type):
+            return type.imageName
+        }
+    }
+    var weight: Double {
+        switch self {
+        case .unknown(let type):
+            return type.weight
+        }
+    }
+    init?(subTaskType: any SubTaskType) {
+        if let task = subTaskType as? UnknownSubTaskType {
+            self = .unknown(task)
+        }
+        
+        return nil
+    }
+}
 
-enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable {
+
+enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case cookware = "Cookware"
     case bakeware = "Bakeware"
     case serveWare = "ServeWare"
@@ -92,7 +122,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
 }
-enum LivingRoomSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum LivingRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case Tables = "Tables"
     case floatingShelves = "Floating Shelves"
     case windowBoxSeat = "Window Box Seats"
@@ -128,7 +158,7 @@ enum LivingRoomSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Living Room" }
     var category: String { "Furniture" }
 }
-enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -166,7 +196,7 @@ enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Dining Room" }
     var category: String { "Furniture" }
 }
-enum OfficeSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum OfficeSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -205,7 +235,7 @@ enum OfficeSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Office" }
     var category: String { "Furniture" }
 }
-enum BedroomSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum BedroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -244,7 +274,7 @@ enum BedroomSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Bedroom" }
     var category: String { "Furniture" }
 }
-enum PlayroomSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum PlayroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -283,7 +313,7 @@ enum PlayroomSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Playroom" }
     var category: String { "Furniture" }
 }
-enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -322,7 +352,7 @@ enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Bathroom" }
     var category: String { "Furniture" }
 }
-enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -363,7 +393,7 @@ enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "Furniture" }
     
 }
-enum GarageSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum GarageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -402,7 +432,7 @@ enum GarageSubTaskType: String, Codable, CaseIterable, Identifiable {
     var type: String { "Garage" }
     var category: String { "Furniture" }
 }
-enum UnknownSubTaskType: String, Codable, CaseIterable, Identifiable {
+enum UnknownSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
     case unknown
     
     var id: UUID { UUID() }
@@ -415,33 +445,21 @@ enum UnknownSubTaskType: String, Codable, CaseIterable, Identifiable {
     var category: String { "unknown" }
 }
 
-//protocol SubTaskType: Codable, CaseIterable, Identifiable {
-//    var id: UUID { get }
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
 
-//extension SubTaskType {
-//    static var allSubTaskTypes: [any SubTaskType] {
-//        return [
-//            KitchenSubTaskType.allCases.map { $0 as any SubTaskType },
-//            LivingRoomSubTaskType.allCases.map { $0 as any SubTaskType },
-//            DiningRoomSubTaskType.allCases.map { $0 as any SubTaskType },
-//            OfficeSubTaskType.allCases.map { $0 as any SubTaskType },
-//            BedroomSubTaskType.allCases.map { $0 as any SubTaskType },
-//            PlayroomSubTaskType.allCases.map { $0 as any SubTaskType },
-//            BathroomSubTaskType.allCases.map { $0 as any SubTaskType },
-//            StorageSubTaskType.allCases.map { $0 as any SubTaskType },
-//            GarageSubTaskType.allCases.map { $0 as any SubTaskType },
-//            UnknownSubTaskType.allCases.map { $0 as any SubTaskType }
-//        ].flatMap { $0 }
-//    }
-//    
-//}
+extension SubTaskType {
+    static var allSubTaskTypes: [any SubTaskType] {
+        return [
+            KitchenSubTaskType.allCases.map { $0 as any SubTaskType },
+            LivingRoomSubTaskType.allCases.map { $0 as any SubTaskType },
+            DiningRoomSubTaskType.allCases.map { $0 as any SubTaskType },
+            OfficeSubTaskType.allCases.map { $0 as any SubTaskType },
+            BedroomSubTaskType.allCases.map { $0 as any SubTaskType },
+            PlayroomSubTaskType.allCases.map { $0 as any SubTaskType },
+            BathroomSubTaskType.allCases.map { $0 as any SubTaskType },
+            StorageSubTaskType.allCases.map { $0 as any SubTaskType },
+            GarageSubTaskType.allCases.map { $0 as any SubTaskType },
+            UnknownSubTaskType.allCases.map { $0 as any SubTaskType }
+        ].flatMap { $0 }
+    }
+    
+}

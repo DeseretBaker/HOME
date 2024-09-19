@@ -7,19 +7,9 @@
 
 import Foundation
 
-//protocol RoomType: Codable, CaseIterable {
-//    var name: String { get }
-//    var imageName: String { get }
-//    var instructions: String { get }
-//    var usageDescription: String { get }
-//    var weight: Double { get }
-//    var type: String { get }
-//    var category: String { get }
-//    var rawValue: String { get }
-//    init?(rawValue: String)
-//}
 
-enum KitchenRoomType: String, RoomType, CaseIterable {
+
+enum KitchenRoomType: String, RoomType  {
     case prepZone = "Prep Zone"
     case cookingZone = "Cooking Zone"
     case cleaningZone = "Cleaning Zone"
@@ -29,6 +19,7 @@ enum KitchenRoomType: String, RoomType, CaseIterable {
     case bakingZone = "Baking Zone"
     case drinkZone = "Beverage Zone"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -76,12 +67,65 @@ enum KitchenRoomType: String, RoomType, CaseIterable {
     var type: String { "Kitchen" }
     var category: String { "Furniture" }
     
+    var spaceTypes: [any SpaceType] {
+        switch self {
+        case .prepZone:
+            return [
+                KitchenPrepZoneSpaceType.prepZoneCountertops, KitchenPrepZoneSpaceType.prepZoneCuttingBoards, KitchenPrepZoneSpaceType.prepZoneUtensils, KitchenPrepZoneSpaceType.prepZoneAppliances, KitchenPrepZoneSpaceType.prepZoneSpiceRacks
+            ]
+        case .cookingZone:
+            return [
+                KitchenCookingZoneSpaceType.cookingZoneStovetop, KitchenCookingZoneSpaceType.cookingZoneOven, KitchenCookingZoneSpaceType.cookingZone, KitchenCookingZoneSpaceType.cookingZoneUtensils,
+                KitchenCookingZoneSpaceType.cookingZonePantryEssentials,
+                KitchenCookingZoneSpaceType.cookingZoneVentilation
+            ]
+        case .cleaningZone:
+            return [
+                KitchenCleaningZoneSpaceType.cleaningZoneSink, KitchenCleaningZoneSpaceType.cleaningZoneDishwasher,
+                KitchenCleaningZoneSpaceType.cleaningZoneTrashRecycling, KitchenCleaningZoneSpaceType.cleaningZoneCleaningSupplies,
+                KitchenCleaningZoneSpaceType.cleaningZoneTowelHookStorage, KitchenCleaningZoneSpaceType.cleaningZoneSoapDispenser
+            ]
+        case .foodStorageZone:
+            return [
+                KitchenFoodStorageZoneSpaceType.foodStorageZonePantry, KitchenFoodStorageZoneSpaceType.foodStorageZoneRefrigerator,
+                KitchenFoodStorageZoneSpaceType.foodStorageZoneFreezer,
+                KitchenFoodStorageZoneSpaceType.foodStorageZoneSnacks,
+                KitchenFoodStorageZoneSpaceType.foodStorageZoneBulkBins,
+                KitchenFoodStorageZoneSpaceType.foodStorageZoneCondiments
+            ]
+        case .cookwareStorageZone:
+            return [
+                KitchenCookwareZoneSpaceType.cookwareZoneDrawers, KitchenCookwareZoneSpaceType.cookwareZonePotsAndPans,
+                KitchenCookwareZoneSpaceType.cookwareZoneBakingSheets, KitchenCookwareZoneSpaceType.cookwareZoneLids,
+                KitchenCookwareZoneSpaceType.cookwareZoneSpecialtyEquipment
+            ]
+        case .servingZone:
+            return [
+                KitchenServingZoneSpaceType.servingZonePlatesBowls, KitchenServingZoneSpaceType.servingZoneGlassesStemware,
+                KitchenServingZoneSpaceType.servingZoneSilverware,
+                KitchenServingZoneSpaceType.servingZoneTableLinens,
+                KitchenServingZoneSpaceType.servingZoneServeWare
+            ]
+        case .bakingZone:
+            return [
+                KitchenBakingZoneSpaceType.bakingZoneBakingSupplies, KitchenBakingZoneSpaceType.bakingZoneIngredients,
+                KitchenBakingZoneSpaceType.bakingZoneMixerTools
+            ]
+        case .drinkZone:
+            return [
+                KitchenDrinkZoneSpaceType.drinkZoneKettles, KitchenDrinkZoneSpaceType.drinkZoneMugsTravelMugs,
+                KitchenDrinkZoneSpaceType.drinkZoneSupplies
+            ]
+        }
+    }
+    
     // Provide all cases statically
     static var allRoomTypes: [KitchenRoomType] {
         return KitchenRoomType.allCases
     }
 }
-enum DiningRoomType: String, RoomType, CaseIterable {
+enum DiningRoomType: String, RoomType {
+    
     case diningZone = "Dining Room"
     case servingZone = "Serving Zone"
     case storageZone = "Storage Zone"
@@ -90,6 +134,7 @@ enum DiningRoomType: String, RoomType, CaseIterable {
     case lightingZone = "Lighting Zone"
     case drinkBarZone = "Drink Bar Zone"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -123,7 +168,7 @@ enum DiningRoomType: String, RoomType, CaseIterable {
         return DiningRoomType.allCases
     }
 }
-enum BathroomRoomType: String, RoomType, CaseIterable {
+enum BathroomRoomType: String, RoomType {
     case bathingZone
     case toiletZone
     case vanitySinkZone
@@ -134,6 +179,7 @@ enum BathroomRoomType: String, RoomType, CaseIterable {
     case cleaningSuppliesZone
     case relaxationZone
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -172,7 +218,7 @@ enum BathroomRoomType: String, RoomType, CaseIterable {
     }
 }
 
-enum LivingRoomType: String, RoomType, CaseIterable {
+enum LivingRoomType: String, RoomType {
     case seatingZone
     case entertainmentZone
     case readingRelaxationZone
@@ -183,28 +229,20 @@ enum LivingRoomType: String, RoomType, CaseIterable {
     case conversationZone
     case lightingZone
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     var instructions: String {
         switch self {
-        case .seatingZone:
-            return "Seating Zone"
-        case .entertainmentZone:
-            return "Entertainment Zone"
-        case .readingRelaxationZone:
-            return "Reading & Relaxation Zone"
-        case .storageZone:
-            return "Storage Zone"
-        case .workStudyZone:
-            return "Work Study Zone"
-        case .decorativeZone:
-            return "Decorative Zone"
-        case .playZone:
-            return "Play Zone"
-        case .conversationZone:
-            return "Conversation Zone"
-        case .lightingZone:
-            return "Lighting Zone"
+        case .seatingZone: return "Seating Zone"
+        case .entertainmentZone: return "Entertainment Zone"
+        case .readingRelaxationZone: return "Reading & Relaxation Zone"
+        case .storageZone: return "Storage Zone"
+        case .workStudyZone: return "Work Study Zone"
+        case .decorativeZone: return "Decorative Zone"
+        case .playZone: return "Play Zone"
+        case .conversationZone: return "Conversation Zone"
+        case .lightingZone: return "Lighting Zone"
         }
     }
     var usageDescription: String {
@@ -237,7 +275,7 @@ enum LivingRoomType: String, RoomType, CaseIterable {
         return LivingRoomType.allCases
     }
 }
-enum BedroomRoomType: String, RoomType, CaseIterable {
+enum BedroomRoomType: String, RoomType {
     case sleepingZone = "Sleeping Zone"
     case storageZone = "Storage Zone"
     case dressingZone = "Dressing Zone"
@@ -248,6 +286,7 @@ enum BedroomRoomType: String, RoomType, CaseIterable {
     case lightingZone = "Lighting Zone"
     case storageZone2 = "Storage Zone 2"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -303,7 +342,7 @@ enum BedroomRoomType: String, RoomType, CaseIterable {
         return BedroomRoomType.allCases
     }
 }
-enum StorageRoomType: String, RoomType, CaseIterable {
+enum StorageRoomType: String, RoomType {
     case closetsZone = "Closets"
     case utilityRoomZone = "Utility Room"
     case atticBasementZone = "Attic Basement"
@@ -315,6 +354,7 @@ enum StorageRoomType: String, RoomType, CaseIterable {
     case builtInsWallUnitsStorageZone = "Built-Ins/Wall Units"
     case homeOfficeStorageZone = "Home Office Storage"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     var instructions: String {
@@ -353,7 +393,7 @@ enum StorageRoomType: String, RoomType, CaseIterable {
         return StorageRoomType.allCases
     }
 }
-enum OfficeRoomType: String, RoomType, CaseIterable {
+enum OfficeRoomType: String, RoomType {
     case workstationZone = "Workstation Zone"
     case storageZone = "Storage Zone"
     case technologyZone = "Technology Zone"
@@ -365,6 +405,7 @@ enum OfficeRoomType: String, RoomType, CaseIterable {
     case breakRelaxationZone = "Break Relaxation Zone"
     case lightingZone = "Lighting Zone"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     var instructions: String {
@@ -403,9 +444,9 @@ enum OfficeRoomType: String, RoomType, CaseIterable {
         return OfficeRoomType.allCases
     }
 }
-enum GarageRoomType: String, RoomType, CaseIterable {
+enum GarageRoomType: String, RoomType {
     case parkingZone = "Parking Zone"
-    case toolZone
+    case toolZone = "Tool Zone"
     case gardenOutdoorZone = "Garden Outdoor Zone"
     case sportsActivityGearZone = "Sports Activity Gear Zone"
     case seasonalStorageZone = "Seasonal Storage Zone"
@@ -415,6 +456,7 @@ enum GarageRoomType: String, RoomType, CaseIterable {
     case mudroomLaundryZone = "Mudroom Laundry Zone"
     case overheadStorageZone = "Overhead Storage Zone"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     
@@ -442,7 +484,7 @@ enum GarageRoomType: String, RoomType, CaseIterable {
     }
 }
 
-enum PlayroomRoomType: String, RoomType, CaseIterable {
+enum PlayroomRoomType: String, RoomType {
     case toyStorageZone = "Toy Storage Zone"
     case artsCraftZone = "Arts & Crafts Zone"
     case readingQuietZone = "Reading Quiet Zone"
@@ -456,6 +498,7 @@ enum PlayroomRoomType: String, RoomType, CaseIterable {
     case technologyScreenZone = "Technology Screen Zone"
     case outdoorPlayZone = "Outdoor Play Zone"
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     var instructions: String {
@@ -499,9 +542,10 @@ enum PlayroomRoomType: String, RoomType, CaseIterable {
     }
 }
 
-enum UnknownRoomType: String, RoomType, CaseIterable {
+enum UnknownRoomType: String, RoomType {
     case unknown
     
+    var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
     var instructions: String { "unknown" }
@@ -515,24 +559,7 @@ enum UnknownRoomType: String, RoomType, CaseIterable {
     }
 }
 
-// Access all roomTypes
-extension RoomType {
-    static var allRoomTypes: [any RoomType] {
-        
-        return [
-                KitchenRoomType.allCases.map {$0 as any RoomType },
-            LivingRoomType.allCases.map {$0 as any RoomType },
-            GarageRoomType.allCases.map {$0 as any RoomType },
-            BathroomRoomType.allCases.map {$0 as any RoomType },
-            StorageRoomType.allCases.map {$0 as any RoomType },
-            OfficeType.allCases.map {$0 as any RoomType },
-            PlayroomRoomType.allCases.map {$0 as any RoomType },
-            BedroomRoomType.allCases.map {$0 as any RoomType },
-            DiningRoomType.allCases.map {$0 as any RoomType },
-            UnknownRoomType.allCases.map {$0 as any RoomType },
-        ].flatMap { $0 }
-    }
-}
+
 
 
 

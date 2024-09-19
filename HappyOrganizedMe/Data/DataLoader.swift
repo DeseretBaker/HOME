@@ -17,10 +17,10 @@ import Foundation
 class DataLoader {
     
     // MARK: - Create All Empty Projects
-    func createAllEmptyProjects() -> [Project] {
+func createAllEmptyProjects() -> [Project] {
         return loadProjects()
     }
-
+    
     // MARK: - Project Loader
     func loadProjects() -> [Project] {
         return ProjectType.allCases.map { projectType in
@@ -45,7 +45,7 @@ class DataLoader {
             roomTypes = KitchenRoomType.allCases
         case .livingRoom:
             roomTypes = LivingRoomType.allCases
-        // Add other cases for each project type
+            // Add other cases for each project type
         default:
             roomTypes = []
         }
@@ -63,94 +63,26 @@ class DataLoader {
         }
     }
     
-    // MARK: - Space Loader
-    func loadSpaces(for roomType: KitchenRoomType) -> [Space] {
-        let spaceTypes: [any KitchenSpaceType]
-
-        switch roomType {
-            func loadSpaces(for roomType: KitchenRoomType) -> [Space] {
-                let spaceTypes: [any KitchenSpaceType]
-                
-                switch roomType {
-                case .prepZone:
-                    spaceTypes = KitchenPrepZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .cookingZone:
-                    spaceTypes = KitchenCookingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .cleaningZone:
-                    spaceTypes = KitchenCleaningZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .foodStorageZone:
-                    spaceTypes = KitchenFoodStorageZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .cookwareZone:
-                    spaceTypes = KitchenCookwareZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .servingZone:
-                    spaceTypes = KitchenServingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .bakingZone:
-                    spaceTypes = KitchenBakingZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                case .drinkZone:
-                    spaceTypes = KitchenDrinkZoneSpaceType.allCases.map { $0 as any KitchenSpaceType }
-                default:
-                    spaceTypes = []
-                }
-                
-                return spaceTypes.map { spaceType in
-                    let subTasks = loadSubTasks(for: spaceType)
-                    return Space(
-                        spaceType: spaceType,
-                        instructions: spaceType.instructions,
-                        usageDescription: spaceType.usageDescription,
-                        type: "\(spaceType.name) Type",
-                        category: "\(spaceType.name) Category",
-                        subTasks: subTasks
-                    )
-                }
-            }
-        case is LivingRoomType:
-            spaceTypes = LivingRoomSpaceType.allCases
-        case is DiningRoomType:
-            spaceTypes = DiningRoomSpaceType.allCases
-        case is BathroomRoomType:
-            spaceTypes = BathroomSpaceType.allCases
-        case is BedroomRoomType:
-            spaceTypes = BedroomSpaceType.allCases
-        case is OfficeRoomType:
-            spaceTypes = OfficeSpaceType.allCases
-        case is GarageRoomType:
-            spaceTypes = GarageSpaceType.allCases
-        case is StorageRoomType:
-            spaceTypes = StorageSpaceType.allCases
-        case is PlayroomRoomType:
-            spaceTypes = PlayroomSpaceType.allCases
-
-        // Add other cases for each room type
-        default:
-            spaceTypes = []
-        }
-
+    func loadSpaces(for roomType: any RoomType) -> [Space] {
+        // Dynamically load spaces for the given room type
+        let spaceTypes = roomType.spaceTypes
+        
         return spaceTypes.map { spaceType in
             let subTasks = loadSubTasks(for: spaceType)
             return Space(
                 spaceType: spaceType,
                 instructions: spaceType.instructions,
                 usageDescription: spaceType.usageDescription,
-                type: "\(spaceType.name) Type",
-                category: "\(spaceType.name) Category",
+                type: spaceType.name,
+                category: spaceType.category,
                 subTasks: subTasks
             )
         }
     }
     // MARK: - SubTask Loader
-   func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
-        let subTaskTypes: [any SubTaskType]
-        
-        switch spaceType {
-        case .kitchen:
-            subTaskTypes = KitchenSubTaskType.allCases
-        case .livingRoom:
-            subTaskTypes = LivingRoomSubTaskType.allCases
-        // Add other cases for each space type
-        default:
-            subTaskTypes = []
-        }
+    func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
+        // Dynamically load sub-tasks for the given space type
+        let subTaskTypes = spaceType.subTaskTypes
         
         return subTaskTypes.map { subTaskType in
             let miniTasks = loadMiniTasks(for: subTaskType)
@@ -158,34 +90,23 @@ class DataLoader {
                 subTaskType: subTaskType,
                 instructions: subTaskType.instructions,
                 usageDescription: subTaskType.usageDescription,
-                type: "\(subTaskType.name) Type",
-                category: "\(subTaskType.name) Category",
+                type: subTaskType.name,
+                category: subTaskType.category,
                 miniTasks: miniTasks
             )
         }
     }
-    
     // MARK: - MiniTask Loader
-    
-    func loadMiniTask(for subTaskType: any SubTaskType) -> [MiniTask] {
-        let miniTaskTypes: [any MiniTaskType]
-        
-        switch subTaskType {
-        case .kitchen:
-            miniTaskTypes = KitchenMiniTaskType.allCases
-        case .livingRoom:
-            miniTaskTypes = LivingRoomMiniTaskType.allCases
-        // Add other cases for each subtask type
-        default:
-            miniTaskTypes = []
-        }
+    func loadMiniTasks(for subTaskType: SubTaskType) -> [MiniTask] {
+        // Dynamically load mini-tasks for the given sub-task type
+        let miniTaskTypes = subTaskType.miniTaskTypes
         
         return miniTaskTypes.map { miniTaskType in
             return MiniTask(
                 miniTaskType: miniTaskType,
                 usageDescription: miniTaskType.usageDescription,
-                type: "\(miniTaskType.name) Type",
-                category: "\(miniTaskType.name) Category"
+                type: miniTaskType.name,
+                category: miniTaskType.category
             )
         }
     }
