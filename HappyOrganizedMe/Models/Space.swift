@@ -12,8 +12,7 @@ import SwiftData
 class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     var instructions: String
     var usageDescription: String
-    var type: String
-    var category: String
+   
     var subTasks: [SubTask] = []
 
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
@@ -45,12 +44,11 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     }
 
     // Initializer
-    init(spaceType: any SpaceType, instructions: String, usageDescription: String, type: String, category: String, subTasks: [SubTask] = [], isCompleted: Bool = false) {
-        self.spaceType = SpaceTypeBox(spaceType: spaceType)!
+    init(spaceType: any SpaceType, instructions: String, usageDescription: String, subTasks: [SubTask] = [], isCompleted: Bool = false) {
+        self.spaceType = SpaceTypeBox(spaceType)!
         self.instructions = instructions // Initialize instructions
         self.usageDescription = usageDescription // Initialize usageDescription
-        self.type = type // e.g., LivingRoom, Kitchen
-        self.category = category // e.g., Furniture, Appliances
+    
         self.subTasks = subTasks
         self._isCompleted = isCompleted
     }

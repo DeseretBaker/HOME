@@ -13,8 +13,7 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     
     var usageDescription: String
-    var type: String
-    var category: String
+   
     
     var miniTaskType: MiniTaskTypeBox // Use the enum directly
     private var _isCompleted: Bool = false
@@ -43,11 +42,10 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     }
     
     // Initializer
-    init(miniTaskType: MiniTaskTypeBox, usageDescription: String, type: String, category: String, isCompleted: Bool = false) {
+    init(miniTaskType: MiniTaskTypeBox, usageDescription: String, isCompleted: Bool = false) {
         self.miniTaskType = miniTaskType
         self.usageDescription = usageDescription
-        self.type = type // e.g., LivingRoom, Kitchen
-        self.category = category // e.g., Furniture, Appliances
+     
         self._isCompleted = isCompleted
     }
     

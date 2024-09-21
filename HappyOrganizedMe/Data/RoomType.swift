@@ -10,6 +10,7 @@ import Foundation
 
 
 enum KitchenRoomType: String, RoomType  {
+    
     case prepZone = "Prep Zone"
     case cookingZone = "Cooking Zone"
     case cleaningZone = "Cleaning Zone"
@@ -64,64 +65,63 @@ enum KitchenRoomType: String, RoomType  {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    var spaceTypes: [any SpaceType] {
-        switch self {
-        case .prepZone:
-            return [
-                KitchenPrepZoneSpaceType.prepZoneCountertops, KitchenPrepZoneSpaceType.prepZoneCuttingBoards, KitchenPrepZoneSpaceType.prepZoneUtensils, KitchenPrepZoneSpaceType.prepZoneAppliances, KitchenPrepZoneSpaceType.prepZoneSpiceRacks
-            ]
-        case .cookingZone:
-            return [
-                KitchenCookingZoneSpaceType.cookingZoneStovetop, KitchenCookingZoneSpaceType.cookingZoneOven, KitchenCookingZoneSpaceType.cookingZone, KitchenCookingZoneSpaceType.cookingZoneUtensils,
-                KitchenCookingZoneSpaceType.cookingZonePantryEssentials,
-                KitchenCookingZoneSpaceType.cookingZoneVentilation
-            ]
-        case .cleaningZone:
-            return [
-                KitchenCleaningZoneSpaceType.cleaningZoneSink, KitchenCleaningZoneSpaceType.cleaningZoneDishwasher,
-                KitchenCleaningZoneSpaceType.cleaningZoneTrashRecycling, KitchenCleaningZoneSpaceType.cleaningZoneCleaningSupplies,
-                KitchenCleaningZoneSpaceType.cleaningZoneTowelHookStorage, KitchenCleaningZoneSpaceType.cleaningZoneSoapDispenser
-            ]
-        case .foodStorageZone:
-            return [
-                KitchenFoodStorageZoneSpaceType.foodStorageZonePantry, KitchenFoodStorageZoneSpaceType.foodStorageZoneRefrigerator,
-                KitchenFoodStorageZoneSpaceType.foodStorageZoneFreezer,
-                KitchenFoodStorageZoneSpaceType.foodStorageZoneSnacks,
-                KitchenFoodStorageZoneSpaceType.foodStorageZoneBulkBins,
-                KitchenFoodStorageZoneSpaceType.foodStorageZoneCondiments
-            ]
-        case .cookwareStorageZone:
-            return [
-                KitchenCookwareZoneSpaceType.cookwareZoneDrawers, KitchenCookwareZoneSpaceType.cookwareZonePotsAndPans,
-                KitchenCookwareZoneSpaceType.cookwareZoneBakingSheets, KitchenCookwareZoneSpaceType.cookwareZoneLids,
-                KitchenCookwareZoneSpaceType.cookwareZoneSpecialtyEquipment
-            ]
-        case .servingZone:
-            return [
-                KitchenServingZoneSpaceType.servingZonePlatesBowls, KitchenServingZoneSpaceType.servingZoneGlassesStemware,
-                KitchenServingZoneSpaceType.servingZoneSilverware,
-                KitchenServingZoneSpaceType.servingZoneTableLinens,
-                KitchenServingZoneSpaceType.servingZoneServeWare
-            ]
-        case .bakingZone:
-            return [
-                KitchenBakingZoneSpaceType.bakingZoneBakingSupplies, KitchenBakingZoneSpaceType.bakingZoneIngredients,
-                KitchenBakingZoneSpaceType.bakingZoneMixerTools
-            ]
-        case .drinkZone:
-            return [
-                KitchenDrinkZoneSpaceType.drinkZoneKettles, KitchenDrinkZoneSpaceType.drinkZoneMugsTravelMugs,
-                KitchenDrinkZoneSpaceType.drinkZoneSupplies
-            ]
-        }
-    }
+//    var spaceTypes: [any SpaceType] {
+//        switch self {
+//        case .prepZone:
+//            return [
+//                KitchenPrepZoneSpaceType.prepZoneCountertops, KitchenPrepZoneSpaceType.prepZoneCuttingBoards, KitchenPrepZoneSpaceType.prepZoneUtensils, KitchenPrepZoneSpaceType.prepZoneAppliances, KitchenPrepZoneSpaceType.prepZoneSpiceRacks
+//            ]
+//        case .cookingZone:
+//            return [
+//                KitchenCookingZoneSpaceType.cookingZoneStovetop, KitchenCookingZoneSpaceType.cookingZoneOven, KitchenCookingZoneSpaceType.cookingZone, KitchenCookingZoneSpaceType.cookingZoneUtensils,
+//                KitchenCookingZoneSpaceType.cookingZonePantryEssentials,
+//                KitchenCookingZoneSpaceType.cookingZoneVentilation
+//            ]
+//        case .cleaningZone:
+//            return [
+//                KitchenCleaningZoneSpaceType.cleaningZoneSink, KitchenCleaningZoneSpaceType.cleaningZoneDishwasher,
+//                KitchenCleaningZoneSpaceType.cleaningZoneTrashRecycling, KitchenCleaningZoneSpaceType.cleaningZoneCleaningSupplies,
+//                KitchenCleaningZoneSpaceType.cleaningZoneTowelHookStorage, KitchenCleaningZoneSpaceType.cleaningZoneSoapDispenser
+//            ]
+//        case .foodStorageZone:
+//            return [
+//                KitchenFoodStorageZoneSpaceType.foodStorageZonePantry, KitchenFoodStorageZoneSpaceType.foodStorageZoneRefrigerator,
+//                KitchenFoodStorageZoneSpaceType.foodStorageZoneFreezer,
+//                KitchenFoodStorageZoneSpaceType.foodStorageZoneSnacks,
+//                KitchenFoodStorageZoneSpaceType.foodStorageZoneBulkBins,
+//                KitchenFoodStorageZoneSpaceType.foodStorageZoneCondiments
+//            ]
+//        case .cookwareStorageZone:
+//            return [
+//                KitchenCookwareZoneSpaceType.cookwareZoneDrawers, KitchenCookwareZoneSpaceType.cookwareZonePotsAndPans,
+//                KitchenCookwareZoneSpaceType.cookwareZoneBakingSheets, KitchenCookwareZoneSpaceType.cookwareZoneLids,
+//                KitchenCookwareZoneSpaceType.cookwareZoneSpecialtyEquipment
+//            ]
+//        case .servingZone:
+//            return [
+//                KitchenServingZoneSpaceType.servingZonePlatesBowls, KitchenServingZoneSpaceType.servingZoneGlassesStemware,
+//                KitchenServingZoneSpaceType.servingZoneSilverware,
+//                KitchenServingZoneSpaceType.servingZoneTableLinens,
+//                KitchenServingZoneSpaceType.servingZoneServeWare
+//            ]
+//        case .bakingZone:
+//            return [
+//                KitchenBakingZoneSpaceType.bakingZoneBakingSupplies, KitchenBakingZoneSpaceType.bakingZoneIngredients,
+//                KitchenBakingZoneSpaceType.bakingZoneMixerTools
+//            ]
+//        case .drinkZone:
+//            return [
+//                KitchenDrinkZoneSpaceType.drinkZoneKettles, KitchenDrinkZoneSpaceType.drinkZoneMugsTravelMugs,
+//                KitchenDrinkZoneSpaceType.drinkZoneSupplies
+//            ]
+//        }
+//    }
     
     // Provide all cases statically
-    static var allRoomTypes: [KitchenRoomType] {
-        return KitchenRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return KitchenRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum DiningRoomType: String, RoomType {
@@ -161,11 +161,10 @@ enum DiningRoomType: String, RoomType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [DiningRoomType] {
-        return DiningRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return DiningRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum BathroomRoomType: String, RoomType {
@@ -210,11 +209,10 @@ enum BathroomRoomType: String, RoomType {
         }
     }
     var weight: Double { 4.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [BathroomRoomType] {
-        return BathroomRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return BathroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
 
@@ -232,6 +230,7 @@ enum LivingRoomType: String, RoomType {
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
+    
     var instructions: String {
         switch self {
         case .seatingZone: return "Seating Zone"
@@ -268,11 +267,10 @@ enum LivingRoomType: String, RoomType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living room" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [LivingRoomType] {
-        return LivingRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return LivingRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum BedroomRoomType: String, RoomType {
@@ -335,11 +333,10 @@ enum BedroomRoomType: String, RoomType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Bedroom" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [BedroomRoomType] {
-        return BedroomRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return BedroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum StorageRoomType: String, RoomType {
@@ -386,11 +383,10 @@ enum StorageRoomType: String, RoomType {
         }
     }
     var weight: Double { 4.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [StorageRoomType] {
-        return StorageRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return StorageRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum OfficeRoomType: String, RoomType {
@@ -437,11 +433,10 @@ enum OfficeRoomType: String, RoomType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Office" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [OfficeRoomType] {
-        return OfficeRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return OfficeRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum GarageRoomType: String, RoomType {
@@ -476,15 +471,14 @@ enum GarageRoomType: String, RoomType {
     }
     var usageDescription: String { "String" }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [GarageRoomType] {
-        return GarageRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return GarageRoomType.allCases.map { $0 as any RoomType}
     }
 }
 
-enum PlayroomRoomType: String, RoomType {
+enum PlayroomRoomType: String, Codable, RoomType {
     case toyStorageZone = "Toy Storage Zone"
     case artsCraftZone = "Arts & Crafts Zone"
     case readingQuietZone = "Reading Quiet Zone"
@@ -501,6 +495,7 @@ enum PlayroomRoomType: String, RoomType {
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
+    
     var instructions: String {
         switch self {
         case .toyStorageZone: return "String"
@@ -534,15 +529,16 @@ enum PlayroomRoomType: String, RoomType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [PlayroomRoomType] {
-        return PlayroomRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return PlayroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
 
-enum UnknownRoomType: String, RoomType {
+enum UnknownRoomType: String, Codable, RoomType {
+    
+    
     case unknown
     
     var id: UUID { UUID() }
@@ -551,11 +547,10 @@ enum UnknownRoomType: String, RoomType {
     var instructions: String { "unknown" }
     var usageDescription: String { "unknown" }
     var weight: Double { 0.0 }
-    var type: String { "unknown" }
-    var category: String { "unknown" }
+    var spaceTypes: [SpaceTypeBox] { [] }
     
-    static var allRoomTypes: [UnknownRoomType] {
-        return UnknownRoomType.allCases
+    static var allRoomTypes: [any RoomType] {
+        return UnknownRoomType.allCases.map { $0 as any RoomType}
     }
 }
 

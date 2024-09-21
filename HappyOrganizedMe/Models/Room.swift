@@ -10,8 +10,7 @@ import SwiftData
 class Room: Identifiable, Displayable, Progressable, ObservableObject {
     var instructions: String
     var usageDescription: String
-    var type: String
-    var category: String
+  
     var spaces: [Space] = []
 
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
@@ -39,12 +38,11 @@ class Room: Identifiable, Displayable, Progressable, ObservableObject {
     }
 
     // Initializer
-    init(roomType: RoomTypeBox, instructions: String, usageDescription: String, type: String, category: String, spaces: [Space] = [], isCompleted: Bool = false) {
+    init(roomType: RoomTypeBox, instructions: String, usageDescription: String, spaces: [Space] = [], isCompleted: Bool = false) {
         self.roomType = roomType
         self.instructions = instructions  // Initialize instructions
         self.usageDescription = usageDescription  // Initialize usageDescription
-        self.type = type  // e.g., Living Room, Kitchen
-        self.category = category // e.g., Furniture, Appliances
+      
         self.spaces = spaces
         self._isCompleted = isCompleted
     }

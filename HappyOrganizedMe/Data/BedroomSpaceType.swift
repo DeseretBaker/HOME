@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: BedroomSpaceType
 
-enum BedroomBedSpaceType: String, SpaceType {
+enum BedroomSpaceType: String, SpaceType {
     case headboard = "Headboard"
     case bedding = "Bedding"
     case underBedStorage = "Under-Bed Storage"
@@ -38,11 +38,10 @@ enum BedroomBedSpaceType: String, SpaceType {
     }
     
     var weight: Double { 1.0 }
-    var type: String { "Bedroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return BedroomBedSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return BedroomSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -71,11 +70,10 @@ enum BedroomDresserSpaceType: String, SpaceType {
     }
     
     var weight: Double { 1.0 }
-    var type: String { "Bedroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return BedroomDresserSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return BedroomDresserSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -104,15 +102,14 @@ enum BedroomNightstandSpaceType: String, SpaceType, Codable, CaseIterable, Ident
     }
     
     var weight: Double { 1.0 }
-    var type: String { "Bedroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BedroomNightstandSpaceType] {
-        return BedroomNightstandSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return BedroomNightstandSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum BedroomStorageZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+enum BedroomStorageSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     case closet = "Closet"
     case shelves = "Shelves"
     case underBedStorage = "Under Bed Storage"
@@ -140,11 +137,10 @@ enum BedroomStorageZoneSpaceType: String, SpaceType, Codable, CaseIterable, Iden
     }
     
     var weight: Double { 1.0 }
-    var type: String { "Bedroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BedroomStorageZoneSpaceType] {
-        return BedroomStorageZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return BedroomStorageSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 

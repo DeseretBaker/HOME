@@ -69,16 +69,28 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable {
         case .unknown: return 0
         }
     }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    
     
     var roomTypes: [RoomTypeBox] {
         switch self {
         case .kitchen:
-            return KitchenRoomType.allCases.map { RoomTypeBox($0) }
+            return KitchenRoomType.allCases.map { RoomTypeBox($0)! }
         case .livingRoom:
-            return LivingRoomType.allCases.map { RoomTypeBox($0) }
-            // TODO: Add other cases for each project type
+            return LivingRoomType.allCases.map { RoomTypeBox($0)! }
+        case .diningRoom:
+            return DiningRoomType.allCases.map { RoomTypeBox($0)! }
+        case .bathroom:
+            return BathroomRoomType.allCases.map { RoomTypeBox($0)! }
+        case .bedroom:
+            return BedroomRoomType.allCases.map { RoomTypeBox($0)! }
+        case .office:
+            return OfficeRoomType.allCases.map { RoomTypeBox($0)! }
+        case .playroom:
+            return PlayroomRoomType.allCases.map { RoomTypeBox($0)! }
+        case .storage:
+            return StorageRoomType.allCases.map { RoomTypeBox($0)! }
+        case .garage:
+            return GarageRoomType.allCases.map { RoomTypeBox($0)! }
         default:
             return []
         }

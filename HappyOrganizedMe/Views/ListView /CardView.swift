@@ -13,8 +13,7 @@ protocol Displayable {
     var usageDescription: String { get } // Description of how the item is used
     var progress: Double { get } // Progress percentage, e.g., for cleaning or organizing tasks
     var isCompleted: Bool { get } // Indicates whether the task related to the item is complete
-    var type: String { get } // Type of room or category (e.g., "LivingRoom", "Kitchen")
-    var category: String { get } // Category of item within the type (e.g., "Furniture", "Appliances")
+    
 }
 
 struct CardView<Item: Displayable>: View {

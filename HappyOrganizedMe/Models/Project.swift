@@ -12,8 +12,7 @@ import SwiftData
 class Project: Identifiable, Displayable, Progressable, ObservableObject {
     var instructions: String
     var usageDescription: String
-    var type: String
-    var category: String
+    
     var rooms: [Room] = []
 
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
@@ -42,12 +41,11 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
     }
 
     // Initializer
-    init(projectType: ProjectType, instructions: String, usageDescription: String, type: String, category: String, rooms: [Room] = [], isCompleted: Bool = false) {
+    init(projectType: ProjectType, instructions: String, usageDescription: String, rooms: [Room] = [], isCompleted: Bool = false) {
         self.projectType = projectType
         self.instructions = instructions
         self.usageDescription = usageDescription
-        self.type = type // e.g., LivingRoom, Kitchen
-        self.category = category // e.g., Furniture, Appliances
+        
         self.rooms = rooms
         self._isCompleted = isCompleted
     }

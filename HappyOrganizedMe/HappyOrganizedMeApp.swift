@@ -11,6 +11,7 @@ import SwiftData
 /// 1. add `var roomTypes` to ProjectType, `var spaceTypes` to RoomType etc.
 /// Add that variable to each protocol and then to each enum that conforms to that protocol
 /// 2. Add the Box object for each Protocol. example: `RoomTypeBox` for the `RoomType` protocol
+/// 2.1 Delete `SpaceTypeBox` and replace it with a `SpaceTypeBox` like the ones we created for RoomTypeBox and MiniTaskBox.
 /// 3. uncomment the code in DataLoader and get it building using the newly created variables `roomTypes` and Box objects (instead of `any SomeType` -> `SomeTypeBox`) etc.
 ///
 

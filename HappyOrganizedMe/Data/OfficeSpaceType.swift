@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: OfficeSpaceType
 
-enum OfficeWorkStationSpaceType: String, SpaceType {
+enum OfficeSpaceType: String, SpaceType {
     case deskSurface = "Desk Surface"
     case chair = "Chair"
     case monitorSetup = "Monitor Setup"
@@ -37,15 +37,14 @@ enum OfficeWorkStationSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Office" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [OfficeWorkStationSpaceType] {
-        return OfficeWorkStationSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return OfficeSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum OfficeDeskStorageSpaceType: String, SpaceType {
+enum OfficeStorageSpaceType: String, SpaceType {
     case drawers = "Drawers"
     case filingSystem = "Filing System"
     case stationeryStorage = "Stationery Storage"
@@ -72,15 +71,14 @@ enum OfficeDeskStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Office" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [OfficeDeskStorageSpaceType] {
-        return OfficeDeskStorageSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return OfficeStorageSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum OfficeTechGadgetZoneSpaceType: String, SpaceType {
+enum OfficeTechSpaceType: String, SpaceType {
     case chargingStation = "Charging Station"
     case gadgetStorage = "Gadget Storage"
     case peripheralSetup = "Peripheral Setup"
@@ -107,15 +105,14 @@ enum OfficeTechGadgetZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Office" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [OfficeTechGadgetZoneSpaceType] {
-        return OfficeTechGadgetZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return OfficeTechSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum OfficeReferenceZoneSpaceType: String, SpaceType {
+enum OfficeReferenceSpaceType: String, SpaceType {
     case bookshelves = "Bookshelves"
     case documentHolders = "Document Holders"
     case whiteboardCorkboard = "Whiteboard Corkboard"
@@ -142,21 +139,9 @@ enum OfficeReferenceZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Office" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [OfficeReferenceZoneSpaceType] {
-        return OfficeReferenceZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return OfficeReferenceSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
-//extension OfficeSpaceType {
-//    static var allOfficeSpaceTypes: [any OfficeSpaceType] {
-//        return [
-//        OfficeWorkStationSpaceType.allCases.map { $0  as any OfficeSpaceType},
-//        OfficeDeskStorageSpaceType.allCases.map { $0  as any OfficeSpaceType},
-//        OfficeTechGadgetZoneSpaceType.allCases.map { $0  as any OfficeSpaceType},
-//        OfficeReferenceZoneSpaceType.allCases.map { $0  as any OfficeSpaceType}
-//        ].flatMap { $0 }
-//        }
-//}
-

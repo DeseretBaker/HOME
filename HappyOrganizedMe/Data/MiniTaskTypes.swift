@@ -44,8 +44,7 @@ enum KitchenMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskT
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+  
 }
 enum LivingRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
@@ -83,8 +82,7 @@ enum LivingRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTa
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+
 }
 enum DiningRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
     case remove = "Remove"
@@ -122,8 +120,7 @@ enum DiningRoomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTa
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+
 }
 
 enum OfficeMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -162,8 +159,7 @@ enum OfficeMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskTy
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+ 
 }
 
 enum BedroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -202,8 +198,7 @@ enum BedroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskT
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+ 
 }
 
 
@@ -243,8 +238,7 @@ enum PlayroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTask
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+ 
 }
 
 enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -283,8 +277,7 @@ enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskT
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+  
 }
 
 enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -323,8 +316,7 @@ enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTask
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+ 
 }
 
 enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -363,8 +355,7 @@ enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskTy
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+   
 }
 
 enum UnknownMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskType {
@@ -376,8 +367,7 @@ enum UnknownMiniTaskType: String, Codable, CaseIterable, Identifiable, MiniTaskT
     var instructions: String { "String" }
     var usageDescription: String { "String" }
     var weight: Double { 0.0 }
-    var type: String { "unknown" }
-    var category: String { "unknown" }
+   
 }
 
 

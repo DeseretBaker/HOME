@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: KitchenSpaceType
-enum KitchenPrepZoneSpaceType: String, SpaceType {
+enum KitchenPrepSpaceType: String, SpaceType {
     
     case prepZoneCountertops = "Countertops"
     case prepZoneCuttingBoards = "Cutting Boards"
@@ -50,11 +50,14 @@ enum KitchenPrepZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 4.0}
-    var type: String { "Kitchen" }
-    var category: String { "Appliance" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenPrepSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenCookingZoneSpaceType: String, SpaceType {
+enum KitchenCookingSpaceType: String, SpaceType {
     case cookingZoneStovetop = "Stovetop"
     case cookingZoneOven = "Oven"
     case cookingZone = "Cookware"
@@ -100,11 +103,14 @@ enum KitchenCookingZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenCookingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenCleaningZoneSpaceType: String, SpaceType {
+enum KitchenCleaningSpaceType: String, SpaceType {
     case cleaningZoneSink = "Sink"
     case cleaningZoneDishwasher = "Dishwasher"
     case cleaningZoneTrashRecycling = "Trash Recycling"
@@ -150,11 +156,15 @@ enum KitchenCleaningZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenCleaningSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenFoodStorageZoneSpaceType: String, SpaceType {
+enum KitchenFoodStorageSpaceType: String, SpaceType {
+    
     case foodStorageZonePantry = "Food Storage Pantry"
     case foodStorageZoneRefrigerator = "Refrigerator"
     case foodStorageZoneFreezer = "Freezer"
@@ -200,12 +210,15 @@ enum KitchenFoodStorageZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenFoodStorageSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
 
-enum KitchenCookwareZoneSpaceType: String, SpaceType {
+enum KitchenCookwareSpaceType: String, SpaceType {
     case cookwareZoneDrawers = "Drawers"
     case cookwareZonePotsAndPans = "Pots and Pans"
     case cookwareZoneBakingSheets = "Baking Sheets"
@@ -236,11 +249,14 @@ enum KitchenCookwareZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenCookwareSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenServingZoneSpaceType: String, SpaceType {
+enum KitchenServingSpaceType: String, SpaceType {
     case servingZonePlatesBowls = "Plates, Bowls"
     case servingZoneGlassesStemware = "Glasses, Stemware"
     case servingZoneSilverware = "Silverware"
@@ -271,11 +287,14 @@ enum KitchenServingZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenServingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenBakingZoneSpaceType: String, SpaceType {
+enum KitchenBakingSpaceType: String, SpaceType {
     case bakingZoneBakingSupplies = "Baking Supplies"
     case bakingZoneIngredients = "Ingredients"
     case bakingZoneMixerTools = "Mixer Tools"
@@ -300,11 +319,14 @@ enum KitchenBakingZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenBakingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum KitchenDrinkZoneSpaceType: String, SpaceType {
+enum KitchenSpaceType: String, SpaceType {
     case drinkZoneKettles = "Hot water"
     case drinkZoneMugsTravelMugs = "Mugs"
     case drinkZoneSupplies = "Supplies"
@@ -335,6 +357,9 @@ enum KitchenDrinkZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Kitchen" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var SpaceType: [any SpaceType] {
+        return KitchenSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }

@@ -7,9 +7,7 @@
 
 import Foundation
 
-
-
-enum GarageParkingSpaceType: String, SpaceType {
+enum GarageSpaceType: String, SpaceType {
     case vehicleParking = "Vehicle Parking"
     case carCleaningSupplies = "Car Cleaning Supplies"
     case garageDoorArea = "Garage Door Area"
@@ -33,15 +31,14 @@ enum GarageParkingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageParkingSpaceType] {
-        return GarageParkingSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageToolZoneSpaceType: String, SpaceType {
+enum GarageToolSpaceType: String, SpaceType {
     case handToolStorage = "Hand Tool Storage"
     case powerToolStorage = "Power Tool Storage"
     case workBench = "Work Bench"
@@ -68,15 +65,14 @@ enum GarageToolZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageToolZoneSpaceType] {
-        return GarageToolZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageToolSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageGardenOutdoorZoneSpaceType: String, SpaceType {
+enum GarageGardenSpaceType: String, SpaceType {
     case gardenToolStorage = "Garden Tool Storage"
     case plantingSupplies = "Planting Supplies"
     case lawnEquipment = "Lawn Equipment"
@@ -103,15 +99,14 @@ enum GarageGardenOutdoorZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageToolZoneSpaceType] {
-        return GarageToolZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageGardenSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageSportsActivityGearZoneSpaceType: String, SpaceType {
+enum GarageSportsGearSpaceType: String, SpaceType {
     case ballStorage = "Ball Storage"
     case bikeScooterRacks = "Bike Scooter Racks"
     case sportsEquipmentShelf = "Sports Equipment Shelf"
@@ -138,15 +133,14 @@ enum GarageSportsActivityGearZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageSportsActivityGearZoneSpaceType] {
-        return GarageSportsActivityGearZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageSportsGearSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageSeasonalStorageZoneSpaceType: String, SpaceType {
+enum GarageSeasonalStorageSpaceType: String, SpaceType {
     case holidayDecorations = "Holiday Decorations"
     case winterClothingGear = "Winter Clothing Gear"
     case seasonalToysOutdoorGear = "Seasonal Toys Outdoor Gear"
@@ -170,14 +164,13 @@ enum GarageSeasonalStorageZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageSeasonalStorageZoneSpaceType] {
-        return GarageSeasonalStorageZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageSeasonalStorageSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum GarageHouseHoldStorageZoneSpaceType: String, SpaceType {
+enum GarageHouseholdStorageSpaceType: String, SpaceType {
     case overflowPanty = "Overflow Panty"
     case cleaningSupplies = "Cleaning Supplies"
     case paperGoodsStorage = "Paper Goods Storage"
@@ -204,15 +197,14 @@ enum GarageHouseHoldStorageZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageHouseHoldStorageZoneSpaceType] {
-        return GarageHouseHoldStorageZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageHouseholdStorageSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageWasteRecyclingZoneSpaceType: String, SpaceType {
+enum GarageWasteRecyclingSpaceType: String, SpaceType {
     case trashBinStorage = "Trash Bin Storage"
     case recyclingBinStorage = "Recycling Bin Storage"
     case compostingArea
@@ -236,14 +228,13 @@ enum GarageWasteRecyclingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageWasteRecyclingZoneSpaceType] {
-        return GarageWasteRecyclingZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageWasteRecyclingSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum GarageMaintenanceZoneSpaceType: String, SpaceType {
+enum GarageMaintenanceSpaceType: String, SpaceType {
     case houseMaintenanceTools = "House Maintenance Tools"
     case cleaningMaintenanceProducts = "Cleaning Maintenance Products"
     case repairArea = "Repair Area"
@@ -267,11 +258,10 @@ enum GarageMaintenanceZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageMaintenanceZoneSpaceType] {
-        return GarageMaintenanceZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageMaintenanceSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 enum GarageMudroomLaundrySpaceType: String, SpaceType {
@@ -301,15 +291,14 @@ enum GarageMudroomLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageMudroomLaundrySpaceType] {
-        return GarageMudroomLaundrySpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageMudroomLaundrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum GarageOverheadStorageZone: String, SpaceType {
+enum GarageOverheadSpaceType: String, SpaceType {
     case seasonalItems = "Seasonal Items"
     case extraLuggage = "Extra Luggage"
     case outdoorEquipment = "Outdoor Equipment"
@@ -333,11 +322,10 @@ enum GarageOverheadStorageZone: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var type: String { "Garage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allGarageSpaceTypes: [GarageOverheadStorageZone] {
-        return GarageOverheadStorageZone.allCases
+    static var SpaceType: [any SpaceType] {
+        return GarageOverheadSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 

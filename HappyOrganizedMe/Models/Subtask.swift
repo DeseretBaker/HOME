@@ -12,8 +12,7 @@ import SwiftData
 class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     var instructions: String
     var usageDescription: String
-    var type: String
-    var category: String
+  
     var miniTasks: [MiniTask]
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
@@ -47,12 +46,11 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
         _isCompleted.toggle()
     }
     // Initializer
-    init(subTaskType: any SubTaskType, instructions: String, usageDescription: String, type: String, category: String, miniTasks: [MiniTask], isCompleted: Bool = false) {
-        self.subTaskType = SubTaskTypeBox(subTaskType: subTaskType)!
+    init(subTaskType: any SubTaskType, instructions: String, usageDescription: String, miniTasks: [MiniTask], isCompleted: Bool = false) {
+        self.subTaskType = SubTaskTypeBox(subTaskType)!
         self.instructions = instructions
         self.usageDescription = usageDescription
-        self.type = type // e.g., LivingRoom, Kitchen
-        self.category = category // e.g., Furniture, Appliances
+      
         self.miniTasks = miniTasks
         self._isCompleted = isCompleted
     }

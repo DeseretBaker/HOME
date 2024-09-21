@@ -10,7 +10,7 @@ import Foundation
 // MARK: - LivingRoomSpaceType
 
 
-enum LivingRoomSeatingZoneSpaceType: String, SpaceType {
+enum LivingRoomSpaceType: String, SpaceType {
     case mainSeating = "Main Seating"
     case accentChairsOttomans = "Accent Chairs & Ottomans"
     case throwPillowBlankets = "Throw Pillow & Blankets"
@@ -37,15 +37,14 @@ enum LivingRoomSeatingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomSeatingZoneSpaceType] {
-        return LivingRoomSeatingZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomEntertainmentZoneSpaceType: String, SpaceType {
+enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     case tvMediaConsole = "TV & Media Console"
     case gamingMediaStorage = "Gaming & Media Storage"
     case soundSystem = "Sound System"
@@ -73,15 +72,14 @@ enum LivingRoomEntertainmentZoneSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomEntertainmentZoneSpaceType] {
-        return LivingRoomEntertainmentZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomEntertainmentSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomReadingRelaxationZoneSpaceType: String, SpaceType {
+enum LivingRoomRelaxationSpaceType: String, SpaceType {
     case chairSeating = "Chair Seating"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case bookshelves = "Bookshelves"
@@ -111,15 +109,14 @@ enum LivingRoomReadingRelaxationZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomReadingRelaxationZoneSpaceType] {
-        return LivingRoomReadingRelaxationZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomRelaxationSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomStorageZoneSpaceType: String, SpaceType {
+enum LivingRoomStorageSpaceType: String, SpaceType {
     case cabinetsShelves = "Cabinets & Shelves"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case drawers = "Drawers"
@@ -143,15 +140,14 @@ enum LivingRoomStorageZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomStorageZoneSpaceType] {
-        return LivingRoomStorageZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomStorageSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomDecorativeZoneSpaceType: String, SpaceType {
+enum LivingRoomDecorSpaceType: String, SpaceType {
     case shelvesDisplayTables = "Room Decor Zone"
     case plantsGreenery = "Plants & Greenery"
     case wallArtPhotos =  "Wall Art & Photos"
@@ -178,15 +174,14 @@ enum LivingRoomDecorativeZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomDecorativeZoneSpaceType] {
-        return LivingRoomDecorativeZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomDecorSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomPlayZoneSpaceType: String, SpaceType {
+enum LivingRoomPlaySpaceType: String, SpaceType {
     case toyStorage = "Toy Storage"
     case playMatActivityArea = "Play Mat Activity Area"
     case craftArtSupplies = "Craft Art Supplies"
@@ -213,15 +208,14 @@ enum LivingRoomPlayZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomPlayZoneSpaceType] {
-        return LivingRoomPlayZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomPlaySpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomConversationZoneSpaceType: String,  SpaceType {
+enum LivingRoomConversationSpaceType: String,  SpaceType {
     case seatingArrangement = "Seating Arrangement"
     case coffeeTable = "Coffee Table"
     case accentLighting = "Accent Lighting"
@@ -248,15 +242,14 @@ enum LivingRoomConversationZoneSpaceType: String,  SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomConversationZoneSpaceType] {
-        return LivingRoomConversationZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomConversationSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum LivingRoomLightingZoneSpaceType: String, SpaceType {
+enum LivingRoomLightingSpaceType: String, SpaceType {
     case overheadLighting = "Overhead Lighting"
     case taskLighting = "Task Lighting"
     case accentLighting = "Accent Lighting"
@@ -289,11 +282,10 @@ enum LivingRoomLightingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var type: String { "Living Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [LivingRoomLightingZoneSpaceType] {
-        return LivingRoomLightingZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return LivingRoomLightingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 

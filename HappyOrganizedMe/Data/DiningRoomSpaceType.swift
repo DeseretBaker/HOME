@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: DiningSpaceType
 
-enum DiningRoomDiningZoneSpaceType: String, SpaceType {
+enum DiningRoomSpaceType: String, SpaceType {
     case diningTable = "Dining Table"
     case chairsSeating = "Chairs Seating"
     case centerpieceDecor = "Centerpiece Decor"
@@ -33,15 +33,14 @@ enum DiningRoomDiningZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomDiningZoneSpaceType] {
-        return DiningRoomDiningZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomServingZoneSpaceType: String, SpaceType {
+enum DiningRoomServingSpaceType: String, SpaceType {
     case buffetTableSideboard = "Buffet Table Sideboard"
     case servingPlattersUtensils = "Serving Platters Utensils"
     case drinkStation = "Drink Station"
@@ -65,15 +64,14 @@ enum DiningRoomServingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomServingZoneSpaceType] {
-        return DiningRoomServingZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomServingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomStorageZoneSpaceType: String, SpaceType {
+enum DiningRoomStorageSpaceType: String, SpaceType {
     case cabinetsDrawers = "Cabinets Drawers"
     case shelvingUnits = "Shelving Units"
     case linenStorage = "Linen Storage"
@@ -97,15 +95,14 @@ enum DiningRoomStorageZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomStorageZoneSpaceType] {
-        return DiningRoomStorageZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomStorageSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomDecorDisplayZoneSpaceType: String, SpaceType {
+enum DiningRoomDecorSpaceType: String, SpaceType {
     case wallArtFrames = "Wall Art Frames"
     case displayShelves = "Display Shelves"
     case centerpieces = "Centerpieces"
@@ -129,15 +126,14 @@ enum DiningRoomDecorDisplayZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomDecorDisplayZoneSpaceType] {
-        return DiningRoomDecorDisplayZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomDecorSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomLightingZoneSpaceType: String, SpaceType {
+enum DiningRoomLightingSpaceType: String, SpaceType {
     case overheadChandelier = "Overhead Chandelier"
     case accentWallLighting = "Accent Wall Lighting"
     case candleLighting = "Candle Lighting"
@@ -161,15 +157,14 @@ enum DiningRoomLightingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomLightingZoneSpaceType] {
-        return DiningRoomLightingZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomLightingSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomMultiUseZoneSpaceType: String, SpaceType {
+enum DiningRoomMultiUseSpaceType: String, SpaceType {
     case workStudyTable = "Work Study Table"
     case craftHobbyArea = "Craft Hobby Area"
     case childrensActivities = "Children's Activities"
@@ -193,15 +188,14 @@ enum DiningRoomMultiUseZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomMultiUseZoneSpaceType] {
-        return DiningRoomMultiUseZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomMultiUseSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum DiningRoomDrinkingBarZoneSpaceType: String, SpaceType {
+enum DiningRoomDrinkSpaceType: String, SpaceType {
     case barCartBarCabinet = "Bar Cart/Bar Cabinet"
     case glasswareDisplay = "Glassware Display"
     case wineDrinkStorage = "Wine Drink Storage"
@@ -225,12 +219,11 @@ enum DiningRoomDrinkingBarZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    var type: String { "Dining Room" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [DiningRoomDrinkingBarZoneSpaceType] {
-        return DiningRoomDrinkingBarZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return DiningRoomDrinkSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
 

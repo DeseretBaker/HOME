@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: StorageSpaceZone
 
-enum StorageClosetZoneSpaceType: String, SpaceType {
+enum StorageSpaceType: String, SpaceType {
     
     case hangingSpace = "Hanging Space"
     case shelves = "Shelves"
@@ -38,15 +38,15 @@ enum StorageClosetZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+  
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageClosetZoneSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageUtilityRoomSpaceType: String, SpaceType {
+enum StorageUtilitySpaceType: String, SpaceType {
     case cleaningSuppliesArea = "Cleaning Supplies Area"
     case toolStorage = "Tool Storage"
     case laundrySupplyArea = "Laundry Supply Area"
@@ -73,15 +73,14 @@ enum StorageUtilityRoomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageUtilityRoomSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageUtilitySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageAtticBasementSpaceType: String, SpaceType {
+enum StorageAtticSpaceType: String, SpaceType {
     case seasonalStorage = "Seasonal Storage"
     case longTermStorage = "Long Term Storage"
     case utilityArea = "Utility Area"
@@ -108,11 +107,10 @@ enum StorageAtticBasementSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageAtticBasementSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageAtticSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -143,15 +141,14 @@ enum StoragePantrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StoragePantrySpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StoragePantrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageLaundryRoomSpaceType: String, SpaceType {
+enum StorageLaundrySpaceType: String, SpaceType {
     case laundrySortingArea = "Laundry Sorting Area"
     case laundrySupplies = "Laundry Supplies"
     case dryingRackSpace = "Drying Rack Space"
@@ -179,15 +176,14 @@ enum StorageLaundryRoomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageLaundryRoomSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageLaundrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageMudroomEntrySpaceType: String, SpaceType {
+enum StorageMudroomSpaceType: String, SpaceType {
     case coatHooksRack = "Coat Hooks Rack"
     case shoeStorage = "Shoe Storage"
     case storageBins = "Storage Bins"
@@ -214,15 +210,14 @@ enum StorageMudroomEntrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageMudroomEntrySpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageMudroomSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageCabinetShelvingSpaceType: String, SpaceType {
+enum StorageCabinetSpaceType: String, SpaceType {
     case upperCabinets = "Upper Cabinets"
     case lowerCabinets = "Lower Cabinets"
     case openShelving = "Open Shelving"
@@ -249,15 +244,14 @@ enum StorageCabinetShelvingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageCabinetShelvingSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageCabinetSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageUnderBedStorageSpaceType: String, SpaceType {
+enum StorageUnderBedSpaceType: String, SpaceType {
     case storageBins = "Storage Bins"
     case drawers = "Drawers"
     case vacuumSealedBags = "Vacuum Sealed Bags"
@@ -284,15 +278,14 @@ enum StorageUnderBedStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageUnderBedStorageSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageUnderBedSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageBuiltInsWallUnitsSpaceType: String, SpaceType {
+enum StorageBuiltInSpaceType: String, SpaceType {
     case mediaStorage = "Media Storage"
     case decorDisplay = "Decor Display"
     case hiddenStorage = "Hidden Storage"
@@ -319,16 +312,15 @@ enum StorageBuiltInsWallUnitsSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageBuiltInsWallUnitsSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageBuiltInSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
 
-enum StorageHomeOfficeSpaceType: String, SpaceType {
+enum StorageOfficeSpaceType: String, SpaceType {
     case filingCabinets = "Filing Cabinets"
     case deskDrawers = "Desk Drawers"
     case bookShelves = "Book Shelves"
@@ -355,11 +347,10 @@ enum StorageHomeOfficeSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Storage" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return StorageHomeOfficeSpaceType.allCases
+    static var SpaceType: [any SpaceType] {
+        return StorageOfficeSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 

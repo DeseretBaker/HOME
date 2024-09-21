@@ -7,10 +7,9 @@
 
 import Foundation
 
-
-
 // MARK: BedroomSpaceType
-enum BathroomBathingShoweringSpaceType: String, SpaceType, CaseIterable {
+enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
+   
     case showerArea = "Shower Area"
     case bathtubArea = "Bathtub Area"
     case showerCurtainDoor = "Shower Curtain Door"
@@ -34,15 +33,14 @@ enum BathroomBathingShoweringSpaceType: String, SpaceType, CaseIterable {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return BathroomBathingShoweringSpaceType.allCases.map { $0 as any SpaceType }
+    static var SpaceType: [any SpaceType] {
+        return BathroomSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum BathroomToiletZoneSpaceType: String, SpaceType {
+enum BathroomToiletZoneSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     case toiletPaper = "Toilet Paper"
     case toiletCleaningSupplies = "Toilet Cleaning Supplies"
     case trashBin = "Trash Bin"
@@ -67,15 +65,14 @@ enum BathroomToiletZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [any SpaceType] {
-        return BathroomToiletZoneSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomToiletZoneSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum BathroomVanitySinkZoneSpaceType: String , SpaceType {
+enum BathroomVanitySinkZoneSpaceType: String , SpaceType, Codable, CaseIterable, Identifiable {
     case sinkCountertop = "Sink Countertop"
     case vanityDrawers = "Vanity Drawers"
     case vanityCabinet = "Vanity Cabinet"
@@ -103,11 +100,10 @@ enum BathroomVanitySinkZoneSpaceType: String , SpaceType {
     }
     
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomVanitySinkZoneSpaceType] {
-        return BathroomVanitySinkZoneSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomVanitySinkZoneSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
@@ -134,11 +130,10 @@ enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomTowelsToiletriesZoneSpaceType] {
-        return BathroomTowelsToiletriesZoneSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomTowelsToiletriesZoneSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -166,11 +161,10 @@ enum BathroomGroomingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomGroomingSpaceType] {
-        return BathroomGroomingSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomGroomingSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -198,11 +192,10 @@ enum BathroomLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomLaundrySpaceType] {
-        return BathroomLaundrySpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomLaundrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
@@ -230,14 +223,13 @@ enum BathroomDressingChangingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomDressingChangingSpaceType] {
-        return BathroomDressingChangingSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomDressingChangingSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum BathroomCleaningSuppliesSpaceType: String, SpaceType {
+enum BathroomCleaningSuppliesSpaceType: String, Codable, SpaceType {
     case cleaningTools = "Cleaning Tools"
     case organizers = "Organizers"
     case storageSpace = "Storage Space"
@@ -263,11 +255,10 @@ enum BathroomCleaningSuppliesSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomCleaningSuppliesSpaceType] {
-        return BathroomCleaningSuppliesSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomCleaningSuppliesSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 enum BathroomRelaxationSpaceType: String, SpaceType {
@@ -294,11 +285,10 @@ enum BathroomRelaxationSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Bathroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [BathroomRelaxationSpaceType] {
-        return BathroomRelaxationSpaceType.allCases
+    static var spaceTypes: [any SpaceType] {
+        return BathroomRelaxationSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 

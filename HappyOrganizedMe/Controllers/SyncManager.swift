@@ -52,8 +52,7 @@ func fetchRemoteProjects(completion: @escaping ([Project]) -> Void) {
                 projectType: .kitchen,
                 instructions: "Instructions for kitchen",
                 usageDescription: "Description for kitchen",
-                type: "Kitchen Type",
-                category: "Home",
+              
                 rooms: [] // No rooms for now
             ),
             // Add more simulated remote projects if needed

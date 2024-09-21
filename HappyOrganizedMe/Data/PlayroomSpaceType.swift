@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: PlayroomSpaceType
 
-enum PlayroomToyStorageZoneSpaceType: String, SpaceType {
+enum PlayroomSpaceType: String, SpaceType {
     case toyBins = "Toy Bins"
     case shelvingUnits = "Shelving Units"
     case toyChestTrunks = "Toy Chest Trunks"
@@ -36,15 +36,14 @@ enum PlayroomToyStorageZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomToyStorageZoneSpaceType] {
-        return PlayroomToyStorageZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomArtsCraftsSpaceType: String, SpaceType {
+enum PlayroomCraftSpaceType: String, SpaceType {
     case craftSuppliesDrawers = "Craft Supplies Drawers"
     case artTable = "Art Table"
     case craftDisplayBoard = "Craft Display Board"
@@ -71,15 +70,14 @@ enum PlayroomArtsCraftsSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomArtsCraftsSpaceType] {
-        return PlayroomArtsCraftsSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomCraftSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomReadingZoneSpaceType: String, SpaceType {
+enum PlayroomQuiteSpaceType: String, SpaceType {
     case bookshelves = "Bookshelves"
     case cozySeatingAreas = "Cozy Seating Areas"
     case softLighting = "Soft Lighting"
@@ -106,15 +104,14 @@ enum PlayroomReadingZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomReadingZoneSpaceType] {
-        return PlayroomReadingZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomQuiteSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomBuildingConstructionZoneSpaceType: String, SpaceType {
+enum PlayroomConstructionSpaceType: String, SpaceType {
     case buildingBlockStorage = "Building Block Storage"
     case constructionTable = "Construction Table"
     case displayShelf = "Display Shelf"
@@ -141,15 +138,14 @@ enum PlayroomBuildingConstructionZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomBuildingConstructionZoneSpaceType] {
-        return PlayroomBuildingConstructionZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomConstructionSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomPretendPlayZoneSpaceType: String, SpaceType {
+enum PlayroomImaginationSpaceType: String, SpaceType {
     case dressUpArea = "Dress Up Area"
     case pretendPlaySets = "Pretend Play Sets"
     case rolePlayStation = "Role Play Station"
@@ -176,15 +172,14 @@ enum PlayroomPretendPlayZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomPretendPlayZoneSpaceType] {
-        return PlayroomPretendPlayZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomImaginationSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomPuzzleBoardGameSpaceType: String, SpaceType {
+enum PlayroomGameSpaceType: String, SpaceType {
     case puzzleStorage = "Puzzle Storage"
     case gameShelf = "Game Shelf"
     case gameTable = "Game Table"
@@ -211,15 +206,14 @@ enum PlayroomPuzzleBoardGameSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomPuzzleBoardGameSpaceType] {
-        return PlayroomPuzzleBoardGameSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomGameSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomPhysicalActivityZoneSpaceType: String, SpaceType {
+enum PlayroomActivitySpaceType: String, SpaceType {
     case softMatsRugs = "Soft Mats & Rugs"
     case sportsEquipmentRacks = "Sports Equipment Racks"
     case indoorPlayEquipment = "Indoor Play Equipment"
@@ -246,15 +240,14 @@ enum PlayroomPhysicalActivityZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomPhysicalActivityZoneSpaceType] {
-        return PlayroomPhysicalActivityZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomActivitySpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomMusicPerformanceSpaceType: String, SpaceType {
+enum PlayroomPerformanceSpaceType: String, SpaceType {
     case instrumentStorage = "Instrument Storage"
     case performanceArea = "Performance Area"
     case musicStand = "Music Stand"
@@ -281,15 +274,14 @@ enum PlayroomMusicPerformanceSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomMusicPerformanceSpaceType] {
-        return PlayroomMusicPerformanceSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomPerformanceSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomSensoryPlaySpaceType: String, SpaceType {
+enum PlayroomSensorySpaceType: String, SpaceType {
     case sensoryBins = "Sensory Bins"
     case tactileWallPanels = "Tactile Wall Panels"
     case lightTable = "Light Table"
@@ -316,15 +308,14 @@ enum PlayroomSensoryPlaySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomSensoryPlaySpaceType] {
-        return PlayroomSensoryPlaySpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomSensorySpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomHomeworkStudyZoneSpaceType: String, SpaceType {
+enum PlayroomStudySpaceType: String, SpaceType {
     case deskChair = "Desk Chair"
     case suppliesStorage = "Supplies Storage"
     case homeworkOrganizer = "Homework Organizer"
@@ -351,15 +342,14 @@ enum PlayroomHomeworkStudyZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomHomeworkStudyZoneSpaceType] {
-        return PlayroomHomeworkStudyZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomStudySpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomTechnologyZoneSpaceType: String, SpaceType {
+enum PlayroomTechSpaceType: String, SpaceType {
     case deviceChargingStation = "Device Charging Station"
     case comfortableSeating = "Comfortable Seating"
     case headphoneStorage = "Headphone Storage"
@@ -386,15 +376,14 @@ enum PlayroomTechnologyZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomTechnologyZoneSpaceType] {
-        return PlayroomTechnologyZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomTechSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
-enum PlayroomOutdoorPlayZoneSpaceType: String, SpaceType {
+enum PlayroomOutdoorSpaceType: String, SpaceType {
     case playEquipment = "Play Equipment"
     case outdoorToyStorage = "Outdoor Toy Storage"
     case waterPlayArea = "Water Play Area"
@@ -421,12 +410,11 @@ enum PlayroomOutdoorPlayZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var type: String { "Playroom" }
-    var category: String { "Furniture" }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
     
-    static var allSpaceTypes: [PlayroomOutdoorPlayZoneSpaceType] {
-        return PlayroomOutdoorPlayZoneSpaceType.allCases
-        }
+    static var SpaceType: [any SpaceType] {
+        return PlayroomOutdoorSpaceType.allCases.map { $0 as any SpaceType }
+    }
 }
 
 

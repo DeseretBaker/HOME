@@ -54,8 +54,7 @@ class BaseProjectsController: ObservableObject {
                 projectType: projectType,
                 instructions: "Instructions for \(projectType.name)",
                 usageDescription: "Description for \(projectType.name)",
-                type: "\(projectType.name) Type",
-                category: "\(projectType.name) Category",
+                
                 rooms: DataLoader.loadRooms(for: projectType) // Load rooms for the project
             )
             modelContext.insert(project) // Insert the project into the model context

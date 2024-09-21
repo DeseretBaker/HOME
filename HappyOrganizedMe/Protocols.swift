@@ -6,11 +6,6 @@
 //
 
 import Foundation
-
-// Protocols.swift
-
-import Foundation
-
 // Define your protocols here
 
 // MARK: - Room Type
@@ -22,16 +17,15 @@ protocol RoomType: Codable, CaseIterable, Identifiable {
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
     var rawValue: String { get }
-//    TODO: var spaceTypes: [any SpaceType] { get }
+    var spaceTypes: [SpaceTypeBox] { get }
     init?(rawValue: String)
     
 }
 
 @dynamicMemberLookup
 enum RoomTypeBox: Codable {
+
     case kitchen(KitchenRoomType)
     case dining(DiningRoomType)
     case bathroom(BathroomRoomType)
@@ -41,6 +35,7 @@ enum RoomTypeBox: Codable {
     case office(OfficeRoomType)
     case garage(GarageRoomType)
     case playroom(PlayroomRoomType)
+    case unknown(UnknownRoomType)
     
     var roomType: any RoomType {
         switch self {
@@ -53,10 +48,11 @@ enum RoomTypeBox: Codable {
         case .office(let office): return office
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
+        case .unknown(let unknown): return unknown
         }
     }
     
-    init(_ roomType: any RoomType) {
+    init?(_ roomType: any RoomType) {
         if let kitchen = roomType as? KitchenRoomType {
             self = .kitchen(kitchen)
         } else if let dining = roomType as? DiningRoomType {
@@ -76,7 +72,8 @@ enum RoomTypeBox: Codable {
         } else if let playroom = roomType as? PlayroomRoomType {
             self = .playroom(playroom)
         } else {
-            fatalError("Unknown type implementing RoomType. FIX ME!!!")
+            return nil
+            
         }
     }
     
@@ -96,11 +93,67 @@ protocol SpaceType: Codable, CaseIterable, Identifiable {
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
     var rawValue: String { get }
-    // TODO: var subTaskTypes
+    var subTaskTypes: [SubTaskTypeBox] { get }
     init?(rawValue: String)
+}
+@dynamicMemberLookup
+enum SpaceTypeBox: Codable {
+    case kitchen(KitchenPrepSpaceType)
+    case dining(DiningRoomSpaceType)
+    case bathroom(BathroomSpaceType)
+    case living(LivingRoomSpaceType)
+    case bedroom(BedroomSpaceType)
+    case storage(StorageSpaceType)
+    case office(OfficeSpaceType)
+    case garage(GarageSpaceType)
+    case playroom(PlayroomSpaceType)
+    
+    
+    var spaceType: any SpaceType {
+        switch self {
+        case .kitchen(let kitchen): return kitchen
+        case .dining(let dining): return dining
+        case .bathroom(let bathroom): return bathroom
+        case .living(let living): return living
+        case .bedroom(let bedroom): return bedroom
+        case .storage(let storage): return storage
+        case .office(let office): return office
+        case .garage(let garage): return garage
+        case .playroom(let playroom): return playroom
+     
+        }
+    }
+    
+    init?(_ spaceType: any SpaceType) {
+        if let kitchen = spaceType as? KitchenPrepSpaceType {
+            self = .kitchen(kitchen)
+        } else if let dining = spaceType as? DiningRoomSpaceType {
+            self = .dining(dining)
+        } else if let bathroom = spaceType as? BathroomSpaceType {
+            self = .bathroom(bathroom)
+        } else if let living = spaceType as? LivingRoomSpaceType {
+            self = .living(living)
+        } else if let bedroom = spaceType as? BedroomSpaceType {
+            self = .bedroom(bedroom)
+        } else if let storage = spaceType as? StorageSpaceType {
+            self = .storage(storage)
+        } else if let office = spaceType as? OfficeSpaceType {
+            self = .office(office)
+        } else if let garage = spaceType as? GarageSpaceType {
+            self = .garage(garage)
+        } else if let playroom = spaceType as? PlayroomSpaceType {
+            self = .playroom(playroom)
+        } else {
+            return nil
+            
+        }
+    }
+    
+    subscript<T>(dynamicMember keyPath: KeyPath<any SpaceType, T>) -> T {
+        spaceType[keyPath: keyPath]
+    }
+    
 }
 
 // MARK: - SubTask Type
@@ -112,11 +165,67 @@ protocol SubTaskType: Codable, CaseIterable, Identifiable {
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
     var rawValue: String { get }
-    // TODO: var miniTaskTypes
+    var miniTaskTypes: [MiniTaskTypeBox] { get }
     init?(rawValue: String)
+}
+@dynamicMemberLookup
+enum SubTaskTypeBox: Codable {
+    case kitchen(KitchenSubTaskType)
+    case dining(DiningRoomSubTaskType)
+    case bathroom(BathroomSubTaskType)
+    case living(LivingRoomSubTaskType)
+    case bedroom(BedroomSubTaskType)
+    case storage(StorageSubTaskType)
+    case office(OfficeSubTaskType)
+    case garage(GarageSubTaskType)
+    case playroom(PlayroomSubTaskType)
+    case unknown(UnknownSubTaskType)
+    
+    var subTaskType: any SubTaskType {
+        switch self {
+        case .kitchen(let kitchen): return kitchen
+        case .dining(let dining): return dining
+        case .bathroom(let bathroom): return bathroom
+        case .living(let living): return living
+        case .bedroom(let bedroom): return bedroom
+        case .storage(let storage): return storage
+        case .office(let office): return office
+        case .garage(let garage): return garage
+        case .playroom(let playroom): return playroom
+        case .unknown(let unknown): return unknown
+        }
+    }
+    
+    init?(_ subTaskType: any SubTaskType) {
+        if let kitchen = subTaskType as? KitchenSubTaskType {
+            self = .kitchen(kitchen)
+        } else if let dining = subTaskType as? DiningRoomSubTaskType {
+            self = .dining(dining)
+        } else if let bathroom = subTaskType as? BathroomSubTaskType {
+            self = .bathroom(bathroom)
+        } else if let living = subTaskType as? LivingRoomSubTaskType {
+            self = .living(living)
+        } else if let bedroom = subTaskType as? BedroomSubTaskType {
+            self = .bedroom(bedroom)
+        } else if let storage = subTaskType as? StorageSubTaskType {
+            self = .storage(storage)
+        } else if let office = subTaskType as? OfficeSubTaskType {
+            self = .office(office)
+        } else if let garage = subTaskType as? GarageSubTaskType {
+            self = .garage(garage)
+        } else if let playroom = subTaskType as? PlayroomSubTaskType {
+            self = .playroom(playroom)
+        } else {
+            return nil
+            
+        }
+    }
+    
+    subscript<T>(dynamicMember keyPath: KeyPath<any SubTaskType, T>) -> T {
+        subTaskType[keyPath: keyPath]
+    }
+    
 }
 
 // MARK: - MiniTask Type
@@ -128,8 +237,6 @@ protocol MiniTaskType: Codable, CaseIterable, Identifiable {
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
-    var type: String { get }
-    var category: String { get }
     var rawValue: String { get }
     init?(rawValue: String)
 }
@@ -166,21 +273,3 @@ enum MiniTaskTypeBox: Codable {
         miniTaskType[keyPath: keyPath]
     }
 }
-
-//protocol DataLoader {
-//    func loadData()
-//}
-//
-//protocol TrackableProgress {
-//    var progress: Double { get }
-//    func updateProgress()
-//}
-//
-//protocol IdentifiableEntity {
-//    var id: UUID { get }
-//}
-//
-//protocol Displayable {
-//    var displayName: String { get }
-//    var imageName: String { get }
-//}

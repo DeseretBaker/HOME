@@ -34,6 +34,4 @@ struct Item: Displayable, Identifiable {
     var usageDescription: String
     var progress: Double
     var isCompleted: Bool
-    var type: String // e.g., LivingRoom, Kitchen
-    var category: String // e.g., Furniture, Appliances
 }
