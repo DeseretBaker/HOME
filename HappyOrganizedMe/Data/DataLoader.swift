@@ -52,17 +52,24 @@ class DataLoader {
     }
     
     static func loadSpaces(for roomType: RoomTypeBox) -> [Space] {
-        // Dynamically load spaces for the given room type
-
         let spaceTypes = roomType.spaceTypes
 
-        return spaceTypes.map { spaceType in
-            let subTasks = loadSubTasks(for: spaceType as! (any SpaceType))
+        return spaceTypes.compactMap { spaceType in
+            guard let castedSpaceType = spaceType as? (any SpaceType) else {
+                // Use DefaultSpaceType as the fallback
+                return Space(
+                    spaceType: DefaultSpaceType(),
+                    instructions: DefaultSpaceType().instructions,
+                    usageDescription: DefaultSpaceType().usageDescription,
+                    subTasks: loadSubTasks(for: DefaultSpaceType())
+                )
+            }
+            
+            let subTasks = loadSubTasks(for: castedSpaceType)
             return Space(
-                spaceType: spaceType as! (any SpaceType),
-                instructions: spaceType.instructions,
-                usageDescription: spaceType.usageDescription,
-                
+                spaceType: castedSpaceType,
+                instructions: castedSpaceType.instructions ?? "Default Instructions",
+                usageDescription: castedSpaceType.usageDescription ?? "Default Usage",
                 subTasks: subTasks
             )
         }

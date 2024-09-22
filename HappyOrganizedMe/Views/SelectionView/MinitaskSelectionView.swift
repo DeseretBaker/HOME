@@ -10,8 +10,7 @@ import SwiftUI
 
 struct MiniTaskSelectionView: View {
     var projectController = ProjectController.shared
-    @Environment(\.modelContext) private var modelContext  // Access the model context
-    
+    @Environment(\.modelContext) private var modelContext    
     @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
     
     var body: some View {

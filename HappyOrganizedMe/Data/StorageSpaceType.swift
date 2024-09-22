@@ -210,7 +210,13 @@ enum StorageMudroomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageMudroomSpaceType.allCases.map { $0 as any SpaceType }
@@ -244,7 +250,13 @@ enum StorageCabinetSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageCabinetSpaceType.allCases.map { $0 as any SpaceType }
@@ -278,7 +290,13 @@ enum StorageUnderBedSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageUnderBedSpaceType.allCases.map { $0 as any SpaceType }
@@ -312,7 +330,13 @@ enum StorageBuiltInSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageBuiltInSpaceType.allCases.map { $0 as any SpaceType }
@@ -347,7 +371,13 @@ enum StorageOfficeSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageOfficeSpaceType.allCases.map { $0 as any SpaceType }

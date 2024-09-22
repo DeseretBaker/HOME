@@ -14,7 +14,7 @@ enum KitchenRoomType: String, RoomType  {
     case prepZone = "Prep Zone"
     case cookingZone = "Cooking Zone"
     case cleaningZone = "Cleaning Zone"
-    case foodStorageZone = "Food Storage Zone"
+    case foodStorageZone = "Food Storage"
     case cookwareStorageZone = "Cookware Storage Zone"
     case servingZone = "Serving Zone"
     case bakingZone = "Baking Zone"
@@ -67,57 +67,6 @@ enum KitchenRoomType: String, RoomType  {
     var weight: Double { 5.0 }
     var spaceTypes: [SpaceTypeBox] { [] }
     
-//    var spaceTypes: [any SpaceType] {
-//        switch self {
-//        case .prepZone:
-//            return [
-//                KitchenPrepZoneSpaceType.prepZoneCountertops, KitchenPrepZoneSpaceType.prepZoneCuttingBoards, KitchenPrepZoneSpaceType.prepZoneUtensils, KitchenPrepZoneSpaceType.prepZoneAppliances, KitchenPrepZoneSpaceType.prepZoneSpiceRacks
-//            ]
-//        case .cookingZone:
-//            return [
-//                KitchenCookingZoneSpaceType.cookingZoneStovetop, KitchenCookingZoneSpaceType.cookingZoneOven, KitchenCookingZoneSpaceType.cookingZone, KitchenCookingZoneSpaceType.cookingZoneUtensils,
-//                KitchenCookingZoneSpaceType.cookingZonePantryEssentials,
-//                KitchenCookingZoneSpaceType.cookingZoneVentilation
-//            ]
-//        case .cleaningZone:
-//            return [
-//                KitchenCleaningZoneSpaceType.cleaningZoneSink, KitchenCleaningZoneSpaceType.cleaningZoneDishwasher,
-//                KitchenCleaningZoneSpaceType.cleaningZoneTrashRecycling, KitchenCleaningZoneSpaceType.cleaningZoneCleaningSupplies,
-//                KitchenCleaningZoneSpaceType.cleaningZoneTowelHookStorage, KitchenCleaningZoneSpaceType.cleaningZoneSoapDispenser
-//            ]
-//        case .foodStorageZone:
-//            return [
-//                KitchenFoodStorageZoneSpaceType.foodStorageZonePantry, KitchenFoodStorageZoneSpaceType.foodStorageZoneRefrigerator,
-//                KitchenFoodStorageZoneSpaceType.foodStorageZoneFreezer,
-//                KitchenFoodStorageZoneSpaceType.foodStorageZoneSnacks,
-//                KitchenFoodStorageZoneSpaceType.foodStorageZoneBulkBins,
-//                KitchenFoodStorageZoneSpaceType.foodStorageZoneCondiments
-//            ]
-//        case .cookwareStorageZone:
-//            return [
-//                KitchenCookwareZoneSpaceType.cookwareZoneDrawers, KitchenCookwareZoneSpaceType.cookwareZonePotsAndPans,
-//                KitchenCookwareZoneSpaceType.cookwareZoneBakingSheets, KitchenCookwareZoneSpaceType.cookwareZoneLids,
-//                KitchenCookwareZoneSpaceType.cookwareZoneSpecialtyEquipment
-//            ]
-//        case .servingZone:
-//            return [
-//                KitchenServingZoneSpaceType.servingZonePlatesBowls, KitchenServingZoneSpaceType.servingZoneGlassesStemware,
-//                KitchenServingZoneSpaceType.servingZoneSilverware,
-//                KitchenServingZoneSpaceType.servingZoneTableLinens,
-//                KitchenServingZoneSpaceType.servingZoneServeWare
-//            ]
-//        case .bakingZone:
-//            return [
-//                KitchenBakingZoneSpaceType.bakingZoneBakingSupplies, KitchenBakingZoneSpaceType.bakingZoneIngredients,
-//                KitchenBakingZoneSpaceType.bakingZoneMixerTools
-//            ]
-//        case .drinkZone:
-//            return [
-//                KitchenDrinkZoneSpaceType.drinkZoneKettles, KitchenDrinkZoneSpaceType.drinkZoneMugsTravelMugs,
-//                KitchenDrinkZoneSpaceType.drinkZoneSupplies
-//            ]
-//        }
-//    }
     
     // Provide all cases statically
     static var allRoomTypes: [any RoomType] {

@@ -21,7 +21,7 @@ struct ProjectSelectionView: View {
                             .padding()
                     } else {
                         ForEach(projectController.projects) { project in
-                            NavigationLink(destination: RoomSelectionView(project: project)) {
+                            NavigationLink(destination: ProjectDetailView(project: project)) {
                                 CardView(item: project)
                             }
                             .buttonStyle(PlainButtonStyle())

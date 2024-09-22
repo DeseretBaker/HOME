@@ -37,7 +37,13 @@ enum LivingRoomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomSpaceType.allCases.map { $0 as any SpaceType }
@@ -72,7 +78,13 @@ enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomEntertainmentSpaceType.allCases.map { $0 as any SpaceType }
@@ -109,7 +121,13 @@ enum LivingRoomRelaxationSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomRelaxationSpaceType.allCases.map { $0 as any SpaceType }
@@ -140,7 +158,12 @@ enum LivingRoomStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomStorageSpaceType.allCases.map { $0 as any SpaceType }
@@ -174,7 +197,13 @@ enum LivingRoomDecorSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomDecorSpaceType.allCases.map { $0 as any SpaceType }
@@ -208,7 +237,13 @@ enum LivingRoomPlaySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomPlaySpaceType.allCases.map { $0 as any SpaceType }
@@ -242,7 +277,13 @@ enum LivingRoomConversationSpaceType: String,  SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomConversationSpaceType.allCases.map { $0 as any SpaceType }
@@ -282,7 +323,13 @@ enum LivingRoomLightingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return LivingRoomLightingSpaceType.allCases.map { $0 as any SpaceType }

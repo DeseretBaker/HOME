@@ -18,7 +18,7 @@
 		C5399B632C9B3152003B0CF1 /* DiningRoomSpaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5399B542C9B3152003B0CF1 /* DiningRoomSpaceType.swift */; };
 		C5399B642C9B3152003B0CF1 /* PlayroomSpaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5399B592C9B3152003B0CF1 /* PlayroomSpaceType.swift */; };
 		C5399B9A2C9B338E003B0CF1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5399B992C9B338E003B0CF1 /* Protocols.swift */; };
-		C5515B412C9DCF6500EF2D46 /* CardViewInstances.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5515B3E2C9DCF6500EF2D46 /* CardViewInstances.swift */; };
+		C5515B702C9F131600EF2D46 /* DefaultSpaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5515B6F2C9F131600EF2D46 /* DefaultSpaceType.swift */; };
 		C564B5D92C5BEFB500AA2A69 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */; };
 		C564B5DB2C5C5AF300AA2A69 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5DA2C5C5AF300AA2A69 /* Project.swift */; };
 		C564B5E72C5ECBFC00AA2A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */; };
@@ -76,7 +76,7 @@
 		C5399B592C9B3152003B0CF1 /* PlayroomSpaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayroomSpaceType.swift; sourceTree = "<group>"; };
 		C5399B5B2C9B3152003B0CF1 /* StorageSpaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSpaceType.swift; sourceTree = "<group>"; };
 		C5399B992C9B338E003B0CF1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		C5515B3E2C9DCF6500EF2D46 /* CardViewInstances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewInstances.swift; sourceTree = "<group>"; };
+		C5515B6F2C9F131600EF2D46 /* DefaultSpaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSpaceType.swift; sourceTree = "<group>"; };
 		C564B5D82C5BEFB500AA2A69 /* StartHereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartHereView.swift; path = HappyOrganizedMe/Views/StartHereView.swift; sourceTree = SOURCE_ROOT; };
 		C564B5DA2C5C5AF300AA2A69 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Project.swift; path = HappyOrganizedMe/Models/Project.swift; sourceTree = SOURCE_ROOT; };
 		C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,7 +123,9 @@
 		C564B60B2C63173E00AA2A69 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ABCsOfOrganizing.swift,
 				CardView.swift,
+				CardViewInstances.swift,
 				CustomViewsForItems.swift,
 			);
 			target = C5A95DA82C5295C800BD08A7 /* HappyOrganizedMe */;
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C502237E2C9682CC0011FDE8 /* DataLoader.swift */,
+				C5515B6F2C9F131600EF2D46 /* DefaultSpaceType.swift */,
 				C59E608F2C84FDFB00B77B26 /* BaseProjectsController.swift */,
 				C59E60832C84E53B00B77B26 /* ProjectType.swift */,
 				C59E60852C84E68E00B77B26 /* RoomType.swift */,
@@ -279,7 +282,6 @@
 				C564B61F2C6858F300AA2A69 /* ProjectView.swift */,
 				C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */,
 				C564B60A2C63173E00AA2A69 /* ListView  */,
-				C5515B3E2C9DCF6500EF2D46 /* CardViewInstances.swift */,
 				C564B6082C63172100AA2A69 /* SelectionView */,
 				C564B6062C63170000AA2A69 /* DetailView */,
 			);
@@ -437,7 +439,7 @@
 			files = (
 				C502237F2C9682CC0011FDE8 /* DataLoader.swift in Sources */,
 				C564B6152C631C8100AA2A69 /* SyncManager.swift in Sources */,
-				C5515B412C9DCF6500EF2D46 /* CardViewInstances.swift in Sources */,
+				C5515B702C9F131600EF2D46 /* DefaultSpaceType.swift in Sources */,
 				C5399B9A2C9B338E003B0CF1 /* Protocols.swift in Sources */,
 				C5399B5C2C9B3152003B0CF1 /* StorageSpaceType.swift in Sources */,
 				C5399B5D2C9B3152003B0CF1 /* KitchenSpaceType.swift in Sources */,

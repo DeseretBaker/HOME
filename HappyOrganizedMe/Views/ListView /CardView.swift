@@ -19,8 +19,13 @@ protocol Displayable {
 struct CardView<Item: Displayable>: View {
     var item: Item
     
+    // State variables to track button taps for each item
+    @State private var showInstructions = false
+    @State private var showUsageDescription = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            // Image and item name
             ZStack {
                 if !item.imageName.isEmpty {
                     Image(item.imageName)
@@ -40,26 +45,87 @@ struct CardView<Item: Displayable>: View {
                         )
                 }
             }
+            
+            Text(item.name)
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
+            
+            ProgressView(value: item.progress, total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: .teal))
+            
+            Text("Progress: \(String(format: "%.0f", item.progress))%")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            
+            // Buttons for instructions and usage description
+            HStack {
+                Button(action: {
+                    showInstructions.toggle()
+                    showUsageDescription = false // Hide the other section if it's open
+                }) {
+                    Text("Instructions")
+                        .font(.footnote)
+                        .padding(5)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
                 
-                Text(item.name)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
+                Spacer().frame(width: 10)
                 
-                ProgressView(value: item.progress, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .teal))
-                
-                Text("Progress: \(String(format: "%.0f", item.progress))%")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                Button(action: {
+                    showUsageDescription.toggle()
+                    showInstructions = false // Hide the other section if it's open
+                }) {
+                    Text("Usage")
+                        .font(.footnote)
+                        .padding(5)
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel("\(item.name), Progress: \(String(format: "%.0f", item.progress))%, \(item.isCompleted ? "Completed" : "In Progress")")
+            .padding(.top, 5)
+
+            // Display the complete instructions or usage description when tapped
+            if showInstructions {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Instructions")
+                        .font(.headline)
+                        .padding(.bottom, 2)
+                    
+                    Text(item.instructions)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(5)
+                }
+                .padding(.top, 5)
+                .transition(.slide) // Optional animation
+            }
+            
+            if showUsageDescription {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Usage Description")
+                        .font(.headline)
+                        .padding(.bottom, 2)
+                    
+                    Text(item.usageDescription)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(5)
+                }
+                .padding(.top, 5)
+                .transition(.slide) // Optional animation
+            }
             
         }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(item.name), Progress: \(String(format: "%.0f", item.progress))%, \(item.isCompleted ? "Completed" : "In Progress")")
+        .animation(.easeInOut, value: showInstructions || showUsageDescription) // Smooth animation
     }
-
+}

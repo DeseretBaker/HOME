@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
-
+// MARK: complete login view and profile view.
 struct ProfileView: View {
     @State private var username: String = "John Doe" // Example static username
     @State private var email: String = "johndoe@example.com" // Example static email

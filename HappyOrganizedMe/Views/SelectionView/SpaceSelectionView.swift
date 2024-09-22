@@ -10,8 +10,7 @@ import SwiftData
 
 struct SpaceSelectionView: View {
     var projectController: ProjectController = .shared
-    @Environment(\.modelContext) private var modelContext  // Access the model context
-    
+    @Environment(\.modelContext) private var modelContext
     @Bindable var room: Room  // Use @Bindable to automatically update the view when the room changes
     
     var body: some View {

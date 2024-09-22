@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
+    @Environment(\.modelContext) private var modelContext
     @Bindable var project: Project
-
+    
+    // State variables to track button taps
+      @State private var showInstructions = false
+      @State private var showUsageDescription = false
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 15) {
                 // Project Header
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 15) {
                     Image(project.imageName)
                         .resizable()
                         .scaledToFill()
@@ -47,7 +52,66 @@ struct ProjectDetailView: View {
                 .shadow(radius: 5)
                 .padding([.leading, .trailing])
                 
-                // Room Grid
+                // Buttons to show information
+                                HStack {
+                                    Button(action: {
+                                        // Toggle the visibility of the instructions
+                                        showInstructions.toggle()
+                                        showUsageDescription = false // Hide the other section if it's open
+                                    }) {
+                                        Text("Instructions")
+                                            .fontWeight(.semibold)
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                    }
+                                    
+                                    Spacer().frame(width: 10) // Space between buttons
+                                    
+                                    Button(action: {
+                                        // Toggle the visibility of the usage description
+                                        showUsageDescription.toggle()
+                                        showInstructions = false // Hide the other section if it's open
+                                    }) {
+                                        Text("Usage Description")
+                                            .fontWeight(.semibold)
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(Color.green)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                    }
+                                }
+                                .padding([.leading, .trailing])
+                                
+                                // Display instructions or usage description based on button tap
+                                if showInstructions {
+                                    Text("Instructions")
+                                        .font(.headline)
+                                        .padding(.top)
+                                    
+                                    Text(project.projectType.instructions ?? "No instructions available.") // Access enum content
+                                        .padding()
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(10)
+                                        .padding([.leading, .trailing])
+                                }
+                                
+                                if showUsageDescription {
+                                    Text("Usage Description")
+                                        .font(.headline)
+                                        .padding(.top)
+                                    
+                                    Text(project.projectType.usageDescription ?? "No usage description available.") // Access enum content
+                                        .padding()
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(10)
+                                        .padding([.leading, .trailing])
+                                }
+                
+          // Room Grid
                 Text("First Step")
                     .font(.headline)
                     .padding(.leading)
@@ -63,13 +127,7 @@ struct ProjectDetailView: View {
             }
         }
         .navigationTitle("Where to Start")
-//        .toolbar {
-//            Button(action: {
-                // Action for editing the room or adding new spaces
-//            }) {
-//                Image(systemName: "pencil")
-//            }
-//        }
+    
     }
 }
 

@@ -37,7 +37,13 @@ enum OfficeSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return OfficeSpaceType.allCases.map { $0 as any SpaceType }
@@ -71,7 +77,13 @@ enum OfficeStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return OfficeStorageSpaceType.allCases.map { $0 as any SpaceType }
@@ -105,7 +117,13 @@ enum OfficeTechSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return OfficeTechSpaceType.allCases.map { $0 as any SpaceType }
@@ -139,7 +157,13 @@ enum OfficeReferenceSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return OfficeReferenceSpaceType.allCases.map { $0 as any SpaceType }

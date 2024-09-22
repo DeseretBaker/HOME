@@ -33,7 +33,13 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return BathroomSpaceType.allCases.map { $0 as any SpaceType }
@@ -65,7 +71,13 @@ enum BathroomToiletZoneSpaceType: String, SpaceType, Codable, CaseIterable, Iden
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomToiletZoneSpaceType.allCases.map { $0 as any SpaceType }
@@ -100,7 +112,13 @@ enum BathroomVanitySinkZoneSpaceType: String , SpaceType, Codable, CaseIterable,
     }
     
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomVanitySinkZoneSpaceType.allCases.map { $0 as any SpaceType }
@@ -130,7 +148,13 @@ enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomTowelsToiletriesZoneSpaceType.allCases.map { $0 as any SpaceType }
@@ -161,7 +185,13 @@ enum BathroomGroomingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomGroomingSpaceType.allCases.map { $0 as any SpaceType }
@@ -192,7 +222,13 @@ enum BathroomLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomLaundrySpaceType.allCases.map { $0 as any SpaceType }
@@ -223,7 +259,13 @@ enum BathroomDressingChangingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomDressingChangingSpaceType.allCases.map { $0 as any SpaceType }
@@ -255,7 +297,13 @@ enum BathroomCleaningSuppliesSpaceType: String, Codable, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomCleaningSuppliesSpaceType.allCases.map { $0 as any SpaceType }
@@ -285,7 +333,13 @@ enum BathroomRelaxationSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomRelaxationSpaceType.allCases.map { $0 as any SpaceType }

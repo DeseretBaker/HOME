@@ -31,7 +31,13 @@ enum GarageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageSpaceType.allCases.map { $0 as any SpaceType }
@@ -65,7 +71,13 @@ enum GarageToolSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageToolSpaceType.allCases.map { $0 as any SpaceType }
@@ -99,7 +111,13 @@ enum GarageGardenSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageGardenSpaceType.allCases.map { $0 as any SpaceType }
@@ -133,7 +151,13 @@ enum GarageSportsGearSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageSportsGearSpaceType.allCases.map { $0 as any SpaceType }
@@ -164,7 +188,13 @@ enum GarageSeasonalStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageSeasonalStorageSpaceType.allCases.map { $0 as any SpaceType }
@@ -197,7 +227,13 @@ enum GarageHouseholdStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageHouseholdStorageSpaceType.allCases.map { $0 as any SpaceType }
@@ -228,7 +264,13 @@ enum GarageWasteRecyclingSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageWasteRecyclingSpaceType.allCases.map { $0 as any SpaceType }
@@ -258,7 +300,13 @@ enum GarageMaintenanceSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageMaintenanceSpaceType.allCases.map { $0 as any SpaceType }
@@ -291,7 +339,13 @@ enum GarageMudroomLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageMudroomLaundrySpaceType.allCases.map { $0 as any SpaceType }
@@ -322,7 +376,13 @@ enum GarageOverheadSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 5.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return GarageOverheadSpaceType.allCases.map { $0 as any SpaceType }

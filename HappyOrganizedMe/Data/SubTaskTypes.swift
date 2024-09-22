@@ -8,8 +8,7 @@
 import Foundation
 
 enum KitchenCookingSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-    
-    
+   
     case stovetop = "Stovetop"
     case oven = "Oven"
     case cookware = "Cookware"
@@ -42,7 +41,13 @@ enum KitchenCookingSubTaskType: String, Codable, CaseIterable, Identifiable, Sub
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenCookingSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -79,7 +84,13 @@ enum KitchenPrepSubTaskType: String, Codable, CaseIterable, Identifiable, SubTas
         }
     }
     var weight: Double { 5.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenPrepSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -119,7 +130,14 @@ enum KitchenCleaningSubTaskType: String, Codable, CaseIterable, Identifiable, Su
         }
     }
     var weight: Double { 5.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
+    
     static var SubTaskType: [any SubTaskType] {
         return KitchenCleaningSubTaskType.allCases.map { $0 as any SubTaskType }
     }
@@ -158,7 +176,13 @@ enum KitchenFoodStorageSubTaskType: String, Codable, CaseIterable, Identifiable,
         }
     }
     var weight: Double { 5.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenFoodStorageSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -195,7 +219,13 @@ enum KitchenCookwareSubTaskType: String, Codable, CaseIterable, Identifiable, Su
         }
     }
     var weight: Double { 3.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenCookwareSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -232,14 +262,19 @@ enum KitchenServingSubTaskType: String, Codable, CaseIterable, Identifiable, Sub
         }
     }
     var weight: Double { 4.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenServingSubTaskType.allCases.map { $0 as any SubTaskType }
     }
 }
-enum KitchenBakingSubTaskType: String, SpaceType, SubTaskType {
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+enum KitchenBakingSubTaskType:  String, Codable, CaseIterable, Identifiable, SubTaskType {
     
     case bakingZoneBakingSupplies = "Baking Supplies"
     case bakingZoneIngredients = "Ingredients"
@@ -265,14 +300,19 @@ enum KitchenBakingSubTaskType: String, SpaceType, SubTaskType {
     }
     
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenBakingSubTaskType.allCases.map { $0 as any SubTaskType }
     }
 }
-enum KitchenDrinkSubTaskType: String, SpaceType, SubTaskType {
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+enum KitchenDrinkSubTaskType:  String, Codable, CaseIterable, Identifiable, SubTaskType {
     
     case drinkZoneKettles = "Hot water"
     case drinkZoneMugsTravelMugs = "Mugs"
@@ -304,7 +344,13 @@ enum KitchenDrinkSubTaskType: String, SpaceType, SubTaskType {
     }
     
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenDrinkSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -378,7 +424,13 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return KitchenSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -417,13 +469,21 @@ enum LivingRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTask
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return LivingRoomSubTaskType.allCases.map { $0 as any SubTaskType }
     }
 }
 enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
+  
+    
     case declutter = "Declutter"
     case organize = "Organize"
     case clean = "Clean"
@@ -435,6 +495,7 @@ enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTask
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
+    
     var instructions: String {
         switch self {
         case .declutter: return "Declutter your dining room"
@@ -458,7 +519,13 @@ enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTask
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return DiningRoomSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -500,7 +567,13 @@ enum OfficeSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return OfficeSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -542,7 +615,13 @@ enum BedroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     }
 }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return BedroomSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -584,7 +663,13 @@ enum PlayroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTy
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return PlayroomSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -626,7 +711,13 @@ enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTy
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return BathroomSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -669,7 +760,12 @@ enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     }
     
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return StorageSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -712,7 +808,13 @@ enum GarageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType
         }
     }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return GarageSubTaskType.allCases.map { $0 as any SubTaskType }
@@ -727,7 +829,13 @@ enum UnknownSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     var instructions: String { "unknown" }
     var usageDescription: String { "unknown" }
     var weight: Double { 2.0 }
-    var miniTaskTypes: [MiniTaskTypeBox] { [] }
+    
+    var miniTask: (any MiniTaskType)? {
+        return nil
+    }
+    var miniTaskTypes: [MiniTaskTypeBox] {
+    return []
+    }
     
     static var SubTaskType: [any SubTaskType] {
         return UnknownSubTaskType.allCases.map { $0 as any SubTaskType }

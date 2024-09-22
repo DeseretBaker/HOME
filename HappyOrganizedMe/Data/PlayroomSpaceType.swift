@@ -36,7 +36,13 @@ enum PlayroomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomSpaceType.allCases.map { $0 as any SpaceType }
@@ -70,7 +76,13 @@ enum PlayroomCraftSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomCraftSpaceType.allCases.map { $0 as any SpaceType }
@@ -104,7 +116,13 @@ enum PlayroomQuiteSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomQuiteSpaceType.allCases.map { $0 as any SpaceType }
@@ -138,7 +156,13 @@ enum PlayroomConstructionSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomConstructionSpaceType.allCases.map { $0 as any SpaceType }
@@ -172,7 +196,13 @@ enum PlayroomImaginationSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomImaginationSpaceType.allCases.map { $0 as any SpaceType }
@@ -206,7 +236,13 @@ enum PlayroomGameSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomGameSpaceType.allCases.map { $0 as any SpaceType }
@@ -240,7 +276,13 @@ enum PlayroomActivitySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomActivitySpaceType.allCases.map { $0 as any SpaceType }
@@ -274,7 +316,13 @@ enum PlayroomPerformanceSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomPerformanceSpaceType.allCases.map { $0 as any SpaceType }
@@ -308,7 +356,13 @@ enum PlayroomSensorySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomSensorySpaceType.allCases.map { $0 as any SpaceType }
@@ -342,7 +396,13 @@ enum PlayroomStudySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomStudySpaceType.allCases.map { $0 as any SpaceType }
@@ -376,7 +436,13 @@ enum PlayroomTechSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomTechSpaceType.allCases.map { $0 as any SpaceType }
@@ -410,7 +476,13 @@ enum PlayroomOutdoorSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return PlayroomOutdoorSpaceType.allCases.map { $0 as any SpaceType }

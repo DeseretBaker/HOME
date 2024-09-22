@@ -25,7 +25,7 @@ protocol RoomType: Codable, CaseIterable, Identifiable {
 
 @dynamicMemberLookup
 enum RoomTypeBox: Codable {
-
+    
     case kitchen(KitchenRoomType)
     case dining(DiningRoomType)
     case bathroom(BathroomRoomType)
@@ -109,7 +109,6 @@ enum SpaceTypeBox: Codable {
     case garage(GarageSpaceType)
     case playroom(PlayroomSpaceType)
     
-    
     var spaceType: any SpaceType {
         switch self {
         case .kitchen(let kitchen): return kitchen
@@ -121,7 +120,6 @@ enum SpaceTypeBox: Codable {
         case .office(let office): return office
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
-     
         }
     }
     
@@ -166,6 +164,7 @@ protocol SubTaskType: Codable, CaseIterable, Identifiable {
     var usageDescription: String { get }
     var weight: Double { get }
     var rawValue: String { get }
+    var miniTask: (any MiniTaskType)? { get }
     var miniTaskTypes: [MiniTaskTypeBox] { get }
     init?(rawValue: String)
 }
@@ -181,6 +180,7 @@ enum SubTaskTypeBox: Codable {
     case garage(GarageSubTaskType)
     case playroom(PlayroomSubTaskType)
     case unknown(UnknownSubTaskType)
+    case defaultSubTask(DefaultSubTaskType)
     
     var subTaskType: any SubTaskType {
         switch self {
@@ -194,6 +194,7 @@ enum SubTaskTypeBox: Codable {
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
         case .unknown(let unknown): return unknown
+        case .defaultSubTask(let subTask): return subTask
         }
     }
     
@@ -216,9 +217,12 @@ enum SubTaskTypeBox: Codable {
             self = .garage(garage)
         } else if let playroom = subTaskType as? PlayroomSubTaskType {
             self = .playroom(playroom)
+        } else if let unknown = subTaskType as? UnknownSubTaskType {
+            self = .unknown(unknown)
+        } else if let subTask = subTaskType as? DefaultSubTaskType {
+            self = .defaultSubTask(subTask)
         } else {
             return nil
-            
         }
     }
     
@@ -244,8 +248,8 @@ protocol MiniTaskType: Codable, CaseIterable, Identifiable {
 @dynamicMemberLookup
 enum MiniTaskTypeBox: Codable {
     case kitchen(KitchenMiniTaskType)
-    case living(LivingRoomMiniTaskType)
-    case dining(DiningRoomMiniTaskType)
+    case livingRoom(LivingRoomMiniTaskType)
+    case diningRoom(DiningRoomMiniTaskType)
     case office(OfficeMiniTaskType)
     case bedroom(BedroomMiniTaskType)
     case playroom(PlayroomMiniTaskType)
@@ -253,12 +257,13 @@ enum MiniTaskTypeBox: Codable {
     case bathroom(BathroomMiniTaskType)
     case garage(GarageMiniTaskType)
     case unknown(UnknownMiniTaskType)
+    case defaultMiniTask(DefaultMiniTaskType)
     
     var miniTaskType: any MiniTaskType {
         switch self {
         case .kitchen(let kitchenMiniTask): return kitchenMiniTask
-        case .living(let livingRoomMiniTask): return livingRoomMiniTask
-        case .dining(let diningRoomMiniTask): return diningRoomMiniTask
+        case .livingRoom(let livingRoomMiniTask): return livingRoomMiniTask
+        case .diningRoom(let diningRoomMiniTask): return diningRoomMiniTask
         case .office(let officeMiniTask): return officeMiniTask
         case .bedroom(let bedroomMiniTask): return bedroomMiniTask
         case .playroom(let playroomMiniTask): return playroomMiniTask
@@ -266,10 +271,95 @@ enum MiniTaskTypeBox: Codable {
         case .bathroom(let bathroomMiniTask): return bathroomMiniTask
         case .garage(let garageMiniTask): return garageMiniTask
         case .unknown(let unknownMiniTask): return unknownMiniTask
+        case .defaultMiniTask(let miniTask): return miniTask
+        }
+    }
+    private enum CodingKeys: String, CodingKey {
+        case type, value
+    }
+    
+    enum MiniTaskTypeBoxType: String, Codable {
+        case kitchen, livingRoom, diningRoom, office, bedroom, bathroom, playroom, storage, garage, unknown, defaultMiniTask
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(MiniTaskTypeBoxType.self, forKey: .type)
+        
+        switch type {
+        case .kitchen: let value = try container.decode(KitchenMiniTaskType.self, forKey: .value)
+            self = .kitchen(value)
+        case .livingRoom: let value = try container.decode(LivingRoomMiniTaskType.self, forKey: .value)
+            self = .livingRoom(value)
+        case .diningRoom: let value = try container.decode(DiningRoomMiniTaskType.self, forKey: .value)
+            self = .diningRoom(value)
+        case .office: let value = try container.decode(OfficeMiniTaskType.self, forKey: .value)
+            self = .office(value)
+        case .bedroom: let value = try container.decode(BedroomMiniTaskType.self, forKey: .value)
+            self = .bedroom(value)
+        case .bathroom: let value = try container.decode(BathroomMiniTaskType.self, forKey: .value)
+            self = .bathroom(value)
+        case .playroom: let value = try container.decode(PlayroomMiniTaskType.self, forKey: .value)
+            self = .playroom(value)
+        case .storage: let value = try container.decode(StorageMiniTaskType.self, forKey: .value)
+            self = .storage(value)
+        case .garage: let value = try container.decode(GarageMiniTaskType.self, forKey: .value)
+            self = .garage(value)
+        case .unknown: let value = try container.decode(UnknownMiniTaskType.self, forKey: .value)
+            self = .unknown(value)
+        case .defaultMiniTask:
+            let value = try container.decode(DefaultMiniTaskType.self, forKey: .value)
+            self = .defaultMiniTask(value)
         }
     }
     
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        switch self {
+        case .defaultMiniTask(let value):
+            try container.encode(MiniTaskTypeBoxType.defaultMiniTask, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .kitchen(let value):
+            try container.encode(MiniTaskTypeBoxType.kitchen, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .livingRoom(let value):
+            try container.encode(MiniTaskTypeBoxType.livingRoom, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .diningRoom(let value):
+            try container.encode(MiniTaskTypeBoxType.diningRoom, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .office(let value):
+            try container.encode(MiniTaskTypeBoxType.office, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .bedroom(let value):
+            try container.encode(MiniTaskTypeBoxType.bedroom, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .playroom(let value):
+            try container.encode(MiniTaskTypeBoxType.playroom, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .storage(let value):
+            try container.encode(MiniTaskTypeBoxType.storage, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .bathroom(let value):
+            try container.encode(MiniTaskTypeBoxType.bathroom, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .garage(let value):
+            try container.encode(MiniTaskTypeBoxType.garage, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .unknown(let value):
+            try container.encode(MiniTaskTypeBoxType.unknown, forKey: .type)
+            try container.encode(value, forKey: .value)
+        case .defaultMiniTask(let value):
+            try container.encode(MiniTaskTypeBoxType.defaultMiniTask, forKey: .type)
+            try container.encode(value, forKey: .value)
+        }
+    }
+    
+    
+    // Dynamic member lookup to access underlying properties
     subscript<T>(dynamicMember keyPath: KeyPath<any MiniTaskType, T>) -> T {
-        miniTaskType[keyPath: keyPath]
+        return miniTaskType[keyPath: keyPath]
     }
 }
+

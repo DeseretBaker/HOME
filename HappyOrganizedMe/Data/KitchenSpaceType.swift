@@ -50,7 +50,13 @@ enum KitchenPrepSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 4.0}
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenPrepSpaceType.allCases.map { $0 as any SpaceType }
@@ -103,7 +109,13 @@ enum KitchenCookingSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenCookingSpaceType.allCases.map { $0 as any SpaceType }
@@ -156,7 +168,13 @@ enum KitchenCleaningSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenCleaningSpaceType.allCases.map { $0 as any SpaceType }
@@ -210,7 +228,12 @@ enum KitchenFoodStorageSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenFoodStorageSpaceType.allCases.map { $0 as any SpaceType }
@@ -249,7 +272,13 @@ enum KitchenCookwareSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenCookwareSpaceType.allCases.map { $0 as any SpaceType }
@@ -287,7 +316,13 @@ enum KitchenServingSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenServingSpaceType.allCases.map { $0 as any SpaceType }
@@ -319,7 +354,13 @@ enum KitchenBakingSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenBakingSpaceType.allCases.map { $0 as any SpaceType }
@@ -357,7 +398,13 @@ enum KitchenSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType }

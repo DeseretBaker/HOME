@@ -38,7 +38,13 @@ enum BedroomSpaceType: String, SpaceType {
     }
     
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return BedroomSpaceType.allCases.map { $0 as any SpaceType }
@@ -70,7 +76,13 @@ enum BedroomDresserSpaceType: String, SpaceType {
     }
     
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return BedroomDresserSpaceType.allCases.map { $0 as any SpaceType }
@@ -102,7 +114,12 @@ enum BedroomNightstandSpaceType: String, SpaceType, Codable, CaseIterable, Ident
     }
     
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return BedroomNightstandSpaceType.allCases.map { $0 as any SpaceType }
@@ -137,7 +154,13 @@ enum BedroomStorageSpaceType: String, SpaceType, Codable, CaseIterable, Identifi
     }
     
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var subTask: (any SubTaskType)? {
+        return nil
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+    return []
+    }
     
     static var SpaceType: [any SpaceType] {
         return BedroomStorageSpaceType.allCases.map { $0 as any SpaceType }
