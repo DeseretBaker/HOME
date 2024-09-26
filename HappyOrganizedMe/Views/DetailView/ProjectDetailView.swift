@@ -13,8 +13,8 @@ struct ProjectDetailView: View {
     @Bindable var project: Project
     
     // State variables to track button taps
-      @State private var showInstructions = false
-      @State private var showUsageDescription = false
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
     
     var body: some View {
         ScrollView {
@@ -52,67 +52,39 @@ struct ProjectDetailView: View {
                 .shadow(radius: 5)
                 .padding([.leading, .trailing])
                 
-                // Buttons to show information
-                                HStack {
-                                    Button(action: {
-                                        // Toggle the visibility of the instructions
-                                        showInstructions.toggle()
-                                        showUsageDescription = false // Hide the other section if it's open
-                                    }) {
-                                        Text("Instructions")
-                                            .fontWeight(.semibold)
-                                            .frame(maxWidth: .infinity)
-                                            .padding()
-                                            .background(Color.blue)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(10)
-                                    }
-                                    
-                                    Spacer().frame(width: 10) // Space between buttons
-                                    
-                                    Button(action: {
-                                        // Toggle the visibility of the usage description
-                                        showUsageDescription.toggle()
-                                        showInstructions = false // Hide the other section if it's open
-                                    }) {
-                                        Text("Usage Description")
-                                            .fontWeight(.semibold)
-                                            .frame(maxWidth: .infinity)
-                                            .padding()
-                                            .background(Color.green)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(10)
-                                    }
-                                }
-                                .padding([.leading, .trailing])
-                                
-                                // Display instructions or usage description based on button tap
-                                if showInstructions {
-                                    Text("Instructions")
-                                        .font(.headline)
-                                        .padding(.top)
-                                    
-                                    Text(project.projectType.instructions ?? "No instructions available.") // Access enum content
-                                        .padding()
-                                        .background(Color(.systemGray6))
-                                        .cornerRadius(10)
-                                        .padding([.leading, .trailing])
-                                }
-                                
-                                if showUsageDescription {
-                                    Text("Usage Description")
-                                        .font(.headline)
-                                        .padding(.top)
-                                    
-                                    Text(project.projectType.usageDescription ?? "No usage description available.") // Access enum content
-                                        .padding()
-                                        .background(Color(.systemGray6))
-                                        .cornerRadius(10)
-                                        .padding([.leading, .trailing])
-                                }
-                
-          // Room Grid
-                Text("First Step")
+//                // Buttons to show information
+//                HStack {
+//                    Button(action: {
+//                        showInstructionsSheet = true // Show instructions sheet
+//                        print("Instructions: \(project.instructions)")
+//                    }) {
+//                        Text("Info")
+//                            .fontWeight(.semibold)
+//                            .frame(maxWidth: .infinity)
+//                            .padding()
+//                            .background(Color.teal)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                    }
+//                    
+//                    Spacer().frame(width: 10) // Space between buttons
+//                    
+//                    Button(action: {
+//                        showUsageDescriptionSheet = true // Show usage description sheet
+//                        print("Usage Description: \(project.usageDescription)")
+//                    }) {
+//                        Text("Usage")
+//                            .fontWeight(.semibold)
+//                            .frame(maxWidth: .infinity)
+//                            .padding()
+//                            .background(Color.green)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                    }
+//                }
+                .padding([.leading, .trailing])
+                // Room Grid
+                Text("Areas to work on")
                     .font(.headline)
                     .padding(.leading)
                 
@@ -126,8 +98,8 @@ struct ProjectDetailView: View {
                 .padding([.leading, .trailing])
             }
         }
-        .navigationTitle("Where to Start")
-    
+        .navigationTitle("")
+        
     }
 }
 

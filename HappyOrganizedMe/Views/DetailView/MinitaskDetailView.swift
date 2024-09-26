@@ -11,6 +11,9 @@ import SwiftData
 struct MiniTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var miniTask: MiniTask
+    
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

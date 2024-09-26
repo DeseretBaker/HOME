@@ -11,6 +11,9 @@ struct SpaceDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var space: Space  // To track changes in space data
     
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {

@@ -11,6 +11,8 @@ struct RoomDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var room: Room  // ObservedObject to track changes in room data
     
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {

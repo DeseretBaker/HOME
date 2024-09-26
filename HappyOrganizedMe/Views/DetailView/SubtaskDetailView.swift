@@ -10,6 +10,10 @@ import SwiftUI
 struct SubTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var subTask: SubTask  // Property to track changes in subtask data
+    
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
+    
     @State private var showingInfo = false
     @State private var selectedMiniTask: MiniTask?
     

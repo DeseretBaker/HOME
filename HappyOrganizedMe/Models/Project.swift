@@ -10,15 +10,22 @@ import SwiftData
 
 @Model
 class Project: Identifiable, Displayable, Progressable, ObservableObject {
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
     var instructions: String
     var usageDescription: String
+    var rooms: [Room]
     
-    var rooms: [Room] = []
-
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Attribute var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
     private var _isCompleted: Bool = false
-
+    
+    // Initializer
+    init(projectType: ProjectType, instructions: String = "", usageDescription: String = "", rooms: [Room] = []) {
+        self.projectType = projectType
+        self.instructions = instructions
+        self.usageDescription = usageDescription
+        self.rooms = rooms
+    }
+    
     // MARK: Computed Variables
     var name: String { projectType.name }
     var imageName: String { projectType.imageName }
@@ -38,15 +45,5 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
 
     func toggleCompleted() {
         _isCompleted.toggle()
-    }
-
-    // Initializer
-    init(projectType: ProjectType, instructions: String, usageDescription: String, rooms: [Room] = [], isCompleted: Bool = false) {
-        self.projectType = projectType
-        self.instructions = instructions
-        self.usageDescription = usageDescription
-        
-        self.rooms = rooms
-        self._isCompleted = isCompleted
     }
 }

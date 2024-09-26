@@ -410,3 +410,20 @@ enum KitchenSpaceType: String, SpaceType {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
+enum UnknownSpaceType: String, Codable, SpaceType {
+    
+    
+    case unknown
+    
+    var id: UUID { UUID() }
+    var name: String { rawValue }
+    var imageName: String { rawValue }
+    var instructions: String { "unknown" }
+    var usageDescription: String { "unknown" }
+    var weight: Double { 0.0 }
+    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    static var allSpaceTypes: [any SpaceType] {
+        return UnknownSpaceType.allCases.map { $0 as any SpaceType}
+    }
+}

@@ -12,7 +12,8 @@ struct MiniTaskSelectionView: View {
     var projectController = ProjectController.shared
     @Environment(\.modelContext) private var modelContext    
     @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
-    
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
     var body: some View {
         
         VStack {

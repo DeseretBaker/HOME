@@ -10,11 +10,10 @@ import SwiftUI
 
 @Model
 class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    
+    var instructions: String 
     var usageDescription: String
-   
     
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     var miniTaskType: MiniTaskTypeBox // Use the enum directly
     private var _isCompleted: Bool = false
     var checkableItems: [CheckableItem] = []
@@ -26,7 +25,7 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     var name: String { miniTaskType.name }
     var imageName: String { miniTaskType.imageName }
     var weight: Double { miniTaskType.weight }
-    var instructions: String { miniTaskType.instructions }
+    
 
     // Conformance to Progressable protocol
     var progress: Double {
@@ -36,19 +35,18 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
         return Double(completedCount) / Double(totalCount) * 100
     }
 
-    var isCompleted: Bool {
-        get { _isCompleted }
-        set { _isCompleted = newValue }
-    }
-    
     // Initializer
-    init(miniTaskType: MiniTaskTypeBox, usageDescription: String, isCompleted: Bool = false) {
+    init(miniTaskType: MiniTaskTypeBox, instructions: String, usageDescription: String, isCompleted: Bool = false) {
         self.miniTaskType = miniTaskType
+        self.instructions = instructions
         self.usageDescription = usageDescription
      
         self._isCompleted = isCompleted
     }
-    
+    var isCompleted: Bool {
+        get { _isCompleted }
+        set { _isCompleted = newValue }
+    }
     func toggleCompleted() {
         _isCompleted.toggle()
     }

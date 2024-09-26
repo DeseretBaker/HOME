@@ -10,9 +10,9 @@ import SwiftData
 class Room: Identifiable, Displayable, Progressable, ObservableObject {
     var instructions: String
     var usageDescription: String
-  
-    var spaces: [Space] = []
-
+    
+    var spaces: [Space]
+    
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     var roomType: RoomTypeBox // Use the RoomTypeBox enum directly, not the protocol
     private var _isCompleted: Bool = false
@@ -24,32 +24,29 @@ class Room: Identifiable, Displayable, Progressable, ObservableObject {
     var name: String { roomType.name }
     var imageName: String { roomType.imageName }
     var weight: Double { roomType.weight }
-
+    
     // Conformance to Progressable protocol
     var progress: Double {
-        guard !spaces.isEmpty else { return 0 }
+        guard !spaces.isEmpty else { return 0.0 }
         let completedSpaces = spaces.filter { $0.isCompleted }.count
         return Double(completedSpaces) / Double(spaces.count) * 100
     }
-
-    var isCompleted: Bool {
-        get { _isCompleted }
-        set { _isCompleted = newValue }
-    }
-
+    
     // Initializer
     init(roomType: RoomTypeBox, instructions: String, usageDescription: String, spaces: [Space] = [], isCompleted: Bool = false) {
         self.roomType = roomType
         self.instructions = instructions  // Initialize instructions
         self.usageDescription = usageDescription  // Initialize usageDescription
-      
+        
         self.spaces = spaces
         self._isCompleted = isCompleted
+    }
+    var isCompleted: Bool {
+        get { _isCompleted }
+        set { _isCompleted = newValue }
     }
     
     func toggleCompleted() {
         _isCompleted.toggle()
     }
-
-
 }

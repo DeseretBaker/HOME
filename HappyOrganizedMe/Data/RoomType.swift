@@ -14,8 +14,8 @@ enum KitchenRoomType: String, RoomType  {
     case prepZone = "Prep Zone"
     case cookingZone = "Cooking Zone"
     case cleaningZone = "Cleaning Zone"
-    case foodStorageZone = "Food Storage"
-    case cookwareStorageZone = "Cookware Storage Zone"
+    case foodStorageZone = "Food Zone"
+    case cookwareZone = "Cookware Zone"
     case servingZone = "Serving Zone"
     case bakingZone = "Baking Zone"
     case drinkZone = "Beverage Zone"
@@ -34,7 +34,7 @@ enum KitchenRoomType: String, RoomType  {
             return "Wipe bottles off after using"
         case .foodStorageZone:
             return "Don't go overboard"
-        case .cookwareStorageZone:
+        case .cookwareZone:
             return "keep cookware clean"
         case .servingZone:
             return "Keep serving area clean"
@@ -54,7 +54,7 @@ enum KitchenRoomType: String, RoomType  {
             return "Cleaning Zone: The cleaning zone usually revolves around the sink and dishwasher. It’s where you wash dishes, prepare ingredients that need rinsing, and dispose of waste. It should be near the garbage, recycling, and cleaning supplies."
         case .foodStorageZone:
             return "Storage Zone (Food): This zone includes areas for storing food like the pantry, cabinets, or the fridge. It’s where dry goods, canned goods, spices, and refrigerated/frozen items are kept."
-        case .cookwareStorageZone:
+        case .cookwareZone:
             return "Storage Zone (Cookware/Utensils): This zone is for storing pots, pans, lids, baking sheets, and cooking utensils. Ideally, it’s near the cooking zone for easy access while cooking."
         case .servingZone:
             return "Serving Zone: This area may include dishes, utensils, glasses, and serving platters. It’s often near the dining table or kitchen island where food is plated and served."
@@ -78,10 +78,10 @@ enum DiningRoomType: String, RoomType {
     case diningZone = "Dining Room"
     case servingZone = "Serving Zone"
     case storageZone = "Storage Zone"
-    case decorDisplayZone = "Decor Display Zone"
-    case multiUseZone = "Multi-Use Zone"
+    case decorZone = "Decor Zone"
+    case multiUse = "Multi-Use"
     case lightingZone = "Lighting Zone"
-    case drinkBarZone = "Drink Bar Zone"
+    case drinkBar = "Drink Bar"
     
     var id: UUID { UUID() }
     var name: String { rawValue }
@@ -92,10 +92,10 @@ enum DiningRoomType: String, RoomType {
         case .diningZone: return "String"
         case .servingZone: return "String"
         case .storageZone: return "String"
-        case .decorDisplayZone: return "String"
-        case .multiUseZone: return "String"
+        case .decorZone: return "String"
+        case .multiUse: return "String"
         case .lightingZone: return "String"
-        case .drinkBarZone: return "String"
+        case .drinkBar: return "String"
         }
     }
     var usageDescription: String {
@@ -103,10 +103,10 @@ enum DiningRoomType: String, RoomType {
         case .diningZone: return "Dining Zone: This is the primary area, featuring the dining table and chairs. It’s where meals are served and eaten. Ideally, this zone is centrally located with enough space for seating and movement."
         case .servingZone: return "Serving Zone: This area is dedicated to serving food and beverages. It might include a buffet table, sideboard, or a serving cart where dishes, drinks, and utensils are placed before or during the meal."
         case .storageZone: return "Storage Zone (Tableware): This zone is for storing dining essentials such as dishes, glassware, utensils, and napkins. Cabinets, credenzas, or a china cabinet can be used to store these items when not in use."
-        case .decorDisplayZone: return "Decor/Display Zone: Many dining rooms feature decorative zones such as a display shelf, wall art, or a place to showcase items like vases, centerpieces, or plants. This zone adds personality and aesthetic appeal to the room."
-        case .multiUseZone: return "Multi-Use Zone: In modern homes, dining rooms can serve multiple purposes. This zone could be used for activities like working, studying, or doing crafts. It might feature a small desk, laptop station, or storage for office supplies when needed."
+        case .decorZone: return "Decor/Display Zone: Many dining rooms feature decorative zones such as a display shelf, wall art, or a place to showcase items like vases, centerpieces, or plants. This zone adds personality and aesthetic appeal to the room."
+        case .multiUse: return "Multi-Use Zone: In modern homes, dining rooms can serve multiple purposes. This zone could be used for activities like working, studying, or doing crafts. It might feature a small desk, laptop station, or storage for office supplies when needed."
         case .lightingZone: return "Lighting Zone: Lighting plays an important role in creating ambiance in a dining room. A lighting zone often centers around a chandelier or pendant lights above the dining table. Additional lighting, like floor or table lamps, can define different sections of the room."
-        case .drinkBarZone: return "Drinks/Bar Zone: If you entertain guests often, a drink or bar zone could be helpful. This area might include a bar cart or a small cabinet for storing wine, spirits, glassware, and accessories for making and serving drinks."
+        case .drinkBar: return "Drinks/Bar Zone: If you entertain guests often, a drink or bar zone could be helpful. This area might include a bar cart or a small cabinet for storing wine, spirits, glassware, and accessories for making and serving drinks."
         }
     }
     var weight: Double { 1.0 }
@@ -120,11 +120,11 @@ enum BathroomRoomType: String, RoomType {
     case bathingZone
     case toiletZone
     case vanitySinkZone
-    case towelToiletriesZone
+    case towelToiletries
     case groomingZone
     case laundryZone
-    case dressingChangingZone
-    case cleaningSuppliesZone
+    case dressingZone
+    case cleaningSupplies
     case relaxationZone
     
     var id: UUID { UUID() }
@@ -136,11 +136,11 @@ enum BathroomRoomType: String, RoomType {
         case .bathingZone: return "Bathing Zone"
         case .toiletZone: return "Toilet Zone"
         case .vanitySinkZone: return "Vanity Sink Zone"
-        case .towelToiletriesZone: return "Towel Toiletries Zone"
+        case .towelToiletries: return "Towel Toiletries"
         case .groomingZone: return "Grooming Zone"
         case .laundryZone: return "Laundry Zone"
-        case .dressingChangingZone: return "Dressing Changing Zone"
-        case .cleaningSuppliesZone: return "Cleaning Supplies Zone"
+        case .dressingZone: return "Dressing Zone"
+        case .cleaningSupplies: return "Cleaning Supplies"
         case .relaxationZone: return "Relaxation Zone"
         }
     }
@@ -149,11 +149,11 @@ enum BathroomRoomType: String, RoomType {
         case .bathingZone: return "Bathing/Showering Zone: This zone includes the shower, bathtub, or a combination of both. It’s where you focus on personal hygiene, so it should be equipped with essentials like shower gels, soaps, shampoos, and towels. In more luxurious setups, this zone may also include a spa-like showerhead, soaking tub, or body jets."
         case .toiletZone: return "Toileting Zone: The toilet area is often separated for privacy, either by a partial wall, door, or alcove. It might include storage for toilet paper, cleaning supplies, and hygiene products."
         case .vanitySinkZone: return "Vanity/Sink Zone: This area is typically where the sink and vanity are located. It’s a multipurpose zone for brushing teeth, washing hands, and grooming. The vanity often has storage for toiletries, skincare products, and makeup, and the sink area may include mirrors, lighting, and space for daily use items."
-        case .towelToiletriesZone: return "Storage Zone (Towels/Toiletries): A dedicated space for storing towels, washcloths, bathrobes, and extra toiletries is essential. This zone may include linen closets, shelving, or cabinets for organized storage of bathroom necessities."
+        case .towelToiletries: return "Storage Zone (Towels/Toiletries): A dedicated space for storing towels, washcloths, bathrobes, and extra toiletries is essential. This zone may include linen closets, shelving, or cabinets for organized storage of bathroom necessities."
         case .groomingZone: return "Storage Zone (Towels/Toiletries): A dedicated space for storing towels, washcloths, bathrobes, and extra toiletries is essential. This zone may include linen closets, shelving, or cabinets for organized storage of bathroom necessities."
         case .laundryZone: return "Laundry Zone: In some bathrooms, a laundry zone might be incorporated with a hamper for dirty clothes, and in larger setups, you might find a washer and dryer. This area is useful for keeping clothes organized and out of sight."
-        case .dressingChangingZone: return "Dressing/Changing Zone: Some bathrooms are designed with enough space to serve as a dressing room. This zone might include a bench or chair, mirrors, and storage for clothes or accessories, providing a convenient spot for getting dressed after bathing."
-        case .cleaningSuppliesZone: return "Cleaning Supply Zone: A small space dedicated to storing cleaning products, brushes, or other maintenance tools for the bathroom can keep the area tidy and organized. This is often located in under-sink cabinets or closets."
+        case .dressingZone: return "Dressing/Changing Zone: Some bathrooms are designed with enough space to serve as a dressing room. This zone might include a bench or chair, mirrors, and storage for clothes or accessories, providing a convenient spot for getting dressed after bathing."
+        case .cleaningSupplies: return "Cleaning Supply Zone: A small space dedicated to storing cleaning products, brushes, or other maintenance tools for the bathroom can keep the area tidy and organized. This is often located in under-sink cabinets or closets."
         case .relaxationZone: return "Relaxation Zone: In luxurious or spa-inspired bathrooms, there may be a dedicated relaxation area with features like candles, bath salts, and soft lighting, aimed at creating a calming environment for unwinding."
         }
     }

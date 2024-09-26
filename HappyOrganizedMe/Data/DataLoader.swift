@@ -5,10 +5,6 @@
 // Created by Deseret Baker
 // Created on 7/20/24
 
-
-
-
-
 import SwiftUI
 import SwiftData
 import Foundation
@@ -29,7 +25,6 @@ class DataLoader {
                 projectType: projectType,
                 instructions: projectType.instructions ?? "Instructions for \(projectType.name)",
                 usageDescription: projectType.usageDescription ?? "Usage for \(projectType.name)",
-               
                 rooms: rooms
             )
         }
@@ -39,66 +34,79 @@ class DataLoader {
     static func loadRooms(for projectType: ProjectType) -> [Room] {
         let roomTypes = projectType.roomTypes
         
-        return roomTypes.map { roomType in
+        print("Loading rooms for \(projectType.name): \(roomTypes.count) found")
+        
+        let rooms = roomTypes.map { roomType in
             let spaces = loadSpaces(for: roomType)
+            
+            print("Loaded room: \(roomType.name) with \(spaces.count) spaces")
+            
             return Room(
                 roomType: roomType,
                 instructions: roomType.instructions,
                 usageDescription: roomType.usageDescription,
-                
-                spaces: spaces 
+                spaces: spaces
             )
         }
+        print("Total rooms loaded for project \(projectType.name): \(rooms.count)")
+            return rooms
     }
     
+    // MARK: - Space Loader
     static func loadSpaces(for roomType: RoomTypeBox) -> [Space] {
         let spaceTypes = roomType.spaceTypes
-
-        return spaceTypes.compactMap { spaceType in
-            guard let castedSpaceType = spaceType as? (any SpaceType) else {
-                // Use DefaultSpaceType as the fallback
-                return Space(
-                    spaceType: DefaultSpaceType(),
-                    instructions: DefaultSpaceType().instructions,
-                    usageDescription: DefaultSpaceType().usageDescription,
-                    subTasks: loadSubTasks(for: DefaultSpaceType())
-                )
-            }
+        print("Loading spaces for \(roomType.name): \(spaceTypes.count) found")
+        
+        let spaces = spaceTypes.map { spaceType in
+            let subTasks = loadSubTasks(for: spaceType) // Correctly calling loadSubTasks
             
-            let subTasks = loadSubTasks(for: castedSpaceType)
+            print("Loaded space: \(spaceType.name) with \(subTasks.count) subTasks")
+            
             return Space(
-                spaceType: castedSpaceType,
-                instructions: castedSpaceType.instructions ?? "Default Instructions",
-                usageDescription: castedSpaceType.usageDescription ?? "Default Usage",
+                spaceType: spaceType,
+                instructions: spaceType.instructions,
+                usageDescription: spaceType.usageDescription,
                 subTasks: subTasks
             )
         }
+        print("Total spaces loaded for project  \(roomType.name): \(spaces.count)")
+            return spaces
     }
+    
     // MARK: - SubTask Loader
-    static func loadSubTasks(for spaceType: any SpaceType) -> [SubTask] {
-        // Dynamically load sub-tasks for the given space type
+    static func loadSubTasks(for spaceType: SpaceTypeBox) -> [SubTask] {
         let subTaskTypes = spaceType.subTaskTypes
-
-        return subTaskTypes.map { subTaskType in
-            let miniTasks = loadMiniTasks(for: subTaskType as! (any SubTaskType))
+        print("Loading sub tasks for \(spaceType.name): \(subTaskTypes.count) found")
+        
+        let subTasks = subTaskTypes.map { subTaskType in
+            let miniTasks = loadMiniTasks(for: subTaskType) // Correctly calling loadMiniTasks
+            
+            print("Loaded subTask: \(subTaskType.name) with \(miniTasks.count) miniTasks")
+            
             return SubTask(
-                subTaskType: subTaskType as! (any SubTaskType),
+                subTaskType: subTaskType,
                 instructions: subTaskType.instructions,
                 usageDescription: subTaskType.usageDescription,
-               
                 miniTasks: miniTasks
             )
         }
+        print("Total subTasks loaded for project  \(spaceType.name): \(subTasks.count)")
+            return subTasks
     }
+    
     // MARK: - MiniTask Loader
-    static func loadMiniTasks(for subTaskType: any SubTaskType) -> [MiniTask] {
-        // Dynamically load mini-tasks for the given sub-task type
+    static func loadMiniTasks(for subTaskType: SubTaskTypeBox) -> [MiniTask] {
         let miniTaskTypes = subTaskType.miniTaskTypes
-
+        print("Loading mini tasks for \(subTaskType.name): \(miniTaskTypes.count) found")
+        
         return miniTaskTypes.map { miniTaskType in
+            print("Loaded miniTask: \(miniTaskType.name)")
+            
             return MiniTask(
                 miniTaskType: miniTaskType,
-                usageDescription: miniTaskType.usageDescription)
+                instructions: miniTaskType.instructions,
+                usageDescription: miniTaskType.usageDescription
+            )
         }
     }
 }

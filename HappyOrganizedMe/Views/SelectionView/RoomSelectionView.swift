@@ -12,7 +12,8 @@ struct RoomSelectionView: View {
     var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
     @Bindable var project: Project
-    
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
     var body: some View {
         
         VStack {

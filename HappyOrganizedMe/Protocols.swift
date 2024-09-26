@@ -71,6 +71,8 @@ enum RoomTypeBox: Codable {
             self = .garage(garage)
         } else if let playroom = roomType as? PlayroomRoomType {
             self = .playroom(playroom)
+        } else if let unknown = roomType as? UnknownRoomType {
+            self = .unknown(unknown)
         } else {
             return nil
             
@@ -108,6 +110,7 @@ enum SpaceTypeBox: Codable {
     case office(OfficeSpaceType)
     case garage(GarageSpaceType)
     case playroom(PlayroomSpaceType)
+    case unknown(UnknownSpaceType)
     
     var spaceType: any SpaceType {
         switch self {
@@ -120,6 +123,7 @@ enum SpaceTypeBox: Codable {
         case .office(let office): return office
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
+        case .unknown(let unknown): return unknown
         }
     }
     
@@ -142,6 +146,8 @@ enum SpaceTypeBox: Codable {
             self = .garage(garage)
         } else if let playroom = spaceType as? PlayroomSpaceType {
             self = .playroom(playroom)
+        } else if let unknown = spaceType as? UnknownSpaceType {
+            self = .unknown(unknown)
         } else {
             return nil
             
@@ -180,7 +186,6 @@ enum SubTaskTypeBox: Codable {
     case garage(GarageSubTaskType)
     case playroom(PlayroomSubTaskType)
     case unknown(UnknownSubTaskType)
-    case defaultSubTask(DefaultSubTaskType)
     
     var subTaskType: any SubTaskType {
         switch self {
@@ -194,7 +199,6 @@ enum SubTaskTypeBox: Codable {
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
         case .unknown(let unknown): return unknown
-        case .defaultSubTask(let subTask): return subTask
         }
     }
     
@@ -219,8 +223,6 @@ enum SubTaskTypeBox: Codable {
             self = .playroom(playroom)
         } else if let unknown = subTaskType as? UnknownSubTaskType {
             self = .unknown(unknown)
-        } else if let subTask = subTaskType as? DefaultSubTaskType {
-            self = .defaultSubTask(subTask)
         } else {
             return nil
         }
@@ -257,7 +259,6 @@ enum MiniTaskTypeBox: Codable {
     case bathroom(BathroomMiniTaskType)
     case garage(GarageMiniTaskType)
     case unknown(UnknownMiniTaskType)
-    case defaultMiniTask(DefaultMiniTaskType)
     
     var miniTaskType: any MiniTaskType {
         switch self {
@@ -271,7 +272,6 @@ enum MiniTaskTypeBox: Codable {
         case .bathroom(let bathroomMiniTask): return bathroomMiniTask
         case .garage(let garageMiniTask): return garageMiniTask
         case .unknown(let unknownMiniTask): return unknownMiniTask
-        case .defaultMiniTask(let miniTask): return miniTask
         }
     }
     private enum CodingKeys: String, CodingKey {
@@ -279,7 +279,7 @@ enum MiniTaskTypeBox: Codable {
     }
     
     enum MiniTaskTypeBoxType: String, Codable {
-        case kitchen, livingRoom, diningRoom, office, bedroom, bathroom, playroom, storage, garage, unknown, defaultMiniTask
+        case kitchen, livingRoom, diningRoom, office, bedroom, bathroom, playroom, storage, garage, unknown
     }
     
     init(from decoder: Decoder) throws {
@@ -307,9 +307,6 @@ enum MiniTaskTypeBox: Codable {
             self = .garage(value)
         case .unknown: let value = try container.decode(UnknownMiniTaskType.self, forKey: .value)
             self = .unknown(value)
-        case .defaultMiniTask:
-            let value = try container.decode(DefaultMiniTaskType.self, forKey: .value)
-            self = .defaultMiniTask(value)
         }
     }
     
@@ -317,9 +314,6 @@ enum MiniTaskTypeBox: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         switch self {
-        case .defaultMiniTask(let value):
-            try container.encode(MiniTaskTypeBoxType.defaultMiniTask, forKey: .type)
-            try container.encode(value, forKey: .value)
         case .kitchen(let value):
             try container.encode(MiniTaskTypeBoxType.kitchen, forKey: .type)
             try container.encode(value, forKey: .value)
@@ -349,9 +343,6 @@ enum MiniTaskTypeBox: Codable {
             try container.encode(value, forKey: .value)
         case .unknown(let value):
             try container.encode(MiniTaskTypeBoxType.unknown, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .defaultMiniTask(let value):
-            try container.encode(MiniTaskTypeBoxType.defaultMiniTask, forKey: .type)
             try container.encode(value, forKey: .value)
         }
     }

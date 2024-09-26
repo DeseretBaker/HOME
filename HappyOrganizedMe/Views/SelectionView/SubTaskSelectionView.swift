@@ -11,7 +11,8 @@ struct SubTaskSelectionView: View {
     var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
     @Bindable var space: Space  // Use @Bindable to automatically update the view when the space changes
-
+    @State private var showInstructionsSheet = false
+    @State private var showUsageDescriptionSheet = false
     var body: some View {
 
             VStack {

@@ -13,7 +13,7 @@ struct StartHereView: View {
     var body: some View {
         ZStack {
             // Background image setup
-            Image("kitchen3")
+            Image("home")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
