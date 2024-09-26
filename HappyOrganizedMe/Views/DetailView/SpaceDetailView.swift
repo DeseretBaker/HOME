@@ -10,6 +10,7 @@ import SwiftUI
 struct SpaceDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var space: Space  // To track changes in space data
+    var spaceType: SpaceTypeBox { space.spaceType }
     
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false

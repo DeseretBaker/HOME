@@ -34,6 +34,9 @@ class ProjectController: ObservableObject {
             print("Projects loaded: \(projects)")
             for project in projects {
                 print("Project: \(project.name), Rooms: \(project.rooms.count)")
+                for room in project.rooms {
+                    print("Room \(room.name): \(room.spaces)")
+                }
             }
         } else {
             loadBaseProjects()

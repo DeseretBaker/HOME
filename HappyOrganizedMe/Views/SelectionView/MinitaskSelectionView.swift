@@ -14,6 +14,7 @@ struct MiniTaskSelectionView: View {
     @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
+    
     var body: some View {
         
         VStack {

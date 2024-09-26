@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: StorageSpaceZone
 
-enum StorageSpaceType: String, SpaceType {
+enum StorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     case hangingSpace = "Hanging Space"
     case shelves = "Shelves"
@@ -38,7 +38,32 @@ enum StorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .hangingSpace, .shelves, .shoeRack, .overheadStorage: return true
+        
+        }
+    }
+    
+    
+    var subTaskTypes: [SubTaskTypeBox] {
+        switch self {
+        case .hangingSpace, .shelves, .shoeRack, .overheadStorage:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
+    }
   
     
     static var SpaceType: [any SpaceType] {
@@ -46,7 +71,7 @@ enum StorageSpaceType: String, SpaceType {
     }
 }
 
-enum StorageUtilitySpaceType: String, SpaceType {
+enum StorageUtilitySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cleaningSuppliesArea = "Cleaning Supplies Area"
     case toolStorage = "Tool Storage"
     case laundrySupplyArea = "Laundry Supply Area"
@@ -73,14 +98,38 @@ enum StorageUtilitySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cleaningSuppliesArea, .toolStorage, .laundrySupplyArea, .workbench: return true
+        
+        }
+    }
+    
+    var subTaskTypes: [SubTaskTypeBox] {
+        switch self {
+        case .cleaningSuppliesArea, .toolStorage, .laundrySupplyArea, .workbench:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageUtilitySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageAtticSpaceType: String, SpaceType {
+enum StorageAtticSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case seasonalStorage = "Seasonal Storage"
     case longTermStorage = "Long Term Storage"
     case utilityArea = "Utility Area"
@@ -107,14 +156,37 @@ enum StorageAtticSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+            case .seasonalStorage, .longTermStorage, .utilityArea, .shelvingUnits: return true
+        
+        }
+    }
+    var subTaskTypes: [SubTaskTypeBox] {
+        switch self {
+        case .seasonalStorage, .longTermStorage, .utilityArea, .shelvingUnits:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageAtticSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StoragePantrySpaceType: String, SpaceType {
+enum StoragePantrySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case dryGoodsShelves = "Dry Goods Shelves"
     case spiceCondimentsArea = "Spice Condiments Area"
     case snackZone = "Snack Zone"
@@ -141,14 +213,39 @@ enum StoragePantrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+            switch self {
+        case .dryGoodsShelves, .spiceCondimentsArea, .snackZone, .bulkStorage: return true
+        
+        }
+    }
+    
+    
+    var subTaskTypes: [SubTaskTypeBox] {
+        switch self {
+        case .dryGoodsShelves, .spiceCondimentsArea, .snackZone, .bulkStorage:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
+    }
     
     static var SpaceType: [any SpaceType] {
         return StoragePantrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageLaundrySpaceType: String, SpaceType {
+enum StorageLaundrySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case laundrySortingArea = "Laundry Sorting Area"
     case laundrySupplies = "Laundry Supplies"
     case dryingRackSpace = "Drying Rack Space"
@@ -176,14 +273,38 @@ enum StorageLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    var subTaskTypes: [SubTaskTypeBox] { [] }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+            case .laundrySortingArea, .laundrySupplies, .dryingRackSpace, .foldingArea: return true
+        
+        }
+    }
+    
+    var subTaskTypes: [SubTaskTypeBox] {
+        switch self {
+        case .laundrySortingArea, .laundrySupplies, .dryingRackSpace, .foldingArea:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
+    }
     
     static var SpaceType: [any SpaceType] {
         return StorageLaundrySpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum StorageMudroomSpaceType: String, SpaceType {
+enum StorageMudroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case coatHooksRack = "Coat Hooks Rack"
     case shoeStorage = "Shoe Storage"
     case storageBins = "Storage Bins"
@@ -211,11 +332,32 @@ enum StorageMudroomSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .coatHooksRack, .shoeStorage, .storageBins, .benchSeating: return true
+            
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .coatHooksRack, .shoeStorage, .storageBins, .benchSeating:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -223,7 +365,7 @@ enum StorageMudroomSpaceType: String, SpaceType {
     }
 }
 
-enum StorageCabinetSpaceType: String, SpaceType {
+enum StorageCabinetSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case upperCabinets = "Upper Cabinets"
     case lowerCabinets = "Lower Cabinets"
     case openShelving = "Open Shelving"
@@ -251,11 +393,32 @@ enum StorageCabinetSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+            case .upperCabinets, .lowerCabinets, .openShelving, .storageBinsBaskets: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .upperCabinets, .lowerCabinets, .openShelving, .storageBinsBaskets:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -263,7 +426,7 @@ enum StorageCabinetSpaceType: String, SpaceType {
     }
 }
 
-enum StorageUnderBedSpaceType: String, SpaceType {
+enum StorageUnderBedSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case storageBins = "Storage Bins"
     case drawers = "Drawers"
     case vacuumSealedBags = "Vacuum Sealed Bags"
@@ -291,11 +454,33 @@ enum StorageUnderBedSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .storageBins, .drawers, .vacuumSealedBags, .shoeboxStorage: return true
+        
+        }
+    }
+    
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .storageBins, .drawers, .vacuumSealedBags, .shoeboxStorage:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -303,7 +488,7 @@ enum StorageUnderBedSpaceType: String, SpaceType {
     }
 }
 
-enum StorageBuiltInSpaceType: String, SpaceType {
+enum StorageBuiltInSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case mediaStorage = "Media Storage"
     case decorDisplay = "Decor Display"
     case hiddenStorage = "Hidden Storage"
@@ -331,11 +516,32 @@ enum StorageBuiltInSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+            case .mediaStorage, .decorDisplay, .hiddenStorage, .verticalStorage: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .mediaStorage, .decorDisplay, .hiddenStorage, .verticalStorage:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -344,7 +550,7 @@ enum StorageBuiltInSpaceType: String, SpaceType {
 }
 
 
-enum StorageOfficeSpaceType: String, SpaceType {
+enum StorageOfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case filingCabinets = "Filing Cabinets"
     case deskDrawers = "Desk Drawers"
     case bookShelves = "Book Shelves"
@@ -372,11 +578,32 @@ enum StorageOfficeSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .filingCabinets, .deskDrawers, .bookShelves, .techGadgetStorage: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .filingCabinets, .deskDrawers, .bookShelves, .techGadgetStorage:
+            return [
+                SubTaskTypeBox(StorageSubTaskType.declutter)!,
+                SubTaskTypeBox(StorageSubTaskType.polish)!,
+                SubTaskTypeBox(StorageSubTaskType.tableLinens)!,
+                SubTaskTypeBox(StorageSubTaskType.clean)!,
+                SubTaskTypeBox(StorageSubTaskType.accessories)!,
+                SubTaskTypeBox(StorageSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(StorageSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {

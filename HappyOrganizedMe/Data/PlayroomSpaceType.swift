@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: PlayroomSpaceType
 
-enum PlayroomSpaceType: String, SpaceType {
+enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case toyBins = "Toy Bins"
     case shelvingUnits = "Shelving Units"
     case toyChestTrunks = "Toy Chest Trunks"
@@ -36,12 +36,31 @@ enum PlayroomSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -49,7 +68,7 @@ enum PlayroomSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomCraftSpaceType: String, SpaceType {
+enum PlayroomCraftSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case craftSuppliesDrawers = "Craft Supplies Drawers"
     case artTable = "Art Table"
     case craftDisplayBoard = "Craft Display Board"
@@ -77,11 +96,31 @@ enum PlayroomCraftSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -89,7 +128,7 @@ enum PlayroomCraftSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomQuiteSpaceType: String, SpaceType {
+enum PlayroomQuiteSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case bookshelves = "Bookshelves"
     case cozySeatingAreas = "Cozy Seating Areas"
     case softLighting = "Soft Lighting"
@@ -117,11 +156,32 @@ enum PlayroomQuiteSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -129,7 +189,7 @@ enum PlayroomQuiteSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomConstructionSpaceType: String, SpaceType {
+enum PlayroomConstructionSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case buildingBlockStorage = "Building Block Storage"
     case constructionTable = "Construction Table"
     case displayShelf = "Display Shelf"
@@ -157,11 +217,31 @@ enum PlayroomConstructionSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -169,7 +249,7 @@ enum PlayroomConstructionSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomImaginationSpaceType: String, SpaceType {
+enum PlayroomImaginationSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case dressUpArea = "Dress Up Area"
     case pretendPlaySets = "Pretend Play Sets"
     case rolePlayStation = "Role Play Station"
@@ -197,11 +277,32 @@ enum PlayroomImaginationSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -209,7 +310,7 @@ enum PlayroomImaginationSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomGameSpaceType: String, SpaceType {
+enum PlayroomGameSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case puzzleStorage = "Puzzle Storage"
     case gameShelf = "Game Shelf"
     case gameTable = "Game Table"
@@ -237,11 +338,31 @@ enum PlayroomGameSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -249,7 +370,7 @@ enum PlayroomGameSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomActivitySpaceType: String, SpaceType {
+enum PlayroomActivitySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case softMatsRugs = "Soft Mats & Rugs"
     case sportsEquipmentRacks = "Sports Equipment Racks"
     case indoorPlayEquipment = "Indoor Play Equipment"
@@ -277,11 +398,31 @@ enum PlayroomActivitySpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -289,7 +430,7 @@ enum PlayroomActivitySpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomPerformanceSpaceType: String, SpaceType {
+enum PlayroomPerformanceSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case instrumentStorage = "Instrument Storage"
     case performanceArea = "Performance Area"
     case musicStand = "Music Stand"
@@ -317,19 +458,38 @@ enum PlayroomPerformanceSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
-    
     static var SpaceType: [any SpaceType] {
         return PlayroomPerformanceSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-enum PlayroomSensorySpaceType: String, SpaceType {
+enum PlayroomSensorySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case sensoryBins = "Sensory Bins"
     case tactileWallPanels = "Tactile Wall Panels"
     case lightTable = "Light Table"
@@ -357,11 +517,31 @@ enum PlayroomSensorySpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -369,7 +549,7 @@ enum PlayroomSensorySpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomStudySpaceType: String, SpaceType {
+enum PlayroomStudySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case deskChair = "Desk Chair"
     case suppliesStorage = "Supplies Storage"
     case homeworkOrganizer = "Homework Organizer"
@@ -397,11 +577,32 @@ enum PlayroomStudySpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf: return true
+        
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -409,7 +610,7 @@ enum PlayroomStudySpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomTechSpaceType: String, SpaceType {
+enum PlayroomTechSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case deviceChargingStation = "Device Charging Station"
     case comfortableSeating = "Comfortable Seating"
     case headphoneStorage = "Headphone Storage"
@@ -437,11 +638,31 @@ enum PlayroomTechSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer: return true
+        
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -449,7 +670,7 @@ enum PlayroomTechSpaceType: String, SpaceType {
     }
 }
 
-enum PlayroomOutdoorSpaceType: String, SpaceType {
+enum PlayroomOutdoorSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case playEquipment = "Play Equipment"
     case outdoorToyStorage = "Outdoor Toy Storage"
     case waterPlayArea = "Water Play Area"
@@ -477,11 +698,33 @@ enum PlayroomOutdoorSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea: return true
+        
+        }
+    }
+    
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea:
+            return [
+                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
+                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
+                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
+                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
+                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
+                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {

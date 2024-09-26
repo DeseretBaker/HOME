@@ -4,6 +4,7 @@
 //
 //  Created by Deseret Baker on 8/6/24.
 //
+// Space.swift
 import Foundation
 import SwiftData
 
@@ -11,21 +12,19 @@ import SwiftData
 class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     var instructions: String
     var usageDescription: String
-    
     var subTasks: [SubTask]
     
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    var spaceType: SpaceTypeBox // Use the SpaceType enum directly, not the protocol
+    @Attribute(.unique) var id: UUID = UUID()
+    var spaceType: SpaceTypeBox
     private var _isCompleted: Bool = false
-    // Define relationships to subtasks and space
-    @Relationship(inverse: \Room.spaces) var room: Room? // Establishes a many-to-one relationship with Room
-    
-    // MARK: Computed Variables
+
+    @Relationship(inverse: \Room.spaces) var room: Room?
+
+    // Computed Properties
     var name: String { spaceType.name }
     var imageName: String { spaceType.imageName }
     var weight: Double { spaceType.weight }
     
-    // Conformance to Progressable protocol
     var progress: Double {
         guard !subTasks.isEmpty else { return 0.0 }
         let completedSubTasks = subTasks.filter { $0.isCompleted }.count
@@ -35,19 +34,20 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     // Initializer
     init(spaceType: SpaceTypeBox, instructions: String, usageDescription: String, subTasks: [SubTask] = [], isCompleted: Bool = false) {
         self.spaceType = spaceType
-        self.instructions = instructions // Initialize instructions
-        self.usageDescription = usageDescription // Initialize usageDescription
-        
+        self.instructions = instructions
+        self.usageDescription = usageDescription
         self.subTasks = subTasks
         self._isCompleted = isCompleted
         
+        // Debug Print Statement
+        print("Initialized Space: \(self.name) with \(subTasks.count) subtasks.")
     }
+    
     var isCompleted: Bool {
         get { _isCompleted }
         set { _isCompleted = newValue }
     }
     
-    // Function to toggle the completion status
     func toggleCompleted() {
         _isCompleted.toggle()
     }

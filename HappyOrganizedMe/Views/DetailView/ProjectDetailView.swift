@@ -52,36 +52,7 @@ struct ProjectDetailView: View {
                 .shadow(radius: 5)
                 .padding([.leading, .trailing])
                 
-//                // Buttons to show information
-//                HStack {
-//                    Button(action: {
-//                        showInstructionsSheet = true // Show instructions sheet
-//                        print("Instructions: \(project.instructions)")
-//                    }) {
-//                        Text("Info")
-//                            .fontWeight(.semibold)
-//                            .frame(maxWidth: .infinity)
-//                            .padding()
-//                            .background(Color.teal)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                    }
-//                    
-//                    Spacer().frame(width: 10) // Space between buttons
-//                    
-//                    Button(action: {
-//                        showUsageDescriptionSheet = true // Show usage description sheet
-//                        print("Usage Description: \(project.usageDescription)")
-//                    }) {
-//                        Text("Usage")
-//                            .fontWeight(.semibold)
-//                            .frame(maxWidth: .infinity)
-//                            .padding()
-//                            .background(Color.green)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                    }
-//                }
+
                 .padding([.leading, .trailing])
                 // Room Grid
                 Text("Areas to work on")

@@ -12,6 +12,7 @@ struct ProjectSelectionView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
+    
     var body: some View {
         NavigationView {
             ScrollView {

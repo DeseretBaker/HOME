@@ -10,10 +10,10 @@ import Foundation
 
 // MARK: BedroomSpaceType
 
-enum BedroomSpaceType: String, SpaceType {
+enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case headboard = "Headboard"
     case bedding = "Bedding"
-    case underBedStorage = "Under-Bed Storage"
+    case underStorage = "Under Storage"
     case bedsideArea = "Bedside Area"
     
     var id: UUID { UUID() }
@@ -24,7 +24,7 @@ enum BedroomSpaceType: String, SpaceType {
         switch self {
         case .headboard: return "The focal point of the bed that adds style and structure. It can be decorative, upholstered, or functional with built-in shelving for extra storage."
         case .bedding: return "Includes sheets, pillows, blankets, and duvets. These should be neatly arranged to create a comfortable and inviting sleeping space."
-        case .underBedStorage: return "Utilize the space under the bed for storing seasonal clothing, shoes, or extra linens with the help of storage bins or drawers."
+        case .underStorage: return "Utilize the space under the bed for storing seasonal clothing, shoes, or extra linens with the help of storage bins or drawers."
         case .bedsideArea: return "A space near the bed that should be kept clutter-free with essentials like a lamp, phone charger, or a small tray for personal items."
         }
     }
@@ -32,18 +32,39 @@ enum BedroomSpaceType: String, SpaceType {
         switch self {
         case .headboard: return "The headboard serves as both a decorative and functional element of the bed, providing support for sitting up in bed and acting as a focal point for the room. It adds style and structure to the bed and can also offer practical features like built-in storage or shelves for books and small items. The headboard helps anchor the bed within the space, contributing to the overall design and comfort of the room."
         case .bedding: return "Bedding includes the sheets, pillows, blankets, and duvet or comforter that provide warmth and comfort while sleeping. Properly layered bedding not only enhances the aesthetic appeal of the bed but also creates a cozy and inviting sleeping environment. High-quality bedding improves sleep quality, while decorative pillows and throws add texture and personality to the bedroom decor."
-        case .underBedStorage: return "Under-bed storage maximizes the often unused space beneath the bed by providing room for storing items like seasonal clothing, shoes, or extra linens. Using storage bins, drawers, or vacuum-sealed bags keeps the items organized and protected from dust. This type of storage helps reduce clutter in the rest of the room, making it ideal for bedrooms with limited closet or storage space."
+        case .underStorage: return "Under-bed storage maximizes the often unused space beneath the bed by providing room for storing items like seasonal clothing, shoes, or extra linens. Using storage bins, drawers, or vacuum-sealed bags keeps the items organized and protected from dust. This type of storage helps reduce clutter in the rest of the room, making it ideal for bedrooms with limited closet or storage space."
         case .bedsideArea: return "The bedside area includes the space around the bed, usually centered on a nightstand or small table. It provides a convenient place for essential items like a lamp, alarm clock, phone, or a book, keeping everything within easy reach while resting. A well-organized bedside area helps create a functional and peaceful environment for relaxation and sleep, reducing the need to get out of bed for small necessities."
         }
     }
     
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bedding, .bedsideArea, .headboard, .underStorage: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bedding, .bedsideArea, .headboard, .underStorage:
+            return [
+                SubTaskTypeBox(BedroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BedroomSubTaskType.clean)!,
+                SubTaskTypeBox(BedroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BedroomSubTaskType.organize)!,
+                SubTaskTypeBox(BedroomSubTaskType.polish)!,
+                SubTaskTypeBox(BedroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BedroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -51,7 +72,7 @@ enum BedroomSpaceType: String, SpaceType {
     }
 }
 
-enum BedroomDresserSpaceType: String, SpaceType {
+enum BedroomDresserSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case topSurface = "Top Surface"
     case drawers = "Drawers"
     case mirror = "Mirror"
@@ -77,11 +98,31 @@ enum BedroomDresserSpaceType: String, SpaceType {
     
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .drawers, .mirror, .topSurface: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .drawers, .mirror, .topSurface:
+            return [
+                SubTaskTypeBox(BedroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BedroomSubTaskType.clean)!,
+                SubTaskTypeBox(BedroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BedroomSubTaskType.organize)!,
+                SubTaskTypeBox(BedroomSubTaskType.polish)!,
+                SubTaskTypeBox(BedroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BedroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -114,11 +155,33 @@ enum BedroomNightstandSpaceType: String, SpaceType, Codable, CaseIterable, Ident
     }
     
     var weight: Double { 1.0 }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .decorativeItems, .drawersShelves, .topSurface: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .decorativeItems, .drawersShelves, .topSurface:
+            return [
+                SubTaskTypeBox(BedroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BedroomSubTaskType.clean)!,
+                SubTaskTypeBox(BedroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BedroomSubTaskType.organize)!,
+                SubTaskTypeBox(BedroomSubTaskType.polish)!,
+                SubTaskTypeBox(BedroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BedroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -155,11 +218,32 @@ enum BedroomStorageSpaceType: String, SpaceType, Codable, CaseIterable, Identifi
     
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .closet, .shelves, .trunksBaskets, .underBedStorage: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .closet, .shelves, .trunksBaskets, .underBedStorage:
+            return [
+                SubTaskTypeBox(BedroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BedroomSubTaskType.clean)!,
+                SubTaskTypeBox(BedroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BedroomSubTaskType.organize)!,
+                SubTaskTypeBox(BedroomSubTaskType.polish)!,
+                SubTaskTypeBox(BedroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BedroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {

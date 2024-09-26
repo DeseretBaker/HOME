@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: OfficeSpaceType
 
-enum OfficeSpaceType: String, SpaceType {
+enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case deskSurface = "Desk Surface"
     case chair = "Chair"
     case monitorSetup = "Monitor Setup"
@@ -38,11 +38,31 @@ enum OfficeSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .chair, .deskSurface, .monitorSetup, .taskLighting: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .chair, .deskSurface, .monitorSetup, .taskLighting:
+            return [
+                SubTaskTypeBox(OfficeSubTaskType.declutter)!,
+                SubTaskTypeBox(OfficeSubTaskType.polish)!,
+                SubTaskTypeBox(OfficeSubTaskType.tableLinens)!,
+                SubTaskTypeBox(OfficeSubTaskType.clean)!,
+                SubTaskTypeBox(OfficeSubTaskType.accessories)!,
+                SubTaskTypeBox(OfficeSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(OfficeSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -50,7 +70,7 @@ enum OfficeSpaceType: String, SpaceType {
     }
 }
 
-enum OfficeStorageSpaceType: String, SpaceType {
+enum OfficeStorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case drawers = "Drawers"
     case filingSystem = "Filing System"
     case stationeryStorage = "Stationery Storage"
@@ -78,11 +98,31 @@ enum OfficeStorageSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .drawers, .filingSystem, .stationeryStorage, .personalItems: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .drawers, .filingSystem, .stationeryStorage, .personalItems:
+            return [
+                SubTaskTypeBox(OfficeSubTaskType.declutter)!,
+                SubTaskTypeBox(OfficeSubTaskType.polish)!,
+                SubTaskTypeBox(OfficeSubTaskType.tableLinens)!,
+                SubTaskTypeBox(OfficeSubTaskType.clean)!,
+                SubTaskTypeBox(OfficeSubTaskType.accessories)!,
+                SubTaskTypeBox(OfficeSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(OfficeSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -90,7 +130,7 @@ enum OfficeStorageSpaceType: String, SpaceType {
     }
 }
 
-enum OfficeTechSpaceType: String, SpaceType {
+enum OfficeTechSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case chargingStation = "Charging Station"
     case gadgetStorage = "Gadget Storage"
     case peripheralSetup = "Peripheral Setup"
@@ -118,11 +158,31 @@ enum OfficeTechSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cableManagement, .chargingStation, .gadgetStorage, .peripheralSetup: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cableManagement, .chargingStation, .gadgetStorage, .peripheralSetup:
+            return [
+                SubTaskTypeBox(OfficeSubTaskType.declutter)!,
+                SubTaskTypeBox(OfficeSubTaskType.polish)!,
+                SubTaskTypeBox(OfficeSubTaskType.tableLinens)!,
+                SubTaskTypeBox(OfficeSubTaskType.clean)!,
+                SubTaskTypeBox(OfficeSubTaskType.accessories)!,
+                SubTaskTypeBox(OfficeSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(OfficeSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -130,7 +190,7 @@ enum OfficeTechSpaceType: String, SpaceType {
     }
 }
 
-enum OfficeReferenceSpaceType: String, SpaceType {
+enum OfficeReferenceSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case bookshelves = "Bookshelves"
     case documentHolders = "Document Holders"
     case whiteboardCorkboard = "Whiteboard Corkboard"
@@ -158,11 +218,31 @@ enum OfficeReferenceSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bookshelves, .documentHolders, .referenceDrawer, .whiteboardCorkboard: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bookshelves, .documentHolders, .referenceDrawer, .whiteboardCorkboard:
+            return [
+                SubTaskTypeBox(OfficeSubTaskType.declutter)!,
+                SubTaskTypeBox(OfficeSubTaskType.polish)!,
+                SubTaskTypeBox(OfficeSubTaskType.tableLinens)!,
+                SubTaskTypeBox(OfficeSubTaskType.clean)!,
+                SubTaskTypeBox(OfficeSubTaskType.accessories)!,
+                SubTaskTypeBox(OfficeSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(OfficeSubTaskType.organize)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {

@@ -10,7 +10,7 @@ import Foundation
 // MARK: - LivingRoomSpaceType
 
 
-enum LivingRoomSpaceType: String, SpaceType {
+enum LivingRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case mainSeating = "Main Seating"
     case accentChairsOttomans = "Accent Chairs & Ottomans"
     case throwPillowBlankets = "Throw Pillow & Blankets"
@@ -38,11 +38,31 @@ enum LivingRoomSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .accentChairsOttomans, .throwPillowBlankets, .sideTables, .mainSeating: return true
+        }
+    }
+        
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .accentChairsOttomans, .throwPillowBlankets, .sideTables, .mainSeating:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -50,9 +70,9 @@ enum LivingRoomSpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomEntertainmentSpaceType: String, SpaceType {
+enum LivingRoomEntertainmentSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case tvMediaConsole = "TV & Media Console"
-    case gamingMediaStorage = "Gaming & Media Storage"
+    case gamingStorage = "Gaming Storage"
     case soundSystem = "Sound System"
     case decorAroundTv = "Decor Around TV"
     
@@ -63,7 +83,7 @@ enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     var instructions: String {
         switch self {
         case .tvMediaConsole: return "Position the TV at eye level when seated and place it on or above a media console. Ensure the console is large enough to support the TV and store media-related items, such as remotes, cable boxes, or streaming devices. Organize cables using cable management systems to keep the area tidy and clutter-free."
-        case .gamingMediaStorage: return "Use cabinets, shelves, or drawers within the media console or nearby storage units to organize gaming consoles, controllers, DVDs, and video games. Label storage bins or containers if needed, and ensure all gaming accessories have a designated spot to avoid clutter."
+        case .gamingStorage: return "Use cabinets, shelves, or drawers within the media console or nearby storage units to organize gaming consoles, controllers, DVDs, and video games. Label storage bins or containers if needed, and ensure all gaming accessories have a designated spot to avoid clutter."
         case .soundSystem: return "Set up the sound system in a way that optimizes the acoustics in the room. Place speakers strategically for balanced sound distribution, ensuring that they’re not obstructed by furniture. If using a soundbar or other devices, position them near the TV and use cable management to keep cords hidden."
         case .decorAroundTv: return "Place decorative items like framed photos, plants, or small sculptures around the TV to add personality and balance to the entertainment zone. Avoid cluttering the space with too many decorations and make sure decor complements the overall design of the room without distracting from the TV as the focal point."
         }
@@ -71,7 +91,7 @@ enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     var usageDescription: String {
         switch self {
         case .tvMediaConsole: return "The TV and media console are central to the entertainment zone, providing a designated space for watching television, streaming content, or playing video games. The console not only supports the TV but also stores essential electronics, helping keep the area organized while maintaining easy access to devices and remotes."
-        case .gamingMediaStorage: return "This space is used to keep all gaming and media equipment organized and easily accessible. By having everything neatly stored, it ensures quick setup for gaming sessions or watching movies, reducing the frustration of misplaced items while maintaining a clean and organized entertainment area."
+        case .gamingStorage: return "This space is used to keep all gaming and media equipment organized and easily accessible. By having everything neatly stored, it ensures quick setup for gaming sessions or watching movies, reducing the frustration of misplaced items while maintaining a clean and organized entertainment area."
         case .soundSystem: return "The sound system enhances the audio experience when watching TV, playing video games, or listening to music. Proper placement of the speakers or soundbar provides immersive sound quality, creating an enjoyable entertainment atmosphere. Keeping the system well-organized ensures seamless integration with the rest of the media setup."
         case .decorAroundTv: return "The decor around the TV helps soften the visual impact of the media center while adding character to the space. It balances the tech-heavy look of the entertainment area by incorporating personal or aesthetic elements that blend the entertainment zone with the room’s overall style."
         }
@@ -79,11 +99,30 @@ enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .decorAroundTv, .gamingStorage, .soundSystem, .tvMediaConsole: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .decorAroundTv, .gamingStorage, .soundSystem, .tvMediaConsole:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -91,7 +130,7 @@ enum LivingRoomEntertainmentSpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomRelaxationSpaceType: String, SpaceType {
+enum LivingRoomRelaxationSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case chairSeating = "Chair Seating"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case bookshelves = "Bookshelves"
@@ -122,11 +161,29 @@ enum LivingRoomRelaxationSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bookshelves, .decorAroundReading, .sideTable, .chairSeating, .storageBinsBaskets: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bookshelves, .decorAroundReading, .sideTable, .chairSeating, .storageBinsBaskets:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -134,7 +191,7 @@ enum LivingRoomRelaxationSpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomStorageSpaceType: String, SpaceType {
+enum LivingRoomStorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cabinetsShelves = "Cabinets & Shelves"
     case storageBinsBaskets = "Storage Bins & Baskets"
     case drawers = "Drawers"
@@ -158,11 +215,31 @@ enum LivingRoomStorageSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 2.0 }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cabinetsShelves, .storageBinsBaskets, .drawers: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cabinetsShelves, .storageBinsBaskets, .drawers:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -170,7 +247,7 @@ enum LivingRoomStorageSpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomDecorSpaceType: String, SpaceType {
+enum LivingRoomDecorSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case shelvesDisplayTables = "Room Decor Zone"
     case plantsGreenery = "Plants & Greenery"
     case wallArtPhotos =  "Wall Art & Photos"
@@ -198,11 +275,30 @@ enum LivingRoomDecorSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .accentLighting, .plantsGreenery, .shelvesDisplayTables, .wallArtPhotos: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .accentLighting, .plantsGreenery, .shelvesDisplayTables, .wallArtPhotos:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -210,7 +306,7 @@ enum LivingRoomDecorSpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomPlaySpaceType: String, SpaceType {
+enum LivingRoomPlaySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case toyStorage = "Toy Storage"
     case playMatActivityArea = "Play Mat Activity Area"
     case craftArtSupplies = "Craft Art Supplies"
@@ -238,11 +334,30 @@ enum LivingRoomPlaySpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .playMatActivityArea, .craftArtSupplies, .gameArea, .toyStorage: return true
+        }
+    }
+        
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .playMatActivityArea, .craftArtSupplies, .gameArea, .toyStorage:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -250,7 +365,7 @@ enum LivingRoomPlaySpaceType: String, SpaceType {
     }
 }
 
-enum LivingRoomConversationSpaceType: String,  SpaceType {
+enum LivingRoomConversationSpaceType: String,  Codable, CaseIterable, Identifiable, SpaceType {
     case seatingArrangement = "Seating Arrangement"
     case coffeeTable = "Coffee Table"
     case accentLighting = "Accent Lighting"
@@ -278,11 +393,30 @@ enum LivingRoomConversationSpaceType: String,  SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .accentLighting,.coffeeTable, .decorAccents, .seatingArrangement: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .accentLighting,.coffeeTable, .decorAccents, .seatingArrangement:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -290,7 +424,7 @@ enum LivingRoomConversationSpaceType: String,  SpaceType {
     }
 }
 
-enum LivingRoomLightingSpaceType: String, SpaceType {
+enum LivingRoomLightingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case overheadLighting = "Overhead Lighting"
     case taskLighting = "Task Lighting"
     case accentLighting = "Accent Lighting"
@@ -324,11 +458,30 @@ enum LivingRoomLightingSpaceType: String, SpaceType {
     }
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .accentLighting, .lightingControls, .overheadLighting, .taskLighting: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .accentLighting, .lightingControls, .overheadLighting, .taskLighting:
+            return [
+                SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.cornerShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.ottoman)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.tables)!,
+                SubTaskTypeBox(LivingRoomSubTaskType.windowBoxSeat)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {

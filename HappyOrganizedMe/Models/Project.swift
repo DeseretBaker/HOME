@@ -19,11 +19,12 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
     private var _isCompleted: Bool = false
     
     // Initializer
-    init(projectType: ProjectType, instructions: String = "", usageDescription: String = "", rooms: [Room] = []) {
+    init(projectType: ProjectType, instructions: String = "", usageDescription: String = "", rooms: [Room] = [], isCompleted: Bool = false) {
         self.projectType = projectType
         self.instructions = instructions
         self.usageDescription = usageDescription
         self.rooms = rooms
+        self._isCompleted = isCompleted
     }
     
     // MARK: Computed Variables

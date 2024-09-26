@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: KitchenSpaceType
-enum KitchenPrepSpaceType: String, SpaceType {
+enum KitchenPrepSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     case prepZoneCountertops = "Countertops"
     case prepZoneCuttingBoards = "Cutting Boards"
@@ -51,11 +51,38 @@ enum KitchenPrepSpaceType: String, SpaceType {
     }
     var weight: Double { 4.0}
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .prepZoneAppliances, .prepZoneCountertops, .prepZoneSpiceRacks, .prepZoneCuttingBoards, .prepZoneUtensils: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .prepZoneAppliances, .prepZoneCountertops, .prepZoneSpiceRacks, .prepZoneCuttingBoards, .prepZoneUtensils:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -63,7 +90,7 @@ enum KitchenPrepSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenCookingSpaceType: String, SpaceType {
+enum KitchenCookingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cookingZoneStovetop = "Stovetop"
     case cookingZoneOven = "Oven"
     case cookingZone = "Cookware"
@@ -110,11 +137,38 @@ enum KitchenCookingSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cookingZone, .cookingZoneOven, .cookingZonePantryEssentials, .cookingZoneStovetop, .cookingZoneUtensils, .cookingZoneVentilation: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cookingZone, .cookingZoneOven, .cookingZonePantryEssentials, .cookingZoneStovetop, .cookingZoneUtensils, .cookingZoneVentilation:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -122,7 +176,7 @@ enum KitchenCookingSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenCleaningSpaceType: String, SpaceType {
+enum KitchenCleaningSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cleaningZoneSink = "Sink"
     case cleaningZoneDishwasher = "Dishwasher"
     case cleaningZoneTrashRecycling = "Trash Recycling"
@@ -169,11 +223,38 @@ enum KitchenCleaningSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cleaningZoneCleaningSupplies, .cleaningZoneDishwasher, .cleaningZoneSink, .cleaningZoneSoapDispenser, .cleaningZoneTowelHookStorage, .cleaningZoneTrashRecycling: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cleaningZoneCleaningSupplies, .cleaningZoneDishwasher, .cleaningZoneSink, .cleaningZoneSoapDispenser, .cleaningZoneTowelHookStorage, .cleaningZoneTrashRecycling:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -181,7 +262,7 @@ enum KitchenCleaningSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenFoodStorageSpaceType: String, SpaceType {
+enum KitchenFoodStorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     case foodStorageZonePantry = "Food Storage Pantry"
     case foodStorageZoneRefrigerator = "Refrigerator"
@@ -228,11 +309,39 @@ enum KitchenFoodStorageSpaceType: String, SpaceType {
     }
     
     var weight: Double { 2.0 }
+    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .foodStorageZoneSnacks, .foodStorageZoneRefrigerator, .foodStorageZonePantry, .foodStorageZoneBulkBins, .foodStorageZoneCondiments, .foodStorageZoneFreezer: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .foodStorageZoneSnacks, .foodStorageZoneRefrigerator, .foodStorageZonePantry, .foodStorageZoneBulkBins, .foodStorageZoneCondiments, .foodStorageZoneFreezer:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -241,7 +350,7 @@ enum KitchenFoodStorageSpaceType: String, SpaceType {
 }
 
 
-enum KitchenCookwareSpaceType: String, SpaceType {
+enum KitchenCookwareSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cookwareZoneDrawers = "Drawers"
     case cookwareZonePotsAndPans = "Pots and Pans"
     case cookwareZoneBakingSheets = "Baking Sheets"
@@ -273,11 +382,38 @@ enum KitchenCookwareSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cookwareZoneSpecialtyEquipment, .cookwareZoneLids, .cookwareZoneBakingSheets, .cookwareZoneDrawers, .cookwareZonePotsAndPans: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cookwareZoneSpecialtyEquipment, .cookwareZoneLids, .cookwareZoneBakingSheets, .cookwareZoneDrawers, .cookwareZonePotsAndPans:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -285,7 +421,7 @@ enum KitchenCookwareSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenServingSpaceType: String, SpaceType {
+enum KitchenServingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case servingZonePlatesBowls = "Plates, Bowls"
     case servingZoneGlassesStemware = "Glasses, Stemware"
     case servingZoneSilverware = "Silverware"
@@ -317,11 +453,38 @@ enum KitchenServingSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .servingZoneGlassesStemware, .servingZonePlatesBowls, .servingZoneSilverware, .servingZoneTableLinens, .servingZoneServeWare: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .servingZoneGlassesStemware, .servingZonePlatesBowls, .servingZoneSilverware, .servingZoneTableLinens, .servingZoneServeWare:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -329,7 +492,7 @@ enum KitchenServingSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenBakingSpaceType: String, SpaceType {
+enum KitchenBakingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case bakingZoneBakingSupplies = "Baking Supplies"
     case bakingZoneIngredients = "Ingredients"
     case bakingZoneMixerTools = "Mixer Tools"
@@ -355,11 +518,38 @@ enum KitchenBakingSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bakingZoneBakingSupplies, .bakingZoneIngredients, .bakingZoneMixerTools: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bakingZoneBakingSupplies, .bakingZoneIngredients, .bakingZoneMixerTools:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -367,7 +557,7 @@ enum KitchenBakingSpaceType: String, SpaceType {
     }
 }
 
-enum KitchenSpaceType: String, SpaceType {
+enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case drinkZoneKettles = "Hot water"
     case drinkZoneMugsTravelMugs = "Mugs"
     case drinkZoneSupplies = "Supplies"
@@ -399,18 +589,45 @@ enum KitchenSpaceType: String, SpaceType {
     
     var weight: Double { 2.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .drinkZoneKettles, .drinkZoneMugsTravelMugs, .drinkZoneSupplies: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .drinkZoneKettles, .drinkZoneMugsTravelMugs, .drinkZoneSupplies:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.bakeware)!,
+                SubTaskTypeBox(KitchenSubTaskType.bakingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.cookbooks)!,
+                SubTaskTypeBox(KitchenSubTaskType.dinnerware)!,
+                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.foodStorageContainers)!,
+                SubTaskTypeBox(KitchenSubTaskType.glassware)!,
+                SubTaskTypeBox(KitchenSubTaskType.kitchenAids)!,
+                SubTaskTypeBox(KitchenSubTaskType.largeAppliances)!,
+                SubTaskTypeBox(KitchenSubTaskType.occasionalItems)!,
+                SubTaskTypeBox(KitchenSubTaskType.serveWare)!,
+                SubTaskTypeBox(KitchenSubTaskType.servingZone)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableLinens)!,
+                SubTaskTypeBox(KitchenSubTaskType.tableware)!
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum UnknownSpaceType: String, Codable, SpaceType {
+enum UnknownSpaceType: String, Codable, CaseIterable, Identifiable,  SpaceType {
     
     
     case unknown
@@ -422,7 +639,9 @@ enum UnknownSpaceType: String, Codable, SpaceType {
     var usageDescription: String { "unknown" }
     var weight: Double { 0.0 }
     var subTaskTypes: [SubTaskTypeBox] { [] }
-    
+    var progress: Double { 0.0 }
+    var isCompleted: Bool { true }
+        
     static var allSpaceTypes: [any SpaceType] {
         return UnknownSpaceType.allCases.map { $0 as any SpaceType}
     }

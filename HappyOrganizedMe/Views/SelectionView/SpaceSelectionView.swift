@@ -14,12 +14,13 @@ struct SpaceSelectionView: View {
     @Bindable var room: Room  // Use @Bindable to automatically update the view when the room changes
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
+    
     var body: some View {
         
         VStack {
             if room.spaces.isEmpty {
                 Text("No spaces available in this room.")
-                    .font(.headline)
+                    .font(.caption)
                     .padding()
             } else {
                 ScrollView {
@@ -38,13 +39,8 @@ struct SpaceSelectionView: View {
         .toolbar {
             //EditButton()  // Allows editing for delete action
         }
-    }
-    
-    
-    private func deleteSpace(at offsets: IndexSet) {
-        withAnimation {
-            room.spaces.remove(atOffsets: offsets)
-            saveContext()
+        .onAppear {
+            print("Spaces available: \(room.spaces.count)")
         }
     }
     

@@ -13,6 +13,7 @@ struct RoomDetailView: View {
     
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -50,12 +51,12 @@ struct RoomDetailView: View {
                 .padding([.leading, .trailing])
                 
                 // Space Grid
-                Text("Spaces")
+                Text("Break it Down")
                     .font(.headline)
                     .padding(.leading)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(room.spaces) { space in
+                    ForEach(room.spaces, id: \.id) { space in
                         NavigationLink(destination: SpaceDetailView(space: space)) {
                             CardView(item: space)
                         }
@@ -63,6 +64,9 @@ struct RoomDetailView: View {
                 }
                 .padding([.leading, .trailing])
             }
+        }
+        .onAppear {
+            start()
         }
         .navigationTitle("Break It Down")
 //        .toolbar {
@@ -72,6 +76,13 @@ struct RoomDetailView: View {
 //                Image(systemName: "pencil")
 //            }
 //        }
+    }
+    
+    func start() {
+        print("Spaces count: \")(room.spaces.count)")
+        for space in room.spaces {
+            print("Space Name: \(space.name)")
+        }
     }
 }
 

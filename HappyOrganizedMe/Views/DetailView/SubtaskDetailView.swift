@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SubTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
-    @Bindable var subTask: SubTask  // Property to track changes in subtask data
+    
+    let subTask: SubTask
+    var subTaskType: SubTaskTypeBox { subTask.subTaskType }
     
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
@@ -62,8 +64,8 @@ struct SubTaskDetailView: View {
                 .font(.headline)
                 .padding(.leading)
             
-            // Checkable list for minitasks
-            ForEach($subTask.miniTasks, id: \.id) { $miniTask in
+            // Checkable list for miniTasks
+            ForEach(subTask.miniTasks, id: \.id) { miniTask in
                 HStack {
                     Image(systemName: miniTask.isCompleted ? "checkmark.circle.fill" : "circle")
                         .onTapGesture {

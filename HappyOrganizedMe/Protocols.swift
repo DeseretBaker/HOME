@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Room Type
 
-protocol RoomType: Codable, CaseIterable, Identifiable {
+protocol RoomType: Codable, CaseIterable, Identifiable, Displayable {
     var id: UUID { get }
     var name: String { get }
     var imageName: String { get }
@@ -19,6 +19,7 @@ protocol RoomType: Codable, CaseIterable, Identifiable {
     var weight: Double { get }
     var rawValue: String { get }
     var spaceTypes: [SpaceTypeBox] { get }
+    var progress: Double { get }
     init?(rawValue: String)
     
 }
@@ -78,6 +79,15 @@ enum RoomTypeBox: Codable {
             
         }
     }
+    var id: UUID { roomType.id}
+    var name: String { roomType.name }
+    var imageName: String { roomType.imageName }
+    var instructions: String { roomType.instructions }
+    var usageDescription: String { roomType.usageDescription }
+    var weight: Double { roomType.weight }
+    var progress: Double { roomType.progress }
+    var isCompleted: Bool { roomType.isCompleted }
+
     
     subscript<T>(dynamicMember keyPath: KeyPath<any RoomType, T>) -> T {
         roomType[keyPath: keyPath]
@@ -88,7 +98,7 @@ enum RoomTypeBox: Codable {
 
 // MARK: Space Type
 
-protocol SpaceType: Codable, CaseIterable, Identifiable {
+protocol SpaceType: Codable, CaseIterable, Identifiable, Displayable {
     var id: UUID { get }
     var name: String { get }
     var imageName: String { get }
@@ -97,11 +107,13 @@ protocol SpaceType: Codable, CaseIterable, Identifiable {
     var weight: Double { get }
     var rawValue: String { get }
     var subTaskTypes: [SubTaskTypeBox] { get }
+    var progress: Double { get }
+    var isCompleted: Bool { get }
     init?(rawValue: String)
 }
 @dynamicMemberLookup
 enum SpaceTypeBox: Codable {
-    case kitchen(KitchenPrepSpaceType)
+    case kitchen(KitchenSpaceType)
     case dining(DiningRoomSpaceType)
     case bathroom(BathroomSpaceType)
     case living(LivingRoomSpaceType)
@@ -128,7 +140,7 @@ enum SpaceTypeBox: Codable {
     }
     
     init?(_ spaceType: any SpaceType) {
-        if let kitchen = spaceType as? KitchenPrepSpaceType {
+        if let kitchen = spaceType as? KitchenSpaceType {
             self = .kitchen(kitchen)
         } else if let dining = spaceType as? DiningRoomSpaceType {
             self = .dining(dining)
@@ -153,6 +165,15 @@ enum SpaceTypeBox: Codable {
             
         }
     }
+    var id: UUID { spaceType.id}
+    var name: String { spaceType.name }
+    var imageName: String { spaceType.imageName }
+    var instructions: String { spaceType.instructions }
+    var usageDescription: String { spaceType.usageDescription }
+    var weight: Double { spaceType.weight }
+    var progress: Double { spaceType.progress }
+    var isCompleted: Bool { spaceType.isCompleted }
+
     
     subscript<T>(dynamicMember keyPath: KeyPath<any SpaceType, T>) -> T {
         spaceType[keyPath: keyPath]
@@ -162,16 +183,18 @@ enum SpaceTypeBox: Codable {
 
 // MARK: - SubTask Type
 
-protocol SubTaskType: Codable, CaseIterable, Identifiable {
+protocol SubTaskType: Codable, CaseIterable, Identifiable, Displayable {
     var id: UUID { get }
     var name: String { get }
     var imageName: String { get }
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
+    var progress: Double { get }
+    var isCompleted: Bool { get }
     var rawValue: String { get }
-    var miniTask: (any MiniTaskType)? { get }
     var miniTaskTypes: [MiniTaskTypeBox] { get }
+    
     init?(rawValue: String)
 }
 @dynamicMemberLookup
@@ -189,44 +212,53 @@ enum SubTaskTypeBox: Codable {
     
     var subTaskType: any SubTaskType {
         switch self {
-        case .kitchen(let kitchen): return kitchen
-        case .dining(let dining): return dining
-        case .bathroom(let bathroom): return bathroom
-        case .living(let living): return living
-        case .bedroom(let bedroom): return bedroom
-        case .storage(let storage): return storage
-        case .office(let office): return office
-        case .garage(let garage): return garage
-        case .playroom(let playroom): return playroom
-        case .unknown(let unknown): return unknown
+        case .kitchen(let kitchenSubTask): return kitchenSubTask
+        case .dining(let diningSubTask): return diningSubTask
+        case .bathroom(let bathroomSubTask): return bathroomSubTask
+        case .living(let livingSubTask): return livingSubTask
+        case .bedroom(let bedroomSubTask): return bedroomSubTask
+        case .storage(let storageSubTask): return storageSubTask
+        case .office(let officeSubTask): return officeSubTask
+        case .garage(let garageSubTask): return garageSubTask
+        case .playroom(let playroomSubTask): return playroomSubTask
+        case .unknown(let unknownSubTask): return unknownSubTask
         }
     }
     
     init?(_ subTaskType: any SubTaskType) {
-        if let kitchen = subTaskType as? KitchenSubTaskType {
-            self = .kitchen(kitchen)
-        } else if let dining = subTaskType as? DiningRoomSubTaskType {
-            self = .dining(dining)
-        } else if let bathroom = subTaskType as? BathroomSubTaskType {
-            self = .bathroom(bathroom)
-        } else if let living = subTaskType as? LivingRoomSubTaskType {
-            self = .living(living)
-        } else if let bedroom = subTaskType as? BedroomSubTaskType {
-            self = .bedroom(bedroom)
-        } else if let storage = subTaskType as? StorageSubTaskType {
-            self = .storage(storage)
-        } else if let office = subTaskType as? OfficeSubTaskType {
-            self = .office(office)
-        } else if let garage = subTaskType as? GarageSubTaskType {
-            self = .garage(garage)
-        } else if let playroom = subTaskType as? PlayroomSubTaskType {
-            self = .playroom(playroom)
-        } else if let unknown = subTaskType as? UnknownSubTaskType {
-            self = .unknown(unknown)
+        if let kitchenSubTask = subTaskType as? KitchenSubTaskType {
+            self = .kitchen(kitchenSubTask)
+        } else if let diningSubTask = subTaskType as? DiningRoomSubTaskType {
+            self = .dining(diningSubTask)
+        } else if let bathroomSubTask = subTaskType as? BathroomSubTaskType {
+            self = .bathroom(bathroomSubTask)
+        } else if let livingSubTask = subTaskType as? LivingRoomSubTaskType {
+            self = .living(livingSubTask)
+        } else if let bedroomSubTask = subTaskType as? BedroomSubTaskType {
+            self = .bedroom(bedroomSubTask)
+        } else if let storageSubTask = subTaskType as? StorageSubTaskType {
+            self = .storage(storageSubTask)
+        } else if let officeSubTask = subTaskType as? OfficeSubTaskType {
+            self = .office(officeSubTask)
+        } else if let garageSubTask = subTaskType as? GarageSubTaskType {
+            self = .garage(garageSubTask)
+        } else if let playroomSubTask = subTaskType as? PlayroomSubTaskType {
+            self = .playroom(playroomSubTask)
+        } else if let unknownSubTask = subTaskType as? UnknownSubTaskType {
+            self = .unknown(unknownSubTask)
         } else {
             return nil
         }
     }
+    var id: UUID { subTaskType.id}
+    var name: String { subTaskType.name }
+    var imageName: String { subTaskType.imageName }
+    var instructions: String { subTaskType.instructions }
+    var usageDescription: String { subTaskType.usageDescription }
+    var weight: Double { subTaskType.weight }
+    var progress: Double { subTaskType.progress }
+    var isCompleted: Bool { subTaskType.isCompleted }
+
     
     subscript<T>(dynamicMember keyPath: KeyPath<any SubTaskType, T>) -> T {
         subTaskType[keyPath: keyPath]
@@ -236,13 +268,15 @@ enum SubTaskTypeBox: Codable {
 
 // MARK: - MiniTask Type
 
-protocol MiniTaskType: Codable, CaseIterable, Identifiable {
+protocol MiniTaskType: Codable, CaseIterable, Identifiable, Displayable {
     var id: UUID { get }
     var name: String { get }
     var imageName: String { get }
     var instructions: String { get }
     var usageDescription: String { get }
     var weight: Double { get }
+    var progress: Double { get }
+    var isCompleted: Bool { get }
     var rawValue: String { get }
     init?(rawValue: String)
 }
@@ -274,83 +308,46 @@ enum MiniTaskTypeBox: Codable {
         case .unknown(let unknownMiniTask): return unknownMiniTask
         }
     }
-    private enum CodingKeys: String, CodingKey {
-        case type, value
-    }
-    
-    enum MiniTaskTypeBoxType: String, Codable {
-        case kitchen, livingRoom, diningRoom, office, bedroom, bathroom, playroom, storage, garage, unknown
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try container.decode(MiniTaskTypeBoxType.self, forKey: .type)
-        
-        switch type {
-        case .kitchen: let value = try container.decode(KitchenMiniTaskType.self, forKey: .value)
-            self = .kitchen(value)
-        case .livingRoom: let value = try container.decode(LivingRoomMiniTaskType.self, forKey: .value)
-            self = .livingRoom(value)
-        case .diningRoom: let value = try container.decode(DiningRoomMiniTaskType.self, forKey: .value)
-            self = .diningRoom(value)
-        case .office: let value = try container.decode(OfficeMiniTaskType.self, forKey: .value)
-            self = .office(value)
-        case .bedroom: let value = try container.decode(BedroomMiniTaskType.self, forKey: .value)
-            self = .bedroom(value)
-        case .bathroom: let value = try container.decode(BathroomMiniTaskType.self, forKey: .value)
-            self = .bathroom(value)
-        case .playroom: let value = try container.decode(PlayroomMiniTaskType.self, forKey: .value)
-            self = .playroom(value)
-        case .storage: let value = try container.decode(StorageMiniTaskType.self, forKey: .value)
-            self = .storage(value)
-        case .garage: let value = try container.decode(GarageMiniTaskType.self, forKey: .value)
-            self = .garage(value)
-        case .unknown: let value = try container.decode(UnknownMiniTaskType.self, forKey: .value)
-            self = .unknown(value)
+    init?(_ miniTaskType: any MiniTaskType) {
+        if let kitchenMiniTask = miniTaskType as? KitchenMiniTaskType {
+            self = .kitchen(kitchenMiniTask)
+        } else if let livingRoomMiniTask = miniTaskType as? LivingRoomMiniTaskType {
+            self = .livingRoom(livingRoomMiniTask)
+        } else if let diningRoomMiniTask  = miniTaskType as? DiningRoomMiniTaskType {
+            self = .diningRoom(diningRoomMiniTask)
+        } else if let officeMiniTask = miniTaskType as? OfficeMiniTaskType {
+            self = .office(officeMiniTask)
+        } else if let bedroomMiniTask = miniTaskType as? BedroomMiniTaskType {
+            self = .bedroom(bedroomMiniTask)
+        } else if let playroomMiniTask = miniTaskType as? PlayroomMiniTaskType {
+            self = .playroom(playroomMiniTask)
+        } else if let storageMiniTask = miniTaskType as? StorageMiniTaskType {
+            self = .storage(storageMiniTask)
+        } else if let bathroomMiniTask = miniTaskType as? BathroomMiniTaskType {
+            self = .bathroom(bathroomMiniTask)
+        } else if let garageMiniTask = miniTaskType as? GarageMiniTaskType {
+            self = .garage(garageMiniTask)
+        } else if let unknownMiniTask = miniTaskType as? UnknownMiniTaskType {
+            self = .unknown(unknownMiniTask)
+        } else {
+            return nil
         }
     }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
         
-        switch self {
-        case .kitchen(let value):
-            try container.encode(MiniTaskTypeBoxType.kitchen, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .livingRoom(let value):
-            try container.encode(MiniTaskTypeBoxType.livingRoom, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .diningRoom(let value):
-            try container.encode(MiniTaskTypeBoxType.diningRoom, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .office(let value):
-            try container.encode(MiniTaskTypeBoxType.office, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .bedroom(let value):
-            try container.encode(MiniTaskTypeBoxType.bedroom, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .playroom(let value):
-            try container.encode(MiniTaskTypeBoxType.playroom, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .storage(let value):
-            try container.encode(MiniTaskTypeBoxType.storage, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .bathroom(let value):
-            try container.encode(MiniTaskTypeBoxType.bathroom, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .garage(let value):
-            try container.encode(MiniTaskTypeBoxType.garage, forKey: .type)
-            try container.encode(value, forKey: .value)
-        case .unknown(let value):
-            try container.encode(MiniTaskTypeBoxType.unknown, forKey: .type)
-            try container.encode(value, forKey: .value)
-        }
-    }
     
+    var id: UUID { miniTaskType.id}
+    var name: String { miniTaskType.name }
+    var imageName: String { miniTaskType.imageName }
+    var instructions: String { miniTaskType.instructions }
+    var usageDescription: String { miniTaskType.usageDescription }
+    var weight: Double { miniTaskType.weight }
+    var progress: Double { miniTaskType.progress }
+    var isCompleted: Bool { miniTaskType.isCompleted }
     
     // Dynamic member lookup to access underlying properties
     subscript<T>(dynamicMember keyPath: KeyPath<any MiniTaskType, T>) -> T {
         return miniTaskType[keyPath: keyPath]
     }
 }
+
 

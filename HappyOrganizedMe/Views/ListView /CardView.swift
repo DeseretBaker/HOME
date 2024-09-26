@@ -7,6 +7,7 @@
 import SwiftUI
 
 protocol Displayable {
+    var id: UUID { get }
     var name: String { get } // The name of the item (e.g., "Sofa")
     var imageName: String { get } // The name of the image associated with the item (e.g., "sofa_image")
     var instructions: String { get } // Instructions for cleaning/maintaining the item

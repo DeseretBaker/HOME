@@ -34,11 +34,31 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .bathtubArea, .showerArea, .showerCurtainDoor: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .bathtubArea, .showerArea, .showerCurtainDoor:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -72,11 +92,31 @@ enum BathroomToiletZoneSpaceType: String, SpaceType, Codable, CaseIterable, Iden
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .toiletCleaningSupplies, .toiletPaper, .trashBin: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .toiletCleaningSupplies, .toiletPaper, .trashBin:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
@@ -112,19 +152,38 @@ enum BathroomVanitySinkZoneSpaceType: String , SpaceType, Codable, CaseIterable,
     }
     
     var weight: Double { 1.0 }
-    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .mirrorCabinet, .sinkCountertop, .vanityCabinet, .vanityDrawers: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .mirrorCabinet, .sinkCountertop, .vanityCabinet, .vanityDrawers:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomVanitySinkZoneSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
+enum BathroomTowelsToiletriesZoneSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case towelStorage = "Towel Storage"
     case toiletryOrganization = "Toiletry Organization"
     case handTowels = "Hand Towels"
@@ -149,11 +208,31 @@ enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .handTowels, .toiletryOrganization, .towelStorage: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .handTowels, .toiletryOrganization, .towelStorage:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
@@ -161,7 +240,7 @@ enum BathroomTowelsToiletriesZoneSpaceType: String, SpaceType {
     }
 }
 
-enum BathroomGroomingSpaceType: String, SpaceType {
+enum BathroomGroomingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case hairToolsStorage = "Hair Tools Storage"
     case groomingProducts = "Grooming Products"
     case mirrorArea = "Mirror Area"
@@ -186,11 +265,31 @@ enum BathroomGroomingSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .groomingProducts, .hairToolsStorage, .mirrorArea :return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .groomingProducts, .hairToolsStorage, .mirrorArea:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
@@ -198,7 +297,7 @@ enum BathroomGroomingSpaceType: String, SpaceType {
     }
 }
 
-enum BathroomLaundrySpaceType: String, SpaceType {
+enum BathroomLaundrySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case laundryHamper = "Laundry Hamper"
     case washingSupplies = "Washing Supplies"
     case laundrySortingArea = "Laundry Sorting Area"
@@ -222,12 +321,31 @@ enum BathroomLaundrySpaceType: String, SpaceType {
         }
     }
     var weight: Double { 1.0 }
-    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .laundryHamper, .laundrySortingArea, .washingSupplies: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .laundryHamper, .laundrySortingArea, .washingSupplies:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
@@ -235,7 +353,7 @@ enum BathroomLaundrySpaceType: String, SpaceType {
     }
 }
 
-enum BathroomDressingChangingSpaceType: String, SpaceType {
+enum BathroomDressingChangingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case clothesStorage = "Clothes Storage"
     case mirror = "Mirror"
     case benchSeating = "Bench Seating"
@@ -260,18 +378,39 @@ enum BathroomDressingChangingSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .benchSeating, .clothesStorage, .mirror: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .benchSeating, .clothesStorage, .mirror:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomDressingChangingSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum BathroomCleaningSuppliesSpaceType: String, Codable, SpaceType {
+enum BathroomCleaningSuppliesSpaceType: String, Codable, CaseIterable, Identifiable,  SpaceType {
     case cleaningTools = "Cleaning Tools"
     case organizers = "Organizers"
     case storageSpace = "Storage Space"
@@ -298,18 +437,38 @@ enum BathroomCleaningSuppliesSpaceType: String, Codable, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cleaningTools, .organizers, .storageSpace: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cleaningTools, .organizers, .storageSpace:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {
         return BathroomCleaningSuppliesSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
-enum BathroomRelaxationSpaceType: String, SpaceType {
+enum BathroomRelaxationSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case candlesAromatherapy = "Candles & Aromatherapy"
     case seatingArea = "Seating Area"
     case softLighting = "Soft Lighting"
@@ -334,11 +493,31 @@ enum BathroomRelaxationSpaceType: String, SpaceType {
     }
     var weight: Double { 1.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .candlesAromatherapy, .seatingArea, .softLighting: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .candlesAromatherapy, .seatingArea, .softLighting:
+            return [
+                SubTaskTypeBox(BathroomSubTaskType.accessories)!,
+                SubTaskTypeBox(BathroomSubTaskType.clean)!,
+                SubTaskTypeBox(BathroomSubTaskType.declutter)!,
+                SubTaskTypeBox(BathroomSubTaskType.organize)!,
+                SubTaskTypeBox(BathroomSubTaskType.polish)!,
+                SubTaskTypeBox(BathroomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(BathroomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var spaceTypes: [any SpaceType] {

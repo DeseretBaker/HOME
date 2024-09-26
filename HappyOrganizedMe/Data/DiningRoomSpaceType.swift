@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: DiningSpaceType
 
-enum DiningRoomSpaceType: String, SpaceType {
+enum DiningRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case diningTable = "Dining Table"
     case chairsSeating = "Chairs Seating"
     case centerpieceDecor = "Centerpiece Decor"
@@ -34,11 +34,32 @@ enum DiningRoomSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .centerpieceDecor, .chairsSeating, .diningTable: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .centerpieceDecor, .chairsSeating, .diningTable:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -46,7 +67,7 @@ enum DiningRoomSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomServingSpaceType: String, SpaceType {
+enum DiningRoomServingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case buffetTableSideboard = "Buffet Table Sideboard"
     case servingPlattersUtensils = "Serving Platters Utensils"
     case drinkStation = "Drink Station"
@@ -71,11 +92,32 @@ enum DiningRoomServingSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .buffetTableSideboard, .drinkStation, .servingPlattersUtensils: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .buffetTableSideboard, .drinkStation, .servingPlattersUtensils:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -83,7 +125,7 @@ enum DiningRoomServingSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomStorageSpaceType: String, SpaceType {
+enum DiningRoomStorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cabinetsDrawers = "Cabinets Drawers"
     case shelvingUnits = "Shelving Units"
     case linenStorage = "Linen Storage"
@@ -108,11 +150,32 @@ enum DiningRoomStorageSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .cabinetsDrawers, .linenStorage, .shelvingUnits: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .cabinetsDrawers, .linenStorage, .shelvingUnits:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -120,7 +183,7 @@ enum DiningRoomStorageSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomDecorSpaceType: String, SpaceType {
+enum DiningRoomDecorSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case wallArtFrames = "Wall Art Frames"
     case displayShelves = "Display Shelves"
     case centerpieces = "Centerpieces"
@@ -145,11 +208,32 @@ enum DiningRoomDecorSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .centerpieces, .displayShelves, .wallArtFrames: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .centerpieces, .displayShelves, .wallArtFrames:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -157,7 +241,7 @@ enum DiningRoomDecorSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomLightingSpaceType: String, SpaceType {
+enum DiningRoomLightingSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case overheadChandelier = "Overhead Chandelier"
     case accentWallLighting = "Accent Wall Lighting"
     case candleLighting = "Candle Lighting"
@@ -182,11 +266,32 @@ enum DiningRoomLightingSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .accentWallLighting, .candleLighting, .overheadChandelier: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .accentWallLighting, .candleLighting, .overheadChandelier:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -194,7 +299,7 @@ enum DiningRoomLightingSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomMultiUseSpaceType: String, SpaceType {
+enum DiningRoomMultiUseSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case workStudyTable = "Work Study Table"
     case craftHobbyArea = "Craft Hobby Area"
     case childrensActivities = "Children's Activities"
@@ -219,11 +324,32 @@ enum DiningRoomMultiUseSpaceType: String, SpaceType {
     }
     var weight: Double { 3.0 }
     
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .childrensActivities, .craftHobbyArea, .workStudyTable: return true
+        }
+    }
+    
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .childrensActivities, .craftHobbyArea, .workStudyTable:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
@@ -231,7 +357,7 @@ enum DiningRoomMultiUseSpaceType: String, SpaceType {
     }
 }
 
-enum DiningRoomDrinkSpaceType: String, SpaceType {
+enum DiningRoomDrinkSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case barCartBarCabinet = "Bar Cart/Bar Cabinet"
     case glasswareDisplay = "Glassware Display"
     case wineDrinkStorage = "Wine Drink Storage"
@@ -255,12 +381,31 @@ enum DiningRoomDrinkSpaceType: String, SpaceType {
         }
     }
     var weight: Double { 3.0 }
-    
+    var progress: Double {
+        return isCompleted ? 100.0 : 0.0
+    }
+    var isCompleted: Bool {
+        switch self {
+        case .barCartBarCabinet, .glasswareDisplay, .wineDrinkStorage: return true
+        }
+    }
     var subTask: (any SubTaskType)? {
         return nil
     }
     var subTaskTypes: [SubTaskTypeBox] {
-    return []
+        switch self {
+        case .barCartBarCabinet, .glasswareDisplay, .wineDrinkStorage:
+            return [
+                SubTaskTypeBox(DiningRoomSubTaskType.accessories)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.clean)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.declutter)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.organize)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.polish)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.repairsAndUpdates)!,
+                SubTaskTypeBox(DiningRoomSubTaskType.tableLinens)!
+                
+            ]
+        }
     }
     
     static var SpaceType: [any SpaceType] {
