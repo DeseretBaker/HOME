@@ -28,7 +28,6 @@
 		C564B6112C63182400AA2A69 /* Subtask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6102C63182400AA2A69 /* Subtask.swift */; };
 		C564B6132C63184500AA2A69 /* Minitask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6122C63184500AA2A69 /* Minitask.swift */; };
 		C564B6152C631C8100AA2A69 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6142C631C8100AA2A69 /* SyncManager.swift */; };
-		C564B6202C6858F300AA2A69 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B61F2C6858F300AA2A69 /* ProjectView.swift */; };
 		C564B6222C686A1000AA2A69 /* BaseProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */; };
 		C583EBC32C90035B00C2C8C1 /* CheckableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583EBC22C90035B00C2C8C1 /* CheckableItem.swift */; };
 		C583EC392C92731D00C2C8C1 /* Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583EC382C92731D00C2C8C1 /* Progressable.swift */; };
@@ -85,7 +84,6 @@
 		C564B6102C63182400AA2A69 /* Subtask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtask.swift; sourceTree = "<group>"; };
 		C564B6122C63184500AA2A69 /* Minitask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Minitask.swift; sourceTree = "<group>"; };
 		C564B6142C631C8100AA2A69 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
-		C564B61F2C6858F300AA2A69 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProjectsView.swift; sourceTree = "<group>"; };
 		C583EBC22C90035B00C2C8C1 /* CheckableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableItem.swift; sourceTree = "<group>"; };
 		C583EC382C92731D00C2C8C1 /* Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progressable.swift; sourceTree = "<group>"; };
@@ -122,6 +120,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ABCsOfOrganizing.swift,
+				Animated.swift,
 				CardView.swift,
 				CardViewInstances.swift,
 				CustomViewsForItems.swift,
@@ -276,7 +275,6 @@
 				C564B5E82C5EDFC900AA2A69 /* ProjectController.swift */,
 				C564B5E62C5ECBFC00AA2A69 /* ContentView.swift */,
 				C5B911C12C89542C00850F2E /* ProfileView.swift */,
-				C564B61F2C6858F300AA2A69 /* ProjectView.swift */,
 				C564B6212C686A1000AA2A69 /* BaseProjectsView.swift */,
 				C564B60A2C63173E00AA2A69 /* ListView  */,
 				C564B6082C63172100AA2A69 /* SelectionView */,
@@ -454,7 +452,6 @@
 				C59E608A2C84F15400B77B26 /* SubTaskTypes.swift in Sources */,
 				C59E608C2C84FB5100B77B26 /* MiniTaskTypes.swift in Sources */,
 				C59E60862C84E68E00B77B26 /* RoomType.swift in Sources */,
-				C564B6202C6858F300AA2A69 /* ProjectView.swift in Sources */,
 				C564B5F92C61C57700AA2A69 /* appDelegate.swift in Sources */,
 				C59E60842C84E53B00B77B26 /* ProjectType.swift in Sources */,
 				C59E60902C84FDFB00B77B26 /* BaseProjectsController.swift in Sources */,

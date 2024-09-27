@@ -44,8 +44,8 @@ class BaseProjectsController: ObservableObject {
         let projects = projectTypes.map { projectType in
             let project = Project(
                 projectType: projectType,
-                instructions: "Instructions for \(projectType.name)",
-                usageDescription: "Description for \(projectType.name)",
+                instructions: projectType.instructions,
+                usageDescription: projectType.usageDescription,
                 rooms: DataLoader.loadRooms(for: projectType)
             )
             modelContext.insert(project)

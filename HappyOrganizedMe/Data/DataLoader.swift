@@ -23,8 +23,8 @@ class DataLoader {
             let rooms = loadRooms(for: projectType)
             return Project(
                 projectType: projectType,
-                instructions: projectType.instructions ?? "Instructions for \(projectType.name)",
-                usageDescription: projectType.usageDescription ?? "Usage for \(projectType.name)",
+                instructions: projectType.instructions,
+                usageDescription: projectType.usageDescription,
                 rooms: rooms
             )
         }

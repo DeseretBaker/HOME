@@ -64,9 +64,9 @@ struct CardView<Item: Displayable>: View {
                 Button(action: {
                     showInstructionsSheet = true // Show instructions sheet
                 }) {
-                    Text("I")
+                    AnimatedBullseyeView()
                         .font(.footnote)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(minWidth: 30, maxWidth: 30)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
@@ -78,9 +78,9 @@ struct CardView<Item: Displayable>: View {
                 Button(action: {
                     showUsageDescriptionSheet = true // Show usage description sheet
                 }) {
-                    Text("U")
+                    AnimatedBullseyeView()
                         .font(.footnote)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(minWidth: 30, maxWidth: 30)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
@@ -98,10 +98,10 @@ struct CardView<Item: Displayable>: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(item.name), Progress: \(String(format: "%.0f", item.progress))%, \(item.isCompleted ? "Completed" : "In Progress")")
         .sheet(isPresented: $showInstructionsSheet) {
-            InstructionSheetView(title: "Instructions", content: item.instructions)
+            InstructionSheetView(title: "How & Why", content: item.instructions)
         }
         .sheet(isPresented: $showUsageDescriptionSheet) {
-            InstructionSheetView(title: "Usage Description", content: item.usageDescription)
+            InstructionSheetView(title: "Why & How", content: item.usageDescription)
         }
     }
 }
