@@ -17,16 +17,16 @@ struct AnimatedBullseyeView: View {
         ZStack {
             // Outer Circle
             Circle()
-                .strokeBorder(Color.gray, lineWidth: 8)
-                .frame(width: 150, height: 150)
+                .strokeBorder(Color.gray, lineWidth: 6)
+                .frame(width: 30, height: 30)
                 .scaleEffect(animate ? 1.2 : 1.0)
                 .opacity(animate ? 0.5 : 1.0)
                 .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: animate)
             
             // Middle Circle
             Circle()
-                .strokeBorder(Color.white, lineWidth: 6)
-                .frame(width: 100, height: 100)
+                .strokeBorder(Color.white, lineWidth: 4)
+                .frame(width: 25, height: 25)
                 .scaleEffect(animate ? 1.1 : 1.0)
                 .opacity(animate ? 0.5 : 1.0)
                 .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: animate)
@@ -34,7 +34,7 @@ struct AnimatedBullseyeView: View {
             // Inner Circle
             Circle()
                 .fill(Color.white)
-                .frame(width: 50, height: 50)
+                .frame(width: 15, height: 15)
         }
         .onAppear {
             animate = true

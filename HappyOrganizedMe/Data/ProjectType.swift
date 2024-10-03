@@ -84,12 +84,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     /// A weight value representing the priority or importance of the project type.
     var weight: Double {
         switch self {
-        case .kitchen, .garage: return 5
-        case .bathroom, .storage: return 4
-        case .office, .playroom, .bedroom: return 3
-        case .livingRoom: return 2
-        case .diningRoom: return 1
-        case .unknown: return 0
+        case .kitchen, .garage, .bathroom, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .unknown: return 2.0
         }
     }
     var progress: Double {

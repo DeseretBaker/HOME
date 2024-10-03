@@ -25,41 +25,41 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
     var instructions: String {
         switch self {
         case .prepZone:
-            return "Clean and sanitize"
+            return "Set up your kitchen prep zone by organizing cutting boards, knives, measuring cups, and mixing bowls within easy reach. Keep your frequently used ingredients and utensils nearby for seamless meal preparation."
         case .cookingZone:
-            return "Use a good degreaser and clean all surfaces"
+            return "Arrange your cooking zone around the stove or oven, keeping pots, pans, cooking utensils, spices, and oils within arm’s reach. Store essentials in nearby drawers or shelves for quick access."
         case .cleaningZone:
-            return "Wipe bottles off after using"
+            return "Set up your cleaning zone around the sink or dishwasher, keeping dish soap, sponges, brushes, and towels within easy reach. Store cleaning supplies under the sink or in a nearby cabinet for quick access."
         case .foodStorageZone:
-            return "Don't go overboard"
+            return "Organize your food storage zone by grouping pantry items, canned goods, spices, and dry ingredients together. Use clear containers or labeled bins to keep similar items together and store them in cabinets, shelves, or a dedicated pantry."
         case .cookwareZone:
-            return "keep cookware clean"
+            return "Arrange your cookware zone by storing pots, pans, baking sheets, and lids in cabinets or drawers near the stove or cooking area. Use dividers, racks, or nested stacking to maximize space and keep items easily accessible."
         case .servingZone:
-            return "Keep serving area clean"
+            return "Set up your serving zone by organizing plates, bowls, serving platters, utensils, and glassware in cabinets or shelves near your dining area. Use trays, racks, or organizers to keep everything in order and within reach."
         case .bakingZone:
-            return "Keep baking area clean"
+            return "Arrange your baking tools, mixing bowls, measuring cups, baking sheets, and ingredients in a designated cabinet or drawer close to your prep area. Use containers for flour, sugar, and other essentials, and keep your mixer and rolling pins nearby."
         case .drinkZone:
-            return "keep drink area clean, wipe down regularly"
+            return "Set up a section in your kitchen with your coffee maker, kettle, mugs, glasses, and drink essentials like tea bags, coffee pods, sugar, and stirrers. Keep everything neatly arranged on a tray or in nearby cabinets and drawers for easy access."
         }
     }
     var usageDescription: String {
         switch self {
         case .prepZone:
-            return "Prep Zone: This area is where you prepare food, such as chopping vegetables and mixing ingredients. It typically includes counter space, knives, cutting boards, mixing bowls, and other prep tools."
+            return "A well-organized prep zone streamlines cooking, saving you time and effort. It keeps everything you need at your fingertips, making meal prep efficient, enjoyable, and stress-free."
         case .cookingZone:
-            return "Cooking Zone: This zone is dedicated to actual cooking. It includes the stove, oven, microwave, and often the countertop nearby for easy access to pots, pans, and cooking utensils."
+            return "An organized cooking zone enhances efficiency, allowing you to focus on cooking without unnecessary steps. It ensures that everything you need is right at hand, making the cooking process smoother and more enjoyable."
         case .cleaningZone:
-            return "Cleaning Zone: The cleaning zone usually revolves around the sink and dishwasher. It’s where you wash dishes, prepare ingredients that need rinsing, and dispose of waste. It should be near the garbage, recycling, and cleaning supplies."
+            return "An organized cleaning zone streamlines your kitchen cleanup, making it faster and more efficient. It ensures that all cleaning essentials are readily available, helping you maintain a tidy and hygienic kitchen with ease."
         case .foodStorageZone:
-            return "Storage Zone (Food): This zone includes areas for storing food like the pantry, cabinets, or the fridge. It’s where dry goods, canned goods, spices, and refrigerated/frozen items are kept."
+            return " A well-organized food storage zone makes it easy to find ingredients, reducing meal prep time and minimizing waste. It ensures your kitchen stays tidy and that you always know what you have on hand for cooking."
         case .cookwareZone:
-            return "Storage Zone (Cookware/Utensils): This zone is for storing pots, pans, lids, baking sheets, and cooking utensils. Ideally, it’s near the cooking zone for easy access while cooking."
+            return "An organized cookware zone ensures you can quickly grab the right tools for cooking, making meal prep smoother and more efficient. It saves time and keeps your kitchen functional and clutter-free."
         case .servingZone:
-            return "Serving Zone: This area may include dishes, utensils, glasses, and serving platters. It’s often near the dining table or kitchen island where food is plated and served."
+            return "An organized serving zone makes it easy to plate and serve meals, streamlining the process during family dinners or gatherings. It helps create a more enjoyable and efficient dining experience."
         case .bakingZone:
-            return "Baking Zone: If you do a lot of baking, you may want a specific zone for this. It could include a section of counter space along with storage for mixing bowls, measuring cups, baking sheets, and specialized equipment like mixers."
+            return "A well-organized baking zone allows for easy access to tools and ingredients, making your baking process smoother and more enjoyable. It ensures you have everything you need within reach, saving time and reducing mess."
         case .drinkZone:
-            return "For coffee (Hot Cocoa) or tea lovers, having a dedicated space for brewing is convenient. It might include a coffee maker, kettle, mugs, and supplies like sugar, tea bags, or coffee beans. This works for both hot and cold beverages."
+            return "A dedicated drink zone helps streamline your beverage preparation, making it quick and convenient to grab a morning coffee or brew a cup of tea. It keeps all your drink essentials organized and in one place, saving time and effort."
         }
     }
     var weight: Double { 5.0 }
@@ -73,22 +73,32 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
     }
     
     var spaceTypes: [SpaceTypeBox] {
-        switch self {
-        case .bakingZone, .cleaningZone, .cookingZone, .cookwareZone, .drinkZone, .foodStorageZone, .prepZone, .servingZone:
-            return [
-                SpaceTypeBox(KitchenSpaceType.drinkZoneKettles)!,
-                SpaceTypeBox(KitchenSpaceType.drinkZoneMugsTravelMugs)!,
-                SpaceTypeBox(KitchenSpaceType.drinkZoneSupplies)!
-            ]
+            switch self {
+            case .prepZone:
+                return KitchenSpaceType.prepZoneSpaces.map { SpaceTypeBox($0)! }
+            case .cookingZone:
+                return KitchenSpaceType.cookingZoneSpaces.map { SpaceTypeBox($0)! }
+            case .foodStorageZone:
+                return KitchenSpaceType.foodStorageZoneSpaces.map { SpaceTypeBox($0)! }
+            case .servingZone:
+                return KitchenSpaceType.servingZoneSpaces.map { SpaceTypeBox($0)! }
+            case .drinkZone:
+                return KitchenSpaceType.drinkZoneSpaces.map { SpaceTypeBox($0)! }
+            case .cleaningZone:
+                return KitchenSpaceType.cleaningZoneSpace.map { SpaceTypeBox($0)! }
+            case .cookwareZone:
+                return KitchenSpaceType.cookingZoneCookware.map { SpaceTypeBox($0)! }
+            case .bakingZone:
+                return KitchenSpaceType.cookwareZoneBaking.map  { SpaceTypeBox($0)! }
+            }
+        }
+        
+        // Provide all cases statically
+        static var allRoomTypes: [any RoomType] {
+            return KitchenRoomType.allCases.map { $0 as any RoomType }
         }
     }
-    
-    
-    // Provide all cases statically
-    static var allRoomTypes: [any RoomType] {
-        return KitchenRoomType.allCases.map { $0 as any RoomType}
-    }
-}
+
 enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     case diningZone = "Dining Room"
@@ -105,24 +115,24 @@ enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var instructions: String {
         switch self {
-        case .diningZone: return "String"
-        case .servingZone: return "String"
-        case .storageZone: return "String"
-        case .decorZone: return "String"
-        case .multiUse: return "String"
-        case .lightingZone: return "String"
-        case .drinkBar: return "String"
+        case .diningZone: return "The dining zone is where meals are served and shared. Arrange the table, chairs, and serving pieces for easy access and comfort, making mealtime smooth and enjoyable."
+        case .servingZone: return "Arrange your serving zone with platters, bowls, and serving utensils in a convenient location, such as a sideboard or nearby cabinet. Keep frequently used items easily accessible and group similar pieces together."
+        case .storageZone: return "Organize your dining room storage zone by neatly arranging tableware, linens, and serving pieces in cabinets, drawers, or shelves. Use containers or dividers to keep everything in its place."
+        case .decorZone: return "Arrange your dining room decor zone with items like candles, centerpieces, table runners, and seasonal decorations in a designated space such as a drawer, shelf, or cabinet. Keep similar items grouped together and within easy reach."
+        case .multiUse: return "Set up a multipurpose zone with flexible furniture, storage solutions, and versatile items like foldable chairs, a table with adjustable height, or a sideboard that can serve as a buffet, workspace, or craft station. Keep this zone organized with bins or baskets for easy access to items used for different activities."
+        case .lightingZone: return "Create a lighting zone with a combination of overhead fixtures, wall sconces, and table lamps. Use dimmable lights to adjust the ambiance and add candles for warmth and elegance during special occasions."
+        case .drinkBar: return "Set up a designated area with a small table, cart, or cabinet to hold glasses, bottles, and drink-making essentials. Include a variety of drink options, mixers, and accessories to make the space versatile for different occasions."
         }
     }
     var usageDescription: String {
         switch self {
-        case .diningZone: return "Dining Zone: This is the primary area, featuring the dining table and chairs. It’s where meals are served and eaten. Ideally, this zone is centrally located with enough space for seating and movement."
-        case .servingZone: return "Serving Zone: This area is dedicated to serving food and beverages. It might include a buffet table, sideboard, or a serving cart where dishes, drinks, and utensils are placed before or during the meal."
-        case .storageZone: return "Storage Zone (Tableware): This zone is for storing dining essentials such as dishes, glassware, utensils, and napkins. Cabinets, credenzas, or a china cabinet can be used to store these items when not in use."
-        case .decorZone: return "Decor/Display Zone: Many dining rooms feature decorative zones such as a display shelf, wall art, or a place to showcase items like vases, centerpieces, or plants. This zone adds personality and aesthetic appeal to the room."
-        case .multiUse: return "Multi-Use Zone: In modern homes, dining rooms can serve multiple purposes. This zone could be used for activities like working, studying, or doing crafts. It might feature a small desk, laptop station, or storage for office supplies when needed."
-        case .lightingZone: return "Lighting Zone: Lighting plays an important role in creating ambiance in a dining room. A lighting zone often centers around a chandelier or pendant lights above the dining table. Additional lighting, like floor or table lamps, can define different sections of the room."
-        case .drinkBar: return "Drinks/Bar Zone: If you entertain guests often, a drink or bar zone could be helpful. This area might include a bar cart or a small cabinet for storing wine, spirits, glassware, and accessories for making and serving drinks."
+        case .diningZone: return "A well-organized dining zone ensures that every meal feels welcoming and effortless, helping you create a warm atmosphere for family and guests."
+        case .servingZone: return "Having a dedicated and organized serving zone makes it effortless to set up and serve meals, ensuring a smooth and enjoyable dining experience for you and your guests."
+        case .storageZone: return "A well-organized storage zone ensures that all dining essentials are easy to find and ready to use, making meal prep and hosting smoother and more efficient."
+        case .decorZone: return "An organized decor zone makes it simple to refresh your dining room’s look for different occasions, allowing you to quickly create an inviting and stylish atmosphere for every meal or gathering."
+        case .multiUse: return "A well-organized multipurpose zone allows your dining room to adapt to various needs, from homework and crafts to hosting guests, ensuring it remains a functional and efficient space for every occasion."
+        case .lightingZone: return "Proper lighting enhances the dining experience, creating a welcoming and adaptable atmosphere. It ensures your dining room is well-lit for meals, entertaining, or any other activity while allowing you to set the perfect mood for any occasion."
+        case .drinkBar: return "A drink bar adds a touch of sophistication and convenience to your dining room, making it easy to serve beverages to guests and family. It encourages a social atmosphere and keeps drink-related items organized and accessible."
         }
     }
     var weight: Double { 1.0 }
@@ -167,28 +177,28 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var instructions: String {
         switch self {
-        case .bathingZone: return "Bathing Zone"
-        case .toiletZone: return "Toilet Zone"
-        case .vanitySinkZone: return "Vanity Sink Zone"
-        case .towelToiletries: return "Towel Toiletries"
-        case .groomingZone: return "Grooming Zone"
-        case .laundryZone: return "Laundry Zone"
-        case .dressingZone: return "Dressing Zone"
-        case .cleaningZone: return "Cleaning Zone"
-        case .relaxationZone: return "Relaxation Zone"
+        case .bathingZone: return "Organize your bathing zone with all essentials like soaps, shampoos, loofahs, and towels within easy reach. Use shelves, baskets, or shower caddies to keep everything tidy and accessible."
+        case .toiletZone: return "Keep the toilet zone organized by storing extra toilet paper, cleaning supplies, and hygiene items in nearby cabinets, baskets, or shelves. Use discreet storage solutions to maintain a tidy appearance."
+        case .vanitySinkZone: return "Organize the vanity sink zone by keeping daily essentials like toothbrushes, soap, skincare products, and towels neatly arranged. Use trays, drawer organizers, and small containers to keep items accessible yet clutter-free."
+        case .towelToiletries: return "Arrange towels and toiletries in easy-to-reach spaces using shelves, baskets, or cabinets. Roll towels for a spa-like feel and store toiletries in labeled containers to keep them organized."
+        case .groomingZone: return "Set up a dedicated space for grooming essentials like razors, hairdryers, brushes, and styling products. Use drawer organizers, trays, or containers to keep items neatly separated and accessible."
+        case .laundryZone: return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
+        case .dressingZone: return "Set up a section with hooks, hangers, or a small wardrobe for robes, pajamas, and other clothes. Include a mirror, a small bench, or a chair for convenience while dressing."
+        case .cleaningZone: return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
+        case .relaxationZone: return "Create a calming space with candles, essential oils, bath salts, and a comfortable seating area if space allows. Use shelves or baskets to store relaxation essentials like books, bath pillows, or soothing music."
         }
     }
     var usageDescription: String {
         switch self {
-        case .bathingZone: return "Bathing/Showering Zone: This zone includes the shower, bathtub, or a combination of both. It’s where you focus on personal hygiene, so it should be equipped with essentials like shower gels, soaps, shampoos, and towels. In more luxurious setups, this zone may also include a spa-like showerhead, soaking tub, or body jets."
-        case .toiletZone: return "Toileting Zone: The toilet area is often separated for privacy, either by a partial wall, door, or alcove. It might include storage for toilet paper, cleaning supplies, and hygiene products."
-        case .vanitySinkZone: return "Vanity/Sink Zone: This area is typically where the sink and vanity are located. It’s a multipurpose zone for brushing teeth, washing hands, and grooming. The vanity often has storage for toiletries, skincare products, and makeup, and the sink area may include mirrors, lighting, and space for daily use items."
-        case .towelToiletries: return "Storage Zone (Towels/Toiletries): A dedicated space for storing towels, washcloths, bathrobes, and extra toiletries is essential. This zone may include linen closets, shelving, or cabinets for organized storage of bathroom necessities."
-        case .groomingZone: return "Storage Zone (Towels/Toiletries): A dedicated space for storing towels, washcloths, bathrobes, and extra toiletries is essential. This zone may include linen closets, shelving, or cabinets for organized storage of bathroom necessities."
-        case .laundryZone: return "Laundry Zone: In some bathrooms, a laundry zone might be incorporated with a hamper for dirty clothes, and in larger setups, you might find a washer and dryer. This area is useful for keeping clothes organized and out of sight."
-        case .dressingZone: return "Dressing/Changing Zone: Some bathrooms are designed with enough space to serve as a dressing room. This zone might include a bench or chair, mirrors, and storage for clothes or accessories, providing a convenient spot for getting dressed after bathing."
-        case .cleaningZone: return "Cleaning Supply Zone: A small space dedicated to storing cleaning products, brushes, or other maintenance tools for the bathroom can keep the area tidy and organized. This is often located in under-sink cabinets or closets."
-        case .relaxationZone: return "Relaxation Zone: In luxurious or spa-inspired bathrooms, there may be a dedicated relaxation area with features like candles, bath salts, and soft lighting, aimed at creating a calming environment for unwinding."
+        case .bathingZone: return "A well-organized bathing zone creates a spa-like experience, making your bath time more relaxing and efficient. It helps maintain cleanliness, reduces clutter, and ensures that you have all your essentials at hand."
+        case .toiletZone: return "An organized toilet zone promotes cleanliness, convenience, and hygiene, ensuring that essential items are always within reach when needed while maintaining a neat and welcoming bathroom environment."
+        case .vanitySinkZone: return " A tidy vanity sink zone makes morning and evening routines smoother and more efficient, ensuring that everything you need is within reach. It also creates a clean, inviting space that feels organized and calming."
+        case .towelToiletries: return "Keeping towels and toiletries organized ensures that your bathroom stays clutter-free and functional. It also makes it easy to find what you need, creating a more relaxing and efficient bathroom experience."
+        case .groomingZone: return "A well-organized grooming zone streamlines your morning routine, making it easy to find everything you need. This helps reduce clutter and creates a more efficient, stress-free environment."
+        case .laundryZone: return "Having a dedicated laundry zone keeps dirty clothes off the floor and ensures everything needed for laundry is in one place. This organization helps maintain a tidy bathroom and makes laundry tasks more efficient."
+        case .dressingZone: return "A dedicated dressing zone streamlines your morning and evening routines, providing a comfortable, organized space to change clothes, keeping your bathroom tidy and clutter-free."
+        case .cleaningZone: return "A dedicated cleaning zone keeps your bathroom essentials organized and ensures that everything is within reach, making regular cleaning more efficient and keeping the space fresh and hygienic."
+        case .relaxationZone: return "A relaxation zone turns your bathroom into a personal spa, offering a retreat for unwinding and de-stressing, making it easy to enjoy moments of tranquility and self-care."
         }
     }
     var weight: Double { 4.0 }
@@ -234,37 +244,37 @@ enum LivingRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var instructions: String {
         switch self {
-        case .seatingSpace: return "Seating Space"
-        case .entertainSpace: return "Entertain Space"
-        case .relaxationSpace: return "Relaxation Space"
-        case .storageSpace: return "Storage Space"
-        case .workStudySpace: return "Work Study Space"
-        case .decorativeSpace: return "Decorative Space"
-        case .playSpace: return "Play Space"
-        case .converseSpace: return "Converse Space"
-        case .lightingSpace: return "Lighting Space"
+        case .seatingSpace: return "Arrange comfortable seating like sofas, chairs, and ottomans in a way that encourages conversation and relaxation. Include side tables, throw pillows, and blankets to enhance comfort and accessibility."
+        case .entertainSpace: return "Set up your TV, sound system, gaming consoles, or other media devices in a dedicated area. Include a media console, storage for remotes, and organize cables for a clean look. Arrange seating to face the entertainment center for optimal viewing."
+        case .relaxationSpace: return "Create a cozy nook with comfortable seating, soft blankets, pillows, and a side table for books or drinks. Add warm lighting, such as floor lamps or candles, to enhance the ambiance."
+        case .storageSpace: return "Incorporate storage solutions like shelves, cabinets, baskets, and storage ottomans to keep items organized and accessible. Use labeled bins or boxes for smaller items and dedicate spaces for electronics, books, and decor."
+        case .workStudySpace: return "Set up a desk or a designated table with a comfortable chair, good lighting, and essential supplies like notebooks, pens, and tech accessories. Use nearby shelves or organizers to keep documents and materials within reach."
+        case .decorativeSpace: return "Arrange decorative elements like artwork, plants, vases, candles, or photo frames on shelves, tables, or walls to enhance the room’s style. Use a variety of textures, colors, and shapes to create visual interest and personality."
+        case .playSpace: return "Set up a designated area with toy storage, a soft rug, and comfortable seating for kids to play. Include bins or baskets for easy cleanup, and consider adding a small table for crafts or games."
+        case .converseSpace: return "Arrange seating in a circular or semi-circular layout with chairs, sofas, and ottomans facing each other. Add a coffee table or side tables to create a cozy and inviting space for chats."
+        case .lightingSpace: return "Use a combination of overhead lights, floor lamps, table lamps, and accent lighting to create layers of light throughout the living room. Place lighting near seating areas, reading spots, and decorative elements to highlight key areas."
         }
     }
     var usageDescription: String {
         switch self {
         case .seatingSpace:
-            return "Seating Space: This is the main area for sitting and relaxing, typically centered around a sofa, chairs, or sectional. It may also include coffee tables, side tables, and entertainment centers. This is where most of the lounging, conversations, and TV watching happens."
+            return "The seating zone is the heart of the living room, providing a welcoming space for family gatherings, entertaining guests, or simply unwinding, making it a cozy and functional area for everyone."
         case .entertainSpace:
-            return "Entertain Space: This zone is focused on media and entertainment, often featuring a TV, sound system, gaming console, or bookshelf. It might also include storage for remotes, controllers, or movies. This zone is often aligned with the seating area for optimal viewing."
+            return "An entertainment zone transforms your living room into a fun and engaging space, perfect for movie nights, gaming sessions, or watching your favorite shows, making it a hub of relaxation and enjoyment for everyone."
         case .relaxationSpace:
-            return "Relaxation Space: A cozy corner or nook with a comfortable chair, ottoman, or chaise lounge and good lighting can serve as a dedicated reading area. This zone might also include a small side table for books or a cup of coffee and a lamp for task lighting."
+            return "A relaxing zone provides a peaceful retreat within your living room, allowing you to unwind, read, or simply enjoy some quiet time, making it an inviting space to recharge and de-stress."
         case .storageSpace:
-            return "Storage Space: This area is for organizing and storing items like blankets, pillows, books, and toys. It could feature shelves, cabinets, or storage baskets discreetly placed throughout the room to keep it tidy and organized."
+            return "Storage zones help maintain a clutter-free living room, making it easier to find what you need while keeping the space tidy and functional. It maximizes your room’s potential, ensuring everything has a designated place."
         case .workStudySpace:
-            return "Work/Study Space: In modern living rooms, this zone may include a small desk, laptop station, or a designated area for remote work or study. It’s often tucked into a corner or along a wall to minimize disruption to the main living space."
+            return "A dedicated work or study zone in the living room creates a focused environment for productivity while allowing you to stay connected with the household. It ensures a functional balance between relaxation and efficiency in a shared space."
         case .decorativeSpace:
-            return "Decorative Space: This zone is for displaying art, plants, or personal items that enhance the ambiance of the room. It might include a mantle, floating shelves, or decorative tables where plants, sculptures, candles, or picture frames are displayed."
+            return "A well-curated decor zone adds character, warmth, and a personal touch to your living room. It transforms the space into an inviting and aesthetically pleasing area, making it feel more like home."
         case .playSpace:
-            return "Play Space (for kids or pets): If you have children or pets, this zone is designated for their toys and activities. It could be a corner with a toy bin or a small rug where kids can play while still being part of the living room activities."
+            return "A dedicated play zone keeps toys and activities contained, making it easier to maintain a tidy living room. It also provides a safe, fun space where children can play, encouraging creativity and independent playtime."
         case .converseSpace:
-            return "Conversation Space: While the seating area might also function as a conversation zone, in larger living rooms, you can create a separate, more intimate space for conversations. It could feature two armchairs and a small table, placed away from the TV for a quieter, social area."
+            return "A well-designed conversation zone encourages social interaction and connection, making it easy for family and friends to engage in meaningful conversations. It helps create a warm and welcoming atmosphere, turning your living room into a space where memories are made."
         case .lightingSpace:
-            return "Lighting Space: Lighting zones are key in living rooms to set different moods. Overhead lighting like chandeliers or recessed lighting, combined with table lamps or floor lamps, can define different areas for different activities, such as reading or watching TV."
+            return "Proper lighting zones enhance the mood, functionality, and ambiance of your living room. It allows you to adjust the lighting for different activities, from reading and relaxing to entertaining guests, making the space more versatile and inviting."
         }
     }
     var weight: Double { 2.0 }
@@ -311,45 +321,45 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     var instructions: String {
         switch self {
         case .sleepingZone:
-            return "This is a sleeping zone. It's a great place to relax and unwind."
+            return "Arrange a comfortable bed with cozy bedding, pillows, and blankets in the most peaceful part of the room. Use calming colors, soft lighting, and keep this area free from clutter."
         case .dresser:
-            return "This is a storage zone. It's a great place to store your belongings."
+            return "Organize your dressers by categorizing clothing items into designated drawers. Use dividers or small boxes to separate smaller items like socks, underwear, and accessories, keeping everything neat and accessible."
         case .closet:
-            return "This is a dressing zone. It's a great place to dress up and look your best."
+            return "Arrange your closet by grouping similar clothing items together—use hangers for dresses, shirts, and pants, and shelves or bins for folded items, shoes, and accessories. Consider using labels and storage boxes for seasonal or less frequently used items."
         case .readingZone:
-            return "This is a reading/relaxation zone. It's a great place to read and relax."
+            return "Set up a cozy chair or a small sofa in a quiet corner of your bedroom. Add a side table with a lamp for proper lighting and keep a basket or shelf nearby for your favorite books and magazines."
         case .studyZone:
-            return "This is a work/study zone. It's a great place to work and study."
+            return "Create a small workspace with a desk, comfortable chair, and adequate lighting. Keep essential supplies like notebooks, pens, and a laptop organized within reach, and add a pinboard or organizer for easy access to important notes."
         case .entertainment:
-            return "This is an entertainment space. It's a great place to entertain yourself."
+            return "Set up a TV, gaming console, or speakers in a corner of the bedroom, ensuring comfortable seating or pillows for relaxation. Use shelves or a media stand to organize remotes, DVDs, games, or other entertainment accessories."
         case .personalVanity:
-            return "This is a vanity/grooming zone. It's a great place to groom yourself."
+            return "Create a dedicated spot with a small table, mirror, and good lighting. Arrange makeup, skincare, and grooming tools in drawers or organizers to keep everything tidy and easily accessible."
         case .moodLighting:
-            return "This is a lighting zone. It's a great place to light up your space."
+            return "Incorporate different light sources such as bedside lamps, ceiling lights, reading lights, and accent lighting. Use dimmers or smart bulbs to adjust brightness and create various moods."
         case .underBed:
-            return "This is a storage zone. It's a great place to store your belongings."
+            return "Use storage bins, drawers, or rolling containers to maximize the space under your bed. Consider vacuum-sealed bags for seasonal items or bulky bedding to keep them organized and out of sight"
         }
     }
     var usageDescription: String {
         switch self {
         case .sleepingZone:
-            return "Sleeping Zone: The main zone, where the bed is placed, typically includes nightstands, bedside lamps, and anything else related to sleep. This area should be peaceful and free of distractions to promote relaxation and rest."
+            return "The sleeping zone is the heart of the bedroom, providing a restful retreat for relaxation and recharging. Creating a serene and comfortable sleeping area helps improve the quality of your sleep, promoting overall well-being and relaxation."
         case .dresser:
-            return "Storage Zone (Clothing): This zone includes closets, dressers, or wardrobes for storing clothes, shoes, and accessories. Organizing your clothing by type or season can make this zone more efficient and easy to use."
+            return "A well-organized dresser makes it easier to find your clothing, saving time and reducing stress. It keeps your bedroom tidy and ensures your clothes stay in good condition, making your morning routine smoother and more efficient."
         case .closet:
-            return "Dressing Zone: Often combined with the storage zone, this area is where you get dressed. It could include a mirror, seating (like a chair or bench), and easy access to clothes and accessories."
+            return "An organized closet maximizes space and makes finding outfits quick and easy. It keeps your clothing in good condition, reduces clutter, and helps you maintain a tidy, stress-free environment in your bedroom."
         case .readingZone:
-            return "Reading/Relaxation Zone: A cozy spot with a comfortable chair or small sofa, perfect for reading, relaxing, or having a quiet moment. This zone might also include a small table for books, a reading lamp, and a blanket for extra comfort."
+            return "A dedicated reading zone creates a relaxing space where you can unwind, escape, and enjoy some quiet time before bed, making your bedroom feel like a personal retreat."
         case .studyZone:
-            return "Work/Study Zone: In some bedrooms, especially multipurpose ones, a small desk or workspace is set up for working or studying. This zone should be separate from the sleeping area to maintain a distinction between rest and productivity."
+            return "A study zone in your bedroom provides a quiet, focused area for work, study, or personal projects, allowing you to be productive without leaving your personal space."
         case .entertainment:
-            return "Entertainment: If you have a TV, speakers, or other media devices, this area is dedicated to entertainment. It could include a media console or stand for organizing electronics and remotes."
+            return "An entertainment zone in your bedroom offers a cozy retreat for unwinding with movies, music, or games, making it a perfect spot for relaxation and downtime within your personal space."
         case .personalVanity:
-            return "Vanity/Grooming Zone: This zone includes a vanity table with a mirror for personal grooming and makeup application. It might include storage for cosmetics, hair products, and other grooming essentials."
+            return "A personal vanity provides a space for self-care routines, helping you feel pampered and organized as you start or end your day. It adds a touch of luxury and functionality to your bedroom."
         case .moodLighting:
-            return "Lighting Zone: Different lighting options can create specific zones for tasks. Overhead lights, bedside lamps, reading lights, and ambient lighting help define areas for sleep, reading, or relaxation."
+            return "Proper lighting zones enhance the bedroom’s functionality, allowing you to switch between tasks like reading, relaxing, or dressing. It adds ambiance, making the space feel cozy, calming, or energizing as needed."
         case .underBed:
-            return "Storage Zone (Linens/Extras): A designated space for storing extra blankets, pillows, sheets, and seasonal items. This can be in the form of under-bed storage, linen closets, or shelving units."
+            return " Under-bed storage helps utilize often-overlooked space, keeping the bedroom tidy and providing easy access to items you need but don’t use every day. It’s an efficient way to maintain organization without cluttering the room."
         }
     }
     var weight: Double { 3.0 }
@@ -395,30 +405,30 @@ enum StorageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     var imageName: String { rawValue }
     var instructions: String {
         switch self {
-        case .closetsZone: return "String"
-        case .utilityRoomZone: return "String"
-        case .atticBasementZone: return "String"
-        case .pantryZone: return "String"
-        case .laundryRoomZone: return "String"
-        case .mudroom: return "String"
-        case .cabinetsShelving: return "String"
-        case .underBedStorageZone: return "String"
-        case .builtInsWallUnitsStorageZone: return "String"
-        case .homeOfficeStorageZone: return "String"
+        case .closetsZone: return "Organize storage closets by categorizing items based on their purpose, such as clothing, linens, cleaning supplies, or seasonal decorations. Use shelves, bins, and hanging rods to maximize space, and label containers to ensure easy access and maintain order. Regularly declutter to keep the closet functional and tidy."
+        case .utilityRoomZone: return "Organize your utility room by grouping similar items together, such as cleaning supplies, tools, and laundry essentials. Use shelving, pegboards, hooks, and labeled containers to create designated spaces for each category. Ensure frequently used items are easily accessible, while less frequently used items can be stored on higher shelves."
+        case .atticBasementZone: return "Organize your attic or basement by dividing the space into zones based on item categories, such as seasonal decorations, rarely used items, memorabilia, or extra household supplies. Use sturdy shelving, clear labeled bins, and stackable containers to keep things accessible and neatly stored. Create pathways for easy access to each zone."
+        case .pantryZone: return "Organize your pantry by grouping similar items together, such as canned goods, grains, spices, snacks, and baking supplies. Use clear containers, labels, and tiered shelves to maximize visibility and accessibility. Place frequently used items at eye level and less-used items on higher or lower shelves."
+        case .laundryRoomZone: return "Organize your laundry storage by creating designated zones for sorting, washing, drying, and folding. Use bins or baskets for different types of laundry, shelves for detergent and supplies, and hangers or racks for air-drying clothes. Keep frequently used items within easy reach."
+        case .mudroom: return "Set up your mudroom with designated areas for shoes, coats, bags, and outdoor gear. Use hooks, cubbies, and shelves to keep items organized and off the floor. Add mats or trays for wet shoes and umbrellas, and baskets for smaller items like gloves or hats."
+        case .cabinetsShelving: return "Organize cabinets and shelving by grouping similar items together, using bins, baskets, or clear containers to keep everything tidy. Label each container and adjust shelves to fit different-sized items, ensuring frequently used items are within easy reach."
+        case .underBedStorageZone: return "Use storage bins, boxes, or vacuum-sealed bags to neatly store items under your bed. Opt for clear containers or label them to quickly identify what’s inside. Consider using rolling bins for easy access."
+        case .builtInsWallUnitsStorageZone: return "Use built-in wall units to organize and display items like books, decor, electronics, or everyday essentials. Arrange items by category and use baskets or bins to keep smaller items neatly contained. Adjust shelves as needed for different-sized items."
+        case .homeOfficeStorageZone: return "Organize your home office storage by using cabinets, drawers, shelves, and file organizers. Store documents, office supplies, and electronics in designated spots, and label containers for easy access. Incorporate vertical storage solutions to maximize space."
         }
     }
     var usageDescription: String {
         switch self {
-        case .closetsZone: return "Closets: Closets are primary storage areas found in bedrooms, hallways, or entryways. They can be used for clothes, shoes, linens, coats, and seasonal items. Organized with shelves, drawers, and racks, they help maximize storage capacity."
-        case .utilityRoomZone: return "Garage/Utility Room: These zones are often used for larger storage needs, such as tools, outdoor equipment, sporting gear, and seasonal decorations. Shelving units, cabinets, and wall-mounted systems can help organize these areas effectively."
-        case .atticBasementZone: return "Attic/Basement: Attics and basements are typically used for long-term storage, such as keepsakes, holiday decorations, old furniture, or memorabilia. These zones benefit from durable shelving and labeled storage bins to keep things organized and accessible."
-        case .pantryZone: return "Pantry: A kitchen pantry is a food storage zone that can also house small appliances, cookware, and kitchen supplies. Well-organized pantries use shelves, pull-out drawers, and labeled containers to make finding ingredients and supplies easier."
-        case .laundryRoomZone: return "Laundry Room: The laundry room often serves as a storage zone for cleaning supplies, detergents, and laundry baskets. Cabinets, shelves, and hooks help to keep these items organized and out of sight."
-        case .mudroom: return "Mudroom/Entryway: This zone serves as storage for shoes, coats, bags, and outdoor accessories. Hooks, cubbies, and benches with storage can help keep this space tidy and functional, especially for households with children or pets."
-        case .cabinetsShelving: return "Cabinets/Shelving Units: Throughout the home, cabinets and shelves serve as versatile storage zones in living rooms, dining rooms, and bathrooms. These areas can hold anything from books and decor to towels, toiletries, and electronics."
-        case .underBedStorageZone: return "Under-Bed Storage: In bedrooms, the space under the bed can be a useful storage zone for out-of-season clothes, shoes, or extra bedding. Storage bins or roll-out drawers make the most of this hidden area."
-        case .builtInsWallUnitsStorageZone: return "Built-In Storage/Wall Units: Built-ins like entertainment centers, bookcases, or wall units are often used to store electronics, books, and personal items, helping to reduce clutter in living spaces."
-        case .homeOfficeStorageZone: return "Home Office Storage: For paperwork, office supplies, and electronics, a home office often features cabinets, filing drawers, and bookshelves. Keeping this zone organized with labeled files and trays helps maintain productivity."
+        case .closetsZone: return "A well-organized storage closet helps you find what you need quickly, saves time, and keeps your home clutter-free. It maximizes available space, making it easier to manage household essentials and ensures that everything has its designated place, improving overall efficiency and organization."
+        case .utilityRoomZone: return "An organized utility room streamlines household chores, making it easier to find what you need quickly. It maximizes space, prevents clutter, and ensures that essential tools and supplies are always within reach, helping to maintain a more efficient and orderly home."
+        case .atticBasementZone: return "A well-organized attic or basement prevents clutter and helps you quickly locate items when needed. It maximizes storage space, protects belongings from damage, and ensures that your stored items are safe, accessible, and easy to manage, making your home more functional and efficient."
+        case .pantryZone: return "A well-organized pantry makes meal prep easier, reduces food waste, and saves time by allowing you to quickly find what you need. It ensures you always know what ingredients you have on hand, making cooking more efficient and enjoyable."
+        case .laundryRoomZone: return "A well-organized laundry storage area streamlines the laundry process, saves time, and reduces stress. It ensures you have all your supplies in one place, making laundry tasks more efficient and helping maintain a clean, clutter-free space."
+        case .mudroom: return "An organized mudroom helps keep the rest of your home clean by providing a dedicated space for messy or wet items. It also ensures that essentials like shoes and jackets are easy to find when heading out, making your daily routine more efficient and stress-free."
+        case .cabinetsShelving: return "Cabinets and shelving provide valuable storage space and help keep your home clutter-free. By organizing these areas, you maximize storage efficiency, making it easier to find what you need quickly while keeping your living spaces neat and organized."
+        case .underBedStorageZone: return "The space under your bed is often underutilized but offers valuable storage. By organizing this area, you can keep seasonal clothes, shoes, bedding, or other items tucked away and out of sight, freeing up space in your closet or room."
+        case .builtInsWallUnitsStorageZone: return "Built-in wall units maximize vertical space and help keep your home organized while adding style and functionality. They provide ample storage without taking up floor space, making them perfect for displaying items or keeping belongings within easy reach."
+        case .homeOfficeStorageZone: return "A well-organized home office ensures a clutter-free, efficient workspace, making it easier to focus and be productive. Proper storage keeps important items within reach, reduces distractions, and helps maintain a professional, functional environment for work or study."
         }
     }
     var weight: Double { 4.0 }
@@ -464,30 +474,30 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     var imageName: String { rawValue }
     var instructions: String {
         switch self {
-        case .workstation: return "Workstation"
-        case .storageZones: return "Storage Zones"
-        case .technologyZone: return "Technology Zone"
-        case .meetingCollaborationZone: return "Collaboration Zone"
-        case .readingStudyZone: return "Reading Study Zone"
-        case .inspirationZone: return "Inspiration Zone"
-        case .mailDocumentHandling: return "Mail Documents"
-        case .referenceZone: return "Reference Zone"
-        case .breakRelaxationZone: return "Break Relaxation Zone"
-        case .taskLighting: return "Lighting Zone"
+        case .workstation: return "Set up your workstation with a desk, comfortable chair, and organized storage for essential items like your computer, notepads, and office supplies. Arrange frequently used tools within easy reach, and use cable organizers to keep cords tidy."
+        case .storageZones: return "Utilize shelves, cabinets, and filing systems to organize office supplies, documents, and equipment. Label containers and drawers to keep everything in its designated place, and use storage boxes for items you don’t need daily."
+        case .technologyZone: return "Organize your technology by setting up dedicated spots for your computer, printer, chargers, and other devices. Use cable management solutions to keep cords tidy, and regularly update and maintain your tech equipment."
+        case .meetingCollaborationZone: return "Arrange a designated area with comfortable seating, a table, and any necessary equipment like a whiteboard, monitor, or video conferencing setup. Ensure the space is well-lit and free from distractions."
+        case .readingStudyZone: return "Set up a cozy corner with a comfortable chair, a side table, good lighting, and organized shelves for books, documents, or study materials."
+        case .inspirationZone: return "Create an inspiration zone by displaying vision boards, artwork, motivational quotes, or items that spark creativity. Include a comfortable chair or standing space where you can brainstorm and reflect."
+        case .mailDocumentHandling: return "Set up a dedicated area with file organizers, trays, and folders for sorting, filing, and storing incoming and outgoing mail and important documents. Label everything clearly for quick access."
+        case .referenceZone: return "Create a designated space with shelves, filing cabinets, or binders to store reference materials, manuals, books, and important documents. Organize them by category or frequency of use."
+        case .breakRelaxationZone: return "Set up a comfortable chair or small sofa, add soft lighting, and include a side table for drinks or reading material. Incorporate calming elements like plants or a small water feature."
+        case .taskLighting: return "Use a combination of task lighting for your desk, ambient lighting to fill the room, and accent lighting to highlight key areas or decor. Consider adjustable lamps, overhead fixtures, and LED strips."
         }
     }
     var usageDescription: String {
         switch self {
-        case .workstation: return "Workstation: This is the primary area where the desk, computer, and chair are located. It should be ergonomically arranged for comfort, with adequate lighting and enough space for your computer, documents, and other work essentials."
-        case .storageZones: return "Storage Zones: A storage area for files, office supplies, and reference materials. This zone could include filing cabinets, shelves, and storage bins. Proper organization, like labeled folders or binders, helps keep the workspace clutter-free."
-        case .technologyZone: return "Technology Zone: This zone is for housing technology like printers, scanners, routers, and chargers. Keeping these items in one spot can minimize cord clutter and make it easy to access necessary equipment when needed."
-        case .meetingCollaborationZone: return "Meeting/Collaboration Zone: If your home office is used for virtual meetings or collaboration, a designated area for this is useful. This zone could include a comfortable chair, a webcam, and good lighting, with the background organized and professional for video calls."
-        case .readingStudyZone: return "Reading/Study Zone: A separate seating area with a comfortable chair and good lighting for reading, reviewing documents, or brainstorming. It could also feature a small table or a side table to keep books, notepads, and pens within reach."
-        case .inspirationZone: return "Inspiration Zone: For creative professionals, having a zone dedicated to brainstorming or artistic work can be helpful. This space might include a whiteboard, corkboard, or an art station for sketching ideas, planning, or visualizing projects."
-        case .mailDocumentHandling: return "Mail/Document Handling: An area for sorting mail, incoming documents, and outgoing paperwork. A small desk organizer, wall-mounted file system, or trays can keep things orderly and prevent papers from piling up."
-        case .referenceZone: return "Reference Zone: A dedicated area for books, manuals, or research materials. This zone could include bookshelves, a rolling cart, or a dedicated shelf near the desk for easy access to frequently used materials."
-        case .breakRelaxationZone: return "Break/Relaxation Zone: If space allows, a small area for short breaks can improve productivity. A comfortable chair, small sofa, or even a standing area where you can stretch or relax briefly might be beneficial for mental health and focus."
-        case .taskLighting: return "Lighting Zone: Proper lighting is essential for reducing eye strain and improving focus. The lighting zone could include task lighting, ambient lighting, and natural light sources. Desk lamps, floor lamps, or strategically placed windows can define this zone."
+        case .workstation: return "A well-organized workstation creates a productive environment that minimizes distractions and maximizes efficiency. It ensures you have everything you need at your fingertips, allowing you to focus, work efficiently, and maintain a comfortable posture throughout the day."
+        case .storageZones: return "Proper storage keeps your office clutter-free, making it easier to find what you need quickly. This organization boosts productivity, reduces stress, and helps maintain a professional and efficient workspace."
+        case .technologyZone: return "Keeping your technology organized ensures a smooth workflow, minimizes distractions, and helps maintain the efficiency and longevity of your devices, making your office a more productive and tech-friendly environment."
+        case .meetingCollaborationZone: return "A dedicated collaboration zone fosters teamwork, creativity, and effective communication, making it easier to brainstorm, discuss ideas, and work together efficiently during meetings or group projects."
+        case .readingStudyZone: return "A dedicated reading and study zone provides a quiet, focused space for research, learning, or reviewing documents, enhancing concentration and productivity in your home office."
+        case .inspirationZone: return "An inspiration zone fosters creativity and fresh ideas, providing a space to recharge, think freely, and stay motivated while working in your office."
+        case .mailDocumentHandling: return "A mail and document management zone helps maintain an organized, clutter-free workspace, ensuring you can easily find and manage essential papers, bills, and correspondence."
+        case .referenceZone: return "A reference zone keeps essential information and resources within reach, making it easier to find what you need quickly, improving efficiency and productivity in your office work."
+        case .breakRelaxationZone: return "A relaxation zone offers a break from work, reducing stress and boosting creativity. It provides a space to recharge, helping maintain productivity and overall well-being during long work hours."
+        case .taskLighting: return "Proper lighting enhances productivity, reduces eye strain, and creates a comfortable work environment. Different lighting zones help set the mood for various tasks, from focused work to relaxing or brainstorming sessions."
         }
     }
     var weight: Double { 3.0 }
@@ -533,30 +543,30 @@ enum GarageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var instructions: String {
         switch self {
-        case .parkingZone: return "String"
-        case .toolZone: return "String"
-        case .gardenOutdoorZone: return "String"
-        case .sportsActivityGearZone: return "String"
-        case .seasonalStorageZone: return "String"
-        case .householdStorageZone: return "String"
-        case .wasteRecyclingZone: return "String"
-        case .maintenanceZone: return "String"
-        case .mudroomLaundryZone: return "String"
-        case .overheadStorageZone: return "String"
+        case .parkingZone: return "Allocate a designated space for your vehicle(s) with clear markings or mats, ensuring there’s enough room to open doors and maneuver. Keep the area free of clutter by storing items off the floor on shelves or hooks."
+        case .toolZone: return "Organize tools on pegboards, in tool chests, or on shelving units, grouping them by type or function. Label drawers or containers for easy identification, and keep frequently used tools within arm’s reach."
+        case .gardenOutdoorZone: return "Store garden tools on wall-mounted racks, hooks, or in a dedicated corner with containers or bins. Group similar tools together and keep smaller items in labeled bins or drawers."
+        case .sportsActivityGearZone: return "Use wall-mounted racks, bins, or shelves to store sports gear. Group items by sport or activity and label containers for easy access. Consider using hooks for hanging items like bicycles, helmets, or bags."
+        case .seasonalStorageZone: return "Store seasonal or holiday items in clear, labeled bins and place them on high shelves or in overhead storage racks. Keep similar items together, such as decorations, lights, or outdoor gear, and group them by holiday or season."
+        case .householdStorageZone: return "Designate a section of the garage for storing household supplies like cleaning products, paper goods, light bulbs, and extra pantry items. Use shelves, cabinets, or bins to organize items by category, and label everything for easy access."
+        case .wasteRecyclingZone: return "Set up labeled bins or containers in a specific area of the garage for waste and recycling. Keep them easily accessible and separated by type (e.g., plastics, glass, paper, general trash) to encourage proper sorting. Consider wall-mounted racks or shelves to keep the area tidy."
+        case .maintenanceZone: return "Designate a specific area in the garage for maintenance supplies and equipment. Use pegboards, hooks, and shelves to organize tools, oils, cleaning agents, and other maintenance items. Keep frequently used items within easy reach and label containers for quick identification."
+        case .mudroomLaundryZone: return "Set up a section of the garage with shelves, hooks, and storage bins for shoes, coats, laundry supplies, and cleaning products. Install a bench for changing footwear and consider adding a laundry sink if space allows. Use labeled containers and baskets to keep everything organized."
+        case .overheadStorageZone: return "Utilize overhead racks, shelving units, or ceiling-mounted storage systems to store items such as seasonal decorations, luggage, and rarely used equipment. Ensure that heavier items are securely placed and lighter items are stored in labeled bins."
         }
     }
     var usageDescription: String {
         switch self {
-        case .parkingZone: return "String"
-        case .toolZone: return "String"
-        case .gardenOutdoorZone: return "String"
-        case .sportsActivityGearZone: return "String"
-        case .seasonalStorageZone: return "String"
-        case .householdStorageZone: return "String"
-        case .wasteRecyclingZone: return "String"
-        case .maintenanceZone: return "String"
-        case .mudroomLaundryZone: return "String"
-        case .overheadStorageZone: return "String"
+        case .parkingZone: return "A dedicated parking zone keeps your garage organized and ensures your vehicle is protected from dings, scratches, or damage. It also makes parking more efficient and allows for easy access to your car when needed."
+        case .toolZone: return "A well-organized tool zone ensures that you can quickly find the right tool for any job, saving time and reducing frustration. It also helps prevent damage to tools and creates a safer, more efficient workspace in your garage."
+        case .gardenOutdoorZone: return "Organizing garden tools in a designated zone prevents damage, keeps them easily accessible, and maximizes garage space. It ensures your gardening tasks are more efficient and helps maintain the longevity of your tools."
+        case .sportsActivityGearZone: return "Keeping sports gear organized ensures that equipment is easy to find and ready for use. It helps protect your gear from damage, maximizes garage space, and makes it easier to grab what you need for your next game or activity."
+        case .seasonalStorageZone: return "Organizing seasonal items keeps them protected and out of the way during off-seasons, freeing up garage space for everyday use. This makes it easy to access decorations or gear when needed, saving time and effort during holiday preparations or seasonal changes."
+        case .householdStorageZone: return "Storing household supplies in the garage frees up space in your home and ensures you have a dedicated spot for bulk items or extras. This organization helps you keep track of inventory, making it easier to restock and find what you need when needed."
+        case .wasteRecyclingZone: return "Having a dedicated waste and recycling zone in the garage keeps your home cleaner and makes it easier to manage trash and recyclables. It promotes eco-friendly habits and helps maintain an organized system for disposing of waste efficiently."
+        case .maintenanceZone: return "A maintenance zone ensures that all tools and supplies are organized and accessible when needed for car or home repairs. It streamlines maintenance tasks, reduces clutter, and saves time searching for the right tools, making upkeep more efficient and stress-free."
+        case .mudroomLaundryZone: return "Creating a mudroom or laundry area in the garage helps keep dirt and clutter out of the main living areas. It provides a convenient spot to manage laundry, store outdoor clothing, and keep messes contained, making your home cleaner and more organized."
+        case .overheadStorageZone: return "Overhead storage maximizes vertical space in the garage, freeing up floor and wall areas for easier access to everyday items. This method keeps infrequently used items out of the way while ensuring your garage remains organized and functional."
     }
 }
     var weight: Double { 5.0 }
@@ -607,29 +617,29 @@ enum PlayroomRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
     
     var instructions: String {
         switch self {
-        case .toyStorageZone: return "String"
-        case .artsCraftZone: return "String"
-        case .readingQuietZone: return "String"
-        case .buildingConstructionZone: return "String"
-        case .pretendPlayZone: return "String"
-        case .puzzleBoardGameZone: return "String"
-        case .physicalActivityZone: return "String"
-        case .musicPerformanceZone: return "String"
-        case .sensoryPlayZone: return "String"
-        case .homeworkStudyZone: return "String"
-        case .technologyScreenZone: return "String"
-        case .outdoorPlayZone: return "String"
+        case .toyStorageZone: return "A well-organized toy zone encourages children to play independently and makes it easier for them to find their favorite toys. It also helps teach responsibility and makes tidying up a faster, more enjoyable task."
+        case .artsCraftZone: return "An organized arts and crafts zone fosters creativity and allows kids to easily access supplies. It also makes cleanup simple, encouraging kids to be more independent and responsible with their projects."
+        case .readingQuietZone: return "A dedicated reading or quiet zone encourages children to unwind, enjoy books, and develop a love for reading. It provides a peaceful space for relaxation and helps improve focus and literacy skills."
+        case .buildingConstructionZone: return "A building or construction zone fosters creativity, problem-solving skills, and fine motor development. It provides a hands-on, imaginative space for kids to experiment, design, and construct their own creations."
+        case .pretendPlayZone: return " dress-up zone encourages imaginative play, storytelling, and self-expression. It helps children develop social skills, creativity, and confidence as they explore different roles and scenarios."
+        case .puzzleBoardGameZone: return "A board game zone fosters family bonding, strategic thinking, and problem-solving skills. It provides a structured activity that encourages social interaction, teamwork, and fun, making it a great addition to any playroom."
+        case .physicalActivityZone: return "A physical activity zone promotes exercise, coordination, and energy release, helping kids stay active and healthy. It provides a dedicated space for movement and play, allowing them to burn off energy in a fun and controlled environment."
+        case .musicPerformanceZone: return "If your child enjoys music or performing, this zone can include musical instruments like a keyboard, drums, or maracas, as well as a stage area for pretend performances. It encourages creativity and expression."
+        case .sensoryPlayZone: return "Sensory Play Zone: A zone for sensory activities, ideal for younger children or those who benefit from tactile play. It can include a sand or water table, sensory bins filled with different textures (like rice or beans), or interactive sensory walls."
+        case .homeworkStudyZone: return "A quiet area for older children to work on homework or educational activities. This zone can feature a small desk, chair, and storage for school supplies like pencils, paper, and books. A calm environment helps with focus and learning."
+        case .technologyScreenZone: return "Technology/Screen Zone: If the playroom includes technology such as tablets, computers, or a TV, this zone should be a designated area with comfortable seating for screen time. It’s important to set boundaries for screen use to balance it with other activities."
+        case .outdoorPlayZone: return "Outdoor Play Zone (if space allows): If the playroom opens to an outdoor space, you can create an outdoor play zone with sandboxes, playhouses, or ride-on toys. This area encourages outdoor exploration and active play in nature."
         }
     }
     var usageDescription: String {
         switch self {
-        case .toyStorageZone: return "Toy Storage Zone: This area is dedicated to organizing and storing toys. It can include shelves, bins, baskets, or cubbies where toys are categorized by type (e.g., dolls, cars, building blocks). Labeling bins can help children learn to clean up and keep things organized."
-        case .artsCraftZone: return "Arts and Crafts Zone: A designated space for creativity where children can draw, paint, and create crafts. It might include a table, chairs, and storage for art supplies like markers, crayons, paper, glue, and scissors. Easy-to-clean surfaces are a good idea for this area."
-        case .readingQuietZone: return "Reading/Quiet Zone: A cozy corner with soft seating, like a beanbag or small sofa, for reading and quiet activities. This zone could feature bookshelves or a small bookcase with age-appropriate books, creating a peaceful space for children to enjoy stories."
-        case .buildingConstructionZone: return "Reading/Quiet Zone: A cozy corner with soft seating, like a beanbag or small sofa, for reading and quiet activities. This zone could feature bookshelves or a small bookcase with age-appropriate books, creating a peaceful space for children to enjoy stories."
-        case .pretendPlayZone: return "Reading/Quiet Zone: A cozy corner with soft seating, like a beanbag or small sofa, for reading and quiet activities. This zone could feature bookshelves or a small bookcase with age-appropriate books, creating a peaceful space for children to enjoy stories."
-        case .puzzleBoardGameZone: return "Puzzle and Board Game Zone: A zone for puzzles and board games that could include a small table and seating for playing these activities. Shelves or bins can organize board games and puzzle pieces, making them easy to access and put away."
-        case .physicalActivityZone: return "Physical Activity Zone: A space where children can be active. It could include soft play mats, climbing structures, balance beams, or even small trampolines or swings (if space allows). This area promotes movement and physical play."
+        case .toyStorageZone: return "A well-organized toy zone encourages children to play independently and makes it easier for them to find their favorite toys. It also helps teach responsibility and makes tidying up a faster, more enjoyable task."
+        case .artsCraftZone: return "An organized arts and crafts zone fosters creativity and allows kids to easily access supplies. It also makes cleanup simple, encouraging kids to be more independent and responsible with their projects."
+        case .readingQuietZone: return "A dedicated reading or quiet zone encourages children to unwind, enjoy books, and develop a love for reading. It provides a peaceful space for relaxation and helps improve focus and literacy skills."
+        case .buildingConstructionZone: return "A building or construction zone fosters creativity, problem-solving skills, and fine motor development. It provides a hands-on, imaginative space for kids to experiment, design, and construct their own creations."
+        case .pretendPlayZone: return "A dress-up zone encourages imaginative play, storytelling, and self-expression. It helps children develop social skills, creativity, and confidence as they explore different roles and scenarios."
+        case .puzzleBoardGameZone: return "A board game zone fosters family bonding, strategic thinking, and problem-solving skills. It provides a structured activity that encourages social interaction, teamwork, and fun, making it a great addition to any playroom."
+        case .physicalActivityZone: return "A physical activity zone promotes exercise, coordination, and energy release, helping kids stay active and healthy. It provides a dedicated space for movement and play, allowing them to burn off energy in a fun and controlled environment."
         case .musicPerformanceZone: return "Music and Performance Zone: If your child enjoys music or performing, this zone can include musical instruments like a keyboard, drums, or maracas, as well as a stage area for pretend performances. It encourages creativity and expression."
         case .sensoryPlayZone: return "Sensory Play Zone: A zone for sensory activities, ideal for younger children or those who benefit from tactile play. It can include a sand or water table, sensory bins filled with different textures (like rice or beans), or interactive sensory walls."
         case .homeworkStudyZone: return "Homework/Study Zone: A quiet area for older children to work on homework or educational activities. This zone can feature a small desk, chair, and storage for school supplies like pencils, paper, and books. A calm environment helps with focus and learning."

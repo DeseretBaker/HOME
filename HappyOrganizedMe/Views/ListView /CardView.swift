@@ -66,7 +66,7 @@ struct CardView<Item: Displayable>: View {
                 }) {
                     AnimatedBullseyeView()
                         .font(.footnote)
-                        .frame(minWidth: 30, maxWidth: 30)
+                        .frame(minWidth: 30, maxWidth: 80)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
@@ -80,7 +80,7 @@ struct CardView<Item: Displayable>: View {
                 }) {
                     AnimatedBullseyeView()
                         .font(.footnote)
-                        .frame(minWidth: 30, maxWidth: 30)
+                        .frame(minWidth: 30, maxWidth: 80)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
