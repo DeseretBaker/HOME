@@ -205,132 +205,106 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         switch self {
         case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+                SubTaskTypeBox(PlayroomSubTaskType.playroomZoneSpace)!
             ]
         case .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+                SubTaskTypeBox(PlayroomSubTaskType.playroomExplorationSpace)!
             ]
         case .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+                SubTaskTypeBox(PlayroomSubTaskType.playroomTechZoneSpace)!
             ]
         case .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+                SubTaskTypeBox(PlayroomSubTaskType.playroomStudyZoneSpace)!
             ]
         case .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+                
+                SubTaskTypeBox(PlayroomSubTaskType.playroomSensoryZoneSpace)!
             ]
         case .instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+        
+                SubTaskTypeBox(PlayroomSubTaskType.playroomPerformanceZoneSpace)!
             ]
         case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+
+                SubTaskTypeBox(PlayroomSubTaskType.playroomActivityZoneSpace)!
             ]
         case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+
+                SubTaskTypeBox(PlayroomSubTaskType.playroomBoardGameZoneSpace)!
             ]
         case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+
+                SubTaskTypeBox(PlayroomSubTaskType.playroomImaginationZoneSpace)!
             ]
         case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+
+                SubTaskTypeBox(PlayroomSubTaskType.playroomBuildingZoneSpace)!
             ]
         case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+ 
+                SubTaskTypeBox(PlayroomSubTaskType.playroomQuietZoneSpace)!
             ]
         case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer:
             return [
-                SubTaskTypeBox(PlayroomSubTaskType.declutter)!,
-                SubTaskTypeBox(PlayroomSubTaskType.polish)!,
-                SubTaskTypeBox(PlayroomSubTaskType.tableLinens)!,
-                SubTaskTypeBox(PlayroomSubTaskType.clean)!,
-                SubTaskTypeBox(PlayroomSubTaskType.accessories)!,
-                SubTaskTypeBox(PlayroomSubTaskType.repairsAndUpdates)!,
-                SubTaskTypeBox(PlayroomSubTaskType.organize)!
+
+                SubTaskTypeBox(PlayroomSubTaskType.playroomCraftZoneSpace)!
             ]
         }
+    }
+    static var playroomZoneSpaces: [PlayroomSpaceType] {
+        return [.toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage]
+    }
+    static var playroomExplorationSpaces: [PlayroomSpaceType] {
+        return [.gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea]
+    }
+    static var playroomTechZoneSpaces: [PlayroomSpaceType] {
+        return [.deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer]
+    }
+    static var playroomStudyZoneSpaces: [PlayroomSpaceType] {
+        return [.deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf]
+    }
+    static var playroomSensoryZoneSpaces: [PlayroomSpaceType] {
+        return [.lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation]
+    }
+    static var playroomPerformanceZoneSpaces: [PlayroomSpaceType] {
+        return [.instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone]
+    }
+    static var playroomActivityZoneSpaces: [PlayroomSpaceType] {
+        return [.freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks]
+    }
+    static var playroomBoardGameZoneSpaces: [PlayroomSpaceType] {
+        return [.gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage]
+    }
+    static var playroomImaginationZoneSpaces: [PlayroomSpaceType] {
+        return [.dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror]
+    }
+    static var playroomBuildingZoneSpaces: [PlayroomSpaceType] {
+        return [.buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards]
+    }
+   static var playroomQuietZoneSpaces: [PlayroomSpaceType] {
+        return [.bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket]
+    }
+    static var playroomCraftZoneSpaces: [PlayroomSpaceType] {
+        return [.craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer]
     }
     static var SpaceType: [any SpaceType] {
         return PlayroomSpaceType.allCases.map { $0 as any SpaceType }
     }
 }
 
-
+//static var playroomScienceZoneSpaces: [PlayroomSpaceType] {
+//    return [.laboratory, .scienceShelf, .scienceTable, .testKitStorage]
+//}
 
 
 

@@ -200,6 +200,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             ]
         }
     }
+    
     static var SubTaskType: [any SubTaskType] {
         return KitchenSubTaskType.allCases.map { $0 as any SubTaskType }
     }
@@ -211,6 +212,31 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case bookshelf = "Bookshelf"
         case cornerShelves = "Corner Shelves"
         case ottoman = "Ottoman"
+        case pillowsBlankets = "Pillows & Blankets"
+        case mainSeatingSubTask = "Main Seating"
+        case gamingDecorSubTasks = "Gaming Decor"
+        case readingDecorSubTasks = "Reading Decor"
+        case surroundSound = "Surround Sound"
+        case tvMediaSubTask = "TV & Media"
+        case comfyChairSeating = "Comfy Chair"
+        case binsBaskets = "Bins & Baskets"
+        case cabinetShelvesSubTask = "Cabinet Shelves"
+        case accentLightingSubTask = "Accent Lighting"
+        case greeneryPlants = "Greenery & Plants"
+        case wallArtSubTasks = "Wall Art"
+        case playMatSubTask = "Play Mat"
+        case artsCraftSubTask = "Arts & Crafts"
+        case tvMediaDecor = "TV Media Decor"
+        case drawerSubTasks = "Drawer"
+        case gameAreaSubTasks = "Game Area"
+        case livingRoomToyStorage = "Living Room Toys"
+        case seatingSubTasks = "Seating"
+        case coffeeTableSubTasks = "Coffee Table"
+        case decorAccentSubTask = "Decor Accent"
+        case lightingSubTasks = "Lighting"
+        case taskLightingSubTask = "Task Lighting"
+        case lightingControlsSubTask = "Lighting Controls"
+        case deskSubTask = "Desk"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -218,6 +244,31 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
+            case .deskSubTask: return "String"
+            case .lightingControlsSubTask: return "String"
+            case .taskLightingSubTask: return "String"
+            case .lightingSubTasks: return "String"
+            case .decorAccentSubTask: return "String"
+            case .coffeeTableSubTasks: return "String"
+            case .seatingSubTasks: return "String"
+            case .livingRoomToyStorage: return "String"
+            case .gameAreaSubTasks: return "String"
+            case .drawerSubTasks: return "String"
+            case .tvMediaDecor: return "String"
+            case .artsCraftSubTask: return "String"
+            case .playMatSubTask: return "String"
+            case .wallArtSubTasks: return "String"
+            case .greeneryPlants: return "String"
+            case .accentLightingSubTask: return "String"
+            case .cabinetShelvesSubTask: return "String"
+            case .binsBaskets: return "String"
+            case .comfyChairSeating: return "String"
+            case .tvMediaSubTask: return "String"
+            case .surroundSound: return "String"
+            case .gamingDecorSubTasks: return "String"
+            case .readingDecorSubTasks: return "String"
+            case .mainSeatingSubTask: return "String"
+            case .pillowsBlankets: return "String"
             case .tables: return "String"
             case .floatingShelves: return "String"
             case .windowBoxSeat: return "String"
@@ -228,6 +279,31 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var usageDescription: String {
             switch self {
+            case .deskSubTask: return "String"
+            case .lightingControlsSubTask: return "String"
+            case .taskLightingSubTask: return "String"
+            case .lightingSubTasks: return "String"
+            case .decorAccentSubTask: return "String"
+            case .coffeeTableSubTasks: return "String"
+            case .seatingSubTasks: return "String"
+            case .livingRoomToyStorage: return "String"
+            case .gameAreaSubTasks: return "String"
+            case .drawerSubTasks: return "String"
+            case .tvMediaDecor: return "String"
+            case .artsCraftSubTask: return "String"
+            case .playMatSubTask: return "String"
+            case .wallArtSubTasks: return "String"
+            case .greeneryPlants: return "String"
+            case .accentLightingSubTask: return "String"
+            case .cabinetShelvesSubTask: return "String"
+            case .binsBaskets: return "String"
+            case .comfyChairSeating: return "String"
+            case .tvMediaSubTask: return "String"
+            case .surroundSound: return "String"
+            case .gamingDecorSubTasks: return "String"
+            case .readingDecorSubTasks: return "String"
+            case .mainSeatingSubTask: return "String"
+            case .pillowsBlankets: return "String"
             case .tables: return "String"
             case .floatingShelves: return "String"
             case .windowBoxSeat: return "String"
@@ -243,7 +319,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .tables, .floatingShelves, .windowBoxSeat, .bookshelf, .cornerShelves, .ottoman: return true
+            case .tables, .floatingShelves, .windowBoxSeat, .bookshelf, .ottoman, .cornerShelves, .pillowsBlankets, .mainSeatingSubTask, .gamingDecorSubTasks, .readingDecorSubTasks, .surroundSound, .tvMediaSubTask, .comfyChairSeating, .binsBaskets, .cabinetShelvesSubTask, .accentLightingSubTask, .greeneryPlants, .wallArtSubTasks, .playMatSubTask, .artsCraftSubTask, .tvMediaDecor, .drawerSubTasks, .gameAreaSubTasks, .livingRoomToyStorage, .seatingSubTasks, .coffeeTableSubTasks, .decorAccentSubTask, .lightingSubTasks, .taskLightingSubTask, .lightingControlsSubTask, .deskSubTask: return true
                 
             }
         }
@@ -254,10 +330,9 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .tables, .floatingShelves, .windowBoxSeat, .bookshelf, .cornerShelves, .ottoman:
-                return [
+            case .tables, .floatingShelves, .windowBoxSeat, .bookshelf, .cornerShelves, .ottoman, .pillowsBlankets, .mainSeatingSubTask, .gamingDecorSubTasks, .readingDecorSubTasks, .surroundSound, .tvMediaSubTask, .comfyChairSeating, .binsBaskets, .cabinetShelvesSubTask, .accentLightingSubTask, .greeneryPlants, .wallArtSubTasks, .playMatSubTask, .artsCraftSubTask, .tvMediaDecor, .drawerSubTasks, .gameAreaSubTasks, .livingRoomToyStorage, .seatingSubTasks, .coffeeTableSubTasks, .decorAccentSubTask, .lightingSubTasks, .taskLightingSubTask, .lightingControlsSubTask, .deskSubTask:
+                 return [
                     MiniTaskTypeBox(LivingRoomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(LivingRoomMiniTaskType.clean)!,
                     MiniTaskTypeBox(LivingRoomMiniTaskType.categorize)!,
                     MiniTaskTypeBox(LivingRoomMiniTaskType.group)!,
                     MiniTaskTypeBox(LivingRoomMiniTaskType.sort)!,
@@ -344,6 +419,11 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case officeBooks = "Office Books"
         case officeTechnology = "Office Technology"
         case storageInOffice = "Storage in Office"
+        case chillZone = "Chill Zone"
+        case theMailAndStuff = "The Mail and Stuff"
+        case inspirationSpace = "Inspiration Space"
+        case meetingZone = "Meeting Up"
+        case lightRight = "Light Right"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -351,18 +431,30 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
+            case .chillZone: return "Chill Zone"
+            case .inspirationSpace: return "Inspiration Space"
+            case .meetingZone: return "Meeting Zone"
+            case .lightRight: return "Light Right"
             case .setupDesk: return "Desk Setup"
             case .officeBooks: return "Office Books"
             case .officeTechnology: return "Office Technology"
             case .storageInOffice: return "Storage in Office"
+            case .theMailAndStuff: return "The Mail and Stuff"
+                
             }
         }
         var usageDescription: String {
             switch self {
+            case .lightRight: return "Light Right"
             case .setupDesk: return "Desk Setup"
             case .officeBooks: return "Office Books"
             case .officeTechnology: return "Office Technology"
             case .storageInOffice: return "Storage in Office"
+            case .chillZone: return "Chill Zone"
+            case .theMailAndStuff: return "The Mail and Stuff"
+            case .inspirationSpace: return "Inspiration Space"
+            case .meetingZone: return "Meeting Zone"
+                
             }
         }
         var weight: Double { 2.0 }
@@ -372,10 +464,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .setupDesk: return true
-            case .officeBooks: return true
-            case .officeTechnology: return true
-            case .storageInOffice: return true
+            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillZone, .inspirationSpace, .meetingZone, .theMailAndStuff: return true
             }
         }
         
@@ -385,37 +474,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .setupDesk:
-                return [
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.group)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.label)!
-                ]
-            case .officeBooks:
-                return [
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.group)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.label)!
-                ]
-            case .officeTechnology:
-                return [
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.group)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(DiningRoomMiniTaskType.label)!
-                ]
-            case .storageInOffice:
+            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillZone, .inspirationSpace, .meetingZone, .theMailAndStuff:
                 return [
                     MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
                     MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
@@ -507,6 +566,18 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case tableLinens = "Table Linens"
         case accessories = "Accessories"
         case repairsAndUpdates = "Repairs and Updates"
+        case playroomZoneSpace = "Playroom Zone Space"
+        case playroomExplorationSpace = "Playroom Exploration Space"
+        case playroomTechZoneSpace = "Playroom Tech Zone Space"
+        case playroomStudyZoneSpace = "Playroom Study Zone Space"
+        case playroomSensoryZoneSpace = "Playroom Sensory Zone Space"
+        case playroomPerformanceZoneSpace = "Playroom Performance Zone Space"
+        case playroomActivityZoneSpace = "Playroom Activity Zone Space"
+        case playroomBoardGameZoneSpace = "Playroom Board Game Zone Space"
+        case playroomImaginationZoneSpace = "Playroom Imagination Zone Space"
+        case playroomBuildingZoneSpace = "Playroom Building Zone Space"
+        case playroomQuietZoneSpace = "Playroom Quiet Zone Space"
+        case playroomCraftZoneSpace = "Playroom Craft Zone Space"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -514,6 +585,18 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
+            case .playroomCraftZoneSpace: return "Playroom Craft Zone Space"
+            case .playroomQuietZoneSpace: return "Playroom Quiet Zone Space"
+            case .playroomBuildingZoneSpace: return "Playroom Building Zone Space"
+            case .playroomImaginationZoneSpace: return "Playroom Imagination Zone Space"
+            case .playroomBoardGameZoneSpace: return "Playroom Board Game Zone Space"
+            case .playroomActivityZoneSpace: return "Playroom Activity Zone Space"
+            case .playroomPerformanceZoneSpace: return "Playroom Performance Zone Space"
+            case .playroomSensoryZoneSpace: return "Playroom Sensory Zone Space"
+            case .playroomStudyZoneSpace: return "Playroom Study Zone Space"
+            case .playroomTechZoneSpace: return "Playroom Tech Zone Space"
+            case .playroomExplorationSpace: return "Playroom Exploration Space"
+            case .playroomZoneSpace: return "Playroom Zone Space"
             case .declutter: return "Declutter your dining room"
             case .organize: return "Organize your dining room"
             case .clean: return "Clean your dining room"
@@ -525,6 +608,18 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var usageDescription: String {
             switch self {
+            case .playroomCraftZoneSpace: return "Playroom Craft Zone Space"
+            case .playroomQuietZoneSpace: return "Playroom Quiet Zone Space"
+            case .playroomBuildingZoneSpace: return "Playroom Building Zone Space"
+            case .playroomImaginationZoneSpace: return "Playroom Imagination Zone Space"
+            case .playroomBoardGameZoneSpace: return "Playroom Board Game Zone Space"
+            case .playroomActivityZoneSpace: return "Playroom Activity Zone Space"
+            case .playroomPerformanceZoneSpace: return "Playroom Performance Zone Space"
+            case .playroomSensoryZoneSpace: return "Playroom Sensory Zone Space"
+            case .playroomStudyZoneSpace: return "Playroom Study Zone Space"
+            case .playroomTechZoneSpace: return "Playroom Tech Zone Space"
+            case .playroomExplorationSpace: return "Playroom Exploration Space"
+            case .playroomZoneSpace: return "Playroom Zone Space"
             case .declutter: return "Declutter your dining room"
             case .organize: return "Organize your dining room"
             case .clean: return "Clean your dining room"
@@ -541,7 +636,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates: return true
+            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates, .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace: return true
                 
             }
         }
@@ -552,7 +647,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates:
+            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates, .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace:
                 return [
                     MiniTaskTypeBox(PlayroomMiniTaskType.remove)!,
                     MiniTaskTypeBox(PlayroomMiniTaskType.clean)!,
@@ -569,13 +664,14 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
     }
     enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case declutter = "Declutter"
-        case organize = "Organize"
-        case clean = "Clean"
-        case polish = "Polish"
-        case tableLinens = "Table Linens"
-        case accessories = "Accessories"
-        case repairsAndUpdates = "Repairs and Updates"
+        case bathingSpaces = "Bathing Surfaces"
+        case cleaningSuppliesSpaces = "Cleaning Supplies"
+        case toiletrySpaces = "Toiletry Spaces"
+        case towelStorageSpace = "Towel Storage Space"
+        case vanitySpace = "Vanity Space"
+        case laundrySpace = "Laundry Space"
+        case lightingSpaces = "Lighting Spaces"
+        case groomingZoneSpaces = "Grooming Zone Spaces"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -583,24 +679,26 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .bathingSpaces: return "clean the bathroom"
+            case .cleaningSuppliesSpaces: return "clean the bathroom"
+            case .toiletrySpaces: return "clean the bathroom"
+            case .towelStorageSpace: return "clean the bathroom"
+            case .vanitySpace: return "clean the bathroom"
+            case .laundrySpace: return "clean the bathroom"
+            case .lightingSpaces: return "clean the bathroom"
+            case .groomingZoneSpaces: return "clean the bathroom"
             }
         }
         var usageDescription: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .bathingSpaces: return "clean the bathroom"
+            case .cleaningSuppliesSpaces: return "clean the bathroom"
+            case .toiletrySpaces: return "clean the bathroom"
+            case .towelStorageSpace: return "clean the bathroom"
+            case .vanitySpace: return "clean the bathroom"
+            case .laundrySpace: return "clean the bathroom"
+            case .lightingSpaces: return "clean the bathroom"
+            case .groomingZoneSpaces: return "clean the bathroom"
             }
         }
         var weight: Double { 2.0 }
@@ -610,7 +708,14 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool{
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates: return true
+            case .bathingSpaces: return true
+            case .cleaningSuppliesSpaces: return true
+            case .toiletrySpaces: return true
+            case .towelStorageSpace: return true
+            case .vanitySpace: return true
+            case .laundrySpace: return true
+            case .lightingSpaces: return true
+            case .groomingZoneSpaces: return true
                 
             }
         }
@@ -620,7 +725,77 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates:
+            case .bathingSpaces:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .cleaningSuppliesSpaces:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .laundrySpace:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .lightingSpaces:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .toiletrySpaces:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .towelStorageSpace:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .vanitySpace:
+                return [
+                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+                ]
+            case .groomingZoneSpaces:
                 return [
                     MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
                     MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
@@ -632,18 +807,40 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
                 ]
             }
         }
+        static var bathingSubTask: [BathroomSubTaskType] {
+            return [.bathingSpaces]
+        }
+        static var groomingSubTask: [BathroomSubTaskType] {
+            return [.groomingZoneSpaces]
+        }
+        static var vanitySubTask: [BathroomSubTaskType] {
+            return [.vanitySpace]
+        }
+        static var laundrySubTask: [BathroomSubTaskType] {
+            return [.laundrySpace]
+        }
+        static var cleaningSpaceSubtask: [BathroomSubTaskType] {
+            return [.cleaningSuppliesSpaces]
+        }
+        static var lightZonesSubTask: [BathroomSubTaskType] {
+            return [.lightingSpaces]
+        }
+        static var toiletrySubTask: [BathroomSubTaskType] {
+            return [.toiletrySpaces]
+        }
+        static var towelStorageSubTask: [BathroomSubTaskType] {
+            return [.towelStorageSpace]
+        }
         static var SubTaskType: [any SubTaskType] {
             return BathroomSubTaskType.allCases.map { $0 as any SubTaskType }
         }
     }
+
     enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case declutter = "Declutter"
-        case organize = "Organize"
-        case clean = "Clean"
-        case polish = "Polish"
-        case tableLinens = "Table Linens"
-        case accessories = "Accessories"
-        case repairsAndUpdates = "Repairs and Updates"
+        case allTheClosets = "All the Closets"
+        case allTheNooks = "All the Nooks"
+        case longTermStorage = "Long-Term Storage"
+        
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -651,24 +848,16 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .allTheClosets: return "Organize all the closets."
+            case .allTheNooks: return "Organize all the nooks."
+            case .longTermStorage: return "Organize all the long-term storage."
             }
         }
         var usageDescription: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .allTheClosets: return "Organize all the closets."
+            case .allTheNooks: return "Organize all the nooks."
+            case .longTermStorage: return "Organize all the long-term storage."
             }
         }
         
@@ -679,7 +868,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates: return true
+            case .allTheClosets, .allTheNooks, .longTermStorage: return true
             }
         }
         
@@ -689,7 +878,27 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates:
+            case .allTheClosets:
+                return [
+                    MiniTaskTypeBox(StorageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.group)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.label)!
+                ]
+            case .allTheNooks:
+                return [
+                    MiniTaskTypeBox(StorageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.group)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(StorageMiniTaskType.label)!
+                ]
+            case .longTermStorage:
                 return [
                     MiniTaskTypeBox(StorageMiniTaskType.remove)!,
                     MiniTaskTypeBox(StorageMiniTaskType.clean)!,

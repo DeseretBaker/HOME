@@ -62,7 +62,7 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
             return "A dedicated drink zone helps streamline your beverage preparation, making it quick and convenient to grab a morning coffee or brew a cup of tea. It keeps all your drink essentials organized and in one place, saving time and effort."
         }
     }
-    var weight: Double { 5.0 }
+    var weight: Double { 2.0 }
     var progress: Double {
         return isCompleted ? 100.0 : 0.0
     }
@@ -73,40 +73,54 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
     }
     
     var spaceTypes: [SpaceTypeBox] {
-            switch self {
-            case .prepZone:
-                return KitchenSpaceType.prepZoneSpaces.map { SpaceTypeBox($0)! }
-            case .cookingZone:
-                return KitchenSpaceType.cookingZoneSpaces.map { SpaceTypeBox($0)! }
-            case .foodStorageZone:
-                return KitchenSpaceType.foodStorageZoneSpaces.map { SpaceTypeBox($0)! }
-            case .servingZone:
-                return KitchenSpaceType.servingZoneSpaces.map { SpaceTypeBox($0)! }
-            case .drinkZone:
-                return KitchenSpaceType.drinkZoneSpaces.map { SpaceTypeBox($0)! }
-            case .cleaningZone:
-                return KitchenSpaceType.cleaningZoneSpace.map { SpaceTypeBox($0)! }
-            case .cookwareZone:
-                return KitchenSpaceType.cookingZoneCookware.map { SpaceTypeBox($0)! }
-            case .bakingZone:
-                return KitchenSpaceType.cookwareZoneBaking.map  { SpaceTypeBox($0)! }
-            }
-        }
-        
-        // Provide all cases statically
-        static var allRoomTypes: [any RoomType] {
-            return KitchenRoomType.allCases.map { $0 as any RoomType }
+        switch self {
+        case .prepZone:
+            return KitchenSpaceType.prepZoneSpaces.map { SpaceTypeBox($0)! }
+        case .cookingZone:
+            return KitchenSpaceType.cookingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .foodStorageZone:
+            return KitchenSpaceType.foodStorageZoneSpaces.map { SpaceTypeBox($0)! }
+        case .servingZone:
+            return KitchenSpaceType.servingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .drinkZone:
+            return KitchenSpaceType.drinkZoneSpaces.map { SpaceTypeBox($0)! }
+        case .cleaningZone:
+            return KitchenSpaceType.cleaningZone.map { SpaceTypeBox($0)! }
+        case .cookwareZone:
+            return KitchenSpaceType.cookwareZone.map { SpaceTypeBox($0)! }
+        default: return []
         }
     }
+    static var kitchenPrepZoneRoom: [KitchenRoomType] {
+        return [.prepZone]
+    }
+    static var kitchenCookingZoneRoom: [KitchenRoomType] {
+        return [.cookingZone]
+    }
+    static var kitchenFoodStorageZoneRoom: [KitchenRoomType] {
+        return [.foodStorageZone]
+    }
+    static var kitchenServingZoneRoom: [KitchenRoomType] {
+        return [.servingZone]
+    }
+    static var kitchenDrinkZoneRoom: [KitchenRoomType] {
+        return [.drinkZone]
+    }
+    static var kitchenCleaningZoneRoom: [KitchenRoomType] {
+        return [.cleaningZone]
+    }
+    static var kitchenBakingZoneRoom: [KitchenRoomType] {
+        return [.bakingZone]
+    }
+    static var allRoomTypes: [any RoomType] {
+        return KitchenRoomType.allCases.map { $0 as any RoomType }
+    }
+}
 
 enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     case diningZone = "Dining Room"
-    case servingZone = "Serving Zone"
-    case storageZone = "Storage Zone"
-    case decorZone = "Decor Zone"
-    case multiUse = "Multi-Use"
-    case lightingZone = "Lighting Zone"
+    case multiUses = "Multi-Uses"
     case drinkBar = "Drink Bar"
     
     var id: UUID { UUID() }
@@ -115,61 +129,60 @@ enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var instructions: String {
         switch self {
-        case .diningZone: return "The dining zone is where meals are served and shared. Arrange the table, chairs, and serving pieces for easy access and comfort, making mealtime smooth and enjoyable."
-        case .servingZone: return "Arrange your serving zone with platters, bowls, and serving utensils in a convenient location, such as a sideboard or nearby cabinet. Keep frequently used items easily accessible and group similar pieces together."
-        case .storageZone: return "Organize your dining room storage zone by neatly arranging tableware, linens, and serving pieces in cabinets, drawers, or shelves. Use containers or dividers to keep everything in its place."
-        case .decorZone: return "Arrange your dining room decor zone with items like candles, centerpieces, table runners, and seasonal decorations in a designated space such as a drawer, shelf, or cabinet. Keep similar items grouped together and within easy reach."
-        case .multiUse: return "Set up a multipurpose zone with flexible furniture, storage solutions, and versatile items like foldable chairs, a table with adjustable height, or a sideboard that can serve as a buffet, workspace, or craft station. Keep this zone organized with bins or baskets for easy access to items used for different activities."
-        case .lightingZone: return "Create a lighting zone with a combination of overhead fixtures, wall sconces, and table lamps. Use dimmable lights to adjust the ambiance and add candles for warmth and elegance during special occasions."
+        case .diningZone: return "The dining zone is where meals are served and shared. Arrange the table, chairs, and serving pieces for easy access and comfort, making mealtime smooth and enjoyable. Arrange your serving zone with platters, bowls, and serving utensils in a convenient location, such as a sideboard or nearby cabinet. Keep frequently used items easily accessible and group similar pieces together. Organize your dining room storage zone by neatly arranging tableware, linens, and serving pieces in cabinets, drawers, or shelves. Use containers or dividers to keep everything in its place. Arrange your dining room decor zone with items like candles, centerpieces, table runners, and seasonal decorations in a designated space such as a drawer, shelf, or cabinet. Keep similar items grouped together and within easy reach."
+        case .multiUses: return "Set up a multipurpose zone with flexible furniture, storage solutions, and versatile items like foldable chairs, a table with adjustable height, or a sideboard that can serve as a buffet, workspace, or craft station. Keep this zone organized with bins or baskets for easy access to items used for different activities. Create a lighting zone with a combination of overhead fixtures, wall sconces, and table lamps. Use dimmable lights to adjust the ambiance and add candles for warmth and elegance during special occasions."
         case .drinkBar: return "Set up a designated area with a small table, cart, or cabinet to hold glasses, bottles, and drink-making essentials. Include a variety of drink options, mixers, and accessories to make the space versatile for different occasions."
         }
     }
     var usageDescription: String {
         switch self {
-        case .diningZone: return "A well-organized dining zone ensures that every meal feels welcoming and effortless, helping you create a warm atmosphere for family and guests."
-        case .servingZone: return "Having a dedicated and organized serving zone makes it effortless to set up and serve meals, ensuring a smooth and enjoyable dining experience for you and your guests."
-        case .storageZone: return "A well-organized storage zone ensures that all dining essentials are easy to find and ready to use, making meal prep and hosting smoother and more efficient."
-        case .decorZone: return "An organized decor zone makes it simple to refresh your dining room’s look for different occasions, allowing you to quickly create an inviting and stylish atmosphere for every meal or gathering."
-        case .multiUse: return "A well-organized multipurpose zone allows your dining room to adapt to various needs, from homework and crafts to hosting guests, ensuring it remains a functional and efficient space for every occasion."
-        case .lightingZone: return "Proper lighting enhances the dining experience, creating a welcoming and adaptable atmosphere. It ensures your dining room is well-lit for meals, entertaining, or any other activity while allowing you to set the perfect mood for any occasion."
+        case .diningZone: return "A well-organized dining zone ensures that every meal feels welcoming and effortless, helping you create a warm atmosphere for family and guests. Having a dedicated and organized serving zone makes it effortless to set up and serve meals, ensuring a smooth and enjoyable dining experience for you and your guests. A well-organized storage zone ensures that all dining essentials are easy to find and ready to use, making meal prep and hosting smoother and more efficient. An organized decor zone makes it simple to refresh your dining room’s look for different occasions, allowing you to quickly create an inviting and stylish atmosphere for every meal or gathering."
+        case .multiUses: return "A well-organized multipurpose zone allows your dining room to adapt to various needs, from homework and crafts to hosting guests, ensuring it remains a functional and efficient space for every occasion. Proper lighting enhances the dining experience, creating a welcoming and adaptable atmosphere. It ensures your dining room is well-lit for meals, entertaining, or any other activity while allowing you to set the perfect mood for any occasion."
         case .drinkBar: return "A drink bar adds a touch of sophistication and convenience to your dining room, making it easy to serve beverages to guests and family. It encourages a social atmosphere and keeps drink-related items organized and accessible."
         }
     }
-    var weight: Double { 1.0 }
+    var weight: Double { 2.0 }
     var progress: Double {
         return isCompleted ? 100.0 : 0.0
     }
     var isCompleted: Bool {
         switch self {
-        case .decorZone, .diningZone, .drinkBar, .lightingZone, .multiUse, .servingZone, .storageZone: return true
+        case .diningZone, .drinkBar, .multiUses: return true
         }
     }
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .decorZone, .diningZone, .drinkBar, .lightingZone, .multiUse, .servingZone, .storageZone:
-            return [
-                SpaceTypeBox(DiningRoomSpaceType.centerpieceDecor)!,
-                SpaceTypeBox(DiningRoomSpaceType.chairsSeating)!,
-                SpaceTypeBox(DiningRoomSpaceType.diningTable)!
-            ]
+        case .diningZone:
+            return DiningRoomSpaceType.diningZoneSpaces.map { SpaceTypeBox($0)! }
+            
+        case .drinkBar:
+            return DiningRoomSpaceType.drinkCartSpaces.map { SpaceTypeBox($0)! }
+            
+        case .multiUses:
+            return DiningRoomSpaceType.multiUseZoneSpaces.map { SpaceTypeBox($0)! }
         }
     }
-    
+    static var diningRoomDiningTableRoom: [DiningRoomType] {
+        return [.diningZone]
+    }
+    static var diningRoomDrinkBarRoom: [DiningRoomType] {
+        return [.drinkBar]
+    }
+    static var diningRoomMultiUsesRoom: [DiningRoomType] {
+        return [.multiUses]
+    }
     static var allRoomTypes: [any RoomType] {
         return DiningRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case bathingZone = "Bathing Zone"
-    case toiletZone = "Toilet Zone"
-    case vanitySinkZone = "Vanity Sink Zone"
-    case towelToiletries = "Towel Toiletries"
-    case groomingZone = "Grooming Zone"
+    case vanityZone = "Vanity Zone"
+    case towelsZone = "Towels Zone"
+    case toiletries = "Towel Toiletries"
     case laundryZone = "Laundry Zone"
-    case dressingZone = "Dressing Zone"
     case cleaningZone = "Cleaning Zone"
-    case relaxationZone = "Relaxation Zone"
     
     var id: UUID { UUID() }
     var name: String { rawValue }
@@ -178,27 +191,32 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     var instructions: String {
         switch self {
         case .bathingZone: return "Organize your bathing zone with all essentials like soaps, shampoos, loofahs, and towels within easy reach. Use shelves, baskets, or shower caddies to keep everything tidy and accessible."
-        case .toiletZone: return "Keep the toilet zone organized by storing extra toilet paper, cleaning supplies, and hygiene items in nearby cabinets, baskets, or shelves. Use discreet storage solutions to maintain a tidy appearance."
-        case .vanitySinkZone: return "Organize the vanity sink zone by keeping daily essentials like toothbrushes, soap, skincare products, and towels neatly arranged. Use trays, drawer organizers, and small containers to keep items accessible yet clutter-free."
-        case .towelToiletries: return "Arrange towels and toiletries in easy-to-reach spaces using shelves, baskets, or cabinets. Roll towels for a spa-like feel and store toiletries in labeled containers to keep them organized."
-        case .groomingZone: return "Set up a dedicated space for grooming essentials like razors, hairdryers, brushes, and styling products. Use drawer organizers, trays, or containers to keep items neatly separated and accessible."
-        case .laundryZone: return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
-        case .dressingZone: return "Set up a section with hooks, hangers, or a small wardrobe for robes, pajamas, and other clothes. Include a mirror, a small bench, or a chair for convenience while dressing."
-        case .cleaningZone: return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
-        case .relaxationZone: return "Create a calming space with candles, essential oils, bath salts, and a comfortable seating area if space allows. Use shelves or baskets to store relaxation essentials like books, bath pillows, or soothing music."
+        case .vanityZone: return "Organize the vanity sink zone by keeping daily essentials like toothbrushes, soap, skincare products, and towels neatly arranged. Use trays, drawer organizers, and small containers to keep items accessible yet clutter-free. Set up a dedicated space for grooming essentials like razors, hairdryers, brushes, and styling products. Use drawer organizers, trays, or containers to keep items neatly separated and accessible."
+        case .towelsZone:
+            return "Arrange towels and toiletries in easy-to-reach spaces using shelves, baskets, or cabinets. Roll towels for a spa-like feel and store toiletries in labeled containers to keep them organized. Keep the toilet zone organized by storing extra toilet paper, cleaning supplies, and hygiene items in nearby cabinets, baskets, or shelves. Use discreet storage solutions to maintain a tidy appearance."
+        case .laundryZone:
+            return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
+        case .cleaningZone:
+            return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
+            
+        case .toiletries:
+            return "Designate a space for toiletries, including shampoo, conditioner, soap, and toilet paper. Use shelves, hooks, or a compact toiletries cabinet to keep this zone organized and contained."
         }
     }
     var usageDescription: String {
         switch self {
-        case .bathingZone: return "A well-organized bathing zone creates a spa-like experience, making your bath time more relaxing and efficient. It helps maintain cleanliness, reduces clutter, and ensures that you have all your essentials at hand."
-        case .toiletZone: return "An organized toilet zone promotes cleanliness, convenience, and hygiene, ensuring that essential items are always within reach when needed while maintaining a neat and welcoming bathroom environment."
-        case .vanitySinkZone: return " A tidy vanity sink zone makes morning and evening routines smoother and more efficient, ensuring that everything you need is within reach. It also creates a clean, inviting space that feels organized and calming."
-        case .towelToiletries: return "Keeping towels and toiletries organized ensures that your bathroom stays clutter-free and functional. It also makes it easy to find what you need, creating a more relaxing and efficient bathroom experience."
-        case .groomingZone: return "A well-organized grooming zone streamlines your morning routine, making it easy to find everything you need. This helps reduce clutter and creates a more efficient, stress-free environment."
-        case .laundryZone: return "Having a dedicated laundry zone keeps dirty clothes off the floor and ensures everything needed for laundry is in one place. This organization helps maintain a tidy bathroom and makes laundry tasks more efficient."
-        case .dressingZone: return "A dedicated dressing zone streamlines your morning and evening routines, providing a comfortable, organized space to change clothes, keeping your bathroom tidy and clutter-free."
-        case .cleaningZone: return "A dedicated cleaning zone keeps your bathroom essentials organized and ensures that everything is within reach, making regular cleaning more efficient and keeping the space fresh and hygienic."
-        case .relaxationZone: return "A relaxation zone turns your bathroom into a personal spa, offering a retreat for unwinding and de-stressing, making it easy to enjoy moments of tranquility and self-care."
+        case .bathingZone:
+            return "A well-organized bathing zone creates a spa-like experience, making your bath time more relaxing and efficient. It helps maintain cleanliness, reduces clutter, and ensures that you have all your essentials at hand."
+        case .vanityZone:
+            return " A tidy vanity sink zone makes morning and evening routines smoother and more efficient, ensuring that everything you need is within reach. It also creates a clean, inviting space that feels organized and calming. A well-organized grooming zone streamlines your morning routine, making it easy to find everything you need. This helps reduce clutter and creates a more efficient, stress-free environment."
+        case .towelsZone:
+            return "Keeping towels and toiletries organized ensures that your bathroom stays clutter-free and functional. It also makes it easy to find what you need, creating a more relaxing and efficient bathroom experience."
+        case .laundryZone:
+            return "Having a dedicated laundry zone keeps dirty clothes off the floor and ensures everything needed for laundry is in one place. This organization helps maintain a tidy bathroom and makes laundry tasks more efficient."
+        case .cleaningZone:
+            return "A dedicated cleaning zone keeps your bathroom essentials organized and ensures that everything is within reach, making regular cleaning more efficient and keeping the space fresh and hygienic."
+        case .toiletries:
+            return "Having a dedicated toiletries zone streamlines your bathroom routine, providing a comfortable, organized space to store toiletries, keeping the space tidy and clutter-free."
         }
     }
     var weight: Double { 4.0 }
@@ -207,21 +225,47 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     }
     var isCompleted: Bool {
         switch self {
-        case .bathingZone, .cleaningZone, .dressingZone, .groomingZone, .laundryZone, .relaxationZone, .toiletZone, .towelToiletries, .vanitySinkZone: return true
+        case .bathingZone, .cleaningZone, .laundryZone, .vanityZone, .towelsZone, .toiletries: return true
         }
+    }
+    var space: (any SpaceType)? {
+        return nil
     }
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .bathingZone, .cleaningZone, .dressingZone, .groomingZone, .laundryZone, .relaxationZone, .toiletZone, .towelToiletries, .vanitySinkZone:
-            return [
-                SpaceTypeBox(BathroomSpaceType.bathtubArea)!,
-                SpaceTypeBox(BathroomSpaceType.showerArea)!,
-                SpaceTypeBox(BathroomSpaceType.showerCurtainDoor)!
-            ]
+        case .bathingZone:
+            return BathroomSpaceType.bathingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .cleaningZone:
+            return BathroomSpaceType.cleaningZoneSpaces.map { SpaceTypeBox($0)! }
+        case .laundryZone:
+            return BathroomSpaceType.laundryZoneSpaces.map { SpaceTypeBox($0)! }
+        case .toiletries:
+            return BathroomSpaceType.toiletriesSpaces.map { SpaceTypeBox($0)! }
+        case .towelsZone:
+            return BathroomSpaceType.towelsZoneSpaces.map { SpaceTypeBox($0)! }
+        case .vanityZone:
+            return BathroomSpaceType.vanityZoneSpaces.map { SpaceTypeBox($0)! }
         }
     }
-    
+    static var bathingZoneSpaces: [BathroomRoomType] {
+        return [.bathingZone]
+    }
+    static var cleaningZoneSpaces: [BathroomRoomType] {
+        return [.cleaningZone]
+    }
+    static var laundryZoneSpaces: [BathroomRoomType] {
+        return [.laundryZone]
+    }
+    static var toiletriesSpaces: [BathroomRoomType] {
+        return [.toiletries]
+    }
+    static var towelsZoneSpaces: [BathroomRoomType] {
+        return [.towelsZone]
+    }
+    static var vanityZoneSpaces: [BathroomRoomType] {
+        return [.vanityZone]
+    }
     static var allRoomTypes: [any RoomType] {
         return BathroomRoomType.allCases.map { $0 as any RoomType}
     }
@@ -289,30 +333,68 @@ enum LivingRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .converseSpace, .decorativeSpace, .entertainSpace, .lightingSpace, .playSpace, .relaxationSpace, .seatingSpace, .storageSpace, .workStudySpace:
-            return [
-                SpaceTypeBox(LivingRoomSpaceType.accentChairsOttomans)!,
-                SpaceTypeBox(LivingRoomSpaceType.mainSeating)!,
-                SpaceTypeBox(LivingRoomSpaceType.sideTables)!,
-                SpaceTypeBox(LivingRoomSpaceType.throwPillowBlankets)!
-            ]
+        case .converseSpace:
+            return LivingRoomSpaceType.conversationZoneSpaces.map { SpaceTypeBox($0)! }
+        case .decorativeSpace:
+            return LivingRoomSpaceType.decorZoneSpaces.map { SpaceTypeBox($0)! }
+            
+        case .entertainSpace:
+            return LivingRoomSpaceType.gaminigZoneSpaces.map { SpaceTypeBox($0)! }
+        case .lightingSpace:
+            return LivingRoomSpaceType.lightingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .playSpace:
+            return LivingRoomSpaceType.playZoneSpaces.map { SpaceTypeBox($0)! }
+        case .relaxationSpace:
+            return LivingRoomSpaceType.relaxationZoneSpaces.map { SpaceTypeBox($0)! }
+        case .seatingSpace:
+            return LivingRoomSpaceType.furnitureSeatingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .storageSpace:
+            return LivingRoomSpaceType.furnitureStorageZoneSpaces.map { SpaceTypeBox($0)! }
+        case .workStudySpace:
+            return LivingRoomSpaceType.workStudyZoneSpaces.map { SpaceTypeBox($0)! }
         }
     }
-    
+    static var livingRoomConverseRoom: [LivingRoomType] {
+        return [.converseSpace]
+    }
+    static var livingRoomDecorRoom: [LivingRoomType] {
+        return [.decorativeSpace]
+    }
+    static var livingRoomEntertainmentRoom: [LivingRoomType] {
+        return [.entertainSpace]
+    }
+    static var livingRoomLightingRoom: [LivingRoomType] {
+        return [.lightingSpace]
+    }
+    static var livingRoomPlayZoneRoom: [LivingRoomType] {
+        return [.playSpace]
+    }
+    static var livingRoomRelaxationRoom: [LivingRoomType] {
+        return [.relaxationSpace]
+    }
+    static var livingRoomSeatingRoom: [LivingRoomType] {
+        return [.seatingSpace]
+    }
+    static var livingRoomStorageRoom: [LivingRoomType] {
+        return [.storageSpace]
+    }
+    static var livingRoomWorkStudyRoom: [LivingRoomType] {
+        return [.workStudySpace]
+    }
     static var allRoomTypes: [any RoomType] {
         return LivingRoomType.allCases.map { $0 as any RoomType}
     }
+    
 }
 enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case sleepingZone = "Sleeping Zone"
-    case dresser = "Dresser"
-    case closet = "Closet"
+    case bedroomStorage = "Bedroom Storage"
     case readingZone = "Reading Zone"
     case studyZone = "Study Zone"
     case entertainment = "Entertainment"
     case personalVanity = "Personal Vanity"
     case moodLighting = "Mood Lighting"
-    case underBed = "Under-Bed"
+    
     
     var id: UUID { UUID() }
     var name: String { rawValue }
@@ -322,10 +404,8 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         switch self {
         case .sleepingZone:
             return "Arrange a comfortable bed with cozy bedding, pillows, and blankets in the most peaceful part of the room. Use calming colors, soft lighting, and keep this area free from clutter."
-        case .dresser:
-            return "Organize your dressers by categorizing clothing items into designated drawers. Use dividers or small boxes to separate smaller items like socks, underwear, and accessories, keeping everything neat and accessible."
-        case .closet:
-            return "Arrange your closet by grouping similar clothing items together—use hangers for dresses, shirts, and pants, and shelves or bins for folded items, shoes, and accessories. Consider using labels and storage boxes for seasonal or less frequently used items."
+        case .bedroomStorage:
+            return "Organize your dressers by categorizing clothing items into designated drawers. Use dividers or small boxes to separate smaller items like socks, underwear, and accessories, keeping everything neat and accessible. Arrange your closet by grouping similar clothing items together—use hangers for dresses, shirts, and pants, and shelves or bins for folded items, shoes, and accessories. Consider using labels and storage boxes for seasonal or less frequently used items. Use storage bins, drawers, or rolling containers to maximize the space under your bed. Consider vacuum-sealed bags for seasonal items or bulky bedding to keep them organized and out of sight"
         case .readingZone:
             return "Set up a cozy chair or a small sofa in a quiet corner of your bedroom. Add a side table with a lamp for proper lighting and keep a basket or shelf nearby for your favorite books and magazines."
         case .studyZone:
@@ -336,18 +416,14 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
             return "Create a dedicated spot with a small table, mirror, and good lighting. Arrange makeup, skincare, and grooming tools in drawers or organizers to keep everything tidy and easily accessible."
         case .moodLighting:
             return "Incorporate different light sources such as bedside lamps, ceiling lights, reading lights, and accent lighting. Use dimmers or smart bulbs to adjust brightness and create various moods."
-        case .underBed:
-            return "Use storage bins, drawers, or rolling containers to maximize the space under your bed. Consider vacuum-sealed bags for seasonal items or bulky bedding to keep them organized and out of sight"
         }
     }
     var usageDescription: String {
         switch self {
         case .sleepingZone:
             return "The sleeping zone is the heart of the bedroom, providing a restful retreat for relaxation and recharging. Creating a serene and comfortable sleeping area helps improve the quality of your sleep, promoting overall well-being and relaxation."
-        case .dresser:
-            return "A well-organized dresser makes it easier to find your clothing, saving time and reducing stress. It keeps your bedroom tidy and ensures your clothes stay in good condition, making your morning routine smoother and more efficient."
-        case .closet:
-            return "An organized closet maximizes space and makes finding outfits quick and easy. It keeps your clothing in good condition, reduces clutter, and helps you maintain a tidy, stress-free environment in your bedroom."
+        case .bedroomStorage:
+            return "A well-organized dresser makes it easier to find your clothing, saving time and reducing stress. It keeps your bedroom tidy and ensures your clothes stay in good condition, making your morning routine smoother and more efficient. An organized closet maximizes space and makes finding outfits quick and easy. It keeps your clothing in good condition, reduces clutter, and helps you maintain a tidy, stress-free environment in your bedroom.  Under-bed storage helps utilize often-overlooked space, keeping the bedroom tidy and providing easy access to items you need but don’t use every day. It’s an efficient way to maintain organization without cluttering the room."
         case .readingZone:
             return "A dedicated reading zone creates a relaxing space where you can unwind, escape, and enjoy some quiet time before bed, making your bedroom feel like a personal retreat."
         case .studyZone:
@@ -358,8 +434,6 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
             return "A personal vanity provides a space for self-care routines, helping you feel pampered and organized as you start or end your day. It adds a touch of luxury and functionality to your bedroom."
         case .moodLighting:
             return "Proper lighting zones enhance the bedroom’s functionality, allowing you to switch between tasks like reading, relaxing, or dressing. It adds ambiance, making the space feel cozy, calming, or energizing as needed."
-        case .underBed:
-            return " Under-bed storage helps utilize often-overlooked space, keeping the bedroom tidy and providing easy access to items you need but don’t use every day. It’s an efficient way to maintain organization without cluttering the room."
         }
     }
     var weight: Double { 3.0 }
@@ -368,67 +442,76 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     }
     var isCompleted: Bool {
         switch self {
-        case .closet, .dresser, .entertainment, .moodLighting, .personalVanity, .readingZone, .sleepingZone, .studyZone, .underBed: return true
+        case .bedroomStorage, .entertainment, .moodLighting, .personalVanity, .readingZone, .sleepingZone, .studyZone: return true
         }
     }
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .closet, .dresser, .entertainment, .moodLighting, .personalVanity, .readingZone, .sleepingZone, .studyZone, .underBed:
-            return [
-                SpaceTypeBox(BedroomSpaceType.bedding)!,
-                SpaceTypeBox(BedroomSpaceType.bedsideArea)!,
-                SpaceTypeBox(BedroomSpaceType.headboard)!,
-                SpaceTypeBox(BedroomSpaceType.underStorage)!
-            ]
+        case .entertainment:
+            return BedroomSpaceType.entertainmentZoneSpaces.map { SpaceTypeBox($0)! }
+        case .moodLighting:
+            return BedroomSpaceType.lightingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .personalVanity:
+            return BedroomSpaceType.vanityZoneSpaces.map { SpaceTypeBox($0)! }
+        case .readingZone:
+            return BedroomSpaceType.readingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .sleepingZone:
+            return BedroomSpaceType.sleepingZoneSpaces.map { SpaceTypeBox($0)! }
+        case .studyZone:
+            return BedroomSpaceType.studyZoneSpaces.map { SpaceTypeBox($0)! }
+        case .bedroomStorage:
+            return BedroomSpaceType.bedroomStorageSpaces.map { SpaceTypeBox($0)! }
         }
     }
-    
+    static var bedroomStorageSpaces: [BedroomRoomType] {
+        return [.bedroomStorage]
+    }
+    static var entertainmentZoneSpaces: [BedroomRoomType] {
+        return [.entertainment]
+    }
+    static var lightingZoneSpaces: [BedroomRoomType] {
+        return [.moodLighting]
+    }
+    static var vanityZoneSpaces: [BedroomRoomType] {
+        return [.personalVanity]
+    }
+    static var readingZoneSpaces: [BedroomRoomType] {
+        return [.readingZone]
+    }
+    static var sleepingZoneSpaces: [BedroomRoomType] {
+        return [.sleepingZone]
+    }
+    static var studyZoneSpaces: [BedroomRoomType] {
+        return [.studyZone]
+    }
     static var allRoomTypes: [any RoomType] {
         return BedroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
 enum StorageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case closetsZone = "Closets"
-    case utilityRoomZone = "Utility Room"
     case atticBasementZone = "Attic Basement"
-    case pantryZone = "Pantry"
-    case laundryRoomZone = "Laundry Room"
-    case mudroom = "Mudroom"
-    case cabinetsShelving = "Cabinets"
-    case underBedStorageZone = "UnderBed"
-    case builtInsWallUnitsStorageZone = "Built-Ins"
-    case homeOfficeStorageZone = "Office Storage"
+    case builtInsWallUnitsZone = "Built-Ins"
     
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
+    
     var instructions: String {
         switch self {
-        case .closetsZone: return "Organize storage closets by categorizing items based on their purpose, such as clothing, linens, cleaning supplies, or seasonal decorations. Use shelves, bins, and hanging rods to maximize space, and label containers to ensure easy access and maintain order. Regularly declutter to keep the closet functional and tidy."
-        case .utilityRoomZone: return "Organize your utility room by grouping similar items together, such as cleaning supplies, tools, and laundry essentials. Use shelving, pegboards, hooks, and labeled containers to create designated spaces for each category. Ensure frequently used items are easily accessible, while less frequently used items can be stored on higher shelves."
+        case .closetsZone: return "Organize storage closets by categorizing items based on their purpose, such as clothing, linens, cleaning supplies, or seasonal decorations. Use shelves, bins, and hanging rods to maximize space, and label containers to ensure easy access and maintain order. Regularly declutter to keep the closet functional and tidy. Organize your utility room by grouping similar items together, such as cleaning supplies, tools, and laundry essentials. Use shelving, pegboards, hooks, and labeled containers to create designated spaces for each category. Ensure frequently used items are easily accessible, while less frequently used items can be stored on higher shelves. Organize your pantry by grouping similar items together, such as canned goods, grains, spices, snacks, and baking supplies. Use clear containers, labels, and tiered shelves to maximize visibility and accessibility. Place frequently used items at eye level and less-used items on higher or lower shelves."
         case .atticBasementZone: return "Organize your attic or basement by dividing the space into zones based on item categories, such as seasonal decorations, rarely used items, memorabilia, or extra household supplies. Use sturdy shelving, clear labeled bins, and stackable containers to keep things accessible and neatly stored. Create pathways for easy access to each zone."
-        case .pantryZone: return "Organize your pantry by grouping similar items together, such as canned goods, grains, spices, snacks, and baking supplies. Use clear containers, labels, and tiered shelves to maximize visibility and accessibility. Place frequently used items at eye level and less-used items on higher or lower shelves."
-        case .laundryRoomZone: return "Organize your laundry storage by creating designated zones for sorting, washing, drying, and folding. Use bins or baskets for different types of laundry, shelves for detergent and supplies, and hangers or racks for air-drying clothes. Keep frequently used items within easy reach."
-        case .mudroom: return "Set up your mudroom with designated areas for shoes, coats, bags, and outdoor gear. Use hooks, cubbies, and shelves to keep items organized and off the floor. Add mats or trays for wet shoes and umbrellas, and baskets for smaller items like gloves or hats."
-        case .cabinetsShelving: return "Organize cabinets and shelving by grouping similar items together, using bins, baskets, or clear containers to keep everything tidy. Label each container and adjust shelves to fit different-sized items, ensuring frequently used items are within easy reach."
-        case .underBedStorageZone: return "Use storage bins, boxes, or vacuum-sealed bags to neatly store items under your bed. Opt for clear containers or label them to quickly identify what’s inside. Consider using rolling bins for easy access."
-        case .builtInsWallUnitsStorageZone: return "Use built-in wall units to organize and display items like books, decor, electronics, or everyday essentials. Arrange items by category and use baskets or bins to keep smaller items neatly contained. Adjust shelves as needed for different-sized items."
-        case .homeOfficeStorageZone: return "Organize your home office storage by using cabinets, drawers, shelves, and file organizers. Store documents, office supplies, and electronics in designated spots, and label containers for easy access. Incorporate vertical storage solutions to maximize space."
+        case .builtInsWallUnitsZone: return "Use built-in wall units to organize and display items like books, decor, electronics, or everyday essentials. Arrange items by category and use baskets or bins to keep smaller items neatly contained. Adjust shelves as needed for different-sized items."
         }
     }
     var usageDescription: String {
         switch self {
-        case .closetsZone: return "A well-organized storage closet helps you find what you need quickly, saves time, and keeps your home clutter-free. It maximizes available space, making it easier to manage household essentials and ensures that everything has its designated place, improving overall efficiency and organization."
-        case .utilityRoomZone: return "An organized utility room streamlines household chores, making it easier to find what you need quickly. It maximizes space, prevents clutter, and ensures that essential tools and supplies are always within reach, helping to maintain a more efficient and orderly home."
+        case .closetsZone: return "A well-organized storage closet helps you find what you need quickly, saves time, and keeps your home clutter-free. It maximizes available space, making it easier to manage household essentials and ensures that everything has its designated place, improving overall efficiency and organization. An organized utility room streamlines household chores, making it easier to find what you need quickly. It maximizes space, prevents clutter, and ensures that essential tools and supplies are always within reach, helping to maintain a more efficient and orderly home. A well-organized pantry makes meal prep easier, reduces food waste, and saves time by allowing you to quickly find what you need. It ensures you always know what ingredients you have on hand, making cooking more efficient and enjoyable."
+            
         case .atticBasementZone: return "A well-organized attic or basement prevents clutter and helps you quickly locate items when needed. It maximizes storage space, protects belongings from damage, and ensures that your stored items are safe, accessible, and easy to manage, making your home more functional and efficient."
-        case .pantryZone: return "A well-organized pantry makes meal prep easier, reduces food waste, and saves time by allowing you to quickly find what you need. It ensures you always know what ingredients you have on hand, making cooking more efficient and enjoyable."
-        case .laundryRoomZone: return "A well-organized laundry storage area streamlines the laundry process, saves time, and reduces stress. It ensures you have all your supplies in one place, making laundry tasks more efficient and helping maintain a clean, clutter-free space."
-        case .mudroom: return "An organized mudroom helps keep the rest of your home clean by providing a dedicated space for messy or wet items. It also ensures that essentials like shoes and jackets are easy to find when heading out, making your daily routine more efficient and stress-free."
-        case .cabinetsShelving: return "Cabinets and shelving provide valuable storage space and help keep your home clutter-free. By organizing these areas, you maximize storage efficiency, making it easier to find what you need quickly while keeping your living spaces neat and organized."
-        case .underBedStorageZone: return "The space under your bed is often underutilized but offers valuable storage. By organizing this area, you can keep seasonal clothes, shoes, bedding, or other items tucked away and out of sight, freeing up space in your closet or room."
-        case .builtInsWallUnitsStorageZone: return "Built-in wall units maximize vertical space and help keep your home organized while adding style and functionality. They provide ample storage without taking up floor space, making them perfect for displaying items or keeping belongings within easy reach."
-        case .homeOfficeStorageZone: return "A well-organized home office ensures a clutter-free, efficient workspace, making it easier to focus and be productive. Proper storage keeps important items within reach, reduces distractions, and helps maintain a professional, functional environment for work or study."
+            
+        case .builtInsWallUnitsZone: return "Built-in wall units maximize vertical space and help keep your home organized while adding style and functionality. They provide ample storage without taking up floor space, making them perfect for displaying items or keeping belongings within easy reach."
         }
     }
     var weight: Double { 4.0 }
@@ -437,22 +520,35 @@ enum StorageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     }
     var isCompleted: Bool {
         switch self {
-        case .atticBasementZone, .builtInsWallUnitsStorageZone, .cabinetsShelving, .closetsZone, .homeOfficeStorageZone, .laundryRoomZone, .mudroom, .pantryZone, .underBedStorageZone, .utilityRoomZone: return true
+        case .atticBasementZone: return true
+        case .builtInsWallUnitsZone: return true
+        case .closetsZone: return true
         }
     }
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .atticBasementZone, .builtInsWallUnitsStorageZone, .cabinetsShelving, .closetsZone, .homeOfficeStorageZone, .laundryRoomZone, .mudroom, .pantryZone, .underBedStorageZone, .utilityRoomZone:
-            return [
-                SpaceTypeBox(StorageSpaceType.hangingSpace)!,
-                SpaceTypeBox(StorageSpaceType.overheadStorage)!,
-                SpaceTypeBox(StorageSpaceType.shelves)!,
-                SpaceTypeBox(StorageSpaceType.shoeRack)!
-            ]
+        case .atticBasementZone:
+            return [ SpaceTypeBox(StorageSpaceType.longTermStorage)! ]
+            
+        case .builtInsWallUnitsZone:
+            return [ SpaceTypeBox(StorageSpaceType.builtInSpaces)! ]
+            
+        case .closetsZone:
+            return [ SpaceTypeBox(StorageSpaceType.closetSpaces)! ]
+              
+        
         }
     }
-    
+    static var StorageLongTermStorageRoom: [StorageRoomType] {
+        return [.atticBasementZone]
+    }
+    static var StorageBuiltInWallUnitRoom: [StorageRoomType] {
+        return [.builtInsWallUnitsZone]
+    }
+    static var closetSpaceRoom: [StorageRoomType] {
+        return [.closetsZone]
+    }
     static var allRoomTypes: [any RoomType] {
         return StorageRoomType.allCases.map { $0 as any RoomType}
     }
@@ -465,7 +561,7 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case readingStudyZone = "Reading Study Zone"
     case inspirationZone = "Inspiration Zone"
     case mailDocumentHandling = "Mail Documents"
-    case referenceZone = "Reference Zone"
+    case referenceBookZone = "Reference Zone"
     case breakRelaxationZone = "Break Relaxation Zone"
     case taskLighting = "Task Lighting"
     
@@ -481,7 +577,7 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         case .readingStudyZone: return "Set up a cozy corner with a comfortable chair, a side table, good lighting, and organized shelves for books, documents, or study materials."
         case .inspirationZone: return "Create an inspiration zone by displaying vision boards, artwork, motivational quotes, or items that spark creativity. Include a comfortable chair or standing space where you can brainstorm and reflect."
         case .mailDocumentHandling: return "Set up a dedicated area with file organizers, trays, and folders for sorting, filing, and storing incoming and outgoing mail and important documents. Label everything clearly for quick access."
-        case .referenceZone: return "Create a designated space with shelves, filing cabinets, or binders to store reference materials, manuals, books, and important documents. Organize them by category or frequency of use."
+        case .referenceBookZone: return "Create a designated space with shelves, filing cabinets, or binders to store reference materials, manuals, books, and important documents. Organize them by category or frequency of use."
         case .breakRelaxationZone: return "Set up a comfortable chair or small sofa, add soft lighting, and include a side table for drinks or reading material. Incorporate calming elements like plants or a small water feature."
         case .taskLighting: return "Use a combination of task lighting for your desk, ambient lighting to fill the room, and accent lighting to highlight key areas or decor. Consider adjustable lamps, overhead fixtures, and LED strips."
         }
@@ -495,7 +591,7 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         case .readingStudyZone: return "A dedicated reading and study zone provides a quiet, focused space for research, learning, or reviewing documents, enhancing concentration and productivity in your home office."
         case .inspirationZone: return "An inspiration zone fosters creativity and fresh ideas, providing a space to recharge, think freely, and stay motivated while working in your office."
         case .mailDocumentHandling: return "A mail and document management zone helps maintain an organized, clutter-free workspace, ensuring you can easily find and manage essential papers, bills, and correspondence."
-        case .referenceZone: return "A reference zone keeps essential information and resources within reach, making it easier to find what you need quickly, improving efficiency and productivity in your office work."
+        case .referenceBookZone: return "A reference zone keeps essential information and resources within reach, making it easier to find what you need quickly, improving efficiency and productivity in your office work."
         case .breakRelaxationZone: return "A relaxation zone offers a break from work, reducing stress and boosting creativity. It provides a space to recharge, helping maintain productivity and overall well-being during long work hours."
         case .taskLighting: return "Proper lighting enhances productivity, reduces eye strain, and creates a comfortable work environment. Different lighting zones help set the mood for various tasks, from focused work to relaxing or brainstorming sessions."
         }
@@ -506,21 +602,60 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     }
     var isCompleted: Bool {
         switch self {
-        case .breakRelaxationZone, .inspirationZone, .mailDocumentHandling, .meetingCollaborationZone, .readingStudyZone, .referenceZone, .storageZones, .taskLighting, .technologyZone, .workstation: return true
+        case .breakRelaxationZone, .inspirationZone, .mailDocumentHandling, .meetingCollaborationZone, .readingStudyZone, .referenceBookZone, .storageZones, .taskLighting, .technologyZone, .workstation: return true
         }
     }
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .breakRelaxationZone, .inspirationZone, .mailDocumentHandling, .meetingCollaborationZone, .readingStudyZone, .referenceZone, .storageZones, .taskLighting, .technologyZone, .workstation:
-            return [
-                SpaceTypeBox(OfficeSpaceType.chair)!,
-                SpaceTypeBox(OfficeSpaceType.deskSurface)!,
-                SpaceTypeBox(OfficeSpaceType.monitorSetup)!,
-                SpaceTypeBox(OfficeSpaceType.taskLighting)!
-            ]
+        case .workstation: return [ SpaceTypeBox(OfficeSpaceType.deskTopSetup)! ]
+        case .storageZones:
+            return [ SpaceTypeBox(OfficeSpaceType.officeStorage)! ]
+        case .technologyZone:
+            return [ SpaceTypeBox(OfficeSpaceType.officeTech)! ]
+        case .meetingCollaborationZone:
+            return [ SpaceTypeBox(OfficeSpaceType.collaborationZone)! ]
+        case .inspirationZone:
+            return [ SpaceTypeBox(OfficeSpaceType.inspirationalZone)! ]
+        case .mailDocumentHandling:
+            return [ SpaceTypeBox(OfficeSpaceType.documentHandling)! ]
+        case .referenceBookZone:
+            return [ SpaceTypeBox(OfficeSpaceType.officeReference)! ]
+        case .breakRelaxationZone:
+            return [ SpaceTypeBox(OfficeSpaceType.breakZoneSpaces)! ]
+        case .taskLighting:
+            return [ SpaceTypeBox(OfficeSpaceType.taskLightingZoneSpaces)! ]
+        case .readingStudyZone:
+            return [ SpaceTypeBox(OfficeSpaceType.officeReference)! ]
         }
     }
     
+    static var workstationZoneSpace: [OfficeRoomType] {
+        return [.workstation]
+    }
+    static var officeStorageZoneSpaces: [OfficeRoomType] {
+        return [.storageZones]
+    }
+    static var officeTechnologyZoneSpaces: [OfficeRoomType] {
+        return [.technologyZone]
+    }
+    static var meetingZoneSpaces: [OfficeRoomType] {
+        return [.meetingCollaborationZone]
+    }
+    static var inspirationZoneSpaces: [OfficeRoomType] {
+        return [.inspirationZone]
+    }
+    static var documentHandlingZoneSpaces: [OfficeRoomType] {
+        return [.mailDocumentHandling]
+    }
+    static var referenceBookZoneSpaces: [OfficeRoomType] {
+        return [.referenceBookZone]
+    }
+    static var breakZoneSpaces: [OfficeRoomType] {
+        return [.breakRelaxationZone]
+    }
+    static var taskLightingZoneSpaces: [OfficeRoomType] {
+        return [.taskLighting]
+    }
     static var allRoomTypes: [any RoomType] {
         return OfficeRoomType.allCases.map { $0 as any RoomType}
     }
@@ -567,8 +702,8 @@ enum GarageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         case .maintenanceZone: return "A maintenance zone ensures that all tools and supplies are organized and accessible when needed for car or home repairs. It streamlines maintenance tasks, reduces clutter, and saves time searching for the right tools, making upkeep more efficient and stress-free."
         case .mudroomLaundryZone: return "Creating a mudroom or laundry area in the garage helps keep dirt and clutter out of the main living areas. It provides a convenient spot to manage laundry, store outdoor clothing, and keep messes contained, making your home cleaner and more organized."
         case .overheadStorageZone: return "Overhead storage maximizes vertical space in the garage, freeing up floor and wall areas for easier access to everyday items. This method keeps infrequently used items out of the way while ensuring your garage remains organized and functional."
+        }
     }
-}
     var weight: Double { 5.0 }
     var progress: Double {
         return isCompleted ? 100.0 : 0.0
@@ -581,16 +716,58 @@ enum GarageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .gardenOutdoorZone, .householdStorageZone, .maintenanceZone, .mudroomLaundryZone, .overheadStorageZone, .parkingZone, .seasonalStorageZone, .sportsActivityGearZone, .toolZone, .wasteRecyclingZone:
-            return [
-                SpaceTypeBox(GarageSpaceType.carCleaningSupplies)!,
-                SpaceTypeBox(GarageSpaceType.garageDoorArea)!,
-                SpaceTypeBox(GarageSpaceType.vehicleParking)!
-               
-            ]
+        case .parkingZone:
+            return [ SpaceTypeBox(GarageSpaceType.vehicleParking)! ]
+        case .toolZone:
+            return [ SpaceTypeBox(GarageSpaceType.handToolStorage)! ]
+        case .gardenOutdoorZone:
+            return [ SpaceTypeBox(GarageSpaceType.gardenToolStorage)! ]
+        case .sportsActivityGearZone:
+            return [ SpaceTypeBox(GarageSpaceType.sportsGear)! ]
+        case .seasonalStorageZone:
+            return [ SpaceTypeBox(GarageSpaceType.seasonalItems)! ]
+        case .householdStorageZone:
+            return [ SpaceTypeBox(GarageSpaceType.miscellaneousHouseholdItems)! ]
+        case .wasteRecyclingZone:
+            return [ SpaceTypeBox(GarageSpaceType.hazardousWasteArea)! ]
+        case .maintenanceZone:
+            return [ SpaceTypeBox(GarageSpaceType.dIYRepairArea)! ]
+        case .mudroomLaundryZone:
+            return [ SpaceTypeBox(GarageSpaceType.laundrySupplies)! ]
+        case .overheadStorageZone:
+            return [ SpaceTypeBox(GarageSpaceType.longItemRack)! ]
         }
     }
-    
+    static var parkingZoneSpaces: [GarageRoomType] {
+        return [.parkingZone]
+    }
+    static var toolZoneSpaces: [GarageRoomType] {
+        return [.toolZone]
+    }
+    static var gardenZoneSpaces: [GarageRoomType] {
+        return [.gardenOutdoorZone]
+    }
+    static var activityZoneSpaces: [GarageRoomType] {
+        return [.sportsActivityGearZone]
+    }
+    static var seasonalZoneSpaces: [GarageRoomType] {
+        return [.seasonalStorageZone]
+    }
+    static var householdZoneSpaces: [GarageRoomType] {
+        return [.householdStorageZone]
+    }
+    static var wasteZoneSpaces: [GarageRoomType] {
+        return [.wasteRecyclingZone]
+    }
+    static var maintenanceZoneSpaces: [GarageRoomType] {
+        return [.maintenanceZone]
+    }
+    static var mudroomZoneSpaces: [GarageRoomType] {
+        return [.mudroomLaundryZone]
+    }
+    static var overheadZoneSpaces: [GarageRoomType] {
+        return [.overheadStorageZone]
+    }
     static var allRoomTypes: [any RoomType] {
         return GarageRoomType.allCases.map { $0 as any RoomType}
     }
@@ -660,41 +837,96 @@ enum PlayroomRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .artsCraftZone, .buildingConstructionZone, .homeworkStudyZone, .musicPerformanceZone, .outdoorPlayZone, .physicalActivityZone, .pretendPlayZone, .puzzleBoardGameZone, .readingQuietZone, .sensoryPlayZone, .technologyScreenZone, .toyStorageZone:
-            return [
-                SpaceTypeBox(PlayroomSpaceType.rotationalStorage)!,
-                SpaceTypeBox(PlayroomSpaceType.shelvingUnits)!,
-                SpaceTypeBox(PlayroomSpaceType.toyBins)!,
-                SpaceTypeBox(PlayroomSpaceType.toyChestTrunks)!
-               
-            ]
+        case .toyStorageZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.toyBins)! ]
+        case .artsCraftZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.artTable)! ]
+        case .readingQuietZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.quietTimeBasket)! ]
+        case .buildingConstructionZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.buildingBlockStorage)! ]
+        case .pretendPlayZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.dressUpArea)! ]
+        case .puzzleBoardGameZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.gameTable)! ]
+        case .physicalActivityZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.freePlayAreas)! ]
+        case .musicPerformanceZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.performanceArea)! ]
+        case .sensoryPlayZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.sensoryBins)! ]
+        case .homeworkStudyZone:
+            return[ SpaceTypeBox(PlayroomSpaceType.homeworkOrganizer)! ]
+        case .technologyScreenZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.deviceChargingStation)! ]
+        case .outdoorPlayZone:
+            return [ SpaceTypeBox(PlayroomSpaceType.waterPlayArea)! ]
         }
     }
-    
+    static var toyZoneSpaces: [PlayroomRoomType] {
+        return [.toyStorageZone]
+    }
+    static var craftZoneSpaces: [PlayroomRoomType] {
+        return [.artsCraftZone]
+    }
+    static var gameZoneSpaces: [PlayroomRoomType] {
+        return [.puzzleBoardGameZone]
+    }
+    static var learningZoneSpaces: [PlayroomRoomType] {
+        return [.homeworkStudyZone]
+    }
+    static var sensoryZoneSpaces: [PlayroomRoomType] {
+        return [.sensoryPlayZone]
+    }
+    static var pretendZoneSpaces: [PlayroomRoomType] {
+        return [.pretendPlayZone]
+    }
+    static var quietZoneSpaces: [PlayroomRoomType] {
+        return [.readingQuietZone]
+    }
+    static var buildingZoneSpaces: [PlayroomRoomType] {
+        return [.buildingConstructionZone]
+    }
+    static var activityZoneSpaces: [PlayroomRoomType] {
+        return [.physicalActivityZone]
+    }
+    static var performanceZoneSpaces: [PlayroomRoomType] {
+        return [.musicPerformanceZone]
+    }
+    static var homeworkZoneSpaces: [PlayroomRoomType] {
+        return [.homeworkStudyZone]
+    }
+    static var techZoneSpaces: [PlayroomRoomType] {
+        return [.technologyScreenZone]
+    }
+    static var outdoorZoneSpaces: [PlayroomRoomType] {
+        return [.outdoorPlayZone]
+    }
     static var allRoomTypes: [any RoomType] {
         return PlayroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
-
-enum UnknownRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
     
-    
-    case unknown
-    
-    var id: UUID { UUID() }
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    var instructions: String { "unknown" }
-    var usageDescription: String { "unknown" }
-    var weight: Double { 0.0 }
-    var spaceTypes: [SpaceTypeBox] { [] }
-    var progress: Double { 0.0 }
-    var isCompleted: Bool { false }
-    
-    static var allRoomTypes: [any RoomType] {
-        return UnknownRoomType.allCases.map { $0 as any RoomType}
+    enum UnknownRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
+        
+        
+        case unknown
+        
+        var id: UUID { UUID() }
+        var name: String { rawValue }
+        var imageName: String { rawValue }
+        var instructions: String { "unknown" }
+        var usageDescription: String { "unknown" }
+        var weight: Double { 0.0 }
+        var spaceTypes: [SpaceTypeBox] { [] }
+        var progress: Double { 0.0 }
+        var isCompleted: Bool { false }
+        
+        static var allRoomTypes: [any RoomType] {
+            return UnknownRoomType.allCases.map { $0 as any RoomType}
+        }
     }
-}
+
 
 
 

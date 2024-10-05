@@ -17,7 +17,7 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cookingZoneRange = "The Whole Range"
     case cookingZoneCookware = "All Things Cooking"
     // CleaningZoneSpaces
-    case cleaningZoneSpace = "Kitchen Cleaning Zone"
+    case cleaningZoneSpace = "All Things Cleaning"
     // FoodStorageZoneSpaces
     case foodStorageZonePantry = "Food Storage Pantry"
     case foodStorageRefrigerator = "Refrigerator"
@@ -25,9 +25,9 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case cookwareZoneBaking = "All Things Baking"
     // ServingZoneSpaces
     case servingZoneServeWare = "ServeWare"
+    case servingZoneEverydayDishes = "Everyday Dishes"
     // drinkZoneSpaces
     case drinkZone = "All things Drink"
-    case servingZoneEverydayDishes = "Everyday Dishes"
     case theWasteZone = "The Waste Zone"
     
     var id: UUID { UUID() }
@@ -73,7 +73,7 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         case .cookingZoneCookware:
             return "Cookware in the cooking zone includes pots, pans, skillets, and baking dishes used for various cooking techniques such as boiling, frying, sautéing, and baking. This essential equipment is key to preparing meals and should be stored close to the stovetop and oven for easy access. Different cookware, like non-stick pans, cast iron skillets, and saucepans, serve specific cooking purposes. Organizing cookware by type or size, using drawer dividers, racks, or hanging storage, ensures that the right piece is always within reach during cooking. Proper maintenance of cookware, like cleaning and storing pans to avoid scratches, extends their life and maintains cooking efficiency. Cooking utensils in the cooking zone are the tools used for handling food during the cooking process. This includes spatulas, tongs, ladles, whisks, and slotted spoons. These utensils help in stirring, flipping, serving, and transferring food safely while cooking. They should be stored near the stovetop and oven, either in a countertop holder or a nearby drawer, to ensure quick and easy access. Organizing utensils by type or function can make cooking more efficient. Having heat-resistant or specialized utensils (like wooden spoons for non-stick cookware) ensures that the right tool is always available for the task at hand. Utensils in the prep zone are the tools used for a variety of food preparation tasks, such as chopping, peeling, mixing, and measuring. These utensils typically include knives, peelers, spatulas, tongs, measuring cups, and spoons. They are essential for preparing ingredients before cooking. Keeping them organized and easily accessible, either in a drawer with dividers, a utensil holder, or mounted on a wall rack, helps streamline the prep process. Utensils should be arranged based on frequency of use, with the most commonly needed items (e.g., chef’s knife, vegetable peeler) kept within easy reach to ensure efficient and smooth preparation."
         case .cleaningZoneSpace:
-            return "The sink in the cleaning zone is the central hub for washing dishes, rinsing produce, and cleaning kitchen tools. It is also used for hand washing and filling pots with water for cooking. Having a dual-basin sink can separate dirty dishes from rinsing tasks, while a single-basin sink provides ample space for larger items like pots and pans. The sink area should be equipped with dish soap, sponges, scrub brushes, and drying racks to facilitate efficient cleaning. A garbage disposal, if present, helps with disposing of food waste. Keeping the sink clean and free from debris ensures proper drainage and hygiene in the kitchen. The dishwasher in the cleaning zone is used for efficiently cleaning and sanitizing dishes, utensils, and cookware. It minimizes the time and effort required for dishwashing compared to handwashing, especially after large meals. Dishes are loaded into designated racks based on size and type, with smaller items like utensils and glasses placed on the top rack, and larger items like pots and plates on the bottom rack. The dishwasher should be loaded efficiently to maximize space while ensuring all items are properly cleaned. Keeping the dishwasher clean, running it with a cleaning cycle periodically, and maintaining filters and seals will ensure it operates smoothly. The trash and recycling zone is dedicated to the disposal of waste, including food scraps, packaging, and recyclable materials. This area typically includes separate bins for general waste, recyclables (like plastics, paper, and glass), and sometimes compostable items. It is strategically placed near the sink or prep area to make cleanup quick and efficient. Proper labeling of bins can help with sorting waste and recycling correctly. Keeping the bins clean and regularly emptying them prevents odors and clutter from accumulating in the kitchen. This zone is essential for maintaining an organized, eco-friendly, and sanitary kitchen environment.. The cleaning supplies zone is where all the essential tools and products for maintaining kitchen cleanliness are stored. This typically includes items like dish soap, sponges, scrub brushes, disinfectants, and surface cleaners, as well as specialty items like glass cleaners and stainless steel polish. Most cleaning supplies are stored under the sink or in a nearby cabinet for easy access when cleaning countertops, appliances, and floors. Organizing these supplies in bins or caddies can help keep this area tidy and ensure you can quickly grab what you need. Proper organization and storage also help maintain a hygienic and safe kitchen environment by preventing spills and keeping toxic chemicals out of reach of children or pets."
+            return "The sink in the cleaning zone is the central hub for washing dishes, rinsing produce, and cleaning kitchen tools. It is also used for hand washing and filling pots with water for cooking. Having a dual-basin sink can separate dirty dishes from rinsing tasks, while a single-basin sink provides ample space for larger items like pots and pans. The sink area should be equipped with dish soap, sponges, scrub brushes, and drying racks to facilitate efficient cleaning. A garbage disposal, if present, helps with disposing of food waste. Keeping the sink clean and free from debris ensures proper drainage and hygiene in the kitchen. The dishwasher in the cleaning zone is used for efficiently cleaning and sanitizing dishes, utensils, and cookware. It minimizes the time and effort required for dishwashing compared to handwashing, especially after large meals. Dishes are loaded into designated racks based on size and type, with smaller items like utensils and glasses placed on the top rack, and larger items like pots and plates on the bottom rack. The dishwasher should be loaded efficiently to maximize space while ensuring all items are properly cleaned. Keeping the dishwasher clean, running it with a cleaning cycle periodically, and maintaining filters and seals will ensure it operates smoothly. The trash and recycling zone is dedicated to the disposal of waste, including food scraps, packaging, and recyclable materials. This area typically includes separate bins for general waste, recyclables (like plastics, paper, and glass), and sometimes compostable items. It is strategically placed near the sink or prep area to make cleanup quick and efficient. Proper labeling of bins can help  with sorting waste and recycling correctly. Keeping the bins clean and regularly emptying them prevents odors and clutter from accumulating in the kitchen. This zone is essential for maintaining an organized, eco-friendly, and sanitary kitchen environment.. The cleaning supplies zone is where all the essential tools and products for maintaining kitchen cleanliness are stored. This typically includes items like dish soap, sponges, scrub brushes, disinfectants, and surface cleaners, as well as specialty items like glass cleaners and stainless steel polish. Most cleaning supplies are stored under the sink or in a nearby cabinet for easy access when cleaning countertops, appliances, and floors. Organizing these supplies in bins or caddies can help keep this area tidy and ensure you can quickly grab what you need. Proper organization and storage also help maintain a hygienic and safe kitchen environment by preventing spills and keeping toxic chemicals out of reach of children or pets."
         case .foodStorageZonePantry:
             return "Pantry essentials in the cooking zone are the staple ingredients frequently used during cooking, such as oils, vinegars, spices, herbs, salt, pepper, and other seasonings. Keeping these items organized and stored near the stovetop and oven allows for quick access while preparing meals. These essentials should be easily reachable in cabinets, on shelves, or in pull-out drawers close to the cooking area. Labeling containers and arranging items by frequency of use or category (e.g., oils together, spices together) can further streamline the cooking process. Having these core ingredients within arm’s reach reduces time spent searching and enhances the efficiency of meal preparation. The pantry in the food storage zone is where dry goods, canned foods, snacks, and bulk items are stored. It serves as the primary storage space for non-perishable food items such as grains, pasta, cereals, baking supplies, and spices. Organizing the pantry by category—such as grouping snacks, canned goods, or baking ingredients—makes it easier to find items quickly. Clear, labeled containers or bins can help keep smaller items neatly arranged, while frequently used items are best kept at eye level for easy access. Proper organization of the pantry ensures that ingredients are visible, reducing food waste and making meal planning more efficient. The snack zone in the food storage area is dedicated to organizing easily accessible snacks for quick consumption. It can include items such as chips, crackers, granola bars, nuts, dried fruits, and other packaged snacks. Organizing snacks in clear containers, bins, or baskets ensures they are visible and easy to grab, especially for kids or busy households. This area should be kept tidy and replenished regularly to prevent clutter and keep snacks fresh. Placing healthier options at eye level and within easy reach can also promote better snack choices. The bulk bin zone is designed for storing large quantities of frequently used dry goods like rice, flour, sugar, oats, grains, and legumes. These items are stored in large, airtight containers or bins to maintain freshness and prevent pests. Organizing the bulk bin area with clearly labeled containers makes it easy to identify and access ingredients when cooking or baking. Bulk bins help reduce packaging waste, promote better food management, and make it easier to store larger quantities of pantry staples. Keeping this zone tidy and well-organized ensures that ingredients remain fresh and readily available for meal preparation. The condiment zone is where sauces, dressings, oils, and other flavor-enhancing products like ketchup, mustard, mayonnaise, vinegar, and hot sauces are stored. Typically located in the refrigerator door or in a dedicated pantry section, this area keeps condiments easily accessible for quick use during cooking or serving. Organizing condiments by type (e.g., sauces, spreads, oils) and using shelves or caddies helps maximize space and ensure you can easily find what you need. Proper organization prevents overcrowding and allows for the rotation of older items to the front to reduce waste and keep everything fresh."
         case .cookwareZoneBaking: 
@@ -108,7 +108,7 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         case .servingZoneServeWare: return true
         case .drinkZone: return true
         case .theWasteZone: return true
-        default: return false
+        case .foodStorageRefrigerator: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -174,16 +174,16 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         return [.cookingZoneRange, .cookingZoneCookware]
     }
     static var foodStorageZoneSpaces: [KitchenSpaceType] {
-        return [.foodStorageZonePantry]
+        return [.foodStorageZonePantry, .foodStorageRefrigerator]
     }
     static var servingZoneSpaces: [KitchenSpaceType] {
-        return [.servingZoneServeWare]
+        return [.servingZoneServeWare, .servingZoneEverydayDishes]
     }
     static var drinkZoneSpaces: [KitchenSpaceType] {
         return [.drinkZone]
     }
     static var cleaningZone: [KitchenSpaceType] {
-        return [.cleaningZoneSpace]
+        return [.cleaningZoneSpace, .theWasteZone ]
     }
     static var cookwareZone: [KitchenSpaceType] {
         return [.cookwareZoneBaking]
@@ -192,6 +192,9 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType}
     }
 }
+
+
+
 enum UnknownSpaceType: String, Codable, CaseIterable, Identifiable,  SpaceType {
     case unknown
     
