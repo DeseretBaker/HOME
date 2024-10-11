@@ -20,7 +20,7 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     // BedroomStorageSpaceType
     case closet = "Closet"
     case shelves = "Shelves"
-    case underBedStorage = "Under Bed Storage"
+    case underBedStorage = "Storage Under Bed "
     case trunksBaskets = "Trunks/Baskets"
     // BedroomDresser
  
@@ -95,50 +95,50 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .flatScreenTV: return [ SubTaskTypeBox(BedroomSubTaskType.declutter)! ]
-        case .taskLamps: return [ SubTaskTypeBox(BedroomSubTaskType.declutter)! ]
-        case .comfyChair: return [ SubTaskTypeBox(BedroomSubTaskType.declutter)! ]
+        case .flatScreenTV: return [ SubTaskTypeBox(BedroomSubTaskType.flatScreenTVZone)! ]
+        case .taskLamps: return [ SubTaskTypeBox(BedroomSubTaskType.bedroomLighting)! ]
+        case .comfyChair: return [ SubTaskTypeBox(BedroomSubTaskType.comfortableChair)! ]
         case .smallDesk:
-            return [ SubTaskTypeBox(BedroomSubTaskType.declutter)! ]
+            return [ SubTaskTypeBox(BedroomSubTaskType.writingDesk)! ]
         case .decorativeItems:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.declutter)! ]
+                SubTaskTypeBox(BedroomSubTaskType.simpleDecor)! ]
         case .drawersShelves:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)! ]
+                SubTaskTypeBox(BedroomSubTaskType.whereTheClothesAre)! ]
         case .closet:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)! ]
+                SubTaskTypeBox(BedroomSubTaskType.theHangingClothes)! ]
         case .shelves:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)! ]
+                SubTaskTypeBox(BedroomSubTaskType.bedroomShelves)! ]
         case .trunksBaskets:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)!
+                SubTaskTypeBox(BedroomSubTaskType.bedroomTrunkBasket)!
             ]
         case .underBedStorage:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)!
+                SubTaskTypeBox(BedroomSubTaskType.underBedStorageSpace)!
             ]
         case .sleepingArea:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.declutter)!
+                SubTaskTypeBox(BedroomSubTaskType.aGoodNightSleep)!
             ]
         case .bedsideArea:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)!
+                SubTaskTypeBox(BedroomSubTaskType.bedsideTable)!
             ]
         case .drawers:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.organize)!
+                SubTaskTypeBox(BedroomSubTaskType.bedsideDrawers)!
             ]
         case .mirror:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.clean)!
+                SubTaskTypeBox(BedroomSubTaskType.dresserMirror)!
             ]
         case .topSurface:
             return [
-                SubTaskTypeBox(BedroomSubTaskType.clean)!
+                SubTaskTypeBox(BedroomSubTaskType.topOfDresser)!
             ]
         }
     }

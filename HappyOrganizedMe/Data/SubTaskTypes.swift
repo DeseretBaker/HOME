@@ -13,12 +13,12 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     case prepCounters = "PrepCounters"
     case appliances = "Appliances"
     case theWholeRange = "theWholeRange"
-    case allThingsCooking = "Cooking Zone"
+    case allThingsCooking = "Cooking Zone 1"
     case allThingsCleaning = "Cleaning Supplies"
-    case allThingsWaste = "Waste Zone"
-    case foodStoragePantry = "Pantry Zone"
+    case allThingsWaste = "All Things Waste"
+    case foodStoragePantry = "Perishable zone"
     case servingZoneEverydayDishes = "Everyday Dishes"
-    case serveWareHolidays = "Holidays"
+    case serveWareHolidays = "Holidays Dishes"
     case bakingZoneBakingSupplies = "Baking Supplies"
     case drinkZone = "Drink Zone"
     
@@ -38,7 +38,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case .allThingsCooking: return "Cooking Zone"
         case .allThingsCleaning: return "CleaningSupplies"
         case .allThingsWaste: return "GeneralWaste"
-        case .foodStoragePantry: return "Pantry"
+        case .foodStoragePantry: return "Fridge Zone"
         case .servingZoneEverydayDishes: return "Everyday Dishes"
         case .serveWareHolidays: return "Holidays"
         case .bakingZoneBakingSupplies: return "Baking Supplies"
@@ -234,7 +234,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case coffeeTableSubTasks = "Coffee Table"
         case decorAccentSubTask = "Decor Accent"
         case lightingSubTasks = "Lighting"
-        case taskLightingSubTask = "Task Lighting"
+        case taskLightingSubTask = "Task Lighting 1"
         case lightingControlsSubTask = "Lighting Controls"
         case deskSubTask = "Desk"
         
@@ -347,13 +347,13 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     }
     enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
         
-        case drinkCart = "Drink Station"
-        case multiUseZone = "MultiUse Zone"
-        case diningRoomLighting = "diningRoomLighting"
-        case diningRoomDecor = "diningRoomDecor"
-        case diningRoomStorage = "diningRoomStorage"
-        case buffetSideboard = "buffetSideboard"
-        case diningRoomTable = "diningTable"
+        case drinkCart1 = "Drink Station"
+        case multiUseZone1 = "Multi Use Zone 1"
+        case diningRoomLighting = "Dining Room Lighting"
+        case diningRoomDecor = "Dining Room Decor"
+        case diningRoomStorage = "Dining Room Storage"
+        case buffetSideboard = "Buffet Side board"
+        case diningRoomTable = "Dining Table"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -361,24 +361,24 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .drinkCart: return "Drink Station"
-            case .multiUseZone: return "Organize your dining room"
+            case .drinkCart1: return "Drink Station"
+            case .multiUseZone1: return "Organize your dining room"
             case .diningRoomLighting: return "diningRoomLighting"
             case .diningRoomDecor: return "diningRoomDecor"
             case .diningRoomStorage: return "Table Linens"
             case .buffetSideboard: return "buffetSideboard"
-            case .diningRoomTable: return "Dining Room Table"
+            case .diningRoomTable: return "Dining Table"
             }
         }
         var usageDescription: String {
             switch self {
-            case .drinkCart: return "Drink Station"
-            case .multiUseZone: return "MultiUse Zone"
+            case .drinkCart1: return "Drink Station"
+            case .multiUseZone1: return "MultiUse Zone"
             case .diningRoomLighting: return "diningRoomLighting"
             case .diningRoomDecor: return "diningRoomDecor"
             case .diningRoomStorage: return "Table Linens"
             case .buffetSideboard: return "buffetSideboard"
-            case .diningRoomTable: return "Dining Room Table"
+            case .diningRoomTable: return "Dining Table"
             }
         }
         var weight: Double { 2.0 }
@@ -388,7 +388,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .drinkCart, .multiUseZone, .diningRoomLighting, .diningRoomDecor, .diningRoomStorage, .buffetSideboard, .diningRoomTable: return true
+            case .drinkCart1, .multiUseZone1, .diningRoomLighting, .diningRoomDecor, .diningRoomStorage, .buffetSideboard, .diningRoomTable: return true
                 
             }
         }
@@ -398,7 +398,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .drinkCart, .multiUseZone, .diningRoomLighting, .diningRoomDecor, .diningRoomStorage, .buffetSideboard, .diningRoomTable:
+            case .drinkCart1, .multiUseZone1, .diningRoomLighting, .diningRoomDecor, .diningRoomStorage, .buffetSideboard, .diningRoomTable:
                 return [
                     MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
                     MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
@@ -419,10 +419,10 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case officeBooks = "Office Books"
         case officeTechnology = "Office Technology"
         case storageInOffice = "Storage in Office"
-        case chillZone = "Chill Zone"
+        case chillOutZone = "Chill out Zone"
         case theMailAndStuff = "The Mail and Stuff"
         case inspirationSpace = "Inspiration Space"
-        case meetingZone = "Meeting Up"
+        case meetingZone = "Meeting Zone"
         case lightRight = "Light Right"
         
         var id: UUID { UUID() }
@@ -431,7 +431,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .chillZone: return "Chill Zone"
+            case .chillOutZone: return "Chill Zone"
             case .inspirationSpace: return "Inspiration Space"
             case .meetingZone: return "Meeting Zone"
             case .lightRight: return "Light Right"
@@ -450,7 +450,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .officeBooks: return "Office Books"
             case .officeTechnology: return "Office Technology"
             case .storageInOffice: return "Storage in Office"
-            case .chillZone: return "Chill Zone"
+            case .chillOutZone: return "Chill Zone"
             case .theMailAndStuff: return "The Mail and Stuff"
             case .inspirationSpace: return "Inspiration Space"
             case .meetingZone: return "Meeting Zone"
@@ -464,7 +464,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillZone, .inspirationSpace, .meetingZone, .theMailAndStuff: return true
+            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillOutZone, .inspirationSpace, .meetingZone, .theMailAndStuff: return true
             }
         }
         
@@ -474,7 +474,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillZone, .inspirationSpace, .meetingZone, .theMailAndStuff:
+            case .setupDesk, .lightRight, .storageInOffice, .officeTechnology, .officeBooks, .chillOutZone, .inspirationSpace, .meetingZone, .theMailAndStuff:
                 return [
                     MiniTaskTypeBox(DiningRoomMiniTaskType.remove)!,
                     MiniTaskTypeBox(DiningRoomMiniTaskType.clean)!,
@@ -491,13 +491,21 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
     }
     enum BedroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case declutter = "Declutter"
-        case organize = "Organize"
-        case clean = "Clean"
-        case polish = "Polish"
-        case tableLinens = "Table Linens"
-        case accessories = "Accessories"
-        case repairsAndUpdates = "Repairs and Updates"
+        case flatScreenTVZone = "Flat Screen TV Zone"
+        case bedroomLighting = "Bedroom Lighting"
+        case comfortableChair = "Comfortable Chair"
+        case writingDesk = "Writing Desk"
+        case simpleDecor = "Simple Decor"
+        case whereTheClothesAre = "Where the Clothes Are"
+        case theHangingClothes = "The Hanging Clothes"
+        case bedroomShelves = "Bedroom Shelves"
+        case bedroomTrunkBasket = "Bedroom Trunk & Basket"
+        case underBedStorageSpace = "Under-Bed Storage Space"
+        case aGoodNightSleep = "A Good Night Sleep"
+        case bedsideTable = "Bedside Table"
+        case bedsideDrawers = "Bedside Drawers"
+        case dresserMirror = "Dresser Mirror"
+        case topOfDresser = "Top of Dresser"
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -505,24 +513,40 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .flatScreenTVZone: return "Flat Screen TV Zone"
+            case .bedroomLighting: return "Bedroom Lighting"
+            case .comfortableChair: return "Clean your dining room"
+            case .writingDesk: return "Writing Desk"
+            case .simpleDecor: return "Simple Decor"
+            case .whereTheClothesAre: return "Where the Clothes Are"
+            case .theHangingClothes: return "The Hanging Clothes"
+            case .bedroomShelves: return "Bedroom Shelves"
+            case .bedroomTrunkBasket: return "Bedroom Trunk & Basket"
+            case .underBedStorageSpace: return "Under-Bed Storage Space"
+            case .aGoodNightSleep: return "A Good Night Sleep"
+            case .bedsideTable: return "bedsideTable"
+            case .bedsideDrawers: return "Bedside Drawers"
+            case .dresserMirror: return "Dresser Mirror"
+            case .topOfDresser: return "Top of Dresser"
             }
         }
         var usageDescription: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .flatScreenTVZone: return "Flat Screen TV Zone"
+            case .bedroomLighting: return "Bedroom Lighting"
+            case .comfortableChair: return "Clean your dining room"
+            case .writingDesk: return "Writing Desk"
+            case .simpleDecor: return "Simple Decor"
+            case .whereTheClothesAre: return "Where the Clothes Are"
+            case .theHangingClothes: return "The Hanging Clothes"
+            case .bedroomShelves: return "Bedroom Shelves"
+            case .bedroomTrunkBasket: return "Bedroom Trunk & Basket"
+            case .underBedStorageSpace: return "Under-Bed Storage Space"
+            case .aGoodNightSleep: return "A Good Night Sleep"
+            case .bedsideTable: return "bedsideTable"
+            case .bedsideDrawers: return "Bedside Drawers"
+            case .dresserMirror: return "Dresser Mirror"
+            case .topOfDresser: return "Top of Dresser"
             }
         }
         var weight: Double { 2.0 }
@@ -532,8 +556,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates: return true
-                
+            case .aGoodNightSleep, .bedroomLighting, .bedroomShelves, .bedroomTrunkBasket, .bedsideDrawers, .bedsideTable, .comfortableChair, .writingDesk, .simpleDecor, .whereTheClothesAre, .theHangingClothes, .dresserMirror, .topOfDresser, .flatScreenTVZone, .underBedStorageSpace: return true
             }
         }
         
@@ -542,7 +565,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates:
+            case .aGoodNightSleep, .bedroomLighting, .bedroomShelves, .bedroomTrunkBasket, .bedsideDrawers, .bedsideTable, .comfortableChair, .writingDesk, .simpleDecor, .whereTheClothesAre, .theHangingClothes, .dresserMirror, .topOfDresser, .flatScreenTVZone, .underBedStorageSpace:
                 return [
                     MiniTaskTypeBox(BedroomMiniTaskType.remove)!,
                     MiniTaskTypeBox(BedroomMiniTaskType.clean)!,
@@ -916,13 +939,55 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
     }
     enum GarageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case declutter = "Declutter"
-        case organize = "Organize"
-        case clean = "Clean"
-        case polish = "Polish"
-        case tableLinens = "Table Linens"
-        case accessories = "Accessories"
-        case repairsAndUpdates = "Repairs and Updates"
+        case carCleaningSubTask = "Car Cleaning Sub Task"
+        case garageDoorSubTask = "Garage Door Sub Task"
+        case vehicleParkingSubTask = "Vehicle Parking Sub Task"
+        case tireStorageSubtask = "Tire Storage Subtask"
+        case workBenchSubTask = "Work Bench Sub Task"
+        case chargingStationSubTask = "Charging Station Sub Task"
+        case toolCleaningSubTask = "Tool Cleaning Sub Task"
+        case handToolSubTask = "Hand Tool Sub Task"
+        case powerToolSubTask = "Power Tool Sub Task"
+        case smallPartsSubTask = "Small Parts Sub Task"
+        case safetyEquipmentSubTask = "Safety Equipment Sub Task"
+        case gardenToolSubTask = "Garden Tool Sub Task"
+        case lawnEquipmentSubTask = "Lawn Equipment Sub Task"
+        case outdoorFurnitureSubTask = "Outdoor Furniture Sub Task"
+        case plantingSuppliesSubTask = "Planting Supplies Sub Task"
+        case pottingBenchSubTask = "Potting Bench Sub Task"
+        case hoseStorageSubTask = "Hose Storage Sub Task"
+        case ballStorageSubTask = "Ball Storage Sub Task"
+        case bikeRackSubTask = "Bike Rack Sub Task"
+        case sportsEquipmentRackSubTask = "Sports Equipment Rack Sub Task"
+        case sportsGearSubTask = "Sports Gear Sub Task"
+        case holidayDecorSubTask = "Holiday Decor Sub Task"
+        case seasonalToys = "Seasonal Toys"
+        case winterGear = "Winter Gear"
+        case outdoorDecorSubTask = "Outdoor Decor Sub Task"
+        case cleaningSuppliesSubTask = "Cleaning Supplies"
+        case miscHouseholdItemsSubTask = "Misc Household Items SubTask"
+        case overflowPantrySubtask = "Overflow Pantry Subtask"
+        case paperGoodsSubTask = "Paper Goods SubTask"
+        case emergencySuppliesSubTask = "Emergency Supplies SubTask"
+        case compostingAreaSubTask = "Composting Area SubTask"
+        case recyclingBinSubTask = "Recycling Bin SubTask"
+        case trashBinSubTask = "Trash Bin SubTask"
+        case hazardousWasteSubTask = "Hazardous Waste SubTask"
+        case donationBinAreaSubTask = "Donation Bin Area SubTask"
+        case cleaningMaintenanceSubTasks = "Cleaning Maintenance SubTasks"
+        case houseToolsSubTask = "House Tools SubTask"
+        case dIYRepairSubTask = "DIY Repair SubTask"
+        case yardEquipmentSubTask = "Yard Equipment SubTask"
+        case clothingFoldingSubTask = "Clothing Folding"
+        case hatCoatHooks = "Hat Coat Hooks"
+        case laundrySubTasks = "Laundry SubTasks"
+        case bootShoeStorage = "Boot Shoe Storage"
+        case petCareSubTask = "Pet Care SubTask"
+        case extraLuggageSubTask = "Extra Luggage SubTask"
+        case outdoorEquipmentSubTask = "Outdoor Equipment SubTask"
+        case seasonalItemsSubTask = "Seasonal Items SubTask"
+        case longItemRackSubTask = "Long Item Rack SubTask"
+        
         
         var id: UUID { UUID() }
         var name: String { rawValue }
@@ -930,24 +995,106 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         
         var instructions: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .carCleaningSubTask: return "Wash your car with a car wash."
+            case .garageDoorSubTask: return "Open your garage door."
+            case .vehicleParkingSubTask: return "Park your vehicle."
+            case .tireStorageSubtask: return "Store your tires."
+            case .workBenchSubTask: return "Clean your workbench."
+            case .chargingStationSubTask: return "Charge your devices."
+            case .toolCleaningSubTask: return "Clean your tools."
+            case .handToolSubTask: return "Clean your hand tools."
+            case .powerToolSubTask: return "Clean your power tools."
+            case .smallPartsSubTask: return "Clean your small parts."
+            case .safetyEquipmentSubTask: return "Clean your safety equipment."
+            case .gardenToolSubTask: return "Clean your garden tools."
+            case .lawnEquipmentSubTask: return "Clean your lawn equipment."
+            case .outdoorFurnitureSubTask: return "Clean your outdoor furniture."
+            case .plantingSuppliesSubTask: return "Clean your planting supplies."
+            case .pottingBenchSubTask: return "Clean your potting bench."
+            case .hoseStorageSubTask: return "Clean your hose storage."
+            case .ballStorageSubTask: return "Clean your ball storage."
+            case .bikeRackSubTask: return "Clean your bike rack."
+            case .sportsEquipmentRackSubTask: return "Clean your sports equipment rack."
+            case .sportsGearSubTask: return "Clean your sports gear."
+            case .holidayDecorSubTask: return "Clean your holiday decor."
+            case .seasonalToys: return "Clean your seasonal toys."
+            case .winterGear: return "Clean your winter gear."
+            case .outdoorDecorSubTask: return "Clean your outdoor decor."
+            case .cleaningSuppliesSubTask: return "Clean your cleaning supplies."
+            case .miscHouseholdItemsSubTask: return "Clean your misc. household items."
+            case .overflowPantrySubtask: return "Clean your overflow pantry."
+            case .paperGoodsSubTask: return "Clean your paper goods."
+            case .emergencySuppliesSubTask: return "Clean your emergency supplies."
+            case .compostingAreaSubTask: return "Clean your composting area."
+            case .recyclingBinSubTask: return "Clean your recycling bin."
+            case .trashBinSubTask: return "Clean your trash bin."
+            case .hazardousWasteSubTask: return "Clean your hazardous waste."
+            case .donationBinAreaSubTask: return "Clean your donation bin area."
+            case .cleaningMaintenanceSubTasks: return "Clean your cleaning maintenance sub-tasks."
+            case .houseToolsSubTask: return "Clean your house tools."
+            case .dIYRepairSubTask: return "Clean your DIY repair sub-tasks."
+            case .yardEquipmentSubTask: return "Clean your yard equipment."
+            case .clothingFoldingSubTask: return "Clean your clothing folding sub-tasks."
+            case .hatCoatHooks: return "Clean your hat/coat hooks."
+            case .laundrySubTasks: return "Clean your laundry sub-tasks."
+            case .bootShoeStorage: return "Clean your boot/shoe storage."
+            case .petCareSubTask: return "Clean your pet care sub-tasks."
+            case .extraLuggageSubTask: return "Clean your extra luggage."
+            case .outdoorEquipmentSubTask: return "Clean your outdoor equipment."
+            case .seasonalItemsSubTask: return "Clean your seasonal items."
+            case .longItemRackSubTask: return "Clean your long item rack."
             }
         }
         var usageDescription: String {
             switch self {
-            case .declutter: return "Declutter your dining room"
-            case .organize: return "Organize your dining room"
-            case .clean: return "Clean your dining room"
-            case .polish: return "Polish your dining room"
-            case .tableLinens: return "Table Linens"
-            case .accessories: return "Accessories"
-            case .repairsAndUpdates: return "Repairs and Updates"
+            case .carCleaningSubTask: return "Clean your car."
+            case .garageDoorSubTask: return "Clean your garage door."
+            case .vehicleParkingSubTask: return "Clean your vehicle parking."
+            case .tireStorageSubtask: return "Clean your tire storage."
+            case .workBenchSubTask: return "Clean your work bench."
+            case .chargingStationSubTask: return "Clean your charging station."
+            case .toolCleaningSubTask: return "Clean your tool cleaning sub-tasks."
+            case .handToolSubTask: return "Clean your hand tool sub-tasks."
+            case .powerToolSubTask: return "Clean your power tool sub-tasks."
+            case .smallPartsSubTask: return "Clean your small parts sub-tasks."
+            case .safetyEquipmentSubTask: return    "Clean your safety equipment sub-tasks."
+            case .gardenToolSubTask: return "Clean your garden tool sub-tasks."
+            case .lawnEquipmentSubTask: return "Clean your lawn equipment sub-tasks."
+            case .outdoorFurnitureSubTask: return "Clean your outdoor furniture sub-tasks."
+            case .plantingSuppliesSubTask: return "Clean your planting supplies sub-tasks."
+            case .pottingBenchSubTask: return "Clean your potting bench sub-tasks."
+            case .hoseStorageSubTask: return "Clean your hose storage sub-tasks."
+            case .ballStorageSubTask: return "Clean your ball storage sub-tasks."
+            case .bikeRackSubTask: return "Clean your bike rack sub-tasks."
+            case .sportsEquipmentRackSubTask: return "Clean your sports equipment rack sub-tasks."
+            case .sportsGearSubTask: return "Clean your sports gear sub-tasks."
+            case .holidayDecorSubTask: return "Clean your holiday decor sub-tasks."
+            case .seasonalToys: return "Clean your seasonal toys."
+            case .winterGear: return "Clean your winter gear."
+            case .outdoorDecorSubTask: return "Clean your outdoor decor sub-tasks."
+            case .cleaningSuppliesSubTask: return "Clean your cleaning supplies sub-tasks."
+            case .miscHouseholdItemsSubTask: return "Clean your misc. household items sub-tasks."
+            case .overflowPantrySubtask: return "Clean your overflow pantry sub-tasks."
+            case .paperGoodsSubTask: return "Clean your paper goods sub-tasks."
+            case .emergencySuppliesSubTask: return "Clean your emergency supplies sub-tasks."
+            case .compostingAreaSubTask: return "Clean your composting area sub-tasks."
+            case .recyclingBinSubTask: return "Clean your recycling bin sub-tasks."
+            case .trashBinSubTask: return "Clean your trash bin sub-tasks."
+            case .hazardousWasteSubTask: return "Clean your hazardous waste sub-tasks."
+            case .donationBinAreaSubTask: return "Clean your donation bin area sub-tasks."
+            case .cleaningMaintenanceSubTasks: return "Clean your cleaning maintenance sub-tasks."
+            case .houseToolsSubTask: return "Clean your house tools sub-tasks."
+            case .dIYRepairSubTask: return "Clean your DIY repair sub-tasks."
+            case .yardEquipmentSubTask: return "Clean your yard equipment sub-tasks."
+            case .clothingFoldingSubTask: return "Clean your clothing folding sub-tasks."
+            case .hatCoatHooks: return "Clean your hat, coat, and hooks sub-tasks."
+            case .laundrySubTasks: return "Clean your laundry sub-tasks."
+            case .bootShoeStorage: return "Clean your boot, shoe, and storage sub-tasks."
+            case .petCareSubTask: return "Clean your pet care sub-tasks."
+            case .extraLuggageSubTask: return "Clean your extra luggage sub-tasks."
+            case .outdoorEquipmentSubTask: return "Clean your outdoor equipment sub-tasks."
+            case .seasonalItemsSubTask: return "Clean your seasonal items sub-tasks."
+            case .longItemRackSubTask: return "Clean your long item rack sub-tasks."
             }
         }
         var weight: Double { 2.0 }
@@ -957,19 +1104,497 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates: return true
-                
+            case .carCleaningSubTask, .garageDoorSubTask, .vehicleParkingSubTask, .tireStorageSubtask, .chargingStationSubTask: return true
+            case .workBenchSubTask,  .toolCleaningSubTask, .handToolSubTask, .powerToolSubTask, .smallPartsSubTask, .safetyEquipmentSubTask: return true
+            case .gardenToolSubTask, .lawnEquipmentSubTask, .outdoorFurnitureSubTask, .plantingSuppliesSubTask, .pottingBenchSubTask, .hoseStorageSubTask: return true
+            case .ballStorageSubTask, .bikeRackSubTask, .sportsEquipmentRackSubTask, .sportsGearSubTask: return true
+            case .holidayDecorSubTask, .seasonalToys, .winterGear, .outdoorDecorSubTask: return true
+            case .cleaningSuppliesSubTask, .miscHouseholdItemsSubTask, .overflowPantrySubtask, .paperGoodsSubTask, .emergencySuppliesSubTask: return true
+            case .compostingAreaSubTask, .recyclingBinSubTask, .trashBinSubTask, .hazardousWasteSubTask, .donationBinAreaSubTask: return true
+            case .cleaningMaintenanceSubTasks, .houseToolsSubTask, .dIYRepairSubTask, .yardEquipmentSubTask: return true
+            case .clothingFoldingSubTask, .hatCoatHooks, .laundrySubTasks, .bootShoeStorage: return true
+            case .petCareSubTask, .extraLuggageSubTask, .outdoorEquipmentSubTask, .seasonalItemsSubTask, .longItemRackSubTask: return true
             }
         }
-        
-        
         var miniTask: (any MiniTaskType)? {
             return nil
         }
         
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates:
+            case .carCleaningSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .garageDoorSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .vehicleParkingSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .tireStorageSubtask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .workBenchSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .chargingStationSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .toolCleaningSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .handToolSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .powerToolSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .smallPartsSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .safetyEquipmentSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .gardenToolSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .lawnEquipmentSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .outdoorFurnitureSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .plantingSuppliesSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+                
+            case .pottingBenchSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .hoseStorageSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .ballStorageSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .bikeRackSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .sportsEquipmentRackSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .sportsGearSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .holidayDecorSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+                
+            case .seasonalToys:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .winterGear:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .outdoorDecorSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .cleaningSuppliesSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .miscHouseholdItemsSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .overflowPantrySubtask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .paperGoodsSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .emergencySuppliesSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .compostingAreaSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .recyclingBinSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .trashBinSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .hazardousWasteSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .donationBinAreaSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .cleaningMaintenanceSubTasks:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .houseToolsSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .dIYRepairSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .yardEquipmentSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .clothingFoldingSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .hatCoatHooks:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .laundrySubTasks:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .bootShoeStorage:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .petCareSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .extraLuggageSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .outdoorEquipmentSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .seasonalItemsSubTask:
+                return [
+                    MiniTaskTypeBox(GarageMiniTaskType.remove)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.clean)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.categorize)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.group)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.sort)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.contain)!,
+                    MiniTaskTypeBox(GarageMiniTaskType.label)!
+                ]
+            case .longItemRackSubTask:
                 return [
                     MiniTaskTypeBox(GarageMiniTaskType.remove)!,
                     MiniTaskTypeBox(GarageMiniTaskType.clean)!,
@@ -981,6 +1606,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
                 ]
             }
         }
+    
         static var SubTaskType: [any SubTaskType] {
             return GarageSubTaskType.allCases.map { $0 as any SubTaskType }
         }

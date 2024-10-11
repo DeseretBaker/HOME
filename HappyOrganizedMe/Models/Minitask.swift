@@ -15,7 +15,8 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     var miniTaskType: MiniTaskTypeBox // Use the enum directly
-    private var _isCompleted: Bool = false
+    @Attribute var isCompleted: Bool = false
+//    private var _isCompleted: Bool = false
     var checkableItems: [CheckableItem] = []
     
     // Define relationship to SubTask
@@ -29,7 +30,7 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
 
     // Conformance to Progressable protocol
     var progress: Double {
-        guard !checkableItems.isEmpty else { return 0 }
+        guard !checkableItems.isEmpty else { return 0.0 }
         let completedCount = checkableItems.filter { $0.isCompleted }.count
         let totalCount = checkableItems.count
         return Double(completedCount) / Double(totalCount) * 100
@@ -41,13 +42,9 @@ class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
         self.instructions = instructions
         self.usageDescription = usageDescription
      
-        self._isCompleted = isCompleted
-    }
-    var isCompleted: Bool {
-        get { _isCompleted }
-        set { _isCompleted = newValue }
+        self.isCompleted = isCompleted
     }
     func toggleCompleted() {
-        _isCompleted.toggle()
+        isCompleted.toggle()
     }
 }

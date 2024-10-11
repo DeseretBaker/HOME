@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Represents different types of projects in the HappyOrganizedMe app.
+// Represents different types of projects in the HappyOrganizedMe app.
 enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     
     
@@ -24,13 +24,13 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     // Added the unknown case
     
     var id: UUID { UUID() }
-    /// The display name for the project type.
+    // The display name for the project type.
     var name: String { rawValue }
-    /// The image name associated with the project type.
+    // The image name associated with the project type.
     var imageName: String { rawValue }
     
-    /// Instructions associated with the project type.
-    /// 
+    // Instructions associated with the project type.
+    // 
     var instructions: String {
         switch self {
         case .kitchen:
@@ -55,7 +55,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return "Unknown Project instructions"
         }
     }
-    /// Usage description associated with the project type.
+    // Usage description associated with the project type.
     var usageDescription: String {
         switch self {
         case .kitchen: 
@@ -81,7 +81,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
         }
     }
     
-    /// A weight value representing the priority or importance of the project type.
+    // A weight value representing the priority or importance of the project type.
     var weight: Double {
         switch self {
         case .kitchen, .garage, .bathroom, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .unknown: return 2.0

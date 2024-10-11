@@ -11,12 +11,11 @@ import SwiftData
 class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
     var instructions: String
     var usageDescription: String
-    
     var miniTasks: [MiniTask]
     
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
     var subTaskType: SubTaskTypeBox // Use the SubTaskType enum directly, not the protocol
-    private var _isCompleted: Bool = false
+    @Attribute var isCompleted: Bool = false
     // Define relationships to miniTasks and subTask
     @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
 
@@ -39,14 +38,11 @@ class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
         self.usageDescription = usageDescription
         
         self.miniTasks = miniTasks
-        self._isCompleted = isCompleted
+        self.isCompleted = isCompleted
     }
-    var isCompleted: Bool {
-        get { _isCompleted }
-        set { _isCompleted = newValue }
-    }
+
     // Method to toggle the completion status
     func toggleCompleted() {
-        _isCompleted.toggle()
+        isCompleted.toggle()
     }
 }

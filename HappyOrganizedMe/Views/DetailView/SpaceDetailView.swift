@@ -19,37 +19,34 @@ struct SpaceDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 // Space Header
-                VStack(alignment: .leading, spacing: 10) {
+                ZStack(alignment: .bottomLeading) {
                     Image(space.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 125)
+                        .frame(height: 175)
                         .clipped()
                         .cornerRadius(10)
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(space.name)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                    }
                     
-                    ProgressView(value: space.progress, total: 100)
-                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                        .padding(.vertical, 10)
-                    
-                    HStack {
-                        Text("Progress: \(String(format: "%.0f", space.progress))%")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        Spacer()
-                        Text("Status: \(space.isCompleted ? "Completed" : "In Progress")")
-                            .font(.subheadline)
-                            .foregroundColor(space.isCompleted ? .green : .orange)
-                    }
-                    
-                    // SubTask List Header
-                    Text("SubTasks")
+                    // Text over image
+                    Text(space.name)
+                        .font(.largeTitle)
+                        .fontWeight(.regular)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(
+                            Color.gray.opacity(0.4) // Background color for better text visibility
+                                .cornerRadius(10)
+                        )
+                        .padding([.leading, .bottom], 5) // Positioning text at bottom-left
+                }
+                .frame(height: 175)
+                .cornerRadius(10)
+                .padding([.leading, .trailing])
+   
+                    // SubTask Grid
+                    Text("Donate it, Someone else needs it")
                         .font(.headline)
-                        .padding(.top)
+                        .padding(.leading)
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                         ForEach(space.subTasks) { subTask in
@@ -60,20 +57,15 @@ struct SpaceDetailView: View {
                     }
                     .padding([.leading, .trailing])
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-                .padding([.leading, .trailing])
             }
-            .navigationTitle("Space Details")
+            .navigationTitle("Keep what you love")
             .toolbar {
                 Button(action: {
-                    // Action for editing the space or adding new subtasks
+       
                 }) {
-                    //                Image(systemName: "pencil")
+                   
                 }
             }
         }
     }
-}
+

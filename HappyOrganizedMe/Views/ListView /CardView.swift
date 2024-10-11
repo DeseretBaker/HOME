@@ -25,20 +25,20 @@ struct CardView<Item: Displayable>: View {
     @State private var showUsageDescriptionSheet = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 15) {
             // Image and item name
             ZStack {
                 if !item.imageName.isEmpty {
                     Image(item.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 110)
+                        .frame(height: 125)
                         .clipped()
                         .cornerRadius(10)
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.2))
-                        .frame(height: 110)
+                        .frame(height: 150)
                         .cornerRadius(10)
                         .overlay(
                             Text("No Image")
@@ -51,6 +51,9 @@ struct CardView<Item: Displayable>: View {
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(maxWidth: .infinity)
             
             ProgressView(value: item.progress, total: 100)
                 .progressViewStyle(LinearProgressViewStyle(tint: .teal))
@@ -64,7 +67,7 @@ struct CardView<Item: Displayable>: View {
                 Button(action: {
                     showInstructionsSheet = true // Show instructions sheet
                 }) {
-                    AnimatedBullseyeView()
+                    AnimatedBullseyeView1()
                         .font(.footnote)
                         .frame(minWidth: 30, maxWidth: 80)
                         .padding(5)
@@ -78,7 +81,7 @@ struct CardView<Item: Displayable>: View {
                 Button(action: {
                     showUsageDescriptionSheet = true // Show usage description sheet
                 }) {
-                    AnimatedBullseyeView()
+                    AnimatedBullseyeView2()
                         .font(.footnote)
                         .frame(minWidth: 30, maxWidth: 80)
                         .padding(5)
@@ -94,7 +97,7 @@ struct CardView<Item: Displayable>: View {
         .padding()
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 10)
+        .shadow(radius: 5)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(item.name), Progress: \(String(format: "%.0f", item.progress))%, \(item.isCompleted ? "Completed" : "In Progress")")
         .sheet(isPresented: $showInstructionsSheet) {
@@ -116,7 +119,7 @@ struct InstructionSheetView: View {
             HStack {
                 Spacer()
                 Text(title) // Display the title
-                    .font(.headline)
+                    .font(.custom("Verdana-Bold", size: 25))
                     .padding()
                 Spacer()
             }
@@ -128,11 +131,13 @@ struct InstructionSheetView: View {
                         .foregroundColor(.secondary)
                 } else {
                     Text(content) // Display the actual content
+                        .font(.custom("Verdana", size: 18))
+                        .kerning(-0.2)
                         .padding()
                 }
             }
         }
-        .presentationDetents([.medium, .large]) // Allows the sheet to be adjustable in size
+        .presentationDetents([.fraction(0.3), .medium, .large]) // Allows the sheet to be adjustable in size
         .presentationDragIndicator(.visible) // Shows a drag indicator to swipe down
     }
 }

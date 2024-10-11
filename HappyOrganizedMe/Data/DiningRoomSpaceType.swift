@@ -54,11 +54,11 @@ enum DiningRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
             ]
         case .drinkCart:
             return [
-                SubTaskTypeBox(DiningRoomSubTaskType.drinkCart)!
+                SubTaskTypeBox(DiningRoomSubTaskType.drinkCart1)!
             ]
         case .multiUseZone:
             return [
-                SubTaskTypeBox(DiningRoomSubTaskType.multiUseZone)!
+                SubTaskTypeBox(DiningRoomSubTaskType.multiUseZone1)!
             ]
         
         }

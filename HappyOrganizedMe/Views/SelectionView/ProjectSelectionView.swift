@@ -33,7 +33,7 @@ struct ProjectSelectionView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Projects")
+            .navigationTitle("Make the first move")
             .toolbar {
                // EditButton()
             }

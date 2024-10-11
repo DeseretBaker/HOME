@@ -10,13 +10,13 @@ import SwiftData
 
 @Model
 class Project: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
     var instructions: String
     var usageDescription: String
     var rooms: [Room]
     
-    private var _isCompleted: Bool = false
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
+    @Attribute var _isCompleted: Bool = false
     
     // Initializer
     init(projectType: ProjectType, instructions: String = "", usageDescription: String = "", rooms: [Room] = [], isCompleted: Bool = false) {
@@ -34,9 +34,11 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
 
     // Conformance to Progressable protocol
     var progress: Double {
-        guard !rooms.isEmpty else { return 0 }
-        let completedRooms = rooms.filter { $0.isCompleted }.count
-        return Double(completedRooms) / Double(rooms.count) * 100
+        let allRoomsSpacesSubTasksMiniTasks = rooms.flatMap(\.spaces).flatMap(\.subTasks).flatMap(\.miniTasks)
+     
+        guard !allRoomsSpacesSubTasksMiniTasks.isEmpty else { return 0.0 }
+        let completedRoomsSpacesSubTasksMiniTasks = allRoomsSpacesSubTasksMiniTasks.filter { $0.isCompleted }.count
+        return Double(completedRoomsSpacesSubTasksMiniTasks) / Double(allRoomsSpacesSubTasksMiniTasks.count) * 100
     }
     
     var isCompleted: Bool {

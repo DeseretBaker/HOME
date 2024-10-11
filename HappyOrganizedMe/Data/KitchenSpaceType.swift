@@ -14,21 +14,23 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case prepZoneCountertops = "Countertop Zones"
     case prepZoneAppliances = "Appliance Zone"
     // CookingZoneSpaces
-    case cookingZoneRange = "The Whole Range"
+    case cookingZoneRange = "Range"
     case cookingZoneCookware = "All Things Cooking"
     // CleaningZoneSpaces
-    case cleaningZoneSpace = "All Things Cleaning"
+    case cleaningZoneSpace = "All the Cleaning Things"
     // FoodStorageZoneSpaces
-    case foodStorageZonePantry = "Food Storage Pantry"
-    case foodStorageRefrigerator = "Refrigerator"
+    case foodStorageZonePantry = "Where the Food Goes"
+    case foodStorageRefrigerator = "Cold Stuff"
     // CookwareZoneSpaces
-    case cookwareZoneBaking = "All Things Baking"
+    case cookwareZoneBaking = "More Baking Stuff"
     // ServingZoneSpaces
     case servingZoneServeWare = "ServeWare"
     case servingZoneEverydayDishes = "Everyday Dishes"
     // drinkZoneSpaces
-    case drinkZone = "All things Drink"
+    case drinkZone = "Drink-Up"
     case theWasteZone = "The Waste Zone"
+    case theCompostZone = "The Compost Zone"
+    case theRecyclingZone = "The Recycling Zone"
     
     var id: UUID { UUID() }
     var name: String { rawValue }
@@ -36,6 +38,10 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     var instructions: String {
         switch self {
+        case .theRecyclingZone:
+            return "Designate a designated area for recycling. Keep it clean and organized by storing recyclable materials like plastic bottles, aluminum cans, and glass jars. Use recycling bins or containers to keep recyclable materials separate from other trash."
+        case .theCompostZone:
+            return "Designate a designated area for composting. Keep it clean and organized by storing compostable materials like leaves, grass clippings, and fruit peels. Use compost bins or containers to keep composting materials separate from other trash."
         case .prepZoneCountertops:
             return "Designate a clear section of your countertop as your primary prep zone. Keep it clutter-free by storing only essential items like a cutting board, knife block, and a few frequently used utensils. Use organizers or containers to manage any small items and maintain an open workspace."
         case .prepZoneAppliances:
@@ -64,6 +70,10 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var usageDescription: String {
         switch self {
+        case . theRecyclingZone:
+            return "Store recycling bins in an accessible location. Store trash cans in an accessible location."
+        case .theCompostZone:
+            return "Store compost bins in an accessible location. Store garbage cans in an accessible location."
         case .prepZoneCountertops:
             return "The countertop is the heart of the prep zone and needs to be spacious to accommodate chopping, mixing, and assembling ingredients. A dedicated, clutter-free prep area ensures you have enough space to work efficiently and helps keep meal preparation organized and stress-free. This setup allows you to move seamlessly through tasks, making cooking more enjoyable and less chaotic."
         case .prepZoneAppliances:
@@ -97,6 +107,8 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var isCompleted: Bool {
         switch self {
+        case .theRecyclingZone: return true
+        case .theCompostZone: return true
         case .prepZoneCountertops: return true
         case .prepZoneAppliances: return true
         case .cookingZoneRange: return true
@@ -117,6 +129,14 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
+        case .theRecyclingZone:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.allThingsWaste)!
+            ]
+        case .theCompostZone:
+            return [
+                SubTaskTypeBox(KitchenSubTaskType.allThingsWaste)!
+            ]
         case.prepZoneCountertops:
             return [
                 SubTaskTypeBox(KitchenSubTaskType.prepCounters)!
@@ -180,13 +200,13 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         return [.servingZoneServeWare, .servingZoneEverydayDishes]
     }
     static var drinkZoneSpaces: [KitchenSpaceType] {
-        return [.drinkZone]
+        return [.drinkZone, .foodStorageRefrigerator]
     }
     static var cleaningZone: [KitchenSpaceType] {
-        return [.cleaningZoneSpace, .theWasteZone ]
+        return [.cleaningZoneSpace, .theWasteZone, .theRecyclingZone, .theCompostZone]
     }
     static var cookwareZone: [KitchenSpaceType] {
-        return [.cookwareZoneBaking]
+        return [.cookingZoneCookware, .cookingZoneRange, .cookwareZoneBaking,.prepZoneAppliances]
     }
     static var allSpaceTypes: [any SpaceType] {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType}

@@ -18,44 +18,34 @@ struct ProjectDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 15) {
-                // Project Header
-                VStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .leading, spacing: 10) {
+                // Project Header with text over image
+                ZStack(alignment: .bottomLeading) {
                     Image(project.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 125)
+                        .frame(height: 175)
                         .clipped()
                         .cornerRadius(10)
                     
+                    // Text over image
                     Text(project.name)
                         .font(.largeTitle)
-                        .fontWeight(.bold)
-                    
-                    ProgressView(value: project.progress, total: 100)
-                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                        .padding(.vertical, 10)
-                    
-                    HStack {
-                        Text("Progress: \(String(format: "%.0f", project.progress))%")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        Spacer()
-                        Text("Status: \(project.isCompleted ? "Completed" : "In Progress")")
-                            .font(.subheadline)
-                            .foregroundColor(project.isCompleted ? .green : .orange)
-                    }
+                        .fontWeight(.regular)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(
+                            Color.gray.opacity(0.4) // Background color for better text visibility
+                                .cornerRadius(10)
+                        )
+                        .padding([.leading, .bottom], 5) // Positioning text at bottom-left
                 }
-                .padding()
-                .background(Color.white)
+                .frame(height: 175)
                 .cornerRadius(10)
-                .shadow(radius: 5)
                 .padding([.leading, .trailing])
                 
-
-                .padding([.leading, .trailing])
                 // Room Grid
-                Text("Areas to work on")
+                Text("You've got this!")
                     .font(.headline)
                     .padding(.leading)
                 
@@ -69,8 +59,6 @@ struct ProjectDetailView: View {
                 .padding([.leading, .trailing])
             }
         }
-        .navigationTitle("")
-        
+        .navigationTitle("You, Be, You!")
     }
 }
-

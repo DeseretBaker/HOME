@@ -205,183 +205,234 @@ enum GarageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         switch self {
         case .carCleaningSupplies:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.carCleaningSubTask)!
             ]
         case .garageDoorArea:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.garageDoorSubTask)!
             ]
         case .vehicleParking:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.vehicleParkingSubTask)!
             ]
         case .tireStorageCorner:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.tireStorageSubtask)!
             ]
         case .chargingStation:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.chargingStationSubTask)!
             ]
         case .handToolStorage:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.handToolSubTask)!
             ]
         case .powerToolStorage:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.powerToolSubTask)!
             ]
         case .toolCleaningMaintenance:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.toolCleaningSubTask)!
             ]
         case .workBench:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.workBenchSubTask)!
             ]
         case .smallPartsOrganizer:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.smallPartsSubTask)!
             ]
         case .safetyEquipmentStation:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.safetyEquipmentSubTask)!
             ]
         case .gardenToolStorage:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.gardenToolSubTask)!
             ]
         case .lawnEquipment:
             return [
-            
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.lawnEquipmentSubTask)!
             ]
         case .outdoorDecorationsFurniture:
             return [
-              
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.outdoorDecorSubTask)!
             ]
         case .plantingSupplies:
             return [
-          
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.plantingSuppliesSubTask)!
             ]
         case .pottingBench:
             return [
-           
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.pottingBenchSubTask)!
             ]
         case .hoseStorage:
             return [
-            
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.hoseStorageSubTask)!
             ]
         case .ballStorage:
             return [
-           
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.ballStorageSubTask)!
             ]
         case .bikeRack:
             return [
-           
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.bikeRackSubTask)!
             ]
         case .sportsEquipmentRack:
             return [
-          
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.sportsEquipmentRackSubTask)!
             ]
         case .sportsGear:
             return [
-           
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.sportsGearSubTask)!
             ]
         case .holidayDecorations:
             return [
-        
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.holidayDecorSubTask)!
             ]
         case .seasonalToysOutdoorGear:
             return [
-          
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.seasonalToys)!
             ]
         case .winterClothingGear:
             return [
-         
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.winterGear)!
             ]
         case .outdoorFurnitureStorage:
             return [
-    
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.outdoorFurnitureSubTask)!
             ]
         case .cleaningSupplies:
             return [
-             
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.cleaningSuppliesSubTask)!
             ]
         case .miscellaneousHouseholdItems:
             return [
-          
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.miscHouseholdItemsSubTask)!
             ]
         case .overflowPantry:
             return [
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.overflowPantrySubtask)!
             ]
         case .paperGoodsStorage:
             return [
-             
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.paperGoodsSubTask)!
             ]
         case .emergencySupplies:
             return [
-            
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                
+                SubTaskTypeBox(GarageSubTaskType.emergencySuppliesSubTask)!
             ]
-        case .compostingArea, .recyclingBinArea, .trashBinArea, .hazardousWasteArea, .donationBinArea:
+        case .compostingArea:
             return [
-             
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.compostingAreaSubTask)!
             ]
-        case .cleaningMaintenanceProducts, .houseMaintenanceTools, .dIYRepairArea, .yardMaintenanceEquipmentZone:
+        case .recyclingBinArea:
             return [
-         
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.recyclingBinSubTask)!
             ]
-        case .clothingFoldingHangingArea, .coatHatHooks, .laundrySupplies, .shoeBootStorage, .petCare:
+        case .trashBinArea:
             return [
-        
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.trashBinSubTask)!
             ]
-        case .extraLuggage, .outdoorEquipment, .seasonalItems, .longItemRack:
+        case .hazardousWasteArea:
             return [
-       
-                SubTaskTypeBox(GarageSubTaskType.tableLinens)!
+                SubTaskTypeBox(GarageSubTaskType.hazardousWasteSubTask)!
+            ]
+        case .donationBinArea:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.donationBinAreaSubTask)!
+            ]
+        case .cleaningMaintenanceProducts: return [
+            SubTaskTypeBox(GarageSubTaskType.cleaningMaintenanceSubTasks)!
+        ]
+        case .houseMaintenanceTools:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.houseToolsSubTask)!
+            ]
+        case .dIYRepairArea:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.dIYRepairSubTask)!
+            ]
+        case .yardMaintenanceEquipmentZone:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.yardEquipmentSubTask)!
+            ]
+        case .clothingFoldingHangingArea:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.clothingFoldingSubTask)!
+            ]
+        case .coatHatHooks:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.hatCoatHooks)!
+            ]
+        case .laundrySupplies:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.laundrySubTasks)!
+            ]
+        case .shoeBootStorage:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.bootShoeStorage)!
+            ]
+        case .petCare:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.petCareSubTask)!
+            ]
+        case .extraLuggage:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.extraLuggageSubTask)!
+            ]
+        case  .outdoorEquipment:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.outdoorEquipmentSubTask)!
+            ]
+        case  .seasonalItems:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.seasonalItemsSubTask)!
+            ]
+        case .longItemRack:
+            return [
+                SubTaskTypeBox(GarageSubTaskType.longItemRackSubTask)!
             ]
         }
     }
     static var parkingZoneSpaces: [GarageSpaceType] {
-        return [.chargingStation, .vehicleParking, .garageDoorArea]
+        return [.chargingStation, .vehicleParking, .garageDoorArea, .safetyEquipmentStation]
     }
     static var activityZoneSpaces: [GarageSpaceType] {
         return [.bikeRack, .ballStorage, .seasonalToysOutdoorGear, .sportsEquipmentRack, .sportsGear, .winterClothingGear]
     }
     static var outdoorZoneSpaces: [GarageSpaceType] {
         return [.gardenToolStorage, .hoseStorage, .lawnEquipment, .longItemRack, .outdoorDecorationsFurniture, .outdoorEquipment, .outdoorFurnitureStorage, .plantingSupplies, .pottingBench, .yardMaintenanceEquipmentZone]
-        }
+    }
     static var allThingsWasteZoneSpaces: [GarageSpaceType] {
         return [.donationBinArea, .recyclingBinArea, .trashBinArea, .compostingArea, .hazardousWasteArea]
     }
     static var repairZoneSpaces: [GarageSpaceType] {
-        return [.dIYRepairArea, .safetyEquipmentStation, .smallPartsOrganizer, .workBench]
+        return [.dIYRepairArea, .safetyEquipmentStation, .smallPartsOrganizer, .workBench, .houseMaintenanceTools]
     }
     static var cleaningZoneSpaces: [GarageSpaceType] {
-        return [.cleaningSupplies, .carCleaningSupplies, .cleaningMaintenanceProducts, .toolCleaningMaintenance]
+        return [.cleaningSupplies, .carCleaningSupplies, .cleaningMaintenanceProducts, .toolCleaningMaintenance, .laundrySupplies]
     }
     static var toolZoneSpaces: [GarageSpaceType] {
-        return [.handToolStorage, .houseMaintenanceTools, .powerToolStorage]
+        return [.handToolStorage, .houseMaintenanceTools, .powerToolStorage, .gardenToolStorage, .handToolStorage, .toolCleaningMaintenance, .workBench]
     }
     static var storageZoneSpaces: [GarageSpaceType] {
         return [.clothingFoldingHangingArea, .coatHatHooks, .emergencySupplies, .extraLuggage, .holidayDecorations, .laundrySupplies, .miscellaneousHouseholdItems, .overflowPantry, .petCare, .paperGoodsStorage, .seasonalItems, .shoeBootStorage, .tireStorageCorner]

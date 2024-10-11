@@ -13,7 +13,7 @@ import Foundation
 enum StorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     case closetSpaces = "All the Closets"
-    case builtInSpaces = "All the Nooks"
+    case builtInSpaces = "Nooks"
     case longTermStorage = "Long Term Storage"
     
     var id: UUID { UUID() }

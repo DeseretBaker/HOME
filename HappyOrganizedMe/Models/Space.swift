@@ -16,7 +16,7 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     
     @Attribute(.unique) var id: UUID = UUID()
     var spaceType: SpaceTypeBox
-    private var _isCompleted: Bool = false
+    @Attribute var isCompleted: Bool = false
 
     @Relationship(inverse: \Room.spaces) var room: Room?
 
@@ -26,9 +26,12 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject  {
     var weight: Double { spaceType.weight }
     
     var progress: Double {
-        guard !subTasks.isEmpty else { return 0.0 }
-        let completedSubTasks = subTasks.filter { $0.isCompleted }.count
-        return Double(completedSubTasks) / Double(subTasks.count) * 100
+        let allMiniTasks = subTasks.flatMap(\.miniTasks)
+        
+        guard !allMiniTasks.isEmpty else { return 0.0 }
+        let completedMiniTasks = allMiniTasks.filter { $0.isCompleted }.count
+        return Double(completedMiniTasks) / Double(allMiniTasks.count) * 100
+        
     }
     
     // Initializer
@@ -36,19 +39,17 @@ class Space: Identifiable, Displayable, Progressable, ObservableObject  {
         self.spaceType = spaceType
         self.instructions = instructions
         self.usageDescription = usageDescription
+        self.isCompleted = isCompleted
         self.subTasks = subTasks
-        self._isCompleted = isCompleted
         
+        for subTask in self.subTasks {
+            subTask.space = self
+        }
         // Debug Print Statement
         print("Initialized Space: \(self.name) with \(subTasks.count) subtasks.")
     }
     
-    var isCompleted: Bool {
-        get { _isCompleted }
-        set { _isCompleted = newValue }
-    }
-    
     func toggleCompleted() {
-        _isCompleted.toggle()
+        isCompleted.toggle()
     }
 }

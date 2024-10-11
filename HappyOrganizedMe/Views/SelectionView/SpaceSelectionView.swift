@@ -35,7 +35,7 @@ struct SpaceSelectionView: View {
                 }
             }
         }
-        .navigationTitle("Select a Space")
+        .navigationTitle("You've got this!")
         .toolbar {
             //EditButton()  // Allows editing for delete action
         }

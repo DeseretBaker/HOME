@@ -14,12 +14,12 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case deskTopSetup = "Desk Top Setup"
     // OfficeReference
     case officeReference = "Office Reference"
-    case documentHandling = "Document Handling"
+    case documentHandling = "Document Handling 1"
     // OfficeTechSpaceType
     case officeTech = "Office Tech"
     // OfficeStorageSpaceType
     case officeStorage = "Office Storage"
-    case collaborationZone = "Collaboration Zone"
+    case collaborationZone = "Collab Zone"
     case inspirationalZone = "Inspirational Zone"
     case breakZoneSpaces = "Break Zone Spaces"
     case taskLightingZoneSpaces = "Task Lighting Zone Spaces"
@@ -77,7 +77,7 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .breakZoneSpaces: return [ SubTaskTypeBox(OfficeSubTaskType.chillZone)!]
+        case .breakZoneSpaces: return [ SubTaskTypeBox(OfficeSubTaskType.chillOutZone)!]
         case .documentHandling: return [ SubTaskTypeBox(OfficeSubTaskType.theMailAndStuff)! ]
         case .inspirationalZone: return [ SubTaskTypeBox(OfficeSubTaskType.inspirationSpace)! ]
         case .collaborationZone: return [ SubTaskTypeBox(OfficeSubTaskType.meetingZone)! ]

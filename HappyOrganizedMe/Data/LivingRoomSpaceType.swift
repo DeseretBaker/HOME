@@ -34,7 +34,7 @@ enum LivingRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
     case wallArtPhotos =  "Wall Art & Photos"
     case accentLighting = "Accent Lighting"
     // LivingRoomPlay
-    case toyStorage = "Toy Storage"
+    case toyStorage = "Toy Storage 1"
     case playMatActivityArea = "Play Mat Activity Area"
     case craftArtSupplies = "Craft Art Supplies"
     case gameArea = "Game Area"

@@ -180,7 +180,7 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case bathingZone = "Bathing Zone"
     case vanityZone = "Vanity Zone"
     case towelsZone = "Towels Zone"
-    case toiletries = "Towel Toiletries"
+    case toiletries = "Toiletries "
     case laundryZone = "Laundry Zone"
     case cleaningZone = "Cleaning Zone"
     

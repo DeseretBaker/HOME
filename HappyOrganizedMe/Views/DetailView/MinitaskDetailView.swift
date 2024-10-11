@@ -55,7 +55,7 @@ struct MiniTaskDetailView: View {
                     .shadow(radius: 5)
             }
         }
-        .navigationTitle("The Smallest Details")
+        .navigationTitle("")
         .padding()
     }
 

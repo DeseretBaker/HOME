@@ -20,15 +20,33 @@ struct StartHereView: View {
             
             // Foreground content
             VStack(spacing: 20) {
-                // header section
-                Text("HO")
-                    .font(headerFont)
-                    .foregroundColor(.white)
-                    .padding()
-                Text("ME")
-                    .font(headerFont)
-                    .foregroundColor(.white)
-                    .padding()
+                // "HO" text with outline
+                ZStack {
+                    Text("HO")
+                        .font(outlineHeaderFont)
+                        .foregroundColor(.black) // Outline color
+                        .offset(x: 2, y: 2) // Slight offset to create outline effect
+                    
+                    Text("HO")
+                        .font(headerFont)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                }
+                .padding()
+
+                // "ME" text with outline
+                ZStack {
+                    Text("ME")
+                        .font(outlineHeaderFont)
+                        .foregroundColor(.black) // Outline color
+                        .offset(x: 2, y: 2) // Slight offset to create outline effect
+                    
+                    Text("ME")
+                        .font(headerFont)
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                }
+                .padding()
                 
                 // Start button
                 Button(action: {
@@ -38,12 +56,12 @@ struct StartHereView: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
-                        .frame(maxWidth: 225, minHeight: 50)
+                        .frame(maxWidth: 200, minHeight: 50)
                         .background(Color.teal)
                         .foregroundColor(.white)
-                        .cornerRadius(10).overlay(RoundedRectangle(cornerRadius: 10)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.black, lineWidth: 1))
-
                 })
                 .padding(.horizontal)
                 .buttonStyle(.bordered)
@@ -55,6 +73,11 @@ struct StartHereView: View {
     // Custom font styling function
     private var headerFont: Font {
         .system(size: 125)
+    }
+    
+    // Outline font styling function (slightly larger for outline effect)
+    private var outlineHeaderFont: Font {
+        .system(size: 130) // Slightly larger size for the outline
     }
 }
 

@@ -15,61 +15,61 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case toyChestTrunks = "Toy Chest Trunks"
     case rotationalStorage = "Rotational Storage"
     // PlayroomOutdoorSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case playEquipment = "Play Equipment"
-        case outdoorToyStorage = "Outdoor Toy Storage"
-        case waterPlayArea = "Water Play Area"
-        case gardeningExplorationArea = "Gardening Exploration Area"
+    case playEquipment = "Play Equipment"
+    case outdoorToyStorage = "Outdoor Toy Storage"
+    case waterPlayArea = "Water Play Area"
+    case gardeningExplorationArea = "Gardening Exploration Area"
     // PlayroomTechSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case deviceChargingStation = "Device Charging Station"
-        case comfortableSeating = "Comfortable Seating"
-        case headphoneStorage = "Headphone Storage"
-        case screenTimeTimer = "Screen Time Timer"
+    case deviceChargingStation = "Device Charging Station"
+    case comfortableSeating = "Comfortable Seating"
+    case headphoneStorage = "Headphone Storage"
+    case screenTimeTimer = "Screen Time Timer"
     // PlayroomStudy
-        case deskChair = "Desk Chair"
-        case suppliesStorage = "Supplies Storage"
-        case homeworkOrganizer = "Homework Organizer"
-        case referenceShelf = "Reference Shelf"
+    case deskChair = "Desk Chair"
+    case suppliesStorage = "Supplies Storage"
+    case homeworkOrganizer = "Homework Organizer"
+    case referenceShelf = "Reference Shelf"
     // PlayroomSensorySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case sensoryBins = "Sensory Bins"
-        case tactileWallPanels = "Tactile Wall Panels"
-        case lightTable = "Light Table"
-        case waterPlayStation = "Water Play Station"
+    case sensoryBins = "Sensory Bins"
+    case tactileWallPanels = "Tactile Wall Panels"
+    case lightTable = "Light Table"
+    case waterPlayStation = "Water Play Station"
     // PlayroomPerformanceSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case instrumentStorage = "Instrument Storage"
-        case performanceArea = "Performance Area"
-        case musicStand = "Music Stand"
-        case recordingPlaybackZone = "Recording/Playback Zone"
+    case instrumentStorage = "Instrument Storage"
+    case performanceArea = "Performance Area"
+    case musicStand = "Music Stand"
+    case recordingPlaybackZone = "Recording/Playback Zone"
     // PlayroomActivitySpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case softMatsRugs = "Soft Mats & Rugs"
-        case sportsEquipmentRacks = "Sports Equipment Racks"
-        case indoorPlayEquipment = "Indoor Play Equipment"
-        case freePlayAreas = "Free Play Areas"
+    case softMatsRugs = "Soft Mats & Rugs"
+    case sportsEquipmentRacks = "Sports Equipment Racks"
+    case indoorPlayEquipment = "Indoor Play Equipment"
+    case freePlayAreas = "Free Play Areas"
     // PlayroomGame
-        case puzzleStorage = "Puzzle Storage"
-        case gameShelf = "Game Shelf"
-        case gameTable = "Game Table"
-        case gamePieceOrganizer = "Game Piece Organizer"
+    case puzzleStorage = "Puzzle Storage"
+    case gameShelf = "Game Shelf"
+    case gameTable = "Game Table"
+    case gamePieceOrganizer = "Game Piece Organizer"
     // PlayroomImagination
-        case dressUpArea = "Dress Up Area"
-        case pretendPlaySets = "Pretend Play Sets"
-        case rolePlayStation = "Role Play Station"
-        case costumeMirror = "Costume Mirror"
+    case dressUpArea = "Dress Up Area"
+    case pretendPlaySets = "Pretend Play Sets"
+    case rolePlayStation = "Role Play Station"
+    case costumeMirror = "Costume Mirror"
     // PlayroomConstruction
-        case buildingBlockStorage = "Building Block Storage"
-        case constructionTable = "Construction Table"
-        case displayShelf = "Display Shelf"
-        case challengeCards = "Challenge Cards"
+    case buildingBlockStorage = "Building Block Storage"
+    case constructionTable = "Construction Table"
+    case displayShelf = "Display Shelf"
+    case challengeCards = "Challenge Cards"
     // PlayroomQuite
-        case bookshelves = "Bookshelves"
-        case cozySeatingAreas = "Cozy Seating Areas"
-        case softLighting = "Soft Lighting"
-        case quietTimeBasket = "Quiet Time Basket"
+    case bookshelves = "Bookshelves"
+    case cozySeatingAreas = "Cozy Seating Areas"
+    case softLighting = "Soft Lighting"
+    case quietTimeBasket = "Quiet Time Basket"
     // PlayroomCraftSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
-        case craftSuppliesDrawers = "Craft Supplies Drawers"
-        case artTable = "Art Table"
-        case craftDisplayBoard = "Craft Display Board"
-        case supplyOrganizer = "Supply Organizer"
-
+    case craftSuppliesDrawers = "Craft Supplies Drawers"
+    case artTable = "Art Table"
+    case craftDisplayBoard = "Craft Display Board"
+    case supplyOrganizer = "Supply Organizer"
+    
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
@@ -226,49 +226,49 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
             ]
         case .instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone:
             return [
-        
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomPerformanceZoneSpace)!
             ]
         case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks:
             return [
-
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomActivityZoneSpace)!
             ]
         case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage:
             return [
-
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomBoardGameZoneSpace)!
             ]
         case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror:
             return [
-
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomImaginationZoneSpace)!
             ]
         case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards:
             return [
-
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomBuildingZoneSpace)!
             ]
         case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket:
             return [
- 
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomQuietZoneSpace)!
             ]
         case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer:
             return [
-
+                
                 SubTaskTypeBox(PlayroomSubTaskType.playroomCraftZoneSpace)!
             ]
         }
     }
     static var playroomZoneSpaces: [PlayroomSpaceType] {
-        return [.toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage]
+        return [.toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage, .bookshelves, .cozySeatingAreas, .deviceChargingStation, .outdoorToyStorage]
     }
     static var playroomExplorationSpaces: [PlayroomSpaceType] {
-        return [.gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea]
+        return [.gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea, .waterPlayStation]
     }
     static var playroomTechZoneSpaces: [PlayroomSpaceType] {
-        return [.deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer]
+        return [.deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer, .recordingPlaybackZone]
     }
     static var playroomStudyZoneSpaces: [PlayroomSpaceType] {
         return [.deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf]
@@ -291,7 +291,7 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     static var playroomBuildingZoneSpaces: [PlayroomSpaceType] {
         return [.buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards]
     }
-   static var playroomQuietZoneSpaces: [PlayroomSpaceType] {
+    static var playroomQuietZoneSpaces: [PlayroomSpaceType] {
         return [.bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket]
     }
     static var playroomCraftZoneSpaces: [PlayroomSpaceType] {

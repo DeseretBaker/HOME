@@ -102,7 +102,7 @@ struct MiniTaskCardView: View {
         .padding()
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
+        .shadow(radius: 2)
     }
 
     private func toggleCompletionStatus() {

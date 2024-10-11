@@ -9,7 +9,7 @@
 //import SwiftData
 //
 //@MainActor
-//// Function to synchronize projects with remote storage (e.g., Cloud)
+// Function to synchronize projects with remote storage (e.g., Cloud)
 //func syncProjects() {
 //    let modelContext = HappyOrganizedMeApp.sharedModelContainer.mainContext // Use the shared container's main context
 //    
@@ -30,7 +30,7 @@
 //    }
 //}
 //
-//// Function to fetch local projects using SwiftData
+// Function to fetch local projects using SwiftData
 //func fetchLocalProjects(using context: ModelContext) -> [Project] {
 //    let fetchDescriptor = FetchDescriptor<Project>()
 //    
@@ -42,7 +42,7 @@
 //    }
 //}
 //
-//// Function to fetch remote projects
+// Function to fetch remote projects
 //func fetchRemoteProjects(completion: @escaping ([Project]) -> Void) {
 //    DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
 //        
@@ -101,7 +101,7 @@
 //    }
 //}
 //
-//// Function to resolve conflicts between local and remote projects
+// Function to resolve conflicts between local and remote projects
 //func resolveConflicts(localProjects: [Project], cloudProjects: [Project]) -> ([Project], [Project]) {
 //    // Example conflict resolution: Last Write Wins (LWW) or custom merge logic
 //    let updatedLocalProjects = localProjects
@@ -111,7 +111,7 @@
 //    return (updatedLocalProjects, updatedCloudProjects)
 //}
 //
-//// Function to save projects to local storage using SwiftData
+// Function to save projects to local storage using SwiftData
 //func saveProjectsToLocal(_ projects: [Project], context: ModelContext) {
 //    do {
 //        for project in projects {
@@ -124,7 +124,7 @@
 //    }
 //}
 //
-//// Placeholder function to save projects to the cloud
+// Placeholder function to save projects to the cloud
 //func saveProjectsToCloud(_ projects: [Project]) {
 //    // Implement your cloud saving logic here
 //    print("Saving projects to cloud...")
