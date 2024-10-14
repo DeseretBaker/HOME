@@ -9,15 +9,18 @@ import SwiftData
 
 @Model
 class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    // Define relationships to miniTasks and subTask
+    @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
     var instructions: String
     var usageDescription: String
     var miniTasks: [MiniTask]
     
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    
     var subTaskType: SubTaskTypeBox // Use the SubTaskType enum directly, not the protocol
     @Attribute var isCompleted: Bool = false
-    // Define relationships to miniTasks and subTask
-    @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
+    
+    
 
     // MARK: Computed Variables (from the Displayable protocol)
     var name: String { subTaskType.name }

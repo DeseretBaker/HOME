@@ -12,11 +12,13 @@ import SwiftData
 @Model
 class CheckableItem: Identifiable {
     @Attribute(.unique) var id: UUID = UUID()
+    @Relationship(inverse: \MiniTask.checkableItems) var miniTask: MiniTask?
+    
     var name: String = ""
     var imageName: String = ""
     var isCompleted: Bool = false
     
-    @Relationship(inverse: \MiniTask.checkableItems) var miniTask: MiniTask?
+   
     
     init(id: UUID, name: String, imageName: String, isCompleted: Bool, miniTask: MiniTask? = nil) {
         self.id = id

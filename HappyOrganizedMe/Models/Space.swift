@@ -10,15 +10,17 @@ import SwiftData
 
 @Model
 class Space: Identifiable, Displayable, Progressable, ObservableObject  {
+    @Attribute(.unique) var id: UUID = UUID()
+    @Relationship(inverse: \Room.spaces) var room: Room?
     var instructions: String
     var usageDescription: String
     var subTasks: [SubTask]
     
-    @Attribute(.unique) var id: UUID = UUID()
+    
     var spaceType: SpaceTypeBox
     @Attribute var isCompleted: Bool = false
 
-    @Relationship(inverse: \Room.spaces) var room: Room?
+   
 
     // Computed Properties
     var name: String { spaceType.name }

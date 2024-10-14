@@ -9,17 +9,20 @@ import SwiftData
 
 @Model
 class Room: Identifiable, Displayable, Progressable, ObservableObject {
+    @Attribute(.unique) var id: UUID = UUID()
+    // Define relationships to spaces and project
+    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+    
     var instructions: String
     var usageDescription: String
     var spaces: [Space]
     
-    @Attribute(.unique) var id: UUID = UUID()
+   
     var roomType: RoomTypeBox
     // Use the RoomTypeBox enum directly, not the protocol
     @Attribute var isCompleted: Bool = false
     
-    // Define relationships to spaces and project
-    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+   
     
     
     // MARK: Computed Variables

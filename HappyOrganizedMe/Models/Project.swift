@@ -10,11 +10,14 @@ import SwiftData
 
 @Model
 class Project: Identifiable, Displayable, Progressable, ObservableObject {
+    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+    @Relationship var rooms: [Room] = []
+    
     var instructions: String
     var usageDescription: String
-    var rooms: [Room]
+   
     
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
+   
     var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
     @Attribute var _isCompleted: Bool = false
     

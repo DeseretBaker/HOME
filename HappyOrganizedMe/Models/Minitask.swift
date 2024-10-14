@@ -10,17 +10,20 @@ import SwiftUI
 
 @Model
 class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
-    var instructions: String 
-    var usageDescription: String
-    
     @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    var miniTaskType: MiniTaskTypeBox // Use the enum directly
-    @Attribute var isCompleted: Bool = false
-//    private var _isCompleted: Bool = false
-    var checkableItems: [CheckableItem] = []
-    
     // Define relationship to SubTask
     @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
+    
+    var instructions: String
+    var usageDescription: String
+    
+   
+    var miniTaskType: MiniTaskTypeBox // Use the enum directly
+    @Attribute var isCompleted: Bool = false
+
+    var checkableItems: [CheckableItem] = []
+    
+   
 
     // MARK: Computed Variables
     var name: String { miniTaskType.name }
