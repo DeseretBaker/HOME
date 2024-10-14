@@ -91,21 +91,21 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
         case .bathingSpace:
-            return [ SubTaskTypeBox(BathroomSubTaskType.bathingSpaces)! ]
+            return BathroomSubTaskType.bathingSubTask.map { SubTaskTypeBox($0)! }
         case .cleaningSuppliesSpace:
-            return [ SubTaskTypeBox(BathroomSubTaskType.cleaningSuppliesSpaces)! ]
+            return BathroomSubTaskType.cleaningSpaceSubtask.map { SubTaskTypeBox($0)! }
         case.toiletries:
-            return [ SubTaskTypeBox(BathroomSubTaskType.toiletrySpaces)! ]
+            return BathroomSubTaskType.toiletrySubTask.map { SubTaskTypeBox($0)! }
         case .towelStorage:
-            return [ SubTaskTypeBox(BathroomSubTaskType.towelStorageSpace)! ]
+            return BathroomSubTaskType.towelStorageSubTask.map { SubTaskTypeBox($0)! }
         case .vanity:
-            return [ SubTaskTypeBox(BathroomSubTaskType.vanitySpace)! ]
+            return BathroomSubTaskType.vanitySubTask.map { SubTaskTypeBox($0)! }
         case .laundry:
-            return [ SubTaskTypeBox(BathroomSubTaskType.laundrySpace)! ]
+            return BathroomSubTaskType.laundrySubTask.map { SubTaskTypeBox($0)! }
         case .grooming:
-            return [ SubTaskTypeBox(BathroomSubTaskType.groomingZoneSpaces)! ]
+            return BathroomSubTaskType.groomingSubTask.map { SubTaskTypeBox($0)! }
         case .softLighting:
-            return [ SubTaskTypeBox(BathroomSubTaskType.lightingSpaces)! ]
+            return BathroomSubTaskType.lightZonesSubTask.map { SubTaskTypeBox($0)! }
         }
     }
     static var bathingZoneSpaces: [BathroomSpaceType] {
