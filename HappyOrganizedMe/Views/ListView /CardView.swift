@@ -32,7 +32,7 @@ struct CardView<Item: Displayable>: View {
                     Image(item.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 125)
+                        .frame(height: 150)
                         .clipped()
                         .cornerRadius(10)
                 } else {
