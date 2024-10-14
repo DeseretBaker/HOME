@@ -51,13 +51,13 @@ enum DiningRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
         }
     }
     static var diningZoneSpaces: [DiningRoomSpaceType] {
-        return [.diningZone]
+        return [.diningZone, .drinkCart]
     }
     static var multiUseZoneSpaces: [DiningRoomSpaceType] {
-        return [.multiUseZone]
+        return [.multiUseZone, .diningZone]
     }
     static var drinkCartSpaces: [DiningRoomSpaceType] {
-        return [.drinkCart]
+        return [.drinkCart, .diningZone]
     }
     
     static var SpaceType: [any SpaceType] {
