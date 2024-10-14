@@ -13,12 +13,10 @@ struct SubTaskDetailView: View {
     let subTask: SubTask
     var subTaskType: SubTaskTypeBox { subTask.subTaskType }
     
-    @State private var showInstructionsSheet = false
-    @State private var showUsageDescriptionSheet = false
-    
-    @State private var showingInfo = false
-    @State private var selectedMiniTask: MiniTask?
-    
+    // Track the selected mini-task for instructions or usage description
+    @State private var selectedMiniTaskForInstructions: MiniTask?
+    @State private var selectedMiniTaskForUsageDescription: MiniTask?
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -27,7 +25,7 @@ struct SubTaskDetailView: View {
                     Image(subTask.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 125)
+                        .frame(height: 150)
                         .clipped()
                         .cornerRadius(10)
                     
@@ -39,20 +37,6 @@ struct SubTaskDetailView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
-                
-                ProgressView(value: subTask.progress, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .teal))
-                    .padding(.vertical, 10)
-                
-                HStack {
-                    Text("Progress: \(String(format: "%.0f", subTask.progress))%")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("Status: \(subTask.isCompleted ? "Completed" : "In Progress")")
-                        .font(.subheadline)
-                        .foregroundColor(subTask.isCompleted ? .green : .orange)
-                }
             }
             .padding()
             .background(Color.white)
@@ -60,9 +44,9 @@ struct SubTaskDetailView: View {
             .shadow(radius: 5)
             .padding([.leading, .trailing])
             
-            Text("MiniTasks")
+            Text("If you can't see it in your future, don't keep it in your present!")
                 .font(.headline)
-                .padding(.leading)
+                .padding()
             
             // Checkable list for miniTasks
             ForEach(subTask.miniTasks, id: \.id) { miniTask in
@@ -77,28 +61,56 @@ struct SubTaskDetailView: View {
                         .strikethrough(miniTask.isCompleted, color: .gray)
                         .animation(.default, value: miniTask.isCompleted)
                     Spacer()
+                    HStack(spacing: 10) {
+                        
+                        // Show the instructions sheet for the specific mini-task
+                        Button(action: {
+                            selectedMiniTaskForInstructions = miniTask
+                        }) {
+                            AnimatedBullseyeView1()
+                                .font(.footnote)
+                                .frame(minWidth: 30, maxWidth: 80)
+                                .padding(5)
+                                .background(Color.teal)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .sheet(item: $selectedMiniTaskForInstructions) { miniTask in
+                            InstructionSheetView(title: "How & Why", content: miniTask.instructions)
+                                .presentationDetents([.fraction(0.3), .medium, .large]) // Allows both medium and large sizes
+                                .presentationDragIndicator(.visible) // Shows a drag indicator
+                        }
                     
-                    // Info button
-                    Button(action: {
-                        selectedMiniTask = miniTask
-                        showingInfo.toggle()
-                    }) {
-                        Image(systemName: "info.circle")
+                        // Show the usage description sheet for the specific mini-task
+                        Button(action: {
+                            selectedMiniTaskForUsageDescription = miniTask
+                        }) {
+                            AnimatedBullseyeView2()
+                                .font(.footnote)
+                                .frame(minWidth: 30, maxWidth: 80)
+                                .padding(5)
+                                .background(Color.teal)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .sheet(item: $selectedMiniTaskForUsageDescription) { miniTask in
+                            UsageDescriptionSheetView(title: "Why & How", content: miniTask.usageDescription)
+                                .presentationDetents([.fraction(0.3), .medium, .large]) // Allows both medium and large sizes
+                                .presentationDragIndicator(.visible) // Shows a drag indicator
+                        }
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
-                .padding(.vertical, 5)
-                .padding(.horizontal)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 10)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(miniTask.name), Progress: \(String(format: "%.0f", miniTask.progress))%, \(miniTask.isCompleted ? "Completed" : "In Progress")")
             }
         }
         .navigationTitle("Bite-sized Tasks")
         .toolbar {
             // toolbar or other actions go here.
-        }
-        .alert(isPresented: $showingInfo) {
-            Alert(
-                title: Text(selectedMiniTask?.name ?? "MiniTask Info"), message: Text(selectedMiniTask?.instructions ?? "No instructions available."), dismissButton: .default(Text("OK"))
-                )
         }
     }
     
@@ -116,6 +128,27 @@ struct SubTaskDetailView: View {
             print("Error saving context: \(error.localizedDescription)")
             // Optionally, show an alert or handle the error in the UI
         }
+    }
+}
+import SwiftUI
+
+// This view will display the usage description of the MiniTask
+struct UsageDescriptionSheetView: View {
+    let title: String
+    let content: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text(title)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Text(content)
+                .font(.body)
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 

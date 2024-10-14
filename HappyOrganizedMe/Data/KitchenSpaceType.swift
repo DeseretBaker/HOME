@@ -89,7 +89,7 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         case .cookwareZoneBaking: 
             return "The baking supplies section includes essential tools and equipment used in baking, such as measuring cups, measuring spoons, mixing bowls, rolling pins, cookie cutters, and baking sheets. These items should be organized and stored together in drawers, cabinets, or on shelves near the baking area to allow easy access when preparing baked goods. Keeping these supplies neatly arranged ensures an efficient workflow and reduces the time spent searching for the right tool during the baking process. The ingredients section of the baking zone is where commonly used baking staples like flour, sugar, baking powder, baking soda, salt, and chocolate chips are stored. These ingredients are best kept in airtight, labeled containers to maintain freshness and prevent spills. Organizing ingredients by type and having them easily accessible ensures a smooth baking process, allowing for quick measuring and mixing without needing to search for items."
         case .foodStorageRefrigerator:
-            return "The refrigerator in the food storage zone is used for storing perishable items like fruits, vegetables, dairy, meats, and leftovers to keep them fresh. The refrigerator is organized with different shelves and drawers designed to maintain optimal temperatures for various types of food. Items that need to be used soon, like leftovers or dairy products, should be stored at eye level, while raw meats are best stored on the bottom shelf to prevent cross-contamination. Crisper drawers help preserve the freshness of fruits and vegetables by regulating humidity. Organizing the refrigerator efficiently helps reduce food waste, keeps ingredients fresh, and ensures easy access to frequently used items. The freezer in the food storage zone is used for long-term storage of frozen foods, including meats, vegetables, leftovers, and prepared meals. It helps preserve food for extended periods, preventing spoilage. Organizing the freezer with labeled bins or sections for different food types (e.g., meats, vegetables, ready-made meals) ensures easy access and reduces clutter. Frequently used items should be stored near the front, while less-used or bulk items can be kept in the back. Regularly cleaning and organizing the freezer prevents ice buildup and helps manage food inventory, ensuring that nothing is forgotten or expired."
+            return "The refrigerator in the food storage zone is used for storing perishable items like fruits, vegetables, dairy, meats, and leftovers to keep them fresh. The refrigerator is organized with different shelves and drawers designed to maintain optimal temperatures for various types of food. Items that need to be used soon, like leftovers or dairy products, should be stored at eye level, while raw meats are best stored on the bottom shelf to prevent cross-contamination. Crisper drawers help preserve the freshness of fruits and vegetables by regulating humidity. Organizing the refrigerator efficiently helps reduce food waste, keeps ingredients fresh, and ensures easy access to frequently used items. The freezer in the food storage zone is used for long term storage of frozen foods, including meats, vegetables, leftovers, and prepared meals. It helps preserve food for extended periods, preventing spoilage. Organizing the freezer with labeled bins or sections for different food types (e.g., meats, vegetables, ready-made meals) ensures easy access and reduces clutter. Frequently used items should be stored near the front, while less-used or bulk items can be kept in the back. Regularly cleaning and organizing the freezer prevents ice buildup and helps manage food inventory, ensuring that nothing is forgotten or expired."
         case .servingZoneEverydayDishes: 
             return "Plates and bowls are essential for serving meals and are typically stored in cabinets or drawers within the serving zone. Organizing them by size and type—dinner plates, salad plates, cereal bowls, etc.—makes it easy to grab the right dish when setting the table. Storing these items in stacks or using shelf risers maximizes space and ensures they are accessible during meals or when unloading the dishwasher. Glasses and stemware are used for serving drinks, such as water, wine, or cocktails. They are often stored in cabinets or on glass racks, organized by type (e.g., everyday drinking glasses, wine glasses, champagne flutes). Keeping stemware in a designated space helps prevent breakage and ensures easy access when serving beverages during meals or entertaining. Silverware, including forks, knives, spoons, and serving utensils, is stored in divided drawer organizers to keep each type of utensil separated and easy to find. Having silverware organized by type within the serving zone ensures quick access when setting the table or serving meals. It also makes it easier to clean and put away items after washing."
         case .servingZoneServeWare: 
@@ -107,20 +107,7 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var isCompleted: Bool {
         switch self {
-        case .theRecyclingZone: return true
-        case .theCompostZone: return true
-        case .prepZoneCountertops: return true
-        case .prepZoneAppliances: return true
-        case .cookingZoneRange: return true
-        case .cookingZoneCookware: return true
-        case .cleaningZoneSpace: return true
-        case .foodStorageZonePantry: return true
-        case .cookwareZoneBaking: return true
-        case .servingZoneEverydayDishes: return true
-        case .servingZoneServeWare: return true
-        case .drinkZone: return true
-        case .theWasteZone: return true
-        case .foodStorageRefrigerator: return true
+        case .theRecyclingZone, .theCompostZone, .prepZoneCountertops, .prepZoneAppliances, .cookingZoneRange, .cookingZoneCookware, .cleaningZoneSpace, .foodStorageZonePantry, .cookwareZoneBaking, .servingZoneEverydayDishes, .servingZoneServeWare, .drinkZone, .theWasteZone, .foodStorageRefrigerator: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -129,62 +116,8 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .theRecyclingZone:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.allThingsWaste)!
-            ]
-        case .theCompostZone:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.allThingsWaste)!
-            ]
-        case.prepZoneCountertops:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.prepCounters)!
-            ]
-        case .prepZoneAppliances:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.appliances)!
-            ]
-        case .cookingZoneRange:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.theWholeRange)!
-            ]
-        case .cookingZoneCookware:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.allThingsCooking)!
-            ]
-        case .cleaningZoneSpace:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.allThingsCleaning)!
-            ]
-        case .theWasteZone:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.allThingsWaste)!
-            ]
-        case .foodStorageZonePantry:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.foodStoragePantry)!
-            ]
-        case .servingZoneServeWare:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.serveWareHolidays)!
-            ]
-        case .foodStorageRefrigerator:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.foodStoragePantry)!
-            ]
-        case .cookwareZoneBaking:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.bakingZoneBakingSupplies)!
-            ]
-        case .drinkZone:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.drinkZone)!
-            ]
-        case .servingZoneEverydayDishes:
-            return [
-                SubTaskTypeBox(KitchenSubTaskType.servingZoneEverydayDishes)!
-            ]
+        case .theRecyclingZone, .theCompostZone, .prepZoneCountertops, .prepZoneAppliances, .cookingZoneRange, .cookingZoneCookware, .cleaningZoneSpace, .foodStorageZonePantry, .cookwareZoneBaking, .servingZoneEverydayDishes, .servingZoneServeWare, .drinkZone, .theWasteZone, .foodStorageRefrigerator:
+            return KitchenSubTaskType.allCases.map { SubTaskTypeBox($0)! }
         }
     }
     static var prepZoneSpaces: [KitchenSpaceType] {

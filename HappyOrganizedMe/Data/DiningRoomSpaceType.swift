@@ -38,9 +38,7 @@ enum DiningRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
     }
     var isCompleted: Bool {
         switch self {
-        case .diningZone: return true
-        case .multiUseZone: return true
-        case .drinkCart: return true
+        case .diningZone, .multiUseZone, .drinkCart: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -48,19 +46,8 @@ enum DiningRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .diningZone:
-            return [
-                SubTaskTypeBox(DiningRoomSubTaskType.diningRoomTable)!
-            ]
-        case .drinkCart:
-            return [
-                SubTaskTypeBox(DiningRoomSubTaskType.drinkCart1)!
-            ]
-        case .multiUseZone:
-            return [
-                SubTaskTypeBox(DiningRoomSubTaskType.multiUseZone1)!
-            ]
-        
+        case .diningZone, .multiUseZone, .drinkCart:
+            return DiningRoomSubTaskType.allCases.map { SubTaskTypeBox($0)! }
         }
     }
     static var diningZoneSpaces: [DiningRoomSpaceType] {

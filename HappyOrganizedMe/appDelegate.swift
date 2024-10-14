@@ -18,11 +18,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                     application.registerForRemoteNotifications()
                 }
                 print("Notification permission granted.")
+            } else if let error = error {
+                print("Error requesting notification permission: \(error)")
             } else {
                 print("Notification permission denied.")
             }
         }
-        
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 

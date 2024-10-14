@@ -56,7 +56,7 @@ class BaseProjectsController: ObservableObject {
             try modelContext.save()
             print("Projects successfully saved.")
         } catch {
-            print("Failed to save projects: \(error)")
+            print("Failed to save projects: \(error.localizedDescription)")
         }
 
         return projects

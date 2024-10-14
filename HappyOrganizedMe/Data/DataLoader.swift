@@ -34,12 +34,16 @@ class DataLoader {
     static func loadRooms(for projectType: ProjectType) -> [Room] {
         let roomTypes = projectType.roomTypes
         
+        #if DEBUG
         print("Loading rooms for \(projectType.name): \(roomTypes.count) found")
+        #endif
         
-        let rooms = roomTypes.map { roomType in
+        let rooms: [Room] = roomTypes.map { roomType in
             let spaces = loadSpaces(for: roomType)
             
+            #if DEBUG
             print("Loaded room: \(roomType.name) with \(spaces.count) spaces")
+            #endif
             
             return Room(
                 roomType: roomType,
@@ -48,19 +52,31 @@ class DataLoader {
                 spaces: spaces
             )
         }
+        #if DEBUG
         print("Total rooms loaded for project \(projectType.name): \(rooms.count)")
-            return rooms
+        #endif
+        return rooms
     }
     
     // MARK: - Space Loader
     static func loadSpaces(for roomType: RoomTypeBox) -> [Space] {
         let spaceTypes = roomType.spaceTypes
-        print("Loading spaces for \(roomType.name): \(spaceTypes.count) found")
         
-        let spaces = spaceTypes.map { spaceType in
+        guard !spaceTypes.isEmpty else {
+            print("No space types found for \(roomType.name)")
+            return []
+        }
+        
+        #if DEBUG
+        print("Loading spaces for \(roomType.name): \(spaceTypes.count) found")
+        #endif
+        
+        let spaces: [Space] = spaceTypes.map { spaceType in
             let subTasks = loadSubTasks(for: spaceType) // Correctly calling loadSubTasks
             
+            #if DEBUG
             print("Loaded space: \(spaceType.name) with \(subTasks.count) subTasks")
+            #endif
             
             return Space(
                 spaceType: spaceType,
@@ -69,19 +85,32 @@ class DataLoader {
                 subTasks: subTasks
             )
         }
+        
+        #if DEBUG
         print("Total spaces loaded for project  \(roomType.name): \(spaces.count)")
-            return spaces
+        #endif
+        return spaces
     }
     
     // MARK: - SubTask Loader
     static func loadSubTasks(for spaceType: SpaceTypeBox) -> [SubTask] {
         let subTaskTypes = spaceType.subTaskTypes
-        print("Loading sub tasks for \(spaceType.name): \(subTaskTypes.count) found")
         
-        let subTasks = subTaskTypes.map { subTaskType in
+        guard !subTaskTypes.isEmpty else {
+            print("No subTask types found for \(spaceType.name)")
+            return []
+        }
+        
+        #if DEBUG
+        print("Loading sub tasks for \(spaceType.name): \(subTaskTypes.count) found")
+        #endif
+        
+        let subTasks: [SubTask] = subTaskTypes.map { subTaskType in
             let miniTasks = loadMiniTasks(for: subTaskType) // Correctly calling loadMiniTasks
             
+            #if DEBUG
             print("Loaded subTask: \(subTaskType.name) with \(miniTasks.count) miniTasks")
+            #endif
             
             return SubTask(
                 subTaskType: subTaskType,
@@ -90,17 +119,31 @@ class DataLoader {
                 miniTasks: miniTasks
             )
         }
+        
+        #if DEBUG
         print("Total subTasks loaded for project  \(spaceType.name): \(subTasks.count)")
-            return subTasks
+        #endif
+        return subTasks
     }
     
     // MARK: - MiniTask Loader
     static func loadMiniTasks(for subTaskType: SubTaskTypeBox) -> [MiniTask] {
         let miniTaskTypes = subTaskType.miniTaskTypes
+        
+        guard !miniTaskTypes.isEmpty else {
+            print("No miniTask types found for \(subTaskType.name)")
+            return []
+        }
+        
+        #if DEBUG
         print("Loading mini tasks for \(subTaskType.name): \(miniTaskTypes.count) found")
+        #endif
         
         return miniTaskTypes.map { miniTaskType in
+            
+            #if DEBUG
             print("Loaded miniTask: \(miniTaskType.name)")
+            #endif
             
             return MiniTask(
                 miniTaskType: miniTaskType,

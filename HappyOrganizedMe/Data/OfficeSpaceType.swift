@@ -61,15 +61,7 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var isCompleted: Bool {
         switch self {
-        case .breakZoneSpaces: return true
-        case .documentHandling: return true
-        case .inspirationalZone: return true
-        case .collaborationZone: return true
-        case .deskTopSetup: return true
-        case .officeReference: return true
-        case .officeTech: return true
-        case .officeStorage: return true
-        case .taskLightingZoneSpaces: return true
+        case .breakZoneSpaces, .documentHandling, .inspirationalZone, .collaborationZone, .deskTopSetup, .officeReference, .officeTech, .officeStorage, .taskLightingZoneSpaces: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -77,30 +69,8 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .breakZoneSpaces: return [ SubTaskTypeBox(OfficeSubTaskType.chillOutZone)!]
-        case .documentHandling: return [ SubTaskTypeBox(OfficeSubTaskType.theMailAndStuff)! ]
-        case .inspirationalZone: return [ SubTaskTypeBox(OfficeSubTaskType.inspirationSpace)! ]
-        case .collaborationZone: return [ SubTaskTypeBox(OfficeSubTaskType.meetingZone)! ]
-        case .deskTopSetup:
-            return [
-                SubTaskTypeBox(OfficeSubTaskType.setupDesk)!
-            ]
-        case .officeReference:
-            return [
-                SubTaskTypeBox(OfficeSubTaskType.officeBooks)!
-            ]
-        case .officeTech:
-            return [
-                SubTaskTypeBox(OfficeSubTaskType.officeTechnology)!
-            ]
-        case .officeStorage:
-            return [
-                SubTaskTypeBox(OfficeSubTaskType.storageInOffice)!
-            ]
-        case .taskLightingZoneSpaces:
-            return [
-                SubTaskTypeBox(OfficeSubTaskType.lightRight)!
-            ]
+        case .breakZoneSpaces, .documentHandling, .inspirationalZone, .collaborationZone, .deskTopSetup, .officeReference, .officeTech, .officeStorage, .taskLightingZoneSpaces:
+            return OfficeSubTaskType.allCases.map { SubTaskTypeBox($0)! }
         }
     }
     static var deskTopSetupZoneSpaces: [OfficeSpaceType] {

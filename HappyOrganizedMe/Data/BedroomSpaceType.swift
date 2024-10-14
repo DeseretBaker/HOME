@@ -82,11 +82,8 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var isCompleted: Bool {
         switch self {
-        case .bedsideArea, .smallDesk, .comfyChair: return true
-        case .drawers, .mirror, .flatScreenTV: return true
-        case .decorativeItems, .drawersShelves, .topSurface: return true
-        case .closet, .shelves, .trunksBaskets, .underBedStorage: return true
-        default: return false
+        case .bedsideArea, .smallDesk, .comfyChair, .drawers, .mirror, .flatScreenTV, .decorativeItems, .drawersShelves, .topSurface, .closet, .shelves, .trunksBaskets, .underBedStorage, .taskLamps, .sleepingArea: return true
+           
         }
     }
     
@@ -95,51 +92,8 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .flatScreenTV: return [ SubTaskTypeBox(BedroomSubTaskType.flatScreenTVZone)! ]
-        case .taskLamps: return [ SubTaskTypeBox(BedroomSubTaskType.bedroomLighting)! ]
-        case .comfyChair: return [ SubTaskTypeBox(BedroomSubTaskType.comfortableChair)! ]
-        case .smallDesk:
-            return [ SubTaskTypeBox(BedroomSubTaskType.writingDesk)! ]
-        case .decorativeItems:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.simpleDecor)! ]
-        case .drawersShelves:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.whereTheClothesAre)! ]
-        case .closet:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.theHangingClothes)! ]
-        case .shelves:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.bedroomShelves)! ]
-        case .trunksBaskets:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.bedroomTrunkBasket)!
-            ]
-        case .underBedStorage:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.underBedStorageSpace)!
-            ]
-        case .sleepingArea:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.aGoodNightSleep)!
-            ]
-        case .bedsideArea:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.bedsideTable)!
-            ]
-        case .drawers:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.bedsideDrawers)!
-            ]
-        case .mirror:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.dresserMirror)!
-            ]
-        case .topSurface:
-            return [
-                SubTaskTypeBox(BedroomSubTaskType.topOfDresser)!
-            ]
+        case .bedsideArea, .smallDesk, .comfyChair, .drawers, .mirror, .flatScreenTV, .decorativeItems, .drawersShelves, .topSurface, .closet, .shelves, .trunksBaskets, .underBedStorage, .taskLamps, .sleepingArea:
+            return BedroomSubTaskType.allCases.map { SubTaskTypeBox($0)! }
         }
     }
     static var lightingZoneSpaces: [BedroomSpaceType] {
