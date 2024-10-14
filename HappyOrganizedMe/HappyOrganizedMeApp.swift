@@ -24,6 +24,7 @@ struct HappyOrganizedMeApp: App {
             ])
             
             let container = try ModelContainer(for: schema)
+            print("ModelContainer created successfully")
             
             if containerIsEmpty(container) {
                 DataLoader.createAllEmptyProjects().forEach { project in
@@ -34,6 +35,7 @@ struct HappyOrganizedMeApp: App {
             
             return container
         } catch {
+            print("Error: \(error)")
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
