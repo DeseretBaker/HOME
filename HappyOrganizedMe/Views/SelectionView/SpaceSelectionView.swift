@@ -12,6 +12,7 @@ struct SpaceSelectionView: View {
     var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
     @Bindable var room: Room  // Use @Bindable to automatically update the view when the room changes
+    
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
     

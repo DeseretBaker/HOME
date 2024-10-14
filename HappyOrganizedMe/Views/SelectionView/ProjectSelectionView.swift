@@ -10,6 +10,7 @@ import SwiftUI
 struct ProjectSelectionView: View {
     var projectController: ProjectController = .shared
     @Environment(\.modelContext) private var modelContext
+    
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
     
