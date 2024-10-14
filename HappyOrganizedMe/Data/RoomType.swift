@@ -92,25 +92,25 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
         }
     }
     static var kitchenPrepZoneRoom: [KitchenRoomType] {
-        return [.prepZone]
+        return [.prepZone, .cookwareZone]
     }
     static var kitchenCookingZoneRoom: [KitchenRoomType] {
-        return [.cookingZone]
+        return [.cookingZone, .cookwareZone]
     }
     static var kitchenFoodStorageZoneRoom: [KitchenRoomType] {
-        return [.foodStorageZone]
+        return [.foodStorageZone, .prepZone]
     }
     static var kitchenServingZoneRoom: [KitchenRoomType] {
-        return [.servingZone]
+        return [.servingZone, .drinkZone]
     }
     static var kitchenDrinkZoneRoom: [KitchenRoomType] {
-        return [.drinkZone]
+        return [.drinkZone, .servingZone]
     }
     static var kitchenCleaningZoneRoom: [KitchenRoomType] {
-        return [.cleaningZone]
+        return [.cleaningZone, .prepZone]
     }
     static var kitchenBakingZoneRoom: [KitchenRoomType] {
-        return [.bakingZone]
+        return [.bakingZone, .servingZone]
     }
     static var allRoomTypes: [any RoomType] {
         return KitchenRoomType.allCases.map { $0 as any RoomType }
@@ -164,13 +164,13 @@ enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         }
     }
     static var diningRoomDiningTableRoom: [DiningRoomType] {
-        return [.diningZone]
+        return [.diningZone, .drinkBar]
     }
     static var diningRoomDrinkBarRoom: [DiningRoomType] {
-        return [.drinkBar]
+        return [.drinkBar, .multiUses]
     }
     static var diningRoomMultiUsesRoom: [DiningRoomType] {
-        return [.multiUses]
+        return [.multiUses, .diningZone]
     }
     static var allRoomTypes: [any RoomType] {
         return DiningRoomType.allCases.map { $0 as any RoomType}
@@ -249,22 +249,22 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         }
     }
     static var bathingZoneSpaces: [BathroomRoomType] {
-        return [.bathingZone]
+        return [.bathingZone, .towelsZone, .vanityZone, .toiletries]
     }
     static var cleaningZoneSpaces: [BathroomRoomType] {
-        return [.cleaningZone]
+        return [.cleaningZone, .cleaningZone]
     }
     static var laundryZoneSpaces: [BathroomRoomType] {
-        return [.laundryZone]
+        return [.laundryZone, .cleaningZone]
     }
     static var toiletriesSpaces: [BathroomRoomType] {
-        return [.toiletries]
+        return [.toiletries, .towelsZone]
     }
     static var towelsZoneSpaces: [BathroomRoomType] {
-        return [.towelsZone]
+        return [.towelsZone, .vanityZone]
     }
     static var vanityZoneSpaces: [BathroomRoomType] {
-        return [.vanityZone]
+        return [.vanityZone, .bathingZone]
     }
     static var allRoomTypes: [any RoomType] {
         return BathroomRoomType.allCases.map { $0 as any RoomType}
@@ -355,31 +355,31 @@ enum LivingRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         }
     }
     static var livingRoomConverseRoom: [LivingRoomType] {
-        return [.converseSpace]
+        return [.converseSpace, .entertainSpace, .playSpace, .seatingSpace]
     }
     static var livingRoomDecorRoom: [LivingRoomType] {
-        return [.decorativeSpace]
+        return [.decorativeSpace, .lightingSpace, .storageSpace, .workStudySpace]
     }
     static var livingRoomEntertainmentRoom: [LivingRoomType] {
-        return [.entertainSpace]
+        return [.entertainSpace, .playSpace, .converseSpace, .seatingSpace]
     }
     static var livingRoomLightingRoom: [LivingRoomType] {
-        return [.lightingSpace]
+        return [.lightingSpace, .decorativeSpace, .storageSpace, .workStudySpace]
     }
     static var livingRoomPlayZoneRoom: [LivingRoomType] {
-        return [.playSpace]
+        return [.playSpace, .entertainSpace, .converseSpace, .seatingSpace]
     }
     static var livingRoomRelaxationRoom: [LivingRoomType] {
-        return [.relaxationSpace]
+        return [.relaxationSpace, .lightingSpace, .seatingSpace, .decorativeSpace]
     }
     static var livingRoomSeatingRoom: [LivingRoomType] {
-        return [.seatingSpace]
+        return [.seatingSpace, .converseSpace, .playSpace, .entertainSpace]
     }
     static var livingRoomStorageRoom: [LivingRoomType] {
-        return [.storageSpace]
+        return [.storageSpace, .decorativeSpace, .seatingSpace, .workStudySpace]
     }
     static var livingRoomWorkStudyRoom: [LivingRoomType] {
-        return [.workStudySpace]
+        return [.workStudySpace, .lightingSpace, .seatingSpace, .decorativeSpace]
     }
     static var allRoomTypes: [any RoomType] {
         return LivingRoomType.allCases.map { $0 as any RoomType}
@@ -465,25 +465,25 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         }
     }
     static var bedroomStorageSpaces: [BedroomRoomType] {
-        return [.bedroomStorage]
+        return [.bedroomStorage, .personalVanity, .readingZone, .studyZone]
     }
     static var entertainmentZoneSpaces: [BedroomRoomType] {
-        return [.entertainment]
+        return [.entertainment, .moodLighting, .sleepingZone, .personalVanity]
     }
     static var lightingZoneSpaces: [BedroomRoomType] {
-        return [.moodLighting]
+        return [.moodLighting, .readingZone, .entertainment, .sleepingZone]
     }
     static var vanityZoneSpaces: [BedroomRoomType] {
-        return [.personalVanity]
+        return [.personalVanity, .entertainment, .moodLighting, .studyZone]
     }
     static var readingZoneSpaces: [BedroomRoomType] {
-        return [.readingZone]
+        return [.readingZone, .studyZone, .moodLighting, .entertainment]
     }
     static var sleepingZoneSpaces: [BedroomRoomType] {
-        return [.sleepingZone]
+        return [.sleepingZone, .bedroomStorage, .entertainment, .moodLighting]
     }
     static var studyZoneSpaces: [BedroomRoomType] {
-        return [.studyZone]
+        return [.studyZone, .bedroomStorage, .readingZone, .entertainment]
     }
     static var allRoomTypes: [any RoomType] {
         return BedroomRoomType.allCases.map { $0 as any RoomType}
@@ -528,26 +528,18 @@ enum StorageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .atticBasementZone:
-            return [ SpaceTypeBox(StorageSpaceType.longTermStorage)! ]
-            
-        case .builtInsWallUnitsZone:
-            return [ SpaceTypeBox(StorageSpaceType.builtInSpaces)! ]
-            
-        case .closetsZone:
-            return [ SpaceTypeBox(StorageSpaceType.closetSpaces)! ]
-              
-        
+        case .atticBasementZone, .builtInsWallUnitsZone, .closetsZone:
+            return StorageSpaceType.allCases.map { SpaceTypeBox($0)! }
         }
     }
     static var StorageLongTermStorageRoom: [StorageRoomType] {
-        return [.atticBasementZone]
+        return [.atticBasementZone, .builtInsWallUnitsZone]
     }
     static var StorageBuiltInWallUnitRoom: [StorageRoomType] {
-        return [.builtInsWallUnitsZone]
+        return [.builtInsWallUnitsZone, .closetsZone]
     }
     static var closetSpaceRoom: [StorageRoomType] {
-        return [.closetsZone]
+        return [.closetsZone, .builtInsWallUnitsZone]
     }
     static var allRoomTypes: [any RoomType] {
         return StorageRoomType.allCases.map { $0 as any RoomType}
@@ -607,54 +599,37 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     }
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .workstation: return [ SpaceTypeBox(OfficeSpaceType.deskTopSetup)! ]
-        case .storageZones:
-            return [ SpaceTypeBox(OfficeSpaceType.officeStorage)! ]
-        case .technologyZone:
-            return [ SpaceTypeBox(OfficeSpaceType.officeTech)! ]
-        case .meetingCollaborationZone:
-            return [ SpaceTypeBox(OfficeSpaceType.collaborationZone)! ]
-        case .inspirationZone:
-            return [ SpaceTypeBox(OfficeSpaceType.inspirationalZone)! ]
-        case .mailDocumentHandling:
-            return [ SpaceTypeBox(OfficeSpaceType.documentHandling)! ]
-        case .referenceBookZone:
-            return [ SpaceTypeBox(OfficeSpaceType.officeReference)! ]
-        case .breakRelaxationZone:
-            return [ SpaceTypeBox(OfficeSpaceType.breakZoneSpaces)! ]
-        case .taskLighting:
-            return [ SpaceTypeBox(OfficeSpaceType.taskLightingZoneSpaces)! ]
-        case .readingStudyZone:
-            return [ SpaceTypeBox(OfficeSpaceType.officeReference)! ]
+        case .workstation, .storageZones, .technologyZone, .meetingCollaborationZone, .inspirationZone, .mailDocumentHandling, .referenceBookZone, .breakRelaxationZone, .taskLighting, .readingStudyZone:
+            return OfficeSpaceType.allCases.map { SpaceTypeBox($0)! }
         }
     }
     
     static var workstationZoneSpace: [OfficeRoomType] {
-        return [.workstation]
+        return [.workstation, .inspirationZone]
     }
     static var officeStorageZoneSpaces: [OfficeRoomType] {
-        return [.storageZones]
+        return [.storageZones, .mailDocumentHandling]
     }
     static var officeTechnologyZoneSpaces: [OfficeRoomType] {
-        return [.technologyZone]
+        return [.technologyZone, .referenceBookZone]
     }
     static var meetingZoneSpaces: [OfficeRoomType] {
-        return [.meetingCollaborationZone]
+        return [.meetingCollaborationZone, .inspirationZone]
     }
     static var inspirationZoneSpaces: [OfficeRoomType] {
-        return [.inspirationZone]
+        return [.inspirationZone, .breakRelaxationZone]
     }
     static var documentHandlingZoneSpaces: [OfficeRoomType] {
-        return [.mailDocumentHandling]
+        return [.mailDocumentHandling, .storageZones]
     }
     static var referenceBookZoneSpaces: [OfficeRoomType] {
-        return [.referenceBookZone]
+        return [.referenceBookZone, .readingStudyZone]
     }
     static var breakZoneSpaces: [OfficeRoomType] {
-        return [.breakRelaxationZone]
+        return [.breakRelaxationZone, .inspirationZone]
     }
     static var taskLightingZoneSpaces: [OfficeRoomType] {
-        return [.taskLighting]
+        return [.taskLighting, .workstation]
     }
     static var allRoomTypes: [any RoomType] {
         return OfficeRoomType.allCases.map { $0 as any RoomType}
@@ -716,57 +691,39 @@ enum GarageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .parkingZone:
-            return [ SpaceTypeBox(GarageSpaceType.vehicleParking)! ]
-        case .toolZone:
-            return [ SpaceTypeBox(GarageSpaceType.handToolStorage)! ]
-        case .gardenOutdoorZone:
-            return [ SpaceTypeBox(GarageSpaceType.gardenToolStorage)! ]
-        case .sportsActivityGearZone:
-            return [ SpaceTypeBox(GarageSpaceType.sportsGear)! ]
-        case .seasonalStorageZone:
-            return [ SpaceTypeBox(GarageSpaceType.seasonalItems)! ]
-        case .householdStorageZone:
-            return [ SpaceTypeBox(GarageSpaceType.miscellaneousHouseholdItems)! ]
-        case .wasteRecyclingZone:
-            return [ SpaceTypeBox(GarageSpaceType.hazardousWasteArea)! ]
-        case .maintenanceZone:
-            return [ SpaceTypeBox(GarageSpaceType.dIYRepairArea)! ]
-        case .mudroomLaundryZone:
-            return [ SpaceTypeBox(GarageSpaceType.laundrySupplies)! ]
-        case .overheadStorageZone:
-            return [ SpaceTypeBox(GarageSpaceType.longItemRack)! ]
+        case .gardenOutdoorZone, .householdStorageZone, .maintenanceZone, .mudroomLaundryZone, .overheadStorageZone, .parkingZone, .seasonalStorageZone, .sportsActivityGearZone, .toolZone, .wasteRecyclingZone:
+            return GarageSpaceType.allCases.map { SpaceTypeBox($0)! }
         }
     }
     static var parkingZoneSpaces: [GarageRoomType] {
-        return [.parkingZone]
+        return [.parkingZone, .overheadStorageZone]
     }
     static var toolZoneSpaces: [GarageRoomType] {
-        return [.toolZone]
+        return [.toolZone, .maintenanceZone]
     }
     static var gardenZoneSpaces: [GarageRoomType] {
-        return [.gardenOutdoorZone]
+        return [.gardenOutdoorZone, .seasonalStorageZone]
     }
     static var activityZoneSpaces: [GarageRoomType] {
-        return [.sportsActivityGearZone]
+        return [.sportsActivityGearZone, .seasonalStorageZone]
     }
     static var seasonalZoneSpaces: [GarageRoomType] {
-        return [.seasonalStorageZone]
+        return [.seasonalStorageZone, .gardenOutdoorZone]
     }
     static var householdZoneSpaces: [GarageRoomType] {
-        return [.householdStorageZone]
+        return [.householdStorageZone, .mudroomLaundryZone]
     }
     static var wasteZoneSpaces: [GarageRoomType] {
-        return [.wasteRecyclingZone]
+        return [.wasteRecyclingZone, .mudroomLaundryZone]
     }
     static var maintenanceZoneSpaces: [GarageRoomType] {
-        return [.maintenanceZone]
+        return [.maintenanceZone, .householdStorageZone]
     }
     static var mudroomZoneSpaces: [GarageRoomType] {
-        return [.mudroomLaundryZone]
+        return [.mudroomLaundryZone, .maintenanceZone]
     }
     static var overheadZoneSpaces: [GarageRoomType] {
-        return [.overheadStorageZone]
+        return [.overheadStorageZone, .parkingZone]
     }
     static var allRoomTypes: [any RoomType] {
         return GarageRoomType.allCases.map { $0 as any RoomType}
@@ -837,70 +794,48 @@ enum PlayroomRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
-        case .toyStorageZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.toyBins)! ]
-        case .artsCraftZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.artTable)! ]
-        case .readingQuietZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.quietTimeBasket)! ]
-        case .buildingConstructionZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.buildingBlockStorage)! ]
-        case .pretendPlayZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.dressUpArea)! ]
-        case .puzzleBoardGameZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.gameTable)! ]
-        case .physicalActivityZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.freePlayAreas)! ]
-        case .musicPerformanceZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.performanceArea)! ]
-        case .sensoryPlayZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.sensoryBins)! ]
-        case .homeworkStudyZone:
-            return[ SpaceTypeBox(PlayroomSpaceType.homeworkOrganizer)! ]
-        case .technologyScreenZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.deviceChargingStation)! ]
-        case .outdoorPlayZone:
-            return [ SpaceTypeBox(PlayroomSpaceType.waterPlayArea)! ]
+        case .artsCraftZone, .buildingConstructionZone, .homeworkStudyZone, .musicPerformanceZone, .outdoorPlayZone, .physicalActivityZone, .pretendPlayZone, .puzzleBoardGameZone, .readingQuietZone, .sensoryPlayZone, .technologyScreenZone, .toyStorageZone:
+            return PlayroomSpaceType.allCases.map { SpaceTypeBox($0)! }
         }
     }
     static var toyZoneSpaces: [PlayroomRoomType] {
-        return [.toyStorageZone]
+        return [.toyStorageZone, .physicalActivityZone]
     }
     static var craftZoneSpaces: [PlayroomRoomType] {
-        return [.artsCraftZone]
+        return [.artsCraftZone, .homeworkStudyZone]
     }
     static var gameZoneSpaces: [PlayroomRoomType] {
-        return [.puzzleBoardGameZone]
+        return [.puzzleBoardGameZone, .sensoryPlayZone]
     }
     static var learningZoneSpaces: [PlayroomRoomType] {
-        return [.homeworkStudyZone]
+        return [.homeworkStudyZone, .readingQuietZone]
     }
     static var sensoryZoneSpaces: [PlayroomRoomType] {
-        return [.sensoryPlayZone]
+        return [.sensoryPlayZone, .outdoorPlayZone]
     }
     static var pretendZoneSpaces: [PlayroomRoomType] {
-        return [.pretendPlayZone]
+        return [.pretendPlayZone, .musicPerformanceZone]
     }
     static var quietZoneSpaces: [PlayroomRoomType] {
-        return [.readingQuietZone]
+        return [.readingQuietZone, .homeworkStudyZone]
     }
     static var buildingZoneSpaces: [PlayroomRoomType] {
-        return [.buildingConstructionZone]
+        return [.buildingConstructionZone, .artsCraftZone]
     }
     static var activityZoneSpaces: [PlayroomRoomType] {
-        return [.physicalActivityZone]
+        return [.physicalActivityZone, .outdoorPlayZone]
     }
     static var performanceZoneSpaces: [PlayroomRoomType] {
-        return [.musicPerformanceZone]
+        return [.musicPerformanceZone, .pretendPlayZone]
     }
     static var homeworkZoneSpaces: [PlayroomRoomType] {
-        return [.homeworkStudyZone]
+        return [.homeworkStudyZone, .artsCraftZone]
     }
     static var techZoneSpaces: [PlayroomRoomType] {
-        return [.technologyScreenZone]
+        return [.technologyScreenZone, .homeworkStudyZone]
     }
     static var outdoorZoneSpaces: [PlayroomRoomType] {
-        return [.outdoorPlayZone]
+        return [.outdoorPlayZone, .physicalActivityZone]
     }
     static var allRoomTypes: [any RoomType] {
         return PlayroomRoomType.allCases.map { $0 as any RoomType}
