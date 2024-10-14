@@ -13,11 +13,11 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     case prepCounters = "PrepCounters"
     case appliances = "Appliances"
     case theWholeRange = "theWholeRange"
-    case allThingsCooking = "Cooking Zone 1"
-    case allThingsCleaning = "Cleaning Supplies"
+    case allThingsCooking = "Cooking pans"
+    case allThingsCleaning = "Kitchen Cleaning Supplies"
     case allThingsWaste = "All Things Waste"
     case foodStoragePantry = "Perishable zone"
-    case servingZoneEverydayDishes = "Everyday Dishes"
+    case servingZoneEverydayDishes = "Day Dishes"
     case serveWareHolidays = "Holidays Dishes"
     case bakingZoneBakingSupplies = "Baking Supplies"
     case drinkZone = "Drink Zone"
@@ -348,11 +348,11 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     enum DiningRoomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
         
         case drinkCart1 = "Drink Station"
-        case multiUseZone1 = "Multi Use Zone 1"
+        case multiUseZone1 = "Multi Purpose"
         case diningRoomLighting = "Dining Room Lighting"
         case diningRoomDecor = "Dining Room Decor"
-        case diningRoomStorage = "Dining Room Storage"
-        case buffetSideboard = "Buffet Side board"
+        case diningRoomStorage = "Table Linens"
+        case buffetSideboard = "Mod Buffet Side board"
         case diningRoomTable = "Dining Table"
         
         var id: UUID { UUID() }
@@ -367,7 +367,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .diningRoomDecor: return "diningRoomDecor"
             case .diningRoomStorage: return "Table Linens"
             case .buffetSideboard: return "buffetSideboard"
-            case .diningRoomTable: return "Dining Table"
+            case .diningRoomTable: return "Mod Dining Table"
             }
         }
         var usageDescription: String {
@@ -378,7 +378,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .diningRoomDecor: return "diningRoomDecor"
             case .diningRoomStorage: return "Table Linens"
             case .buffetSideboard: return "buffetSideboard"
-            case .diningRoomTable: return "Dining Table"
+            case .diningRoomTable: return "Mod Dining Table"
             }
         }
         var weight: Double { 2.0 }
@@ -688,11 +688,11 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
     }
     enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
         case bathingSpaces = "Bathing Surfaces"
-        case cleaningSuppliesSpaces = "Cleaning Supplies"
+        case cleaningSuppliesSpaces = "Bathroom Cleaning SubTasks"
         case toiletrySpaces = "Toiletry Spaces"
         case towelStorageSpace = "Towel Storage Space"
         case vanitySpace = "Vanity Space"
-        case laundrySpace = "Laundry Space"
+        case laundrySpace = "Dirty Laundry"
         case lightingSpaces = "Lighting Spaces"
         case groomingZoneSpaces = "Grooming Zone Spaces"
         
@@ -964,7 +964,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         case seasonalToys = "Seasonal Toys"
         case winterGear = "Winter Gear"
         case outdoorDecorSubTask = "Outdoor Decor Sub Task"
-        case cleaningSuppliesSubTask = "Cleaning Supplies"
+        case cleaningSuppliesSubTask = "Garage Clean Supplies"
         case miscHouseholdItemsSubTask = "Misc Household Items SubTask"
         case overflowPantrySubtask = "Overflow Pantry Subtask"
         case paperGoodsSubTask = "Paper Goods SubTask"
@@ -1104,16 +1104,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .carCleaningSubTask, .garageDoorSubTask, .vehicleParkingSubTask, .tireStorageSubtask, .chargingStationSubTask: return true
-            case .workBenchSubTask,  .toolCleaningSubTask, .handToolSubTask, .powerToolSubTask, .smallPartsSubTask, .safetyEquipmentSubTask: return true
-            case .gardenToolSubTask, .lawnEquipmentSubTask, .outdoorFurnitureSubTask, .plantingSuppliesSubTask, .pottingBenchSubTask, .hoseStorageSubTask: return true
-            case .ballStorageSubTask, .bikeRackSubTask, .sportsEquipmentRackSubTask, .sportsGearSubTask: return true
-            case .holidayDecorSubTask, .seasonalToys, .winterGear, .outdoorDecorSubTask: return true
-            case .cleaningSuppliesSubTask, .miscHouseholdItemsSubTask, .overflowPantrySubtask, .paperGoodsSubTask, .emergencySuppliesSubTask: return true
-            case .compostingAreaSubTask, .recyclingBinSubTask, .trashBinSubTask, .hazardousWasteSubTask, .donationBinAreaSubTask: return true
-            case .cleaningMaintenanceSubTasks, .houseToolsSubTask, .dIYRepairSubTask, .yardEquipmentSubTask: return true
-            case .clothingFoldingSubTask, .hatCoatHooks, .laundrySubTasks, .bootShoeStorage: return true
-            case .petCareSubTask, .extraLuggageSubTask, .outdoorEquipmentSubTask, .seasonalItemsSubTask, .longItemRackSubTask: return true
+            case .carCleaningSubTask, .garageDoorSubTask, .vehicleParkingSubTask, .tireStorageSubtask, .chargingStationSubTask, .workBenchSubTask,  .toolCleaningSubTask, .handToolSubTask, .powerToolSubTask, .smallPartsSubTask, .safetyEquipmentSubTask, .gardenToolSubTask, .lawnEquipmentSubTask, .outdoorFurnitureSubTask, .plantingSuppliesSubTask, .pottingBenchSubTask, .hoseStorageSubTask, .ballStorageSubTask, .bikeRackSubTask, .sportsEquipmentRackSubTask, .sportsGearSubTask, .holidayDecorSubTask, .seasonalToys, .winterGear, .outdoorDecorSubTask, .cleaningSuppliesSubTask, .miscHouseholdItemsSubTask, .overflowPantrySubtask, .paperGoodsSubTask, .emergencySuppliesSubTask, .compostingAreaSubTask, .recyclingBinSubTask, .trashBinSubTask, .hazardousWasteSubTask, .donationBinAreaSubTask, .cleaningMaintenanceSubTasks, .houseToolsSubTask, .dIYRepairSubTask, .yardEquipmentSubTask, .clothingFoldingSubTask, .hatCoatHooks, .laundrySubTasks, .bootShoeStorage, .petCareSubTask, .extraLuggageSubTask, .outdoorEquipmentSubTask, .seasonalItemsSubTask, .longItemRackSubTask: return true
             }
         }
         var miniTask: (any MiniTaskType)? {

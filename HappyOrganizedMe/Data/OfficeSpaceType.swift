@@ -14,7 +14,7 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     case deskTopSetup = "Desk Top Setup"
     // OfficeReference
     case officeReference = "Office Reference"
-    case documentHandling = "Document Handling 1"
+    case documentHandling = "Document Handling"
     // OfficeTechSpaceType
     case officeTech = "Office Tech"
     // OfficeStorageSpaceType

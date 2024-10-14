@@ -119,7 +119,7 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
 
 enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     
-    case diningZone = "Dining Room"
+    case diningZone = "Simple Dining Room"
     case multiUses = "Multi-Uses"
     case drinkBar = "Drink Bar"
     
@@ -182,7 +182,7 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case towelsZone = "Towels Zone"
     case toiletries = "Toiletries "
     case laundryZone = "Laundry Zone"
-    case cleaningZone = "Cleaning Zone"
+    case cleaningZone = "Clean Zone"
     
     var id: UUID { UUID() }
     var name: String { rawValue }
