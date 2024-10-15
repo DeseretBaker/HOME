@@ -53,8 +53,10 @@ struct StartHereView: View {
                     hasClickedStartHereButton.toggle()
                 }, label: {
                     Text("Start Here")
-                        .font(.largeTitle)
+                        .font(.system(size: UIScreen.main.bounds.width / 15))
                         .bold()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                         .padding()
                         .frame(maxWidth: 200, minHeight: 50)
                         .background(Color.teal)
