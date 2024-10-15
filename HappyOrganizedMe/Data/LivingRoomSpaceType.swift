@@ -184,14 +184,7 @@ enum LivingRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
     }
     var isCompleted: Bool {
         switch self {
-        case .accentChairsOttomans, .throwPillowBlankets, .sideTables, .mainSeating, .desk: return true
-        case .accentLighting, .lightingControls, .overheadLighting, .taskLighting: return true
-        case .decorAroundTv, .gamingStorage, .soundSystem, .tvMediaConsole: return true
-        case .bookshelves, .decorAroundReading, .chairSeating, .storageBinsBaskets: return true
-        case .cabinetsShelves, .drawers: return true
-        case  .plantsGreenery, .shelvesDisplayTables, .wallArtPhotos: return true
-        case .playMatActivityArea, .craftArtSupplies, .gameArea, .toyStorage: return true
-        case .coffeeTable, .decorAccents, .seatingArrangement: return true
+        case .accentChairsOttomans, .throwPillowBlankets, .sideTables, .mainSeating, .desk, .accentLighting, .lightingControls, .overheadLighting, .taskLighting, .decorAroundTv, .gamingStorage, .soundSystem, .tvMediaConsole, .bookshelves, .decorAroundReading, .chairSeating, .storageBinsBaskets, .cabinetsShelves, .drawers, .plantsGreenery, .shelvesDisplayTables, .wallArtPhotos, .playMatActivityArea, .craftArtSupplies, .gameArea, .toyStorage, .coffeeTable, .decorAccents, .seatingArrangement: return true
             
         }
     }
@@ -200,83 +193,8 @@ enum LivingRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .accentChairsOttomans:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.ottoman)! ]
-        case .throwPillowBlankets:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.pillowsBlankets)! ]
-        case .sideTables:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.tables)! ]
-            
-        case .mainSeating:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.mainSeatingSubTask)! ]
-            
-        case .decorAroundTv:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.tvMediaDecor)! ]
-        case .gamingStorage:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.gamingDecorSubTasks)! ]
-        case .soundSystem:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.surroundSound)! ]
-            
-        case .tvMediaConsole:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.tvMediaSubTask)! ]
-            
-        case .bookshelves:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.bookshelf)! ]
-            
-        case .decorAroundReading:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.readingDecorSubTasks)! ]
-            
-        case .chairSeating:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.comfyChairSeating)! ]
-            
-        case .storageBinsBaskets:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.binsBaskets)! ]
-            
-        case .cabinetsShelves:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.cabinetShelvesSubTask)! ]
-            
-        case .drawers:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.drawerSubTasks)! ]
-            
-        case .accentLighting:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.accentLightingSubTask)! ]
-            
-        case .plantsGreenery:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.greeneryPlants)! ]
-            
-        case .shelvesDisplayTables:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.floatingShelves)! ]
-            
-        case .wallArtPhotos:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.wallArtSubTasks)! ]
-            
-        case .playMatActivityArea:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.playMatSubTask)! ]
-        case .craftArtSupplies:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.artsCraftSubTask)! ]
-        case .gameArea:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.gameAreaSubTasks)! ]
-        case .toyStorage:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.livingRoomToyStorage)! ]
-        case .seatingArrangement:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.seatingSubTasks)! ]
-            
-        case .coffeeTable:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.coffeeTableSubTasks)! ]
-            
-        case .decorAccents:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.decorAccentSubTask)! ]
-            
-        case .overheadLighting:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.lightingSubTasks)! ]
-            
-        case .taskLighting:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.taskLightingSubTask)! ]
-            
-        case .lightingControls:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.lightingControlsSubTask)! ]
-        case .desk:
-            return [ SubTaskTypeBox(LivingRoomSubTaskType.deskSubTask)! ]
+        case .accentChairsOttomans, .throwPillowBlankets, .sideTables, .mainSeating, .desk, .accentLighting, .lightingControls, .overheadLighting, .taskLighting, .decorAroundTv, .gamingStorage, .soundSystem, .tvMediaConsole, .bookshelves, .decorAroundReading, .chairSeating, .storageBinsBaskets, .cabinetsShelves, .drawers, .plantsGreenery, .shelvesDisplayTables, .wallArtPhotos, .playMatActivityArea, .craftArtSupplies, .gameArea, .toyStorage, .coffeeTable, .decorAccents, .seatingArrangement:
+            return LivingRoomSubTaskType.allCases.map { SubTaskTypeBox($0)! }
         }
     }
     static var workStudyZoneSpaces: [LivingRoomSpaceType] {
