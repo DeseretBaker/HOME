@@ -184,18 +184,7 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var isCompleted: Bool {
         switch self {
-        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage: return true
-        case .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea: return true
-        case .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer: return true
-        case .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf: return true
-        case .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation: return true
-        case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks: return true
-        case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage: return true
-        case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror: return true
-        case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards: return true
-        case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket: return true
-        case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer: return true
-        case .instrumentStorage, .performanceArea, .musicStand, .recordingPlaybackZone: return true
+        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage, .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea, .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer, .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf, .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation, .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks, .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage, .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror, .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards, .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket, .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer, .instrumentStorage, .performanceArea, .musicStand, .recordingPlaybackZone: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -203,62 +192,10 @@ enum PlayroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     }
     var subTaskTypes: [SubTaskTypeBox] {
         switch self {
-        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage:
-            return [
-                SubTaskTypeBox(PlayroomSubTaskType.playroomZoneSpace)!
-            ]
-        case .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea:
-            return [
-                SubTaskTypeBox(PlayroomSubTaskType.playroomExplorationSpace)!
-            ]
-        case .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer:
-            return [
-                SubTaskTypeBox(PlayroomSubTaskType.playroomTechZoneSpace)!
-            ]
-        case .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf:
-            return [
-                SubTaskTypeBox(PlayroomSubTaskType.playroomStudyZoneSpace)!
-            ]
-        case .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomSensoryZoneSpace)!
-            ]
-        case .instrumentStorage, .musicStand, .performanceArea, .recordingPlaybackZone:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomPerformanceZoneSpace)!
-            ]
-        case .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomActivityZoneSpace)!
-            ]
-        case .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomBoardGameZoneSpace)!
-            ]
-        case .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomImaginationZoneSpace)!
-            ]
-        case .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomBuildingZoneSpace)!
-            ]
-        case .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomQuietZoneSpace)!
-            ]
-        case .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer:
-            return [
-                
-                SubTaskTypeBox(PlayroomSubTaskType.playroomCraftZoneSpace)!
-            ]
+        case .toyBins, .shelvingUnits, .toyChestTrunks, .rotationalStorage, .gardeningExplorationArea, .outdoorToyStorage, .playEquipment, .waterPlayArea, .deviceChargingStation, .comfortableSeating, .headphoneStorage, .screenTimeTimer, .deskChair, .suppliesStorage, .homeworkOrganizer, .referenceShelf, .lightTable, .sensoryBins, .tactileWallPanels, .waterPlayStation, .freePlayAreas, .indoorPlayEquipment, .softMatsRugs, .sportsEquipmentRacks, .gamePieceOrganizer, .gameShelf, .gameTable, .puzzleStorage, .dressUpArea, .pretendPlaySets, .rolePlayStation, .costumeMirror, .buildingBlockStorage, .constructionTable, .displayShelf, .challengeCards, .bookshelves, .cozySeatingAreas, .softLighting, .quietTimeBasket, .craftSuppliesDrawers, .artTable, .craftDisplayBoard, .supplyOrganizer, .instrumentStorage, .performanceArea, .musicStand, .recordingPlaybackZone:
+            return PlayroomSubTaskType.allCases.map { SubTaskTypeBox($0)! }
+           
+   
         }
     }
     static var playroomZoneSpaces: [PlayroomSpaceType] {
