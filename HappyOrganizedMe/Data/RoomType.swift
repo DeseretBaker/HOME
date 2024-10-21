@@ -74,6 +74,8 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
     
     var spaceTypes: [SpaceTypeBox] {
         switch self {
+        case .bakingZone:
+            return KitchenSpaceType.cookingZoneSpaces.map { SpaceTypeBox($0)! }
         case .prepZone:
             return KitchenSpaceType.prepZoneSpaces.map { SpaceTypeBox($0)! }
         case .cookingZone:
@@ -88,7 +90,7 @@ enum KitchenRoomType: String, Codable, CaseIterable, Identifiable, RoomType  {
             return KitchenSpaceType.cleaningZone.map { SpaceTypeBox($0)! }
         case .cookwareZone:
             return KitchenSpaceType.cookwareZone.map { SpaceTypeBox($0)! }
-        default: return []
+       
         }
     }
     static var kitchenPrepZoneRoom: [KitchenRoomType] {
@@ -198,7 +200,6 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
             return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
         case .cleaningZone:
             return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
-            
         case .toiletries:
             return "Designate a space for toiletries, including shampoo, conditioner, soap, and toilet paper. Use shelves, hooks, or a compact toiletries cabinet to keep this zone organized and contained."
         }
@@ -266,7 +267,7 @@ enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var vanityZoneSpaces: [BathroomRoomType] {
         return [.vanityZone, .bathingZone]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return BathroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -381,7 +382,7 @@ enum LivingRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var livingRoomWorkStudyRoom: [LivingRoomType] {
         return [.workStudySpace, .lightingSpace, .seatingSpace, .decorativeSpace]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return LivingRoomType.allCases.map { $0 as any RoomType}
     }
     
@@ -485,7 +486,7 @@ enum BedroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var studyZoneSpaces: [BedroomRoomType] {
         return [.studyZone, .bedroomStorage, .readingZone, .entertainment]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return BedroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -541,7 +542,7 @@ enum StorageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var closetSpaceRoom: [StorageRoomType] {
         return [.closetsZone, .builtInsWallUnitsZone]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return StorageRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -631,7 +632,7 @@ enum OfficeRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var taskLightingZoneSpaces: [OfficeRoomType] {
         return [.taskLighting, .workstation]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return OfficeRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -725,7 +726,7 @@ enum GarageRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var overheadZoneSpaces: [GarageRoomType] {
         return [.overheadStorageZone, .parkingZone]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return GarageRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -837,28 +838,28 @@ enum PlayroomRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
     static var outdoorZoneSpaces: [PlayroomRoomType] {
         return [.outdoorPlayZone, .physicalActivityZone]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return PlayroomRoomType.allCases.map { $0 as any RoomType}
     }
 }
     
-    enum UnknownRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
+    enum ComingSoonRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
         
         
-        case unknown
+        case comingSoon
         
         var id: UUID { UUID() }
         var name: String { rawValue }
         var imageName: String { rawValue }
-        var instructions: String { "unknown" }
-        var usageDescription: String { "unknown" }
+        var instructions: String { "comingSoon" }
+        var usageDescription: String { "comingSoon" }
         var weight: Double { 0.0 }
         var spaceTypes: [SpaceTypeBox] { [] }
         var progress: Double { 0.0 }
         var isCompleted: Bool { false }
         
         static var allRoomTypes: [any RoomType] {
-            return UnknownRoomType.allCases.map { $0 as any RoomType}
+            return ComingSoonRoomType.allCases.map { $0 as any RoomType}
         }
     }
 

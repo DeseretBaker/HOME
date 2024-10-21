@@ -224,7 +224,7 @@ enum LivingRoomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType
         static var playZoneSpaces: [LivingRoomSpaceType] {
             return [.craftArtSupplies, .playMatActivityArea, .toyStorage]
         }
-        static var allSpaceTypes: [any SpaceType] {
+        static var SpaceTypes: [any SpaceType] {
             return LivingRoomSpaceType.allCases.map { $0 as any SpaceType}
         }
     }

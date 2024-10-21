@@ -32,7 +32,7 @@ struct MiniTaskDetailView: View {
                 .padding(.bottom, 20)
 
             // List of checkable items
-            ForEach($miniTask.checkableItems, id: \.id) { $item in
+            ForEach(miniTask.checkableItems ?? [], id: \.id) { item in
                 HStack {
                     Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
                         .onTapGesture {
@@ -52,7 +52,7 @@ struct MiniTaskDetailView: View {
                     .background(miniTask.isCompleted ? Color.red : Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
-                    .shadow(radius: 5)
+                    .shadow(radius: 2)
             }
         }
         .navigationTitle("")

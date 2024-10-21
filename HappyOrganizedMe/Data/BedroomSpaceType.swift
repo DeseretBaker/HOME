@@ -20,7 +20,7 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     // BedroomStorageSpaceType
     case closet = "Closet"
     case shelves = "Shelves"
-    case underBedStorage = "Storage Under Bed "
+    case underBedStorage = "Storage Under Bed"
     case trunksBaskets = "Trunks/Baskets"
     // BedroomDresser
  
@@ -97,7 +97,7 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         }
     }
     static var lightingZoneSpaces: [BedroomSpaceType] {
-        return [.taskLamps]
+        return [.taskLamps, .decorativeItems]
     }
     static var readingZoneSpaces: [BedroomSpaceType] {
         return [.shelves, .smallDesk, .comfyChair]
@@ -115,7 +115,7 @@ enum BedroomSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         return [.mirror, .topSurface, .decorativeItems]
     }
     static var entertainmentZoneSpaces: [BedroomSpaceType] {
-        return [.taskLamps, .comfyChair, .flatScreenTV]
+        return [.taskLamps, .comfyChair, .flatScreenTV, .sleepingArea]
     }
     static var SpaceType: [any SpaceType] {
         return BedroomSpaceType.allCases.map { $0 as any SpaceType }

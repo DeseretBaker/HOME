@@ -9,51 +9,38 @@ import SwiftData
 
 @Model
 class Room: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID()
+    @Attribute var id: UUID = UUID() // UUID should have a default value
+    
     // Define relationships to spaces and project
-    @Relationship(inverse: \Project.rooms) var project: Project? // Establishes a many-to-one relationship with Project
+    @Relationship(inverse: \Project.rooms) var project: Project? // Optional relationship to Project
+    @Relationship var spaces: [Space]? = [] // Relationship to spaces (default to empty array)
+
+    @Attribute var instructions: String = "" // Mark as @Attribute and provide a default value
+    @Attribute var usageDescription: String = "" // Provide a default value
     
-    var instructions: String
-    var usageDescription: String
-    var spaces: [Space]
-    
-   
-    var roomType: RoomTypeBox
     // Use the RoomTypeBox enum directly, not the protocol
-    @Attribute var isCompleted: Bool = false
-    
-   
-    
+    @Attribute var roomType: RoomTypeBox?
+    @Attribute var isCompleted: Bool = false // Default to false
     
     // MARK: Computed Variables
-    var name: String { roomType.name }
-    var imageName: String { roomType.imageName }
-    var weight: Double { roomType.weight }
+    var name: String { roomType?.name ?? "" } // From Displayable
+    var imageName: String { roomType?.imageName ?? "" } // From Displayable
+    var weight: Double { roomType?.weight ?? 1.0 }
+    // From Progressable
     
-    
-    var progress: Double {
-        let allSpacesSubTasksMiniTasks: [MiniTask] = spaces.flatMap(\.subTasks).flatMap(\.miniTasks)
-        
-        guard !allSpacesSubTasksMiniTasks.isEmpty else { return 0.0 }
-        let completedSpacesSubTasksMiniTasks = allSpacesSubTasksMiniTasks.filter { $0.isCompleted }.count
-        return Double(completedSpacesSubTasksMiniTasks) / Double(allSpacesSubTasksMiniTasks.count) * 100
+    var progress: Double { // From Progressable
+        guard !(spaces?.isEmpty ?? true) else { return 0.0 }
+        let completedSpacesSubTasksMiniTasks = spaces?.filter { $0.isCompleted }.count ?? 1
+        return Double(completedSpacesSubTasksMiniTasks) / Double(spaces?.count ?? Int(1.0)) * 100
     }
     
     // Initializer
-    init(roomType: RoomTypeBox, instructions: String, usageDescription: String, spaces: [Space] = [], isCompleted: Bool = false) {
+    init(roomType: RoomTypeBox, instructions: String = "", usageDescription: String = "", spaces: [Space] = [], isCompleted: Bool = false) {
         self.roomType = roomType
-        self.instructions = instructions  // Initialize instructions
-        self.usageDescription = usageDescription  // Initialize usageDescription
+        self.instructions = instructions // Initialize instructions
+        self.usageDescription = usageDescription // Initialize usageDescription
         self.isCompleted = isCompleted
-        self.spaces = spaces
-        
-        // Set the back reference from each space to this room
-        for space in self.spaces {
-            space.room = self
-        }
-        
-        // Debug Print Statement
-        print("Initialized Room: \(self.name) with \(spaces.count) spaces.")
+        self.spaces = spaces   
     }
    
     func toggleCompleted() {

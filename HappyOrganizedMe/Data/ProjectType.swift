@@ -20,8 +20,8 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     case office = "Office"
     case storage = "Storage"
     case garage = "Garage"
-    case unknown = "Unknown"
-    // Added the unknown case
+    case comingSoon = "ComingSoon"
+    // Added the comingSoon case
     
     var id: UUID { UUID() }
     // The display name for the project type.
@@ -51,8 +51,8 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return "A garage is a versatile space used for parking vehicles, storing tools, and organizing outdoor equipment. It serves as a functional area for projects, maintenance, and keeping belongings secure and accessible."
         case .playroom:
             return "A playroom is a vibrant space designed for fun, creativity, and imagination. It’s a dedicated area where children can explore, play, and learn, offering a safe environment for endless adventures and activities."
-        case .unknown:
-            return "Unknown Project instructions"
+        case .comingSoon:
+            return "ComingSoon Project instructions"
         }
     }
     // Usage description associated with the project type.
@@ -76,15 +76,15 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return "A well-organized garage can serve multiple purposes beyond just parking cars. Dividing the garage into functional zones helps maximize the space and keep everything in order. Here are some common zones in a garage. By dividing the garage into these zones, you can optimize the space and keep the garage functional for all its intended purposes, from parking cars to organizing tools, equipment, and household supplies."
         case .playroom: 
             return "Organizing a playroom into specific zones can help keep it functional, tidy, and enjoyable for children. Here are common zones that can make a playroom more organized and purposeful. By dividing a playroom into these zones, you can create a fun, organized space where children can engage in different types of play and activities while also learning to keep things tidy. It also helps children transition easily between various play and learning experiences."
-        case .unknown: 
-            return "Unknown Project"
+        case .comingSoon: 
+            return "ComingSoon Project"
         }
     }
     
     // A weight value representing the priority or importance of the project type.
     var weight: Double {
         switch self {
-        case .kitchen, .garage, .bathroom, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .unknown: return 2.0
+        case .kitchen, .garage, .bathroom, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .comingSoon: return 2.0
         }
     }
     var progress: Double {
@@ -92,7 +92,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     }
     var isCompleted: Bool {
         switch self {
-        case .bathroom, .bedroom, .kitchen, .livingRoom, .diningRoom, .office, .playroom, .unknown, .garage, .storage: return true
+        case .bathroom, .bedroom, .kitchen, .livingRoom, .diningRoom, .office, .playroom, .comingSoon, .garage, .storage: return true
         }
     }
     

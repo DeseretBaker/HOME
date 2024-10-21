@@ -9,37 +9,33 @@ import SwiftData
 
 @Model
 class SubTask: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    // Define relationships to miniTasks and subTask
-    @Relationship(inverse: \Space.subTasks) var space: Space? // Establishes a many-to-one relationship with Space
-    var instructions: String
-    var usageDescription: String
-    var miniTasks: [MiniTask]
+    @Attribute var id: UUID = UUID() // Ensure UUID has a default value
+    @Relationship(inverse: \Space.subTasks) var space: Space? // Optional relationship to Space
     
+    @Attribute var instructions: String = "" // Ensure instructions have a default value
+    @Attribute var usageDescription: String = "" // Ensure usageDescription has a default value
+    @Relationship var miniTasks: [MiniTask]? = [] // Default to an empty array for miniTasks
     
-    var subTaskType: SubTaskTypeBox // Use the SubTaskType enum directly, not the protocol
-    @Attribute var isCompleted: Bool = false
-    
-    
+    @Attribute var subTaskType: SubTaskTypeBox? // No default value, as it should be required
+    @Attribute var isCompleted: Bool = false // Default value for isCompleted
 
     // MARK: Computed Variables (from the Displayable protocol)
-    var name: String { subTaskType.name }
-    var imageName: String { subTaskType.imageName }
-    var weight: Double { subTaskType.weight }
+    var name: String { subTaskType?.name ?? "" } // Use from the SubTaskTypeBox enum
+    var imageName: String { subTaskType?.imageName ?? "" } // Use from the SubTaskTypeBox enum
+    var weight: Double { subTaskType?.weight ?? 1.0 } // Use from the SubTaskTypeBox enum
     
-    // conformance to Progressable protocol
+    // Conformance to Progressable protocol
     var progress: Double {
-        guard !miniTasks.isEmpty else { return 0.0 }
-        let completedTasks = miniTasks.filter { $0.isCompleted }.count
-        return Double(completedTasks) / Double(miniTasks.count) * 100
+        guard !(miniTasks?.isEmpty ?? true) else { return 0.0 }
+        let completedMiniTasks = miniTasks?.filter { $0.isCompleted }.count ?? 1
+        return Double(completedMiniTasks) / Double(miniTasks?.count ?? Int(1.0)) * 100
     }
  
     // Initializer
-    init(subTaskType: SubTaskTypeBox, instructions: String, usageDescription: String, miniTasks: [MiniTask] = [], isCompleted: Bool = false) {
+    init(subTaskType: SubTaskTypeBox, instructions: String = "", usageDescription: String = "", miniTasks: [MiniTask] = [], isCompleted: Bool = false) {
         self.subTaskType = subTaskType
         self.instructions = instructions
         self.usageDescription = usageDescription
-        
         self.miniTasks = miniTasks
         self.isCompleted = isCompleted
     }

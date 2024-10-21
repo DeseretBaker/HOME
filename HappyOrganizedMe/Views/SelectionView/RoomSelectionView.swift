@@ -16,33 +16,38 @@ struct RoomSelectionView: View {
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
     
+    // Dynamically calculate grid columns based on the screen size
+    var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: UIScreen.main.bounds.width > 768 ? 200 : 100), spacing: 16)]
+    }
+    
     var body: some View {
-        
         VStack {
-            if project.rooms.isEmpty {
-                Text("No rooms available in this project.")
-                    .font(.caption)
-                    .padding()
-            } else {
+            if let rooms = project.rooms, !rooms.isEmpty {
                 ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                        ForEach(project.rooms) { room in
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(rooms, id: \.id) { room in
                             NavigationLink(destination: RoomDetailView(room: room)) {
-                                CardView(item: room)
+                                CardView(item: room)  // Reusing the CardView for rooms
                             }
                         }
                     }
                     .padding()
                 }
+            } else {
+                Text("No rooms available in this project.")
+                    .font(.caption)
+                    .padding()
             }
         }
         .navigationTitle("Areas to work on")
         .toolbar {
-            //EditButton()
+            // Optionally add an EditButton for future features
         }
         .onAppear {
-            print("Rooms available: \(project.rooms.count)")
+            if let rooms = project.rooms {
+                print("Rooms available: \(rooms.count)")
+            }
         }
-        
     }
 }

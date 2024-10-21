@@ -582,13 +582,6 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
     }
     enum PlayroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case declutter = "Declutter"
-        case organize = "Organize"
-        case clean = "Clean"
-        case polish = "Polish"
-        case tableLinens = "Table Linens"
-        case accessories = "Accessories"
-        case repairsAndUpdates = "Repairs and Updates"
         case playroomZoneSpace = "Playroom Zone Space"
         case playroomExplorationSpace = "Playroom Exploration Space"
         case playroomTechZoneSpace = "Playroom Tech Zone Space"
@@ -620,13 +613,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .playroomTechZoneSpace: return "Set up a tech zone with a computer, tablets, or gaming consoles. Use a desk or media console to house devices, and manage cables with organizers or clips."
             case .playroomExplorationSpace: return "Create an area where kids can explore new ideas or activities, such as science experiments, puzzles, or building sets. Store materials in bins or on shelves for easy access."
             case .playroomZoneSpace: return "Divide the playroom into zones based on activities, such as crafting, tech, or sensory play. Use rugs or shelving to define each area and store related items within each zone."
-            case .declutter: return "Remove any unnecessary items from the space by sorting through belongings and deciding what to keep, donate, or discard. Use bins or boxes to separate items."
-            case .organize: return " Arrange the remaining items in a logical, easy-to-access system. Use shelves, bins, or drawers to store similar items together, and label everything to maintain order."
-            case .clean: return "Thoroughly clean the room by dusting surfaces, vacuuming or mopping floors, and wiping down furniture. Pay attention to often-overlooked spots like under furniture or behind appliances."
-            case .polish: return "Polish wooden furniture, clean mirrors and windows, and refresh any metal fixtures. Use appropriate cleaners for each material to maintain their shine and durability."
-            case .tableLinens: return "Store table linens like napkins, placemats, and tablecloths in a designated drawer or cabinet. Fold them neatly and separate by occasion or color."
-            case .accessories: return "Display or store accessories like vases, candles, or seasonal decor in a way that enhances the room’s aesthetic without overcrowding it. Rotate items seasonally for a fresh look."
-            case .repairsAndUpdates: return "Identify areas in the room that need repairs, such as squeaky furniture or chipped paint. Make necessary fixes or updates, and consider refreshing the space with small improvements like new hardware or decor."
+
             }
         }
         var usageDescription: String {
@@ -643,14 +630,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .playroomTechZoneSpace: return " A designated tech zone keeps devices and cords in one place, reducing clutter and creating a safe, organized space for screen time. It allows for focused use of technology, whether for entertainment or learning."
             case .playroomExplorationSpace: return "An exploration space fosters curiosity and hands-on learning, giving kids a dedicated area to try new things. It inspires imagination and discovery while keeping materials neatly organized."
             case .playroomZoneSpace: return "Organizing the playroom into zones helps create structure for different activities, encouraging creativity and focus. It also keeps toys and materials organized, making cleanup easier and playtime more fun."
-            case .declutter: return "Decluttering clears the room of excess, making it easier to maintain an organized and peaceful environment. It creates space for the items that truly matter, improving functionality and reducing visual chaos."
-            case .organize: return "Organization brings structure to a room, making it easier to find and use items without creating new clutter. It enhances the overall efficiency and aesthetics of the space."
-            case .clean: return "A clean space is not only visually appealing but also healthier. Regular cleaning helps maintain a fresh, inviting environment that’s free from allergens, dust, and dirt."
-            case .polish: return "Polishing surfaces adds the finishing touch to your room, making everything look pristine and well-maintained. It preserves the quality of your furnishings and adds to the room’s overall appeal."
-            case .tableLinens: return " Keeping table linens organized ensures you’re always ready for both casual meals and special occasions. It also prevents wrinkles and damage, making your dining space look polished and inviting."
-            case .accessories: return "Accessories add personality and style to your space, transforming it from functional to warm and inviting. Organized, thoughtfully placed accessories keep the room balanced and visually appealing."
-            case .repairsAndUpdates: return "Keeping up with repairs and updates ensures your space is both functional and visually pleasing. Regular maintenance prevents small issues from becoming bigger problems and helps keep the room looking its best."
-            }
+             }
         }
         var weight: Double { 2.0 }
         
@@ -659,7 +639,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var isCompleted: Bool {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates, .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace: return true
+            case .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace: return true
                 
             }
         }
@@ -670,7 +650,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .declutter, .organize, .clean, .polish, .tableLinens, .accessories, .repairsAndUpdates, .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace:
+            case .playroomZoneSpace, .playroomExplorationSpace, .playroomTechZoneSpace, .playroomStudyZoneSpace, .playroomSensoryZoneSpace, .playroomPerformanceZoneSpace, .playroomActivityZoneSpace, .playroomBoardGameZoneSpace, .playroomImaginationZoneSpace, .playroomBuildingZoneSpace, .playroomQuietZoneSpace, .playroomCraftZoneSpace:
                 return [
                     MiniTaskTypeBox(PlayroomMiniTaskType.remove)!,
                     MiniTaskTypeBox(PlayroomMiniTaskType.clean)!,
@@ -1602,14 +1582,14 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             return GarageSubTaskType.allCases.map { $0 as any SubTaskType }
         }
     }
-    enum UnknownSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case unknown
+    enum ComingSoonSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
+        case comingSoon
         
         var id: UUID { UUID() }
         var name: String { rawValue }
         var imageName: String { rawValue }
-        var instructions: String { "unknown" }
-        var usageDescription: String { "unknown" }
+        var instructions: String { "comingSoon" }
+        var usageDescription: String { "comingSoon" }
         var weight: Double { 2.0 }
         var progress: Double { 0.0 }
         var isCompleted: Bool { false }
@@ -1619,11 +1599,11 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
         }
         var miniTaskTypes: [MiniTaskTypeBox] {
             switch self {
-            case .unknown:  return []
+            case .comingSoon:  return []
             }
         }
         var SubTaskType: [any SubTaskType] {
-            return UnknownSubTaskType.allCases.map { $0 as any SubTaskType }
+            return ComingSoonSubTaskType.allCases.map { $0 as any SubTaskType }
         }
     }
     

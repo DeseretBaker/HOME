@@ -36,7 +36,7 @@ enum RoomTypeBox: Codable {
     case office(OfficeRoomType)
     case garage(GarageRoomType)
     case playroom(PlayroomRoomType)
-    case unknown(UnknownRoomType)
+    case comingSoon(ComingSoonRoomType)
     
     var roomType: any RoomType {
         switch self {
@@ -49,7 +49,7 @@ enum RoomTypeBox: Codable {
         case .office(let office): return office
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
-        case .unknown(let unknown): return unknown
+        case .comingSoon(let comingSoon): return comingSoon
         }
     }
     
@@ -72,8 +72,8 @@ enum RoomTypeBox: Codable {
             self = .garage(garage)
         } else if let playroom = roomType as? PlayroomRoomType {
             self = .playroom(playroom)
-        } else if let unknown = roomType as? UnknownRoomType {
-            self = .unknown(unknown)
+        } else if let comingSoon = roomType as? ComingSoonRoomType {
+            self = .comingSoon(comingSoon)
         } else {
             return nil
             
@@ -122,7 +122,7 @@ enum SpaceTypeBox: Codable {
     case office(OfficeSpaceType)
     case garage(GarageSpaceType)
     case playroom(PlayroomSpaceType)
-    case unknown(UnknownSpaceType)
+    case comingSoon(ComingSoonSpaceType)
     
     var spaceType: any SpaceType {
         switch self {
@@ -135,7 +135,7 @@ enum SpaceTypeBox: Codable {
         case .office(let office): return office
         case .garage(let garage): return garage
         case .playroom(let playroom): return playroom
-        case .unknown(let unknown): return unknown
+        case .comingSoon(let comingSoon): return comingSoon
         }
     }
     
@@ -158,8 +158,8 @@ enum SpaceTypeBox: Codable {
             self = .garage(garage)
         } else if let playroom = spaceType as? PlayroomSpaceType {
             self = .playroom(playroom)
-        } else if let unknown = spaceType as? UnknownSpaceType {
-            self = .unknown(unknown)
+        } else if let comingSoon = spaceType as? ComingSoonSpaceType {
+            self = .comingSoon(comingSoon)
         } else {
             return nil
             
@@ -208,7 +208,7 @@ enum SubTaskTypeBox: Codable {
     case office(OfficeSubTaskType)
     case garage(GarageSubTaskType)
     case playroom(PlayroomSubTaskType)
-    case unknown(UnknownSubTaskType)
+    case comingSoon(ComingSoonSubTaskType)
     
     var subTaskType: any SubTaskType {
         switch self {
@@ -221,7 +221,7 @@ enum SubTaskTypeBox: Codable {
         case .office(let officeSubTask): return officeSubTask
         case .garage(let garageSubTask): return garageSubTask
         case .playroom(let playroomSubTask): return playroomSubTask
-        case .unknown(let unknownSubTask): return unknownSubTask
+        case .comingSoon(let comingSoonSubTask): return comingSoonSubTask
         }
     }
     
@@ -244,8 +244,8 @@ enum SubTaskTypeBox: Codable {
             self = .garage(garageSubTask)
         } else if let playroomSubTask = subTaskType as? PlayroomSubTaskType {
             self = .playroom(playroomSubTask)
-        } else if let unknownSubTask = subTaskType as? UnknownSubTaskType {
-            self = .unknown(unknownSubTask)
+        } else if let comingSoonSubTask = subTaskType as? ComingSoonSubTaskType {
+            self = .comingSoon(comingSoonSubTask)
         } else {
             return nil
         }
@@ -292,7 +292,7 @@ enum MiniTaskTypeBox: Codable {
     case storage(StorageMiniTaskType)
     case bathroom(BathroomMiniTaskType)
     case garage(GarageMiniTaskType)
-    case unknown(UnknownMiniTaskType)
+    case comingSoon(ComingSoonMiniTaskType)
     
     var miniTaskType: any MiniTaskType {
         switch self {
@@ -305,7 +305,7 @@ enum MiniTaskTypeBox: Codable {
         case .storage(let storageMiniTask): return storageMiniTask
         case .bathroom(let bathroomMiniTask): return bathroomMiniTask
         case .garage(let garageMiniTask): return garageMiniTask
-        case .unknown(let unknownMiniTask): return unknownMiniTask
+        case .comingSoon(let comingSoonMiniTask): return comingSoonMiniTask
         }
     }
     init?(_ miniTaskType: any MiniTaskType) {
@@ -327,8 +327,8 @@ enum MiniTaskTypeBox: Codable {
             self = .bathroom(bathroomMiniTask)
         } else if let garageMiniTask = miniTaskType as? GarageMiniTaskType {
             self = .garage(garageMiniTask)
-        } else if let unknownMiniTask = miniTaskType as? UnknownMiniTaskType {
-            self = .unknown(unknownMiniTask)
+        } else if let comingSoonMiniTask = miniTaskType as? ComingSoonMiniTaskType {
+            self = .comingSoon(comingSoonMiniTask)
         } else {
             return nil
         }

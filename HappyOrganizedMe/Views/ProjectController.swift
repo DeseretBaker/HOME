@@ -12,25 +12,29 @@ import UserNotifications
 
 class ProjectController: ObservableObject {
     static let shared = ProjectController()
-    var modelContext: ModelContext?
+    var modelContext: ModelContext?  // Direct reference to modelContext
+    
     @Published var projects: [Project] = []
-   
+    @Published var isLoading: Bool = false
     @Published var selectedProject: Project?
-    
-    init() {
-//        loadProjects()
+
+    private init() {
+        // Load projects can be called later via setModelContext()
     }
-    
+
     func setModelContext(_ modelContext: ModelContext) {
         self.modelContext = modelContext
         loadProjects()
     }
-    
+
     // Function to load projects
     func loadProjects() {
+        guard let modelContext = modelContext else { return }
+        isLoading = true
+        
         let fetchDescriptor = FetchDescriptor<Project>()
         do {
-            let loadedProjects = try modelContext!.fetch(fetchDescriptor)
+            let loadedProjects = try modelContext.fetch(fetchDescriptor)
             if loadedProjects.isEmpty {
                 loadBaseProjects()
             } else {
@@ -39,138 +43,131 @@ class ProjectController: ObservableObject {
         } catch {
             print("Error loading projects: \(error)")
         }
+        isLoading = false
     }
+    
     // Function to load base projects
     func loadBaseProjects() {
+        guard let context = modelContext else {
+            print("Error: ModelContext is not set.")
+            return
+        }
+        isLoading = true
+        
         if projects.isEmpty {
             print("Loading base projects...")
             
-            
-            let baseProjectsController = BaseProjectsController(modelContext: modelContext!)
+            let baseProjectsController = BaseProjectsController(modelContext: context)
             projects = baseProjectsController.baseProjects()
             print("Base projects loaded: \(projects)")
         } else {
             print("Projects already loaded: \(projects)")
         }
+        isLoading = false
     }
     
-    // Placeholder function to save projects to persistent storage
-    func saveToPersistentStore(_ projects: [Project]) {
+    // Save to persistent storage
+    func saveToPersistentStore() {
+        guard let context = modelContext else { return }
         do {
-            guard let modelContext else { return }
-            try modelContext.save()
+            try context.save()
         } catch {
             print("Error saving projects: \(error.localizedDescription)")
         }
     }
     
-    func updateProject(_ updatedProject: Project, context: ModelContext) {
+    // Methods to update project, room, space, etc.
+    func updateProject(_ updatedProject: Project) {
         if let projectIndex = projects.firstIndex(where: { $0.id == updatedProject.id }) {
             projects[projectIndex] = updatedProject
-            saveContext(context)
+            saveToPersistentStore()
         }
     }
-    
-    func updateRoom(_ room: Room, context: ModelContext) {
+
+    func updateRoom(_ room: Room) {
         if let projectIndex = projects.firstIndex(where: { $0.id == room.project?.id }),
-           let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == room.id }) {
-            projects[projectIndex].rooms[roomIndex] = room
-            saveContext(context)
+           let roomIndex = projects[projectIndex].rooms?.firstIndex(where: { $0.id == room.id }) {
+            projects[projectIndex].rooms?[roomIndex] = room
+            saveToPersistentStore()
         }
     }
-    
-    func updateSpace(_ space: Space, context: ModelContext) {
+
+    func updateSpace(_ space: Space) {
         if let projectIndex = projects.firstIndex(where: { $0.id == space.room?.project?.id }),
-           let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == space.room?.id }),
-           let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == space.id }) {
-            projects[projectIndex].rooms[roomIndex].spaces[spaceIndex] = space
-            saveContext(context)
+           let roomIndex = projects[projectIndex].rooms?.firstIndex(where: { $0.id == space.room?.id }),
+           let spaceIndex = projects[projectIndex].rooms?[roomIndex].spaces?.firstIndex(where: { $0.id == space.id }) {
+            projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex] = space
+            saveToPersistentStore()
         }
     }
     
-    func updateSubTask(_ subTask: SubTask, context: ModelContext) {
+    func updateSubTask(_ subTask: SubTask) {
         if let projectIndex = projects.firstIndex(where: { $0.id == subTask.space?.room?.project?.id }),
-           let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == subTask.space?.room?.id }),
-           let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == subTask.space?.id }),
-           let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == subTask.id }) {
-            projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex] = subTask
-            saveContext(context)
+           let roomIndex = projects[projectIndex].rooms?.firstIndex(where: { $0.id == subTask.space?.room?.id}),
+           let spaceIndex = projects[projectIndex].rooms?[roomIndex].spaces?.firstIndex(where: {$0.id == subTask.space?.id }),
+           let subTaskIndex = projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex].subTasks?.firstIndex(where: {$0.id == subTask.id }) {
+            projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex].subTasks?[subTaskIndex] = subTask
+            saveToPersistentStore()
         }
     }
     
-    func updateMiniTask(_ miniTask: MiniTask, context: ModelContext) {
+    func updateMiniTask(_ miniTask: MiniTask) {
         if let projectIndex = projects.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.project?.id }),
-           let roomIndex = projects[projectIndex].rooms.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.id }),
-           let spaceIndex = projects[projectIndex].rooms[roomIndex].spaces.firstIndex(where: { $0.id == miniTask.subTask?.space?.id }),
-           let subTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks.firstIndex(where: { $0.id == miniTask.subTask?.id }),
-           let miniTaskIndex = projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex].miniTasks.firstIndex(where: { $0.id == miniTask.id }) {
-            projects[projectIndex].rooms[roomIndex].spaces[spaceIndex].subTasks[subTaskIndex].miniTasks[miniTaskIndex] = miniTask
-            saveContext(context)
+           let roomIndex = projects[projectIndex].rooms?.firstIndex(where: { $0.id == miniTask.subTask?.space?.room?.id}),
+           let spaceIndex = projects[projectIndex].rooms?[roomIndex].spaces?.firstIndex(where: {$0.id == miniTask.subTask?.space?.id }),
+           let subTaskIndex = projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex].subTasks?.firstIndex(where: {$0.id == miniTask.subTask?.id }),
+           let miniTaskIndex = projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex].subTasks?[subTaskIndex].miniTasks?.firstIndex(where: {$0.id == miniTask.id }) {
+            projects[projectIndex].rooms?[roomIndex].spaces?[spaceIndex].subTasks?[subTaskIndex].miniTasks?[miniTaskIndex] = miniTask
+            saveToPersistentStore()
         }
     }
-    
-    func deleteProject(_ project: Project, context: ModelContext) {
+
+    // Similarly add update methods for SubTask and MiniTask
+
+    func deleteProject(_ project: Project) {
         if let index = projects.firstIndex(where: { $0.id == project.id }) {
             projects.remove(at: index)
-            saveContext(context)
+            saveToPersistentStore()
         }
     }
-    
 
-    
-    func updateMiniTaskStatus(miniTask: MiniTask, isCompleted: Bool, context: ModelContext) {
-        miniTask.isCompleted = isCompleted
-        updateMiniTask(miniTask, context: context)
-    }
-    
-    func updateSubTaskStatus(subTask: SubTask, isCompleted: Bool, context: ModelContext) {
-        subTask.isCompleted = isCompleted
-        updateSubTask(subTask, context: context)
-    }
-    
-    func updateSpaceStatus(space: Space, isCompleted: Bool, context: ModelContext) {
-        space.isCompleted = isCompleted
-        updateSpace(space, context: context)
-    }
-    
-    func updateRoomStatus(room: Room, isCompleted: Bool, context: ModelContext) {
-        room.isCompleted = isCompleted
-        updateRoom(room, context: context)
-    }
-    
-    func saveContext(_ context: ModelContext) {
+    // Sync and handle cloud conflicts
+    func syncProjects() {
+        guard let modelContext = modelContext else { return }
         do {
-            try context.save()
+            try modelContext.save()
+            handleCloudSyncConflict()
         } catch {
-            print("Error saving context: \(error.localizedDescription)")
+            print("Error syncing projects: \(error.localizedDescription)")
         }
     }
-    
-    func syncData(with context: ModelContext) {
-        saveContext(context)
-    }
-    
-    func removeSpace(from room: Room, at offsets: IndexSet, context: ModelContext) {
-        room.spaces.remove(atOffsets: offsets)
-        saveContext(context)
-    }
-    
-    func scheduleNotification(for projects: Project, at date: Date) {
-        let content = UNMutableNotificationContent()
-        content.title = "Reminder"
-        content.body = "Time to work on: \(projects.name)"
-        content.sound = .default
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date), repeats: false)
-        
-        let request = UNNotificationRequest(identifier: projects.id.uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling notification: \(error.localizedDescription)")
-            } else {
-                print("Notification scheduled for projects: \(projects.name)")
+
+    private func handleCloudSyncConflict() {
+        guard let modelContext = modelContext else { return }
+        do {
+            let fetchDescriptor = FetchDescriptor<Project>()
+            let latestProjects = try modelContext.fetch(fetchDescriptor)
+            
+            if conflictsExist(with: latestProjects) {
+                resolveConflicts(with: latestProjects)
+                try modelContext.save()
+
+                if modelContext.hasChanges {
+                    print("Conflicts resolved, re-syncing projects...")
+                    syncProjects()  // Re-sync only if there were changes
+                }
             }
+        } catch {
+            print("Failed to handle cloud sync conflict: \(error.localizedDescription)")
         }
+    }
+
+    private func resolveConflicts(with latestProjects: [Project]) {
+        // Implement custom conflict resolution logic
+    }
+
+    private func conflictsExist(with latestProjects: [Project]) -> Bool {
+        // Check for conflicts and return true if they exist
+        return false  // Replace with actual conflict detection logic
     }
 }

@@ -11,6 +11,7 @@ import SwiftData
 struct HappyOrganizedMeApp: App {
     @StateObject private var projectController = ProjectController.shared
     @Environment(\.modelContext) private var modelContext
+    @State private var hasClickedStartHereButton: Bool = false // Add this state
 
     // Shared model container for the app
     static var sharedModelContainer: ModelContainer = {
@@ -57,7 +58,7 @@ struct HappyOrganizedMeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView() // Starting view of your app
+            ContentView() // Pass the binding to StartHereView
                 .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // Attach the model container
                 .onAppear {
                     projectController.setModelContext(HappyOrganizedMeApp.sharedModelContainer.mainContext)

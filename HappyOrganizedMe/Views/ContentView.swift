@@ -4,7 +4,6 @@
 //
 //  Created by Deseret Baker on 8/3/24.
 //
-
 import SwiftUI
 import SwiftData
 
@@ -12,51 +11,172 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     private var projectController: ProjectController = .shared
     @State private var hasTappedStartHere: Bool = false
-    var project: Project?
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        if hasTappedStartHere {
-            ProjectSelectionView()
-        } else {
-            StartHereView(hasClickedStartHereButton: $hasTappedStartHere)
-        }
-    }
-    
-    private func syncProjects() {
-        do {
-            try modelContext.save()
-        } catch {
-            print("Error syncing projects: \(error.localizedDescription)")
-            handleCloudSyncConflict()
-        }
-    }
-    
-    private func handleCloudSyncConflict() {
-        do {
-            // Example of fetching the latest state of objects to manually resolve conflicts
-            let fetchDescriptor = FetchDescriptor<Project>()
-            let latestProjects = try modelContext.fetch(fetchDescriptor)
-            
-            // Example conflict resolution logic (manual)
-            resolveConflicts(with: latestProjects)
-            
-            // Attempt to save again after resolving conflicts
-            try modelContext.save()
-            
-            if modelContext.hasChanges {
-                print("Conflicts resolved, re-syncing projects...")
-                syncProjects() // Re-sync after resolving conflicts
+        Group {
+            if hasTappedStartHere {
+                ProjectSelectionView() // This is where we go after the Start button is clicked
+            } else {
+                // Choose layout based on device size
+                if horizontalSizeClass == .regular {
+                    iPadStartView(hasClickedStartHereButton: $hasTappedStartHere)
+                } else {
+                    iPhoneStartView(hasClickedStartHereButton: $hasTappedStartHere)
+                }
             }
-        } catch {
-            print("Failed to handle cloud sync conflict: \(error.localizedDescription)")
-            // Additional logic to notify the user or further debug
         }
-    }
-    
-    private func resolveConflicts(with latestProjects: [Project]) {
-        // Implement custom conflict resolution logic here
-        // For example, you might compare `latestProjects` with the current state in `modelContext`
-        // and decide which properties should be updated, merged, or overridden.
-        
+        .animation(.easeInOut, value: hasTappedStartHere) // Add transition animation
     }
 }
+
+struct iPadStartView: View {
+    @Binding var hasClickedStartHereButton: Bool
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                // Background image setup
+                Image("home")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                
+                // Foreground content
+                VStack(spacing: 20) {
+                    // "HO" text with outline
+                    ZStack {
+                        Text("HO")
+                            .font(outlineHeaderFont(geometry))
+                            .foregroundColor(.black) // Outline color
+                            .offset(x: 2, y: 2) // Slight offset to create outline effect
+                        
+                        Text("HO")
+                            .font(headerFont(geometry))
+                            .foregroundColor(.white)
+                            .shadow(radius: 2)
+                    }
+                    .padding()
+                    
+                    // "ME" text with outline
+                    ZStack {
+                        Text("ME")
+                            .font(outlineHeaderFont(geometry))
+                            .foregroundColor(.black) // Outline color
+                            .offset(x: 2, y: 2) // Slight offset to create outline effect
+                        
+                        Text("ME")
+                            .font(headerFont(geometry))
+                            .foregroundColor(.white)
+                            .shadow(radius: 2)
+                    }
+                    .padding()
+                    
+                    // Start button
+                    Button(action: {
+                        withAnimation {
+                            hasClickedStartHereButton = true
+                        }
+                    }) {
+                        Text("Start")
+                            .font(.system(size: geometry.size.width / 15))
+                            .bold()
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                            .padding()
+                            .frame(maxWidth: 200, minHeight: 50)
+                            .background(Color.teal)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black, lineWidth: 1))
+                    }
+                    .padding(.horizontal)
+                    .buttonStyle(.bordered)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+        }
+    }
+}
+   
+struct iPhoneStartView: View {
+    @Binding var hasClickedStartHereButton: Bool
+        
+        var body: some View {
+            GeometryReader { geometry in
+                ZStack {
+                    // Background image setup
+                    Image("home")
+                        .resizable()
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    // Foreground content
+                    VStack(spacing: 20) {
+                        // "HO" text with outline
+                        ZStack {
+                            Text("HO")
+                                .font(outlineHeaderFont(geometry))
+                                .foregroundColor(.black) // Outline color
+                                .offset(x: 2, y: 2) // Slight offset to create outline effect
+                            
+                            Text("HO")
+                                .font(headerFont(geometry))
+                                .foregroundColor(.white)
+                                .shadow(radius: 2)
+                        }
+                        .padding()
+                        
+                        // "ME" text with outline
+                        ZStack {
+                            Text("ME")
+                                .font(outlineHeaderFont(geometry))
+                                .foregroundColor(.black) // Outline color
+                                .offset(x: 2, y: 2) // Slight offset to create outline effect
+                            
+                            Text("ME")
+                                .font(headerFont(geometry))
+                                .foregroundColor(.white)
+                                .shadow(radius: 2)
+                        }
+                        .padding()
+                        
+                        // Start button
+                        Button(action: {
+                            withAnimation {
+                                hasClickedStartHereButton = true
+                            }
+                        }) {
+                            Text("Start")
+                                .font(.system(size: geometry.size.width / 15))
+                                .bold()
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .padding()
+                                .frame(maxWidth: 200, minHeight: 50)
+                                .background(Color.teal)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.black, lineWidth: 1))
+                        }
+                        .padding(.horizontal)
+                        .buttonStyle(.bordered)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+            }
+        }
+    }
+    private func headerFont(_ geometry: GeometryProxy) -> Font {
+        geometry.size.width > 600 ? .system(size: 130) : .system(size: 90)
+    }
+    
+    private func outlineHeaderFont(_ geometry: GeometryProxy) -> Font {
+        geometry.size.width > 600 ? .system(size: 130) : .system(size: 90)
+    }
+
+    
+  

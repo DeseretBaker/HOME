@@ -4,28 +4,26 @@
 //
 //  Created by Deseret Baker on 8/6/24.
 //
-
 import SwiftData
 import SwiftUI
 
 struct MiniTaskSelectionView: View {
     var projectController = ProjectController.shared
-    @Environment(\.modelContext) private var modelContext    
+    @Environment(\.modelContext) private var modelContext
     @Bindable var subTask: SubTask  // Use @Bindable to automatically update the view when the subtask changes
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
     
     var body: some View {
-        
         VStack {
-            if subTask.miniTasks.isEmpty {
+            if subTask.miniTasks?.isEmpty ?? true{  // Corrected condition
                 Text("No mini-tasks available in this subtask.")
                     .font(.headline)
                     .padding()
             } else {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                        ForEach(subTask.miniTasks) { miniTask in
+                        ForEach(subTask.miniTasks ?? []) { miniTask in
                             NavigationLink(destination: MiniTaskDetailView(miniTask: miniTask)) {
                                 MiniTaskCardView(miniTask: miniTask, modelContext: modelContext)  // Assuming MiniTaskCardView is defined elsewhere in your project
                             }
@@ -34,20 +32,20 @@ struct MiniTaskSelectionView: View {
                     .padding()
                 }
             }
-            
         }
         .navigationTitle("Nitty-Gritty")
         .toolbar {
             EditButton()  // Allows editing for delete action
         }
-        
     }
-    
     
     private func deleteMiniTask(at offsets: IndexSet) {
         withAnimation {
-            subTask.miniTasks.remove(atOffsets: offsets)
-            saveContext()
+            if var miniTasks = subTask.miniTasks {  // Safely unwrap and create a mutable copy
+                miniTasks.remove(atOffsets: offsets)
+                subTask.miniTasks = miniTasks  // Assign the updated miniTasks back
+                saveContext()
+            }
         }
     }
     
@@ -78,7 +76,7 @@ struct MiniTaskCardView: View {
                 .font(.headline)
                 .padding(.top, 5)
 
-            ForEach($miniTask.checkableItems) { $item in
+            ForEach(miniTask.checkableItems ?? []) { item in
                 HStack {
                     Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
                         .onTapGesture { item.isCompleted.toggle() }
@@ -96,7 +94,7 @@ struct MiniTaskCardView: View {
                     .background(miniTask.isCompleted ? Color.red : Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
-                    .shadow(radius: 5)
+                    .shadow(radius: 2)
             }
         }
         .padding()

@@ -10,43 +10,39 @@ import SwiftUI
 
 @Model
 class MiniTask: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    // Define relationship to SubTask
-    @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask?
+    @Attribute var id: UUID = UUID() // Provide a default value for id
+    @Relationship(inverse: \SubTask.miniTasks) var subTask: SubTask? // Optional relationship to SubTask
     
-    var instructions: String
-    var usageDescription: String
+    @Attribute var instructions: String = "" // Default value for instructions
+    @Attribute var usageDescription: String = "" // Default value for usageDescription
     
-   
-    var miniTaskType: MiniTaskTypeBox // Use the enum directly
-    @Attribute var isCompleted: Bool = false
+    @Attribute var miniTaskType: MiniTaskTypeBox? // No default value since it's required
+    @Attribute var isCompleted: Bool = false // Default value for isCompleted
 
-    var checkableItems: [CheckableItem] = []
+    @Attribute var checkableItems: [CheckableItem]? = [] // Default empty array for checkable items
     
-   
-
-    // MARK: Computed Variables
-    var name: String { miniTaskType.name }
-    var imageName: String { miniTaskType.imageName }
-    var weight: Double { miniTaskType.weight }
+    // MARK: Computed Variables (from the Displayable protocol)
+    var name: String { miniTaskType?.name ?? "" }
+    var imageName: String { miniTaskType?.imageName ?? "" }
+    var weight: Double { miniTaskType?.weight ?? 1.0 }
     
-
     // Conformance to Progressable protocol
     var progress: Double {
-        guard !checkableItems.isEmpty else { return 0.0 }
-        let completedCount = checkableItems.filter { $0.isCompleted }.count
-        let totalCount = checkableItems.count
+        guard !(checkableItems?.isEmpty ?? false) else { return 0.0 }
+        let completedCount = checkableItems?.filter { $0.isCompleted }.count ?? 1
+        let totalCount = checkableItems?.count ?? 1
         return Double(completedCount) / Double(totalCount) * 100
     }
 
     // Initializer
-    init(miniTaskType: MiniTaskTypeBox, instructions: String, usageDescription: String, isCompleted: Bool = false) {
+    init(miniTaskType: MiniTaskTypeBox, instructions: String = "", usageDescription: String = "", checkableItems: [CheckableItem] = [], isCompleted: Bool = false) {
         self.miniTaskType = miniTaskType
         self.instructions = instructions
         self.usageDescription = usageDescription
-     
+        self.checkableItems = checkableItems
         self.isCompleted = isCompleted
     }
+    
     func toggleCompleted() {
         isCompleted.toggle()
     }

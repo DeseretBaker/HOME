@@ -4,11 +4,12 @@
 //
 //  Created by Deseret Baker on 8/6/24.
 //
+
 import SwiftData
 import SwiftUI
 
 struct ProjectSelectionView: View {
-    var projectController: ProjectController = .shared
+    @ObservedObject var projectController = ProjectController.shared
     @Environment(\.modelContext) private var modelContext
     
     @State private var showInstructionsSheet = false
@@ -16,37 +17,49 @@ struct ProjectSelectionView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            if projectController.isLoading {
+                ProgressView("Loading projects...")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+            } else {
+                ScrollView {
                     if projectController.projects.isEmpty {
-                        Text("No projects available.")
-                            .font(.title)
-                            .padding()
-                    } else {
-                        ForEach(projectController.projects) { project in
-                            NavigationLink(destination: ProjectDetailView(project: project)) {
-                                CardView(item: project)
+                        VStack {
+                            Text("No projects available.")
+                                .font(.title)
+                                .padding()
+                            
+                            // Button to load base projects or create a new one
+                            Button(action: {
+                                projectController.loadBaseProjects()
+                            }) {
+                                Text("Create New Project")
+                                    .font(.headline)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            .padding(.top, 20)
                         }
-                        .onDelete(perform: deleteProject)
+                    } else {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                            ForEach(projectController.projects) { project in
+                                NavigationLink(destination: ProjectDetailView(project: project)) {
+                                    CardView(item: project)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        .padding()
                     }
                 }
-                .padding()
-            }
-            .navigationTitle("Make the first move")
-            .toolbar {
-               // EditButton()
+                .navigationTitle("Make the first move")
             }
         }
-    }
-    
-    private func deleteProject(at offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                let projectToDelete = projectController.projects[index]
-                projectController.projects.remove(at: index)
-                projectController.deleteProject(projectToDelete, context: modelContext)
+        .onAppear {
+            if projectController.projects.isEmpty {
+                projectController.setModelContext(modelContext)
             }
         }
     }

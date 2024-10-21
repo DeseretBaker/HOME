@@ -10,10 +10,17 @@ import SwiftUI
 struct SpaceDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var space: Space  // To track changes in space data
-    var spaceType: SpaceTypeBox { space.spaceType }
+    var spaceType: SpaceTypeBox {
+        space.spaceType ?? .bathroom(.towelStorage) // Replace 'sinkZone' with a valid case from BathroomSpaceType
+    }
     
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
+    
+    // Dynamically calculate grid columns based on screen size
+    var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: UIScreen.main.bounds.width > 768 ? 200 : 100), spacing: 16)]
+    }
     
     var body: some View {
         ScrollView {
@@ -49,7 +56,7 @@ struct SpaceDetailView: View {
                         .padding(.leading)
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                        ForEach(space.subTasks) { subTask in
+                        ForEach(space.subTasks ?? [] ) { subTask in
                             NavigationLink(destination: SubTaskDetailView(subTask: subTask)) {
                                 CardView(item: subTask)
                             }

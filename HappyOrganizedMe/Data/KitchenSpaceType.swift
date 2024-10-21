@@ -141,28 +141,28 @@ enum KitchenSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
     static var cookwareZone: [KitchenSpaceType] {
         return [.cookingZoneCookware, .cookingZoneRange, .cookwareZoneBaking,.prepZoneAppliances]
     }
-    static var allSpaceTypes: [any SpaceType] {
+    static var SpaceTypes: [any SpaceType] {
         return KitchenSpaceType.allCases.map { $0 as any SpaceType}
     }
 }
 
 
 
-enum UnknownSpaceType: String, Codable, CaseIterable, Identifiable,  SpaceType {
-    case unknown
+enum ComingSoonSpaceType: String, Codable, CaseIterable, Identifiable,  SpaceType {
+    case comingSoon
     
     var id: UUID { UUID() }
     var name: String { rawValue }
     var imageName: String { rawValue }
-    var instructions: String { "unknown" }
-    var usageDescription: String { "unknown" }
+    var instructions: String { "comingSoon" }
+    var usageDescription: String { "comingSoon" }
     var weight: Double { 0.0 }
     var subTaskTypes: [SubTaskTypeBox] { [] }
     var progress: Double { 0.0 }
     var isCompleted: Bool { true }
     
     static var allSpaceTypes: [any SpaceType] {
-        return UnknownSpaceType.allCases.map { $0 as any SpaceType}
+        return ComingSoonSpaceType.allCases.map { $0 as any SpaceType}
     }
 }
 

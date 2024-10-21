@@ -10,19 +10,19 @@ import SwiftData
 
 @Model
 class Project: Identifiable, Displayable, Progressable, ObservableObject {
-    @Attribute(.unique) var id: UUID = UUID() // Ensure unique identifier
-    @Relationship var rooms: [Room] = []
     
-    var instructions: String
-    var usageDescription: String
-   
+    // Define attributes and relationships
+    @Attribute var id: UUID = UUID() // Initialized with a default UUID
+    @Relationship var rooms: [Room]? = [] // Non-optional with a default empty array
     
-   
-    var projectType: ProjectType // Use the enum directly, SwiftData handles the raw value
-    @Attribute var _isCompleted: Bool = false
+    @Attribute var instructions: String = "" // Non-optional with a default empty string
+    @Attribute var usageDescription: String = "" // Non-optional with a default empty string
+    @Attribute var projectType: ProjectType? // Optional project type
+    
+    @Attribute var _isCompleted: Bool = false // Default value provided for completion status
     
     // Initializer
-    init(projectType: ProjectType, instructions: String = "", usageDescription: String = "", rooms: [Room] = [], isCompleted: Bool = false) {
+    init(projectType: ProjectType?, instructions: String = "", usageDescription: String = "", rooms: [Room] = [], isCompleted: Bool = false) {
         self.projectType = projectType
         self.instructions = instructions
         self.usageDescription = usageDescription
@@ -30,19 +30,25 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
         self._isCompleted = isCompleted
     }
     
+    // MARK: Displayable Conformance
+    var name: String {
+        projectType?.name ?? "Coming Soon" // Safe unwrapping with fallback
+    }
+    
+    var imageName: String {
+        projectType?.imageName ?? "defaultImage" // Fallback to default image
+    }
+
     // MARK: Computed Variables
-    var name: String { projectType.name }
-    var imageName: String { projectType.imageName }
-    var weight: Double { projectType.weight }
+    var weight: Double {
+        projectType?.weight ?? 1.0 // Fallback weight if projectType is nil
+    }
 
     // Conformance to Progressable protocol
     var progress: Double {
-        let allRoomsSpacesSubTasksMiniTasks = rooms.flatMap(\.spaces).flatMap(\.subTasks).flatMap(\.miniTasks)
-     
-        guard !allRoomsSpacesSubTasksMiniTasks.isEmpty else { return 0.0 }
-        let completedRoomsSpacesSubTasksMiniTasks = allRoomsSpacesSubTasksMiniTasks.filter { $0.isCompleted }.count
-        return Double(completedRoomsSpacesSubTasksMiniTasks) / Double(allRoomsSpacesSubTasksMiniTasks.count) * 100
-    }
+        guard !(rooms?.isEmpty ?? true) else { return 0.0 }
+        let completedRoomsSpacesSubTasksMiniTasks = rooms?.filter { $0.isCompleted }.count ?? 1
+        return Double(completedRoomsSpacesSubTasksMiniTasks) / Double(rooms?.count ?? Int(1.0)) * 100 } 
     
     var isCompleted: Bool {
         get { _isCompleted }

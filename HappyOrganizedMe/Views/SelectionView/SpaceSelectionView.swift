@@ -16,17 +16,17 @@ struct SpaceSelectionView: View {
     @State private var showInstructionsSheet = false
     @State private var showUsageDescriptionSheet = false
     
+    // Dynamically calculate grid columns based on screen size
+    var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: UIScreen.main.bounds.width > 768 ? 200 : 100), spacing: 16)]
+    }
+    
     var body: some View {
-        
         VStack {
-            if room.spaces.isEmpty {
-                Text("No spaces available in this room.")
-                    .font(.caption)
-                    .padding()
-            } else {
+            if let spaces = room.spaces, !spaces.isEmpty {
                 ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                        ForEach(room.spaces) { space in
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(spaces, id: \.id) { space in
                             NavigationLink(destination: SpaceDetailView(space: space)) {
                                 CardView(item: space)  // Use the existing CardView
                             }
@@ -34,14 +34,20 @@ struct SpaceSelectionView: View {
                     }
                     .padding()
                 }
+            } else {
+                Text("No spaces available in this room.")
+                    .font(.caption)
+                    .padding()
             }
         }
         .navigationTitle("You've got this!")
         .toolbar {
-            //EditButton()  // Allows editing for delete action
+            // Optionally add EditButton() for future features
         }
         .onAppear {
-            print("Spaces available: \(room.spaces.count)")
+            if let spaces = room.spaces {
+                print("Spaces available: \(spaces.count)")
+            }
         }
     }
     
@@ -53,5 +59,3 @@ struct SpaceSelectionView: View {
         }
     }
 }
-
-

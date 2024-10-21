@@ -49,7 +49,7 @@ struct RoomDetailView: View {
                     .padding(.leading)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(room.spaces, id: \.id) { space in
+                    ForEach(room.spaces ?? [], id: \.id) { space in
                         NavigationLink(destination: SpaceDetailView(space: space)) {
                             CardView(item: space)
                         }
@@ -63,12 +63,10 @@ struct RoomDetailView: View {
         }
         .navigationTitle("Break It Down")
     }
-    
     func start() {
         print("Spaces count: \")(room.spaces.count)")
-        for space in room.spaces {
+        for space in room.spaces ?? [] {
             print("Space Name: \(space.name)")
         }
     }
 }
-

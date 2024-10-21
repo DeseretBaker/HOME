@@ -50,7 +50,7 @@ struct ProjectDetailView: View {
                     .padding(.leading)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(project.rooms) { room in
+                    ForEach(project.rooms ?? []) { room in
                         NavigationLink(destination: RoomDetailView(room: room)) {
                             CardView(item: room)
                         }

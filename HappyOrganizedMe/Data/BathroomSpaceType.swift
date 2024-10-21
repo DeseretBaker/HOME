@@ -18,7 +18,7 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     
     // BathroomTowelsToiletries
     case towelStorage = "Towel Storage"
-    case toiletries = "Toiletries"
+    case toiletries1 = "Toiletries 1"
     // BathroomGrooming
     
     case grooming = "Grooming"
@@ -45,7 +45,7 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
             return "Store extra toiletries and cosmetics in a cabinet with containers for easy access. Use drawer dividers to separate items like makeup, razors, and hair ties for easy organization. Keep the countertop clutter-free by storing daily-use items like soap, toothbrushes, and face wash in a tray or organizer. Store essentials like medications, skincare products, and grooming tools in a mirror cabinet to reduce counter clutter."
         case .towelStorage:
             return "Fold or roll towels and store them on shelves or in a linen closet. Use hooks or towel bars near the shower or sink for daily-use towels. Place hand towels on a ring or small hook next to the sink for easy access."
-        case .toiletries:
+        case .toiletries1:
             return "Store frequently used toiletries, such as lotions, deodorant, and toothpaste, in bins or caddies inside a cabinet or drawer. Store extra toilet paper rolls in a nearby basket, cabinet, or wall-mounted holder for easy access."
         case .grooming:
             return "Group grooming products like razors, shaving cream, and beard trimmers in a drawer or cabinet. Use a drawer, basket, or wall-mounted organizer to store hair dryers, straighteners, and curling irons. Ensure a well-lit area around the mirror for grooming tasks, such as shaving or applying makeup."
@@ -65,7 +65,7 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
             return "Store extra toiletries and cosmetics in a cabinet with containers for easy access. Use drawer dividers to separate items like makeup, razors, and hair ties for easy organization. Keep the countertop clutter-free by storing daily-use items like soap, toothbrushes, and face wash in a tray or organizer. Store essentials like medications, skincare products, and grooming tools in a mirror cabinet to reduce counter clutter."
         case .towelStorage:
             return "Fold or roll towels and store them on shelves or in a linen closet. Use hooks or towel bars near the shower or sink for daily-use towels. Place hand towels on a ring or small hook next to the sink for easy access."
-        case .toiletries:
+        case .toiletries1:
             return "Store frequently used toiletries, such as lotions, deodorant, and toothpaste, in bins or caddies inside a cabinet or drawer. Store extra toilet paper rolls in a nearby basket, cabinet, or wall-mounted holder for easy access."
         case .grooming:
             return "Group grooming products like razors, shaving cream, and beard trimmers in a drawer or cabinet. Use a drawer, basket, or wall-mounted organizer to store hair dryers, straighteners, and curling irons. Ensure a well-lit area around the mirror for grooming tasks, such as shaving or applying makeup."
@@ -82,7 +82,7 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
     }
     var isCompleted: Bool {
         switch self {
-        case .bathingSpace, .cleaningSuppliesSpace, .grooming, .softLighting, .toiletries, .towelStorage, .vanity, .laundry: return true
+        case .bathingSpace, .cleaningSuppliesSpace, .grooming, .softLighting, .toiletries1, .towelStorage, .vanity, .laundry: return true
         }
     }
     var subTask: (any SubTaskType)? {
@@ -94,7 +94,7 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
             return BathroomSubTaskType.bathingSubTask.map { SubTaskTypeBox($0)! }
         case .cleaningSuppliesSpace:
             return BathroomSubTaskType.cleaningSpaceSubtask.map { SubTaskTypeBox($0)! }
-        case.toiletries:
+        case.toiletries1:
             return BathroomSubTaskType.toiletrySubTask.map { SubTaskTypeBox($0)! }
         case .towelStorage:
             return BathroomSubTaskType.towelStorageSubTask.map { SubTaskTypeBox($0)! }
@@ -109,28 +109,28 @@ enum BathroomSpaceType: String, SpaceType, Codable, CaseIterable, Identifiable {
         }
     }
     static var bathingZoneSpaces: [BathroomSpaceType] {
-        return [.bathingSpace]
+        return [.bathingSpace, .softLighting]
     }
     static var cleaningZoneSpaces: [BathroomSpaceType] {
-        return [.cleaningSuppliesSpace]
+        return [.cleaningSuppliesSpace, .laundry]
     }
     static var toiletriesSpaces: [BathroomSpaceType] {
-        return [.toiletries]
+        return [.toiletries1, .towelStorage]
     }
     static var towelsZoneSpaces: [BathroomSpaceType] {
-        return [.towelStorage]
+        return [.towelStorage, .toiletries1]
     }
     static var vanityZoneSpaces: [BathroomSpaceType] {
-        return [.vanity]
+        return [.vanity, .grooming]
     }
     static var laundryZoneSpaces: [BathroomSpaceType] {
-        return [.laundry]
+        return [.laundry, .cleaningSuppliesSpace]
     }
     static var groomingZoneSpaces: [BathroomSpaceType] {
-        return [.grooming]
+        return [.grooming, .vanity]
     }
     static var softLightingZoneSpaces: [BathroomSpaceType] {
-        return [.softLighting]
+        return [.softLighting, .bathingSpace]
     }
      static var SpaceType: [any SpaceType] {
         return BathroomSpaceType.allCases.map { $0 as any SpaceType }

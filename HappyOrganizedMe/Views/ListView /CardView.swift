@@ -32,13 +32,13 @@ struct CardView<Item: Displayable>: View {
                     Image(item.imageName)
                         .resizable()
                         .scaledToFill()
-                        .frame(height: 150)
+                        .frame(height: UIScreen.main.bounds.width > 768 ? 200 : 150)  // Adjusted for better size
                         .clipped()
                         .cornerRadius(10)
                 } else {
                     Rectangle()
                         .fill(Color.gray.opacity(0.2))
-                        .frame(height: 150)
+                        .frame(height: UIScreen.main.bounds.width > 768 ? 200 : 150)
                         .cornerRadius(10)
                         .overlay(
                             Text("No Image")
@@ -48,7 +48,7 @@ struct CardView<Item: Displayable>: View {
             }
             
             Text(item.name)
-                .font(.headline)
+                .font(.system(size: UIScreen.main.bounds.width > 768 ?  20 : 16))
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
                 .lineLimit(1)
@@ -65,11 +65,10 @@ struct CardView<Item: Displayable>: View {
             // Buttons for instructions and usage description
             HStack(spacing: 10) {
                 Button(action: {
-                    showInstructionsSheet = true // Show instructions sheet
+                    showInstructionsSheet = true
                 }) {
                     AnimatedBullseyeView1()
-                        .font(.footnote)
-                        .frame(minWidth: 30, maxWidth: 80)
+                        .frame(minWidth: 30, maxWidth: UIScreen.main.bounds.width > 768 ? 120 : 80)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
@@ -79,11 +78,10 @@ struct CardView<Item: Displayable>: View {
                 Spacer().frame(width: 10)
                 
                 Button(action: {
-                    showUsageDescriptionSheet = true // Show usage description sheet
+                    showUsageDescriptionSheet = true
                 }) {
                     AnimatedBullseyeView2()
-                        .font(.footnote)
-                        .frame(minWidth: 30, maxWidth: 80)
+                        .frame(minWidth: 30, maxWidth: UIScreen.main.bounds.width > 768 ? 120 : 80)
                         .padding(5)
                         .background(Color.teal)
                         .foregroundColor(.white)
@@ -92,12 +90,12 @@ struct CardView<Item: Displayable>: View {
             }
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding([.leading, .trailing])
-            
         }
-        .padding()
+        .padding()  // Ensure padding around the content
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
+        .shadow(radius: 2)
+        .frame(maxWidth: .infinity)  // Ensure the card takes up available width
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(item.name), Progress: \(String(format: "%.0f", item.progress))%, \(item.isCompleted ? "Completed" : "In Progress")")
         .sheet(isPresented: $showInstructionsSheet) {
@@ -108,7 +106,6 @@ struct CardView<Item: Displayable>: View {
         }
     }
 }
-
 // Reusable sheet view (same as in ProjectDetailView)
 struct InstructionSheetView: View {
     var title: String // The title for the sheet (e.g., "Instructions" or "Usage Description")

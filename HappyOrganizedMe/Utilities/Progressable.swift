@@ -7,15 +7,17 @@
 
 import Foundation
 
-// Define a protocol for progress tracking and completion status
+// Protocol to track progress and completion status for any conforming type
 protocol Progressable {
-    var isCompleted: Bool { get set }
-    var progress: Double { get }  // A computed property to track progress
+    var isCompleted: Bool { get set } // Tracks if the item is completed
+    var progress: Double { get }      // A computed property to track progress percentage
     
-    mutating func toggleCompleted()  // Method to toggle completion status
+    mutating func toggleCompleted()   // Method to toggle completion status
 }
+
+// Default implementation of `toggleCompleted` in an extension
 extension Progressable {
     mutating func toggleCompleted() {
-        isCompleted.toggle()
+        isCompleted.toggle()  // Automatically toggles the completion status
     }
 }

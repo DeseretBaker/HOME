@@ -11,12 +11,18 @@ struct SubTaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     
     let subTask: SubTask
-    var subTaskType: SubTaskTypeBox { subTask.subTaskType }
+    var subTaskType: SubTaskTypeBox {
+        subTask.subTaskType ??  .bathroom(.bathingSpaces)}
     
     // Track the selected mini-task for instructions or usage description
     @State private var selectedMiniTaskForInstructions: MiniTask?
     @State private var selectedMiniTaskForUsageDescription: MiniTask?
 
+    
+    var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: UIScreen.main.bounds.width > 768 ? 200 : 100), spacing: 16)]
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -41,7 +47,7 @@ struct SubTaskDetailView: View {
             .padding()
             .background(Color.white)
             .cornerRadius(10)
-            .shadow(radius: 5)
+            .shadow(radius: 2)
             .padding([.leading, .trailing])
             
             Text("If you can't see it in your future, don't keep it in your present!")
@@ -49,7 +55,7 @@ struct SubTaskDetailView: View {
                 .padding()
             
             // Checkable list for miniTasks
-            ForEach(subTask.miniTasks, id: \.id) { miniTask in
+            ForEach(subTask.miniTasks ?? [], id: \.id) { miniTask in
                 HStack {
                     Image(systemName: miniTask.isCompleted ? "checkmark.circle.fill" : "circle")
                         .onTapGesture {
@@ -103,7 +109,7 @@ struct SubTaskDetailView: View {
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
-                .shadow(radius: 10)
+                .shadow(radius: 2)
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel("\(miniTask.name), Progress: \(String(format: "%.0f", miniTask.progress))%, \(miniTask.isCompleted ? "Completed" : "In Progress")")
             }

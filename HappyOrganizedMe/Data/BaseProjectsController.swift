@@ -19,12 +19,18 @@ class BaseProjectsController: ObservableObject {
     func baseProjects() -> [Project] {
         do {
             let fetchedProjects = try modelContext.fetch(FetchDescriptor<Project>())
+            
             if !fetchedProjects.isEmpty {
                 print("Fetched projects from storage: \(fetchedProjects.count)")
                 
                 for project in fetchedProjects {
-                    if project.rooms.isEmpty {
-                        project.rooms = DataLoader.loadRooms(for: project.projectType)
+                    // Ensure rooms are loaded if they are empty
+                    if project.rooms?.isEmpty == true {
+                        guard let unwrappedProjectType = project.projectType else {
+                            print("Error: ProjectType is nil for project \(project.id)")
+                            continue // Skip this project if projectType is nil
+                        }
+                        project.rooms = DataLoader.loadRooms(for: unwrappedProjectType)
                     }
                 }
                 return fetchedProjects
@@ -39,6 +45,7 @@ class BaseProjectsController: ObservableObject {
 
     // Create base projects and save them in the model context
     private func createBaseProjects() -> [Project] {
+        // Define the base project types
         let projectTypes: [ProjectType] = [.kitchen, .livingRoom, .diningRoom, .bedroom, .bathroom, .office, .playroom, .storage, .garage]
         
         let projects = projectTypes.map { projectType in
@@ -54,11 +61,27 @@ class BaseProjectsController: ObservableObject {
 
         do {
             try modelContext.save()
-            print("Projects successfully saved.")
+            print("Base projects successfully saved.")
         } catch {
-            print("Failed to save projects: \(error.localizedDescription)")
+            print("Failed to save base projects: \(error.localizedDescription)")
         }
 
         return projects
+    }
+
+    // Save updated or newly created projects into the persistent store
+    func saveProjects(_ projects: [Project]) {
+        do {
+            try modelContext.save()
+            print("Projects saved successfully.")
+        } catch {
+            print("Failed to save projects: \(error.localizedDescription)")
+        }
+    }
+    
+    // Delete a project from the context
+    func deleteProject(_ project: Project) {
+        modelContext.delete(project)
+        saveProjects([])
     }
 }
