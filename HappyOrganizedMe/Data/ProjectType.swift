@@ -15,7 +15,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     case diningRoom = "Dining Room"
     case livingRoom = "Living Room"
     case bedroom = "Bedroom"
-    case bathroom = "Bathroom"
+//    case bathroom = "Bathroom"
     case playroom = "Playroom"
     case office = "Office"
     case storage = "Storage"
@@ -39,8 +39,8 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return "A dining room is a dedicated space where family and friends gather to share meals, celebrate special moments, and enjoy conversation. It’s a place that transforms everyday dining into memorable experiences, fostering connection and togetherness."
         case .livingRoom:
             return "A living room is a welcoming space where relaxation, entertainment, and socializing take center stage. It’s a versatile area for gathering with loved ones, enjoying leisure activities, and creating cherished memories in the heart of the home."
-        case .bathroom:
-            return "A bathroom is a sanctuary for personal care and rejuvenation, where you start and end your day. It’s a space for refreshing, unwinding, and practicing self-care, offering comfort and functionality in daily routines."
+//        case .bathroom:
+//            return "A bathroom is a sanctuary for personal care and rejuvenation, where you start and end your day. It’s a space for refreshing, unwinding, and practicing self-care, offering comfort and functionality in daily routines."
         case .bedroom:
             return "A bedroom is a personal retreat designed for rest, relaxation, and rejuvenation. It’s a sanctuary where you unwind, sleep, and find comfort, providing a peaceful space to recharge and reflect."
         case .storage:
@@ -64,8 +64,8 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return "In a dining room, creating zones can help improve the flow and functionality of the space, especially if it serves multiple purposes. Here are some common dining room zones. By organizing these zones in a way that complements how you use the dining room, you can create a space that is both functional and inviting."
         case .livingRoom: 
             return "A living room is a versatile space that serves various functions, and dividing it into different zones can make it more functional and comfortable. Here are some common zones in a living room. These zones can be customized depending on the size of the room and your lifestyle, making the living room a multipurpose and inviting space for various activities."
-        case .bathroom: 
-            return "In a bathroom, creating functional zones can help make the space more efficient and organized. Here are some common bathroom zones. These zones can be arranged based on the size and layout of the bathroom, making the space more functional and tailored to personal needs.​"
+//        case .bathroom: 
+//            return "In a bathroom, creating functional zones can help make the space more efficient and organized. Here are some common bathroom zones. These zones can be arranged based on the size and layout of the bathroom, making the space more functional and tailored to personal needs.​"
         case .bedroom: 
             return "In a bedroom, organizing zones can create a more functional and relaxing space. Here are some common bedroom zones. These zones can be arranged based on the size and layout of the bedroom, making the space more functional and tailored to personal needs. By organizing the bedroom into zones, you can make the space more efficient, comfortable, and tailored to your lifestyle needs."
         case .storage: 
@@ -84,7 +84,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     // A weight value representing the priority or importance of the project type.
     var weight: Double {
         switch self {
-        case .kitchen, .garage, .bathroom, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .comingSoon: return 2.0
+        case .kitchen, .garage, .storage, .office, .playroom, .bedroom, .livingRoom, .diningRoom, .comingSoon: return 2.0
         }
     }
     var progress: Double {
@@ -92,7 +92,7 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
     }
     var isCompleted: Bool {
         switch self {
-        case .bathroom, .bedroom, .kitchen, .livingRoom, .diningRoom, .office, .playroom, .comingSoon, .garage, .storage: return true
+        case .bedroom, .kitchen, .livingRoom, .diningRoom, .office, .playroom, .comingSoon, .garage, .storage: return true
         }
     }
     
@@ -105,8 +105,8 @@ enum ProjectType: String, Codable, CaseIterable, Identifiable, Displayable {
             return LivingRoomType.allCases.map { RoomTypeBox($0)! }
         case .diningRoom:
             return DiningRoomType.allCases.map { RoomTypeBox($0)! }
-        case .bathroom:
-            return BathroomRoomType.allCases.map { RoomTypeBox($0)! }
+//        case .bathroom:
+//            return BathroomRoomType.allCases.map { RoomTypeBox($0)! }
         case .bedroom:
             return BedroomRoomType.allCases.map { RoomTypeBox($0)! }
         case .office:

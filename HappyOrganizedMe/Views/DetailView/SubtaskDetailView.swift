@@ -12,7 +12,7 @@ struct SubTaskDetailView: View {
     
     let subTask: SubTask
     var subTaskType: SubTaskTypeBox {
-        subTask.subTaskType ??  .bathroom(.bathingSpaces)}
+        subTask.subTaskType ??  .bedroom(.bedsideTable)}
     
     // Track the selected mini-task for instructions or usage description
     @State private var selectedMiniTaskForInstructions: MiniTask?

@@ -46,7 +46,7 @@ class BaseProjectsController: ObservableObject {
     // Create base projects and save them in the model context
     private func createBaseProjects() -> [Project] {
         // Define the base project types
-        let projectTypes: [ProjectType] = [.kitchen, .livingRoom, .diningRoom, .bedroom, .bathroom, .office, .playroom, .storage, .garage]
+        let projectTypes: [ProjectType] = [.kitchen, .livingRoom, .diningRoom, .bedroom, .office, .playroom, .storage, .garage]
         
         let projects = projectTypes.map { projectType in
             let project = Project(

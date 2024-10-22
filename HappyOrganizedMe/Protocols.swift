@@ -29,7 +29,7 @@ enum RoomTypeBox: Codable {
     
     case kitchen(KitchenRoomType)
     case dining(DiningRoomType)
-    case bathroom(BathroomRoomType)
+//    case bathroom(BathroomRoomType)
     case living(LivingRoomType)
     case bedroom(BedroomRoomType)
     case storage(StorageRoomType)
@@ -42,7 +42,7 @@ enum RoomTypeBox: Codable {
         switch self {
         case .kitchen(let kitchen): return kitchen
         case .dining(let dining): return dining
-        case .bathroom(let bathroom): return bathroom
+//        case .bathroom(let bathroom): return bathroom
         case .living(let living): return living
         case .bedroom(let bedroom): return bedroom
         case .storage(let storage): return storage
@@ -58,8 +58,8 @@ enum RoomTypeBox: Codable {
             self = .kitchen(kitchen)
         } else if let dining = roomType as? DiningRoomType {
             self = .dining(dining)
-        } else if let bathroom = roomType as? BathroomRoomType {
-            self = .bathroom(bathroom)
+//        } else if let bathroom = roomType as? BathroomRoomType {
+//            self = .bathroom(bathroom)
         } else if let living = roomType as? LivingRoomType {
             self = .living(living)
         } else if let bedroom = roomType as? BedroomRoomType {
@@ -115,7 +115,7 @@ protocol SpaceType: Codable, CaseIterable, Identifiable, Displayable {
 enum SpaceTypeBox: Codable {
     case kitchen(KitchenSpaceType)
     case dining(DiningRoomSpaceType)
-    case bathroom(BathroomSpaceType)
+//    case bathroom(BathroomSpaceType)
     case living(LivingRoomSpaceType)
     case bedroom(BedroomSpaceType)
     case storage(StorageSpaceType)
@@ -128,7 +128,7 @@ enum SpaceTypeBox: Codable {
         switch self {
         case .kitchen(let kitchen): return kitchen
         case .dining(let dining): return dining
-        case .bathroom(let bathroom): return bathroom
+//        case .bathroom(let bathroom): return bathroom
         case .living(let living): return living
         case .bedroom(let bedroom): return bedroom
         case .storage(let storage): return storage
@@ -144,8 +144,8 @@ enum SpaceTypeBox: Codable {
             self = .kitchen(kitchen)
         } else if let dining = spaceType as? DiningRoomSpaceType {
             self = .dining(dining)
-        } else if let bathroom = spaceType as? BathroomSpaceType {
-            self = .bathroom(bathroom)
+//        } else if let bathroom = spaceType as? BathroomSpaceType {
+//            self = .bathroom(bathroom)
         } else if let living = spaceType as? LivingRoomSpaceType {
             self = .living(living)
         } else if let bedroom = spaceType as? BedroomSpaceType {
@@ -201,7 +201,7 @@ protocol SubTaskType: Codable, CaseIterable, Identifiable, Displayable {
 enum SubTaskTypeBox: Codable {
     case kitchen(KitchenSubTaskType)
     case dining(DiningRoomSubTaskType)
-    case bathroom(BathroomSubTaskType)
+//    case bathroom(BathroomSubTaskType)
     case living(LivingRoomSubTaskType)
     case bedroom(BedroomSubTaskType)
     case storage(StorageSubTaskType)
@@ -214,7 +214,7 @@ enum SubTaskTypeBox: Codable {
         switch self {
         case .kitchen(let kitchenSubTask): return kitchenSubTask
         case .dining(let diningSubTask): return diningSubTask
-        case .bathroom(let bathroomSubTask): return bathroomSubTask
+//        case .bathroom(let bathroomSubTask): return bathroomSubTask
         case .living(let livingSubTask): return livingSubTask
         case .bedroom(let bedroomSubTask): return bedroomSubTask
         case .storage(let storageSubTask): return storageSubTask
@@ -230,8 +230,8 @@ enum SubTaskTypeBox: Codable {
             self = .kitchen(kitchenSubTask)
         } else if let diningSubTask = subTaskType as? DiningRoomSubTaskType {
             self = .dining(diningSubTask)
-        } else if let bathroomSubTask = subTaskType as? BathroomSubTaskType {
-            self = .bathroom(bathroomSubTask)
+//        } else if let bathroomSubTask = subTaskType as? BathroomSubTaskType {
+//            self = .bathroom(bathroomSubTask)
         } else if let livingSubTask = subTaskType as? LivingRoomSubTaskType {
             self = .living(livingSubTask)
         } else if let bedroomSubTask = subTaskType as? BedroomSubTaskType {
@@ -290,7 +290,7 @@ enum MiniTaskTypeBox: Codable {
     case bedroom(BedroomMiniTaskType)
     case playroom(PlayroomMiniTaskType)
     case storage(StorageMiniTaskType)
-    case bathroom(BathroomMiniTaskType)
+//    case bathroom(BathroomMiniTaskType)
     case garage(GarageMiniTaskType)
     case comingSoon(ComingSoonMiniTaskType)
     
@@ -303,7 +303,7 @@ enum MiniTaskTypeBox: Codable {
         case .bedroom(let bedroomMiniTask): return bedroomMiniTask
         case .playroom(let playroomMiniTask): return playroomMiniTask
         case .storage(let storageMiniTask): return storageMiniTask
-        case .bathroom(let bathroomMiniTask): return bathroomMiniTask
+//        case .bathroom(let bathroomMiniTask): return bathroomMiniTask
         case .garage(let garageMiniTask): return garageMiniTask
         case .comingSoon(let comingSoonMiniTask): return comingSoonMiniTask
         }
@@ -323,8 +323,8 @@ enum MiniTaskTypeBox: Codable {
             self = .playroom(playroomMiniTask)
         } else if let storageMiniTask = miniTaskType as? StorageMiniTaskType {
             self = .storage(storageMiniTask)
-        } else if let bathroomMiniTask = miniTaskType as? BathroomMiniTaskType {
-            self = .bathroom(bathroomMiniTask)
+//        } else if let bathroomMiniTask = miniTaskType as? BathroomMiniTaskType {
+//            self = .bathroom(bathroomMiniTask)
         } else if let garageMiniTask = miniTaskType as? GarageMiniTaskType {
             self = .garage(garageMiniTask)
         } else if let comingSoonMiniTask = miniTaskType as? ComingSoonMiniTaskType {

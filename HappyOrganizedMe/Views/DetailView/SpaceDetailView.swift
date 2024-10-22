@@ -11,7 +11,7 @@ struct SpaceDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var space: Space  // To track changes in space data
     var spaceType: SpaceTypeBox {
-        space.spaceType ?? .bathroom(.towelStorage) // Replace 'sinkZone' with a valid case from BathroomSpaceType
+        space.spaceType ?? .bedroom(.smallDesk)
     }
     
     @State private var showInstructionsSheet = false

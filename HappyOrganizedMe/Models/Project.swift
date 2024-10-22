@@ -36,7 +36,7 @@ class Project: Identifiable, Displayable, Progressable, ObservableObject {
     }
     
     var imageName: String {
-        projectType?.imageName ?? "defaultImage" // Fallback to default image
+        projectType?.imageName ?? "ComingSoon" // Fallback to default image
     }
 
     // MARK: Computed Variables

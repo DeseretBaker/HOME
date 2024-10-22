@@ -178,99 +178,99 @@ enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
         return DiningRoomType.allCases.map { $0 as any RoomType}
     }
 }
-enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
-    case bathingZone = "Bathing Zone"
-    case vanityZone = "Vanity Zone"
-    case towelsZone = "Towels Zone"
-    case toiletries = "Toiletries "
-    case laundryZone = "Laundry Zone"
-    case cleaningZone = "Clean Zone"
-    
-    var id: UUID { UUID() }
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    
-    var instructions: String {
-        switch self {
-        case .bathingZone: return "Organize your bathing zone with all essentials like soaps, shampoos, loofahs, and towels within easy reach. Use shelves, baskets, or shower caddies to keep everything tidy and accessible."
-        case .vanityZone: return "Organize the vanity sink zone by keeping daily essentials like toothbrushes, soap, skincare products, and towels neatly arranged. Use trays, drawer organizers, and small containers to keep items accessible yet clutter-free. Set up a dedicated space for grooming essentials like razors, hairdryers, brushes, and styling products. Use drawer organizers, trays, or containers to keep items neatly separated and accessible."
-        case .towelsZone:
-            return "Arrange towels and toiletries in easy-to-reach spaces using shelves, baskets, or cabinets. Roll towels for a spa-like feel and store toiletries in labeled containers to keep them organized. Keep the toilet zone organized by storing extra toilet paper, cleaning supplies, and hygiene items in nearby cabinets, baskets, or shelves. Use discreet storage solutions to maintain a tidy appearance."
-        case .laundryZone:
-            return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
-        case .cleaningZone:
-            return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
-        case .toiletries:
-            return "Designate a space for toiletries, including shampoo, conditioner, soap, and toilet paper. Use shelves, hooks, or a compact toiletries cabinet to keep this zone organized and contained."
-        }
-    }
-    var usageDescription: String {
-        switch self {
-        case .bathingZone:
-            return "A well-organized bathing zone creates a spa-like experience, making your bath time more relaxing and efficient. It helps maintain cleanliness, reduces clutter, and ensures that you have all your essentials at hand."
-        case .vanityZone:
-            return " A tidy vanity sink zone makes morning and evening routines smoother and more efficient, ensuring that everything you need is within reach. It also creates a clean, inviting space that feels organized and calming. A well-organized grooming zone streamlines your morning routine, making it easy to find everything you need. This helps reduce clutter and creates a more efficient, stress-free environment."
-        case .towelsZone:
-            return "Keeping towels and toiletries organized ensures that your bathroom stays clutter-free and functional. It also makes it easy to find what you need, creating a more relaxing and efficient bathroom experience."
-        case .laundryZone:
-            return "Having a dedicated laundry zone keeps dirty clothes off the floor and ensures everything needed for laundry is in one place. This organization helps maintain a tidy bathroom and makes laundry tasks more efficient."
-        case .cleaningZone:
-            return "A dedicated cleaning zone keeps your bathroom essentials organized and ensures that everything is within reach, making regular cleaning more efficient and keeping the space fresh and hygienic."
-        case .toiletries:
-            return "Having a dedicated toiletries zone streamlines your bathroom routine, providing a comfortable, organized space to store toiletries, keeping the space tidy and clutter-free."
-        }
-    }
-    var weight: Double { 4.0 }
-    var progress: Double {
-        return isCompleted ? 100.0 : 0.0
-    }
-    var isCompleted: Bool {
-        switch self {
-        case .bathingZone, .cleaningZone, .laundryZone, .vanityZone, .towelsZone, .toiletries: return true
-        }
-    }
-    var space: (any SpaceType)? {
-        return nil
-    }
-    
-    var spaceTypes: [SpaceTypeBox] {
-        switch self {
-        case .bathingZone:
-            return BathroomSpaceType.bathingZoneSpaces.map { SpaceTypeBox($0)! }
-        case .cleaningZone:
-            return BathroomSpaceType.cleaningZoneSpaces.map { SpaceTypeBox($0)! }
-        case .laundryZone:
-            return BathroomSpaceType.laundryZoneSpaces.map { SpaceTypeBox($0)! }
-        case .toiletries:
-            return BathroomSpaceType.toiletriesSpaces.map { SpaceTypeBox($0)! }
-        case .towelsZone:
-            return BathroomSpaceType.towelsZoneSpaces.map { SpaceTypeBox($0)! }
-        case .vanityZone:
-            return BathroomSpaceType.vanityZoneSpaces.map { SpaceTypeBox($0)! }
-        }
-    }
-    static var bathingZoneSpaces: [BathroomRoomType] {
-        return [.bathingZone, .towelsZone, .vanityZone, .toiletries]
-    }
-    static var cleaningZoneSpaces: [BathroomRoomType] {
-        return [.cleaningZone, .cleaningZone]
-    }
-    static var laundryZoneSpaces: [BathroomRoomType] {
-        return [.laundryZone, .cleaningZone]
-    }
-    static var toiletriesSpaces: [BathroomRoomType] {
-        return [.toiletries, .towelsZone]
-    }
-    static var towelsZoneSpaces: [BathroomRoomType] {
-        return [.towelsZone, .vanityZone]
-    }
-    static var vanityZoneSpaces: [BathroomRoomType] {
-        return [.vanityZone, .bathingZone]
-    }
-    static var RoomTypes: [any RoomType] {
-        return BathroomRoomType.allCases.map { $0 as any RoomType}
-    }
-}
+//enum BathroomRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
+//    case bathingZone = "Bathing Zone"
+//    case vanityZone = "Vanity Zone"
+//    case towelsZone = "Towels Zone"
+//    case toiletries = "Toiletries "
+//    case laundryZone = "Laundry Zone"
+//    case cleaningZone = "Clean Zone"
+//    
+//    var id: UUID { UUID() }
+//    var name: String { rawValue }
+//    var imageName: String { rawValue }
+//    
+//    var instructions: String {
+//        switch self {
+//        case .bathingZone: return "Organize your bathing zone with all essentials like soaps, shampoos, loofahs, and towels within easy reach. Use shelves, baskets, or shower caddies to keep everything tidy and accessible."
+//        case .vanityZone: return "Organize the vanity sink zone by keeping daily essentials like toothbrushes, soap, skincare products, and towels neatly arranged. Use trays, drawer organizers, and small containers to keep items accessible yet clutter-free. Set up a dedicated space for grooming essentials like razors, hairdryers, brushes, and styling products. Use drawer organizers, trays, or containers to keep items neatly separated and accessible."
+//        case .towelsZone:
+//            return "Arrange towels and toiletries in easy-to-reach spaces using shelves, baskets, or cabinets. Roll towels for a spa-like feel and store toiletries in labeled containers to keep them organized. Keep the toilet zone organized by storing extra toilet paper, cleaning supplies, and hygiene items in nearby cabinets, baskets, or shelves. Use discreet storage solutions to maintain a tidy appearance."
+//        case .laundryZone:
+//            return "Designate a space for dirty laundry, laundry baskets, detergents, and any other cleaning supplies. Utilize shelves, hooks, or a compact hamper to keep this zone organized and contained."
+//        case .cleaningZone:
+//            return "Designate a space for storing cleaning supplies like brushes, sprays, cloths, and disinfectants. Use under-sink cabinets, shelves, or a small caddy for easy access and organization."
+//        case .toiletries:
+//            return "Designate a space for toiletries, including shampoo, conditioner, soap, and toilet paper. Use shelves, hooks, or a compact toiletries cabinet to keep this zone organized and contained."
+//        }
+//    }
+//    var usageDescription: String {
+//        switch self {
+//        case .bathingZone:
+//            return "A well-organized bathing zone creates a spa-like experience, making your bath time more relaxing and efficient. It helps maintain cleanliness, reduces clutter, and ensures that you have all your essentials at hand."
+//        case .vanityZone:
+//            return " A tidy vanity sink zone makes morning and evening routines smoother and more efficient, ensuring that everything you need is within reach. It also creates a clean, inviting space that feels organized and calming. A well-organized grooming zone streamlines your morning routine, making it easy to find everything you need. This helps reduce clutter and creates a more efficient, stress-free environment."
+//        case .towelsZone:
+//            return "Keeping towels and toiletries organized ensures that your bathroom stays clutter-free and functional. It also makes it easy to find what you need, creating a more relaxing and efficient bathroom experience."
+//        case .laundryZone:
+//            return "Having a dedicated laundry zone keeps dirty clothes off the floor and ensures everything needed for laundry is in one place. This organization helps maintain a tidy bathroom and makes laundry tasks more efficient."
+//        case .cleaningZone:
+//            return "A dedicated cleaning zone keeps your bathroom essentials organized and ensures that everything is within reach, making regular cleaning more efficient and keeping the space fresh and hygienic."
+//        case .toiletries:
+//            return "Having a dedicated toiletries zone streamlines your bathroom routine, providing a comfortable, organized space to store toiletries, keeping the space tidy and clutter-free."
+//        }
+//    }
+//    var weight: Double { 4.0 }
+//    var progress: Double {
+//        return isCompleted ? 100.0 : 0.0
+//    }
+//    var isCompleted: Bool {
+//        switch self {
+//        case .bathingZone, .cleaningZone, .laundryZone, .vanityZone, .towelsZone, .toiletries: return true
+//        }
+//    }
+//    var space: (any SpaceType)? {
+//        return nil
+//    }
+//    
+//    var spaceTypes: [SpaceTypeBox] {
+//        switch self {
+//        case .bathingZone:
+//            return BathroomSpaceType.bathingZoneSpaces.map { SpaceTypeBox($0)! }
+//        case .cleaningZone:
+//            return BathroomSpaceType.cleaningZoneSpaces.map { SpaceTypeBox($0)! }
+//        case .laundryZone:
+//            return BathroomSpaceType.laundryZoneSpaces.map { SpaceTypeBox($0)! }
+//        case .toiletries:
+//            return BathroomSpaceType.toiletriesSpaces.map { SpaceTypeBox($0)! }
+//        case .towelsZone:
+//            return BathroomSpaceType.towelsZoneSpaces.map { SpaceTypeBox($0)! }
+//        case .vanityZone:
+//            return BathroomSpaceType.vanityZoneSpaces.map { SpaceTypeBox($0)! }
+//        }
+//    }
+//    static var bathingZoneSpaces: [BathroomRoomType] {
+//        return [.bathingZone, .towelsZone, .vanityZone, .toiletries]
+//    }
+//    static var cleaningZoneSpaces: [BathroomRoomType] {
+//        return [.cleaningZone, .cleaningZone]
+//    }
+//    static var laundryZoneSpaces: [BathroomRoomType] {
+//        return [.laundryZone, .cleaningZone]
+//    }
+//    static var toiletriesSpaces: [BathroomRoomType] {
+//        return [.toiletries, .towelsZone]
+//    }
+//    static var towelsZoneSpaces: [BathroomRoomType] {
+//        return [.towelsZone, .vanityZone]
+//    }
+//    static var vanityZoneSpaces: [BathroomRoomType] {
+//        return [.vanityZone, .bathingZone]
+//    }
+//    static var RoomTypes: [any RoomType] {
+//        return BathroomRoomType.allCases.map { $0 as any RoomType}
+//    }
+//}
 
 enum LivingRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     case seatingSpace = "Seating Space"

@@ -666,183 +666,183 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             return PlayroomSubTaskType.allCases.map { $0 as any SubTaskType }
         }
     }
-    enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case bathingSpaces = "Bathing Surfaces"
-        case cleaningSuppliesSpaces = "Bathroom Cleaning SubTasks"
-        case toiletrySpaces = "Toiletry Spaces"
-        case towelStorageSpace = "Towel Storage Space"
-        case vanitySpace = "Vanity Space"
-        case laundrySpace = "Dirty Laundry"
-        case lightingSpaces = "Lighting Spaces"
-        case groomingZoneSpaces = "Grooming Zone Spaces"
-        
-        var id: UUID { UUID() }
-        var name: String { rawValue }
-        var imageName: String { rawValue }
-        
-        var instructions: String {
-            switch self {
-            case .bathingSpaces: return "Keep your bathing area organized with shower caddies or shelves for soaps, shampoos, and loofahs. Use non-slip mats and make sure the surfaces are regularly cleaned to prevent buildup."
-            case .cleaningSuppliesSpaces: return "Store bathroom cleaning supplies under the sink or in a nearby closet. Keep brushes, sprays, and wipes in a caddy for easy access, and schedule regular cleaning tasks to maintain the space."
-            case .toiletrySpaces: return "Organize toiletries in bins or trays inside cabinets or on vanity counters. Group items by category, such as skincare, haircare, or dental products, and label them if needed."
-            case .towelStorageSpace: return "Store towels on racks, in baskets, or on shelves. Roll or fold them neatly, and keep extra towels in a linen closet if available."
-            case .vanitySpace: return "Keep the vanity surface clutter-free by storing beauty products, hair tools, and grooming items in drawers or bins. Use drawer organizers to separate small items like makeup or hairpins."
-            case .laundrySpace: return "Use a designated hamper or laundry basket for dirty clothes and towels. Keep it in a corner or closet to avoid clutter and ensure easy access on laundry day."
-            case .lightingSpaces: return "Install bright, flattering lighting around the vanity or mirror. Consider using adjustable or dimmable lights for flexibility, and add task lighting for specific areas like the shower or tub."
-            case .groomingZoneSpaces: return "Organize grooming tools such as razors, hair dryers, and brushes in drawers or on countertops using trays or organizers. Make sure everything is easily accessible and stored neatly when not in use."
-            }
-        }
-        var usageDescription: String {
-            switch self {
-            case .bathingSpaces: return "Organized bathing surfaces keep all your essentials within easy reach, making your bath or shower time more relaxing. Regular cleaning also ensures a hygienic environment, preventing mildew and soap scum."
-            case .cleaningSuppliesSpaces: return "Organized cleaning supplies make bathroom maintenance more efficient. A clean bathroom not only looks good but also promotes hygiene and prevents mold and bacteria buildup, keeping the space fresh and welcoming."
-            case .toiletrySpaces: return " A well-organized toiletry space keeps your daily routine streamlined and reduces clutter. Having everything in its designated place makes it easy to find what you need, ensuring a stress-free start to the day."
-            case .towelStorageSpace: return "Proper towel storage keeps your bathroom tidy and ensures fresh, clean towels are always available. It also helps prevent damp towels from cluttering the space, promoting a more organized and visually appealing bathroom."
-            case .vanitySpace: return "A tidy vanity space creates an inviting area for your morning or evening routine. It ensures everything you need is easy to find, making grooming more efficient and enjoyable."
-            case .laundrySpace: return "A dedicated space for dirty laundry keeps the bathroom neat and prevents clothes from piling up. It also makes laundry easier to manage, maintaining a clean and organized bathroom."
-            case .lightingSpaces: return "Good lighting in the bathroom enhances functionality and creates a more enjoyable environment for grooming or relaxing. Proper lighting also makes the space feel more welcoming and well-designed."
-            case .groomingZoneSpaces: return " A designated grooming zone streamlines your daily routine and keeps the bathroom looking clean. It ensures that all your grooming tools are easy to find and use, reducing clutter and improving the bathroom’s overall appearance."
-            }
-        }
-        var weight: Double { 2.0 }
-        
-        var progress: Double {
-            return isCompleted ? 100.0 : 0.0
-        }
-        var isCompleted: Bool{
-            switch self {
-            case .bathingSpaces: return true
-            case .cleaningSuppliesSpaces: return true
-            case .toiletrySpaces: return true
-            case .towelStorageSpace: return true
-            case .vanitySpace: return true
-            case .laundrySpace: return true
-            case .lightingSpaces: return true
-            case .groomingZoneSpaces: return true
-                
-            }
-        }
-        
-        var miniTask: (any MiniTaskType)? {
-            return nil
-        }
-        var miniTaskTypes: [MiniTaskTypeBox] {
-            switch self {
-            case .bathingSpaces:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .cleaningSuppliesSpaces:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .laundrySpace:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .lightingSpaces:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .toiletrySpaces:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .towelStorageSpace:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .vanitySpace:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            case .groomingZoneSpaces:
-                return [
-                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
-                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
-                ]
-            }
-        }
-        static var bathingSubTask: [BathroomSubTaskType] {
-            return [.bathingSpaces]
-        }
-        static var groomingSubTask: [BathroomSubTaskType] {
-            return [.groomingZoneSpaces]
-        }
-        static var vanitySubTask: [BathroomSubTaskType] {
-            return [.vanitySpace]
-        }
-        static var laundrySubTask: [BathroomSubTaskType] {
-            return [.laundrySpace]
-        }
-        static var cleaningSpaceSubtask: [BathroomSubTaskType] {
-            return [.cleaningSuppliesSpaces]
-        }
-        static var lightZonesSubTask: [BathroomSubTaskType] {
-            return [.lightingSpaces]
-        }
-        static var toiletrySubTask: [BathroomSubTaskType] {
-            return [.toiletrySpaces]
-        }
-        static var towelStorageSubTask: [BathroomSubTaskType] {
-            return [.towelStorageSpace]
-        }
-        static var SubTaskType: [any SubTaskType] {
-            return BathroomSubTaskType.allCases.map { $0 as any SubTaskType }
-        }
-    }
+//    enum BathroomSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
+//        case bathingSpaces = "Bathing Surfaces"
+//        case cleaningSuppliesSpaces = "Bathroom Cleaning SubTasks"
+//        case toiletrySpaces = "Toiletry Spaces"
+//        case towelStorageSpace = "Towel Storage Space"
+//        case vanitySpace = "Vanity Space"
+//        case laundrySpace = "Dirty Laundry"
+//        case lightingSpaces = "Lighting Spaces"
+//        case groomingZoneSpaces = "Grooming Zone Spaces"
+//        
+//        var id: UUID { UUID() }
+//        var name: String { rawValue }
+//        var imageName: String { rawValue }
+//        
+//        var instructions: String {
+//            switch self {
+//            case .bathingSpaces: return "Keep your bathing area organized with shower caddies or shelves for soaps, shampoos, and loofahs. Use non-slip mats and make sure the surfaces are regularly cleaned to prevent buildup."
+//            case .cleaningSuppliesSpaces: return "Store bathroom cleaning supplies under the sink or in a nearby closet. Keep brushes, sprays, and wipes in a caddy for easy access, and schedule regular cleaning tasks to maintain the space."
+//            case .toiletrySpaces: return "Organize toiletries in bins or trays inside cabinets or on vanity counters. Group items by category, such as skincare, haircare, or dental products, and label them if needed."
+//            case .towelStorageSpace: return "Store towels on racks, in baskets, or on shelves. Roll or fold them neatly, and keep extra towels in a linen closet if available."
+//            case .vanitySpace: return "Keep the vanity surface clutter-free by storing beauty products, hair tools, and grooming items in drawers or bins. Use drawer organizers to separate small items like makeup or hairpins."
+//            case .laundrySpace: return "Use a designated hamper or laundry basket for dirty clothes and towels. Keep it in a corner or closet to avoid clutter and ensure easy access on laundry day."
+//            case .lightingSpaces: return "Install bright, flattering lighting around the vanity or mirror. Consider using adjustable or dimmable lights for flexibility, and add task lighting for specific areas like the shower or tub."
+//            case .groomingZoneSpaces: return "Organize grooming tools such as razors, hair dryers, and brushes in drawers or on countertops using trays or organizers. Make sure everything is easily accessible and stored neatly when not in use."
+//            }
+//        }
+//        var usageDescription: String {
+//            switch self {
+//            case .bathingSpaces: return "Organized bathing surfaces keep all your essentials within easy reach, making your bath or shower time more relaxing. Regular cleaning also ensures a hygienic environment, preventing mildew and soap scum."
+//            case .cleaningSuppliesSpaces: return "Organized cleaning supplies make bathroom maintenance more efficient. A clean bathroom not only looks good but also promotes hygiene and prevents mold and bacteria buildup, keeping the space fresh and welcoming."
+//            case .toiletrySpaces: return " A well-organized toiletry space keeps your daily routine streamlined and reduces clutter. Having everything in its designated place makes it easy to find what you need, ensuring a stress-free start to the day."
+//            case .towelStorageSpace: return "Proper towel storage keeps your bathroom tidy and ensures fresh, clean towels are always available. It also helps prevent damp towels from cluttering the space, promoting a more organized and visually appealing bathroom."
+//            case .vanitySpace: return "A tidy vanity space creates an inviting area for your morning or evening routine. It ensures everything you need is easy to find, making grooming more efficient and enjoyable."
+//            case .laundrySpace: return "A dedicated space for dirty laundry keeps the bathroom neat and prevents clothes from piling up. It also makes laundry easier to manage, maintaining a clean and organized bathroom."
+//            case .lightingSpaces: return "Good lighting in the bathroom enhances functionality and creates a more enjoyable environment for grooming or relaxing. Proper lighting also makes the space feel more welcoming and well-designed."
+//            case .groomingZoneSpaces: return " A designated grooming zone streamlines your daily routine and keeps the bathroom looking clean. It ensures that all your grooming tools are easy to find and use, reducing clutter and improving the bathroom’s overall appearance."
+//            }
+//        }
+//        var weight: Double { 2.0 }
+//        
+//        var progress: Double {
+//            return isCompleted ? 100.0 : 0.0
+//        }
+//        var isCompleted: Bool{
+//            switch self {
+//            case .bathingSpaces: return true
+//            case .cleaningSuppliesSpaces: return true
+//            case .toiletrySpaces: return true
+//            case .towelStorageSpace: return true
+//            case .vanitySpace: return true
+//            case .laundrySpace: return true
+//            case .lightingSpaces: return true
+//            case .groomingZoneSpaces: return true
+//                
+//            }
+//        }
+//        
+//        var miniTask: (any MiniTaskType)? {
+//            return nil
+//        }
+//        var miniTaskTypes: [MiniTaskTypeBox] {
+//            switch self {
+//            case .bathingSpaces:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .cleaningSuppliesSpaces:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .laundrySpace:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .lightingSpaces:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .toiletrySpaces:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .towelStorageSpace:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .vanitySpace:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            case .groomingZoneSpaces:
+//                return [
+//                    MiniTaskTypeBox(BathroomMiniTaskType.remove)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.clean)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.categorize)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.group)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.sort)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.contain)!,
+//                    MiniTaskTypeBox(BathroomMiniTaskType.label)!
+//                ]
+//            }
+//        }
+//        static var bathingSubTask: [BathroomSubTaskType] {
+//            return [.bathingSpaces]
+//        }
+//        static var groomingSubTask: [BathroomSubTaskType] {
+//            return [.groomingZoneSpaces]
+//        }
+//        static var vanitySubTask: [BathroomSubTaskType] {
+//            return [.vanitySpace]
+//        }
+//        static var laundrySubTask: [BathroomSubTaskType] {
+//            return [.laundrySpace]
+//        }
+//        static var cleaningSpaceSubtask: [BathroomSubTaskType] {
+//            return [.cleaningSuppliesSpaces]
+//        }
+//        static var lightZonesSubTask: [BathroomSubTaskType] {
+//            return [.lightingSpaces]
+//        }
+//        static var toiletrySubTask: [BathroomSubTaskType] {
+//            return [.toiletrySpaces]
+//        }
+//        static var towelStorageSubTask: [BathroomSubTaskType] {
+//            return [.towelStorageSpace]
+//        }
+//        static var SubTaskType: [any SubTaskType] {
+//            return BathroomSubTaskType.allCases.map { $0 as any SubTaskType }
+//        }
+//    }
 
     enum StorageSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskType {
-        case allTheClosets = "All the Closets"
+        case allTheClosets = "Closets for Everything"
         case allTheNooks = "All the Nooks"
-        case longTermStorage = "Long-Term Storage"
+        case longTermStorage = "Annual Storage"
         
         
         var id: UUID { UUID() }

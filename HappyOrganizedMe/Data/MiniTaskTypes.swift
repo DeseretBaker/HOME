@@ -334,51 +334,51 @@ enum StorageMiniTaskType: String, Codable, CaseIterable, Identifiable, Displayab
     }
 }
 
-enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable, Displayable, MiniTaskType {
-    
-    case remove = "Remove"
-    case clean = "Clean"
-    case categorize = "Categorize"
-    case group = "Group"
-    case sort = "Sort"
-    case contain = "Contain"
-    case label = "Label"
-    
-    var id: UUID { UUID() }
-    var name: String { rawValue }
-    var imageName: String { rawValue }
-    
-    var instructions: String {
-        switch self {
-        case .remove: return "Remove items that are no longer needed or are taking up space, such as expired products, used towels, old toiletries, or empty containers. Check under the sink, in cabinets, and on shelves for any items that can be discarded or relocated."
-        case .clean: return "Clean all surfaces, including the sink, mirror, bathtub, shower, toilet, and floor. Use appropriate cleaning supplies for each area (e.g., glass cleaner for mirrors, bleach for toilets). Don’t forget to clean behind the toilet, faucets, and under the sink."
-        case .categorize: return "Sort bathroom items into categories such as hair care, skincare, oral hygiene, and cleaning products. Assign specific areas, drawers, or containers for each category to keep similar items together."
-        case .group: return "Group items within each category for further organization. For example, group all skincare products together by type (cleansers, moisturizers, serums) or group all hair tools in one drawer."
-        case .sort: return "Sort items by how frequently they are used. Store daily-use products in easily accessible areas, such as countertop organizers or top drawers. Place rarely used items, such as guest towels or specialty products, in less accessible cabinets or higher shelves."
-        case .contain: return "Use containers or baskets to hold smaller items like toiletries, makeup, or cleaning supplies. Opt for drawer dividers, bins, or trays to organize these items in cabinets, shelves, or under the sink."
-        case .label: return "Label bins, drawers, or shelves to clearly identify what’s inside. Use waterproof labels to withstand bathroom humidity and place labels in visible areas for easy reading."
-        }
-    }
-    var usageDescription: String {
-        switch self {
-        case .remove: return "Removing unnecessary items reduces clutter and frees up space, making it easier to keep your bathroom organized and functional. This step ensures that only items you actually use or need remain in the bathroom, promoting a cleaner, more streamlined environment."
-        case .clean: return "A clean bathroom is crucial for maintaining hygiene. Regular cleaning prevents the buildup of bacteria, mold, and soap scum, creating a safer and more pleasant space. It also enhances the overall look and feel of the bathroom, contributing to a more relaxing environment."
-        case .categorize: return "Categorizing items improves accessibility and makes it easier to find what you need, reducing time spent searching through clutter. It also helps you maintain order over time, preventing the bathroom from becoming disorganized again."
-        case .group: return "Grouping items keeps everything organized and accessible, making it easy to maintain a functional system. This method ensures that all related items are together, reducing the chances of clutter."
-        case .sort: return "Sorting items by frequency of use ensures that essentials are always at hand, while keeping less-used items out of the way. This improves efficiency, especially during the busy morning routine, and keeps your bathroom looking tidy."
-        case .contain: return "Containing smaller items prevents them from becoming scattered or disorganized. It also creates a neater, more visually pleasing space, while making it easier to access and store products."
-        case .label: return "Labeling ensures that each item has a designated space, making it easier to maintain organization over time. It helps everyone in the household know where to find and store things, reducing the chances of clutter and disarray."
-
-        }
-    }
-    var weight: Double { 5.0 }
-    var progress: Double { 0.0 }
-    var isCompleted: Bool { progress >= 1.0 }
-  
-    static var MiniTaskType: [any MiniTaskType] {
-        return BathroomMiniTaskType.allCases.map { $0 as any MiniTaskType }
-    }
-}
+//enum BathroomMiniTaskType: String, Codable, CaseIterable, Identifiable, Displayable, MiniTaskType {
+//    
+//    case remove = "Remove"
+//    case clean = "Clean"
+//    case categorize = "Categorize"
+//    case group = "Group"
+//    case sort = "Sort"
+//    case contain = "Contain"
+//    case label = "Label"
+//    
+//    var id: UUID { UUID() }
+//    var name: String { rawValue }
+//    var imageName: String { rawValue }
+//    
+//    var instructions: String {
+//        switch self {
+//        case .remove: return "Remove items that are no longer needed or are taking up space, such as expired products, used towels, old toiletries, or empty containers. Check under the sink, in cabinets, and on shelves for any items that can be discarded or relocated."
+//        case .clean: return "Clean all surfaces, including the sink, mirror, bathtub, shower, toilet, and floor. Use appropriate cleaning supplies for each area (e.g., glass cleaner for mirrors, bleach for toilets). Don’t forget to clean behind the toilet, faucets, and under the sink."
+//        case .categorize: return "Sort bathroom items into categories such as hair care, skincare, oral hygiene, and cleaning products. Assign specific areas, drawers, or containers for each category to keep similar items together."
+//        case .group: return "Group items within each category for further organization. For example, group all skincare products together by type (cleansers, moisturizers, serums) or group all hair tools in one drawer."
+//        case .sort: return "Sort items by how frequently they are used. Store daily-use products in easily accessible areas, such as countertop organizers or top drawers. Place rarely used items, such as guest towels or specialty products, in less accessible cabinets or higher shelves."
+//        case .contain: return "Use containers or baskets to hold smaller items like toiletries, makeup, or cleaning supplies. Opt for drawer dividers, bins, or trays to organize these items in cabinets, shelves, or under the sink."
+//        case .label: return "Label bins, drawers, or shelves to clearly identify what’s inside. Use waterproof labels to withstand bathroom humidity and place labels in visible areas for easy reading."
+//        }
+//    }
+//    var usageDescription: String {
+//        switch self {
+//        case .remove: return "Removing unnecessary items reduces clutter and frees up space, making it easier to keep your bathroom organized and functional. This step ensures that only items you actually use or need remain in the bathroom, promoting a cleaner, more streamlined environment."
+//        case .clean: return "A clean bathroom is crucial for maintaining hygiene. Regular cleaning prevents the buildup of bacteria, mold, and soap scum, creating a safer and more pleasant space. It also enhances the overall look and feel of the bathroom, contributing to a more relaxing environment."
+//        case .categorize: return "Categorizing items improves accessibility and makes it easier to find what you need, reducing time spent searching through clutter. It also helps you maintain order over time, preventing the bathroom from becoming disorganized again."
+//        case .group: return "Grouping items keeps everything organized and accessible, making it easy to maintain a functional system. This method ensures that all related items are together, reducing the chances of clutter."
+//        case .sort: return "Sorting items by frequency of use ensures that essentials are always at hand, while keeping less-used items out of the way. This improves efficiency, especially during the busy morning routine, and keeps your bathroom looking tidy."
+//        case .contain: return "Containing smaller items prevents them from becoming scattered or disorganized. It also creates a neater, more visually pleasing space, while making it easier to access and store products."
+//        case .label: return "Labeling ensures that each item has a designated space, making it easier to maintain organization over time. It helps everyone in the household know where to find and store things, reducing the chances of clutter and disarray."
+//
+//        }
+//    }
+//    var weight: Double { 5.0 }
+//    var progress: Double { 0.0 }
+//    var isCompleted: Bool { progress >= 1.0 }
+//  
+//    static var MiniTaskType: [any MiniTaskType] {
+//        return BathroomMiniTaskType.allCases.map { $0 as any MiniTaskType }
+//    }
+//}
 
 enum GarageMiniTaskType: String, Codable, CaseIterable, Identifiable, Displayable, MiniTaskType {
     
