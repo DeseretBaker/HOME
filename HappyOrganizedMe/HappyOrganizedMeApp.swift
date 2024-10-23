@@ -64,7 +64,9 @@ struct HappyOrganizedMeApp: App {
             ContentView()
                 .modelContainer(HappyOrganizedMeApp.sharedModelContainer)
                 .onAppear {
-                    projectController.setModelContext(HappyOrganizedMeApp.sharedModelContainer.mainContext)
+                    Task {
+                        projectController.setModelContext(HappyOrganizedMeApp.sharedModelContainer.mainContext)
+                    }
                 }
         }
     }

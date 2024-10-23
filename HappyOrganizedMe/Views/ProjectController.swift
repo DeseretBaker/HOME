@@ -24,13 +24,18 @@ class ProjectController: ObservableObject {
 
     func setModelContext(_ modelContext: ModelContext) {
         self.modelContext = modelContext
-        loadProjects()
+        Task {
+            await loadProjects()
+        }
     }
 
     // Function to load projects
-    func loadProjects() {
+    func loadProjects() async {
         guard let modelContext = modelContext else { return }
-        isLoading = true
+        
+        Task.detached { @MainActor in
+            self.isLoading = true
+        }
         
         let fetchDescriptor = FetchDescriptor<Project>()
         do {
@@ -38,12 +43,16 @@ class ProjectController: ObservableObject {
             if loadedProjects.isEmpty {
                 loadBaseProjects()
             } else {
-                projects = loadedProjects
+                Task.detached { @MainActor in
+                    self.projects = loadedProjects
+                }
             }
         } catch {
             print("Error loading projects: \(error)")
         }
-        isLoading = false
+        Task.detached { @MainActor in
+            self.isLoading = false
+        }
     }
     
     // Function to load base projects
