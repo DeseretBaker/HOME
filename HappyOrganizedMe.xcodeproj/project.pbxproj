@@ -633,7 +633,7 @@
 				CODE_SIGN_ENTITLEMENTS = HappyOrganizedMe/HappyOrganizedMe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyOrganizedMe/Preview Content\"";
 				DEVELOPMENT_TEAM = YV8MV5VC77;
 				ENABLE_PREVIEWS = YES;
@@ -650,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = "1,2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeseretBaker.HappyOrganizedMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -674,7 +674,7 @@
 				CODE_SIGN_ENTITLEMENTS = HappyOrganizedMe/HappyOrganizedMe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyOrganizedMe/Preview Content\"";
 				DEVELOPMENT_TEAM = YV8MV5VC77;
 				ENABLE_PREVIEWS = YES;
@@ -691,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = "1,2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DeseretBaker.HappyOrganizedMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
