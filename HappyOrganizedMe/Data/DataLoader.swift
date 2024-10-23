@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import Foundation
 
-
 // MARK: - DataLoader Class
 class DataLoader {
     
@@ -17,10 +16,10 @@ class DataLoader {
     static func createAllEmptyProjects() -> [Project] {
         return loadProjects()
     }
-    
+
     // MARK: - Project Loader
     static func loadProjects() -> [Project] {
-        return ProjectType.allCases.map { projectType in
+        ProjectType.allCases.parallelMap { projectType in
             let rooms = loadRooms(for: projectType)
             return Project(
                 projectType: projectType,
@@ -30,21 +29,15 @@ class DataLoader {
             )
         }
     }
-    
+
     // MARK: - Room Loader
     static func loadRooms(for projectType: ProjectType) -> [Room] {
         let roomTypes = projectType.roomTypes
+        debugLog("Loading rooms for \(projectType.name): \(roomTypes.count) found")
         
-        #if DEBUG
-        print("Loading rooms for \(projectType.name): \(roomTypes.count) found")
-        #endif
-        
-        let rooms: [Room] = roomTypes.map { roomType in
+        return roomTypes.parallelMap { roomType in
             let spaces = loadSpaces(for: roomType)
-            
-            #if DEBUG
-            print("Loaded room: \(roomType.name) with \(spaces.count) spaces")
-            #endif
+            debugLog("Loaded room: \(roomType.name) with \(spaces.count) spaces")
             
             return Room(
                 roomType: roomType,
@@ -53,31 +46,22 @@ class DataLoader {
                 spaces: spaces
             )
         }
-        #if DEBUG
-        print("Total rooms loaded for project \(projectType.name): \(rooms.count)")
-        #endif
-        return rooms
     }
-    
+
     // MARK: - Space Loader
     static func loadSpaces(for roomType: RoomTypeBox) -> [Space] {
         let spaceTypes = roomType.spaceTypes
         
         guard !spaceTypes.isEmpty else {
-            print("No space types found for \(roomType.name)")
+            debugLog("No space types found for \(roomType.name)")
             return []
         }
         
-        #if DEBUG
-        print("Loading spaces for \(roomType.name): \(spaceTypes.count) found")
-        #endif
+        debugLog("Loading spaces for \(roomType.name): \(spaceTypes.count) found")
         
-        let spaces: [Space] = spaceTypes.map { spaceType in
-            let subTasks = loadSubTasks(for: spaceType) // Correctly calling loadSubTasks
-            
-            #if DEBUG
-            print("Loaded space: \(spaceType.name) with \(subTasks.count) subTasks")
-            #endif
+        return spaceTypes.parallelMap { spaceType in
+            let subTasks = loadSubTasks(for: spaceType)
+            debugLog("Loaded space: \(spaceType.name) with \(subTasks.count) subTasks")
             
             return Space(
                 spaceType: spaceType,
@@ -86,32 +70,22 @@ class DataLoader {
                 subTasks: subTasks
             )
         }
-        
-        #if DEBUG
-        print("Total spaces loaded for project  \(roomType.name): \(spaces.count)")
-        #endif
-        return spaces
     }
-    
+
     // MARK: - SubTask Loader
     static func loadSubTasks(for spaceType: SpaceTypeBox) -> [SubTask] {
         let subTaskTypes = spaceType.subTaskTypes
         
         guard !subTaskTypes.isEmpty else {
-            print("No subTask types found for \(spaceType.name)")
+            debugLog("No subTask types found for \(spaceType.name)")
             return []
         }
         
-        #if DEBUG
-        print("Loading sub tasks for \(spaceType.name): \(subTaskTypes.count) found")
-        #endif
+        debugLog("Loading sub tasks for \(spaceType.name): \(subTaskTypes.count) found")
         
-        let subTasks: [SubTask] = subTaskTypes.map { subTaskType in
-            let miniTasks = loadMiniTasks(for: subTaskType) // Correctly calling loadMiniTasks
-            
-            #if DEBUG
-            print("Loaded subTask: \(subTaskType.name) with \(miniTasks.count) miniTasks")
-            #endif
+        return subTaskTypes.parallelMap { subTaskType in
+            let miniTasks = loadMiniTasks(for: subTaskType)
+            debugLog("Loaded subTask: \(subTaskType.name) with \(miniTasks.count) miniTasks")
             
             return SubTask(
                 subTaskType: subTaskType,
@@ -120,37 +94,44 @@ class DataLoader {
                 miniTasks: miniTasks
             )
         }
-        
-        #if DEBUG
-        print("Total subTasks loaded for project  \(spaceType.name): \(subTasks.count)")
-        #endif
-        return subTasks
     }
-    
+
     // MARK: - MiniTask Loader
     static func loadMiniTasks(for subTaskType: SubTaskTypeBox) -> [MiniTask] {
         let miniTaskTypes = subTaskType.miniTaskTypes
         
         guard !miniTaskTypes.isEmpty else {
-            print("No miniTask types found for \(subTaskType.name)")
+            debugLog("No miniTask types found for \(subTaskType.name)")
             return []
         }
         
-        #if DEBUG
-        print("Loading mini tasks for \(subTaskType.name): \(miniTaskTypes.count) found")
-        #endif
+        debugLog("Loading mini tasks for \(subTaskType.name): \(miniTaskTypes.count) found")
         
-        return miniTaskTypes.map { miniTaskType in
-            
-            #if DEBUG
-            print("Loaded miniTask: \(miniTaskType.name)")
-            #endif
-            
+        return miniTaskTypes.parallelMap { miniTaskType in
+            debugLog("Loaded miniTask: \(miniTaskType.name)")
             return MiniTask(
                 miniTaskType: miniTaskType,
                 instructions: miniTaskType.instructions,
                 usageDescription: miniTaskType.usageDescription
             )
         }
+    }
+
+    // Centralized Debug Logging
+    static func debugLog(_ message: String) {
+        #if DEBUG
+        print(message)
+        #endif
+    }
+}
+
+// MARK: - Parallel Mapping Extension for Arrays
+extension Array {
+    func parallelMap<T>(_ transform: (Element) -> T) -> [T] {
+        var result = Array<T?>(repeating: nil, count: count)
+        DispatchQueue.concurrentPerform(iterations: count) { index in
+            result[index] = transform(self[index])
+        }
+        return result.compactMap { $0 }
     }
 }

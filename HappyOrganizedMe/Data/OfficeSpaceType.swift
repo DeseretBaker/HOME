@@ -74,16 +74,16 @@ enum OfficeSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         }
     }
     static var deskTopSetupZoneSpaces: [OfficeSpaceType] {
-        return [.deskTopSetup]
+        return [.deskTopSetup, .documentHandling]
     }
     static var officeReferenceZoneSpaces: [OfficeSpaceType] {
-        return [.officeReference]
+        return [.officeReference, .officeTech]
     }
     static var officeTechZoneSpaces: [OfficeSpaceType] {
-        return [.officeTech]
+        return [.officeTech, .documentHandling]
     }
     static var officeStorageZoneSpaces: [OfficeSpaceType] {
-        return [.officeStorage]
+        return [.officeStorage, .documentHandling]
     }
     static var SpaceType: [any SpaceType] {
         return OfficeSpaceType.allCases.map { $0 as any SpaceType }

@@ -53,13 +53,13 @@ enum StorageSpaceType: String, Codable, CaseIterable, Identifiable, SpaceType {
         }
     }
     static var longTermStorageSubTask: [StorageSpaceType] {
-        return [.longTermStorage]
+        return [.longTermStorage, .closetSpaces]
     }
     static var builtInsWallUnitsSubTasks: [StorageSpaceType] {
-        return [.builtInSpaces]
+        return [.builtInSpaces, .longTermStorage]
     }
     static var closetSpaceSubTasks: [StorageSpaceType] {
-        return [.closetSpaces]
+        return [.closetSpaces, .builtInSpaces]
     }
     static var SpaceType: [any SpaceType] {
         return StorageSpaceType.allCases.map { $0 as any SpaceType }

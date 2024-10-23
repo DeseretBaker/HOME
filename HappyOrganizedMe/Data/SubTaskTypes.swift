@@ -440,7 +440,6 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .officeTechnology: return "Keep your technology organized by placing your computer, printer, and other devices in designated areas. Use cable management solutions to hide cords and keep devices within easy reach."
             case .storageInOffice: return "Use cabinets, drawers, or shelves to store office supplies, documents, and other essentials. Label storage containers or drawers to easily find what you need."
             case .theMailAndStuff: return "Organize your incoming and outgoing mail with a designated tray or folder system. Separate mail by category (bills, personal, work) to stay on top of tasks and prevent clutter."
-                
             }
         }
         var usageDescription: String {
@@ -453,8 +452,7 @@ enum KitchenSubTaskType: String, Codable, CaseIterable, Identifiable, SubTaskTyp
             case .chillOutZone: return "A chill-out zone helps you recharge during the workday, improving focus and productivity. Taking short breaks in a cozy, inviting space allows you to return to your tasks refreshed and energized."
             case .theMailAndStuff: return "Keeping your mail organized ensures that important items don’t get lost or overlooked. It helps you stay on top of correspondence and keeps your office tidy and clutter-free."
             case .inspirationSpace: return "An inspiration space fuels creativity and motivation, providing a mental boost whenever you need it. It reminds you of your goals and keeps you focused on what drives your success."
-            case .meetingZone: return "A meeting zone allows for productive conversations and collaboration. It creates a professional space within your office for discussions or teamwork, helping to foster communication and idea-sharing."
-                
+            case .meetingZone: return "A meeting zone allows for productive conversations and collaboration. It creates a professional space within your office for discussions or teamwork, helping to foster communication and idea-sharing."   
             }
         }
         var weight: Double { 2.0 }

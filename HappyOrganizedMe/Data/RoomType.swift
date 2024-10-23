@@ -174,7 +174,7 @@ enum DiningRoomType: String, Codable, CaseIterable, Identifiable, RoomType {
     static var diningRoomMultiUsesRoom: [DiningRoomType] {
         return [.multiUses, .diningZone]
     }
-    static var allRoomTypes: [any RoomType] {
+    static var RoomTypes: [any RoomType] {
         return DiningRoomType.allCases.map { $0 as any RoomType}
     }
 }
@@ -858,7 +858,7 @@ enum PlayroomRoomType: String, Codable, CaseIterable, Identifiable,  RoomType {
         var progress: Double { 0.0 }
         var isCompleted: Bool { false }
         
-        static var allRoomTypes: [any RoomType] {
+        static var RoomTypes: [any RoomType] {
             return ComingSoonRoomType.allCases.map { $0 as any RoomType}
         }
     }

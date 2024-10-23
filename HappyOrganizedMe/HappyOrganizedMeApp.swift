@@ -10,12 +10,12 @@ import SwiftData
 @main
 struct HappyOrganizedMeApp: App {
     @StateObject private var projectController = ProjectController.shared
-    @Environment(\.modelContext) private var modelContext
-    @State private var hasClickedStartHereButton: Bool = false // Add this state
+    @State private var hasClickedStartHereButton: Bool = false
 
     // Shared model container for the app
     static var sharedModelContainer: ModelContainer = {
         do {
+            // Define schema
             let schema = Schema([
                 Project.self,
                 Room.self,
@@ -23,15 +23,20 @@ struct HappyOrganizedMeApp: App {
                 SubTask.self,
                 MiniTask.self
             ])
-            
             let container = try ModelContainer(for: schema)
             print("ModelContainer created successfully")
             
-            if containerIsEmpty(container) {
-                DataLoader.createAllEmptyProjects().forEach { project in
-                    container.mainContext.insert(project)
+            // Check if container is empty asynchronously
+            DispatchQueue.global(qos: .background).async {
+                if containerIsEmpty(container) {
+                    DispatchQueue.main.async {
+                        DataLoader.createAllEmptyProjects().forEach { project in
+                            container.mainContext.insert(project)
+                        }
+                        try? container.mainContext.save()
+                        print("Base projects created and saved.")
+                    }
                 }
-                try? container.mainContext.save()
             }
             
             return container
@@ -41,12 +46,10 @@ struct HappyOrganizedMeApp: App {
         }
     }()
     
+    // Check if the container is empty
     private static func containerIsEmpty(_ container: ModelContainer) -> Bool {
         let context = container.mainContext
-        
-        // Fetch all Project objects
         let fetchDescriptor = FetchDescriptor<Project>()
-        
         do {
             let projects = try context.fetch(fetchDescriptor)
             return projects.isEmpty
@@ -58,8 +61,8 @@ struct HappyOrganizedMeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView() // Pass the binding to StartHereView
-                .modelContainer(HappyOrganizedMeApp.sharedModelContainer) // Attach the model container
+            ContentView()
+                .modelContainer(HappyOrganizedMeApp.sharedModelContainer)
                 .onAppear {
                     projectController.setModelContext(HappyOrganizedMeApp.sharedModelContainer.mainContext)
                 }

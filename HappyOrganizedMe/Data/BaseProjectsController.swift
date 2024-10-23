@@ -20,35 +20,35 @@ class BaseProjectsController: ObservableObject {
         do {
             let fetchedProjects = try modelContext.fetch(FetchDescriptor<Project>())
             
-            if !fetchedProjects.isEmpty {
-                print("Fetched projects from storage: \(fetchedProjects.count)")
-                
-                for project in fetchedProjects {
-                    // Ensure rooms are loaded if they are empty
-                    if project.rooms?.isEmpty == true {
-                        guard let unwrappedProjectType = project.projectType else {
-                            print("Error: ProjectType is nil for project \(project.id)")
-                            continue // Skip this project if projectType is nil
-                        }
-                        project.rooms = DataLoader.loadRooms(for: unwrappedProjectType)
-                    }
-                }
-                return fetchedProjects
-            } else {
+            guard !fetchedProjects.isEmpty else {
                 return createBaseProjects()
             }
+            
+            print("Fetched projects from storage: \(fetchedProjects.count)")
+
+            // Ensure rooms are loaded for each project
+            fetchedProjects.forEach { project in
+                if project.rooms?.isEmpty == true {
+                    if let projectType = project.projectType {
+                        project.rooms = DataLoader.loadRooms(for: projectType)
+                    } else {
+                        print("Error: ProjectType is nil for project \(project.id)")
+                    }
+                }
+            }
+            
+            return fetchedProjects
         } catch {
-            print("Failed to fetch projects: \(error)")
+            logError("Failed to fetch projects: \(error)")
             return createBaseProjects()
         }
     }
 
     // Create base projects and save them in the model context
     private func createBaseProjects() -> [Project] {
-        // Define the base project types
         let projectTypes: [ProjectType] = [.kitchen, .livingRoom, .diningRoom, .bedroom, .office, .playroom, .storage, .garage]
         
-        let projects = projectTypes.map { projectType in
+        let projects = projectTypes.parallelMap { projectType -> Project in
             let project = Project(
                 projectType: projectType,
                 instructions: projectType.instructions,
@@ -59,29 +59,33 @@ class BaseProjectsController: ObservableObject {
             return project
         }
 
-        do {
-            try modelContext.save()
-            print("Base projects successfully saved.")
-        } catch {
-            print("Failed to save base projects: \(error.localizedDescription)")
-        }
-
+        saveContext("Base projects successfully saved.")
         return projects
     }
 
     // Save updated or newly created projects into the persistent store
     func saveProjects(_ projects: [Project]) {
-        do {
-            try modelContext.save()
-            print("Projects saved successfully.")
-        } catch {
-            print("Failed to save projects: \(error.localizedDescription)")
-        }
+        saveContext("Projects saved successfully.")
     }
-    
+
     // Delete a project from the context
     func deleteProject(_ project: Project) {
         modelContext.delete(project)
-        saveProjects([])
+        saveContext("Project deleted successfully.")
+    }
+
+    // Helper to save the context and log the result
+    private func saveContext(_ successMessage: String) {
+        do {
+            try modelContext.save()
+            print(successMessage)
+        } catch {
+            logError("Failed to save context: \(error.localizedDescription)")
+        }
+    }
+    
+    // Helper to log errors
+    private func logError(_ message: String) {
+        print("Error: \(message)")
     }
 }
